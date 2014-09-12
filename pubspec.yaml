@@ -1,0 +1,7 @@
+name: rockdot_dart
+version: 0.0.1
+description: dart port of rockdot framework
+dependencies:
+  spring_dart:
+    git: https://github.com/blockforest/spring-dart
+    #path: /Volumes/Daten/nilsdoehring/git/spring-dart
