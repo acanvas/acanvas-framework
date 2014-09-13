@@ -38,12 +38,12 @@ class DefaultScrollbar extends Scrollbar {
 			if (_orientation == Orientation.HORIZONTAL) {
 				g.rect(0, 0, size, 5);
 				g.fillColor(0x00AAAAAA);
-				_background.applyCache(0, 0, size, 5);
+				_background.applyCache(0, 0, size.round(), 5);
 				_background.y = 2;
 			} else {
 				g.rect(0, 0, 5, size);
 				g.fillColor(0x00AAAAAA);
-				_background.applyCache(0, 0, 5, size);
+				_background.applyCache(0, 0, 5, size.round());
 				_background.x = 2;
 			}
 			

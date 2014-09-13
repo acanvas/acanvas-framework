@@ -136,7 +136,7 @@ class StateModel implements IApplicationContextAware {
     _log.info("Registered URL: " + voKey);
   }
   List getPageVOList([bool sort = true, int tree_parent = 0]) {
-    List naviVOs = _pageVOs.values;
+    List naviVOs = _pageVOs.values.toList();
     List arr = [];
     if (sort) {
       naviVOs.sort((StateVO voa, StateVO vob){ 
@@ -146,7 +146,7 @@ class StateModel implements IApplicationContextAware {
       });
     }
     for (int i = 0; i < naviVOs.length; i++) {
-      if (naviVOs[i]["tree_parent"] == tree_parent) {
+      if (naviVOs[i].tree_parent == tree_parent) {
         arr.add(naviVOs[i]);
       }
     }

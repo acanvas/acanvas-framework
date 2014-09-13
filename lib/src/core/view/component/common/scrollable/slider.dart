@@ -188,7 +188,7 @@ class Slider extends SpriteComponent {
 
 
   @override
-  void setSize(int w, int h) {
+  void setSize(num w, num h) {
     size = _orientation == Orientation.HORIZONTAL ? w : h;
     super.setSize(w, h);
   }

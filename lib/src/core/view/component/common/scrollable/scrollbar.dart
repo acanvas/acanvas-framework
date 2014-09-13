@@ -290,7 +290,7 @@ class Scrollbar extends Slider {
     int offset;
     int maxPos;
     int thumbSize;
-    maxPos = _size - _thumbSize;
+    maxPos = (_size - _thumbSize).round();
     pos = ((_value - _min) / ((_max - _min) == 0 ? 1 : (_max - _min)) * maxPos).round();
     if (pos < 0) {
       offset = -pos;
