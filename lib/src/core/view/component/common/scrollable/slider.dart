@@ -62,7 +62,7 @@ class Slider extends SpriteComponent {
 
       clearMomentum();
 
-      if (addMouseListeners != null) {
+      if (addMouseListeners == true) {
         stage.addEventListener(MouseEvent.MOUSE_MOVE, _onStageMouseMove);
         stage.addEventListener(MouseEvent.MOUSE_UP, _onStageMouseUp);
       }
@@ -135,12 +135,15 @@ class Slider extends SpriteComponent {
 
   void _onThumbMouseDown(MouseEvent event) {
     interactionStart();
-    _mouseOffset = (_ori ? stage.mouseX : stage.mouseY) - (_ori ? _thumb.width : _thumb.height) + (_ori ? _background.x : _background.y);
+    //offset not right
+    print("_background.y: ${_background.y}, _thumbSize: $_thumbSize");
+    _mouseOffset = (_ori ? stage.mouseX : stage.mouseY) - (_ori ? _thumb.x : _thumb.y);// - _thumbSize * 0.5;
   }
 
 
   void _onStageMouseMove(MouseEvent event) {
-    value = convertPositionToValue((_ori ? stage.mouseX : stage.mouseY) - _mouseOffset);
+    num mousePos = (_ori ? stage.mouseX : stage.mouseY);// - _thumbSize * 0.5;
+    value = convertPositionToValue(mousePos - _mouseOffset);
     // event.updateAfterEvent();
   }
 
@@ -174,12 +177,13 @@ class Slider extends SpriteComponent {
   }
 
 
-  void set value(num value) {
-    if (value < _min) value = min; else if (value > _max) value = _max;
-    if (!_continuous) value = (value).round();
+  void set value(num newValue) {
+    
+    if (newValue < _min) newValue = min; else if (newValue > _max) newValue = _max;
+    if (!_continuous) newValue = (newValue).round();
 
-    if (value != _value) {
-      _value = value;
+    if (newValue != _value) {
+      _value = newValue;
       _updateThumbPosition();
       dispatchEvent(new SliderEvent(SliderEvent.VALUE_CHANGE, _value));
     }
@@ -285,7 +289,8 @@ class Slider extends SpriteComponent {
   void set mouseWheelEnabled(bool value) {
     if (value != _mouseWheelEnabled) {
       _mouseWheelEnabled = value;
-      if (_mouseWheelEnabled) addEventListener(MouseEvent.MOUSE_WHEEL, _onMouseWheel, useCapture: false, priority: 0); else removeEventListener(MouseEvent.MOUSE_WHEEL, _onMouseWheel);
+      if (_mouseWheelEnabled) addEventListener(MouseEvent.MOUSE_WHEEL, _onMouseWheel, useCapture: false, priority: 0); 
+      else removeEventListener(MouseEvent.MOUSE_WHEEL, _onMouseWheel);
     }
   }
 
@@ -293,9 +298,10 @@ class Slider extends SpriteComponent {
   void _onMouseWheel(MouseEvent event) {
     if (event.deltaY < 0 && _value == _max) return;
     if (event.deltaY > 0 && _value == _min) return;
-
+    
     interactionStart();
-    value -= event.deltaY * mouseWheelSensitivity;
+    
+    value = value - event.deltaY * mouseWheelSensitivity;
     interactionEnd();
   }
 

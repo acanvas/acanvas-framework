@@ -184,7 +184,7 @@ class Scrollbar extends Slider {
 
   void killPageTween() {
     if (_pageScrollDuration != 0) {
-      value = 0;
+      //value = 0;
       _isTweening = false;
     }
   }
@@ -272,12 +272,13 @@ class Scrollbar extends Slider {
 
 
   @override
-  void set value(num value) {
-    if (value < _min) value = _bounce ? _min + (value - _min) * 0.5 : _min; else if (value > _max) value = _bounce ? _max + (value - _max) * 0.5 : _max;
-    if (!_continuous && value != null) value = (value).round();
+  void set value(num newValue) {
+    print("value set: $value");
+    if (newValue < _min) newValue = _bounce ? _min + (newValue - _min) * 0.5 : _min; else if (newValue > _max) newValue = _bounce ? _max + (newValue - _max) * 0.5 : _max;
+    if (!_continuous && newValue != null) newValue = (newValue).round();
 
-    if (value != _value) {
-      _value = value;
+    if (newValue != _value) {
+      _value = newValue;
       redraw();
       dispatchEvent(new SliderEvent(SliderEvent.VALUE_CHANGE, _value));
     }

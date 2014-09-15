@@ -12,6 +12,7 @@ class ComponentList extends ComponentScrollable {
   int _bufferSize = 20;
   Cell _mouseDownCell;
   bool _cellMoved = false;
+  bool _initialized = false;
   Map _cellSelectedLookup;
   List _reusableCellPool;
   int _cellsLoaded = 0;
@@ -19,6 +20,7 @@ class ComponentList extends ComponentScrollable {
   int _scrollPos = 0;
   int _totalViewSize = 0;
   int _oldVScrollbarValue = 0;
+  Timer _timer;
 
   List data;
   num _originX = 0;
@@ -30,18 +32,18 @@ class ComponentList extends ComponentScrollable {
     _constantCellSize = constantCellSize;
     superConstructor(orientation, new SpriteComponent(), scrollbarClass);
   }
-  
+
   @override
   void redraw() {
     int i;
     int n = cellContainer.numChildren;
     Cell cell;
-
+/*
     for (i = 0; i < n; i++) {
       cell = (cellContainer.getChildAt(i) as Cell);
       cell.setSize(widthAsSet, heightAsSet);
     }
-
+*/
     super.redraw();
     _updateCells();
   }
@@ -52,6 +54,11 @@ class ComponentList extends ComponentScrollable {
   }
 
   void init() {
+    if(_frame.width == 10 || _frame.height == 10){
+      return;
+    }
+    _initialized = true;
+    
     _totalViewSize = 0;
     _cellSelectedLookup = new Map();
     _cellsLoaded = 0;
@@ -63,15 +70,15 @@ class ComponentList extends ComponentScrollable {
     // Constant cell height
     if (_constantCellSize) {
       cell = _getCell();
+     
       cell.id = 0;
-      cell.data = data[0];
+      cell.data = data.elementAt(0);
       cellContainer.addChild(cell);
 
       _cellSelectedLookup[0] = false;
-
       Scrollbar scroller = (_bOrientationHorizontal ? _hScrollbar : _vScrollbar);
 
-      _cellSize = (_bOrientationHorizontal ? cell.width : cell.heightAsSet) + _padding;
+      _cellSize = (_bOrientationHorizontal ? cell.widthAsSet : cell.heightAsSet) + _padding;
       _totalViewSize = (numDataEntries * _cellSize - _padding).round();
       _cellsLoaded = numDataEntries;
       int cellsInFrame = ((_bOrientationHorizontal ? _frame.width : _frame.height) / _cellSize).ceil();
@@ -83,8 +90,9 @@ class ComponentList extends ComponentScrollable {
           _bOrientationHorizontal ? cell.x = i * _cellSize : cell.y = i * _cellSize;
 
           cellContainer.addChild(cell);
+         // _cellsLoaded++;
         }
-        _cellSelectedLookup[0] = false;
+        _cellSelectedLookup[i] = false;
 
       }
     } else {
@@ -98,11 +106,11 @@ class ComponentList extends ComponentScrollable {
           if (_totalViewSize < (_bOrientationHorizontal ? _frame.width : _frame.height)) {
             // Show cell
             _bOrientationHorizontal ? cell.x = _totalViewSize : cell.y = _totalViewSize;
-            _totalViewSize += ((_bOrientationHorizontal ? cell.width : cell.height)).round() + _padding;
+            _totalViewSize += ((_bOrientationHorizontal ? cell.widthAsSet : cell.heightAsSet)).round() + _padding;
             cellContainer.addChild(cell);
           } else {
             // Only precalculate cell height
-            _totalViewSize += ((_bOrientationHorizontal ? cell.width : cell.height)).round() + _padding;
+            _totalViewSize += ((_bOrientationHorizontal ? cell.widthAsSet : cell.heightAsSet)).round() + _padding;
             _putCellInPool(cell);
           }
           _cellSelectedLookup[i] = false;
@@ -142,7 +150,7 @@ class ComponentList extends ComponentScrollable {
         cell.data = data.elementAt(i);
 
         // Only precalculate cell height
-        _totalViewSize += ((_bOrientationHorizontal ? cell.width : cell.height)).round() + _padding;
+        _totalViewSize += ((_bOrientationHorizontal ? cell.widthAsSet : cell.heightAsSet)).round() + _padding;
         _putCellInPool(cell);
         _cellSelectedLookup[i] = false;
         _cellsLoaded++;
@@ -166,7 +174,7 @@ class ComponentList extends ComponentScrollable {
         for (int i = 0; i < nr; i++) {
           cell.id = i;
           cell.data = data.elementAt(i);
-          targetPos += ((_bOrientationHorizontal ? cell.width : cell.height) + _padding).round();
+          targetPos += ((_bOrientationHorizontal ? cell.widthAsSet : cell.heightAsSet) + _padding).round();
         }
 
         int safetyFlag = -1;
@@ -215,13 +223,15 @@ class ComponentList extends ComponentScrollable {
 
   @override
   void _onHScrollbarChange(SliderEvent event) {
-    if (_orientation == Orientation.VERTICAL) super._onHScrollbarChange(event); else _onScrollbarChange(event);
+    if (_orientation == Orientation.VERTICAL) super._onHScrollbarChange(event); 
+    else _onScrollbarChange(event);
   }
 
 
   @override
   void _onVScrollbarChange(SliderEvent event) {
-    if (_orientation == Orientation.HORIZONTAL) super._onVScrollbarChange(event); else _onScrollbarChange(event);
+    if (_orientation == Orientation.HORIZONTAL) super._onVScrollbarChange(event); 
+    else _onScrollbarChange(event);
   }
 
 
@@ -235,6 +245,14 @@ class ComponentList extends ComponentScrollable {
 
 
   void _updateCells() {
+    if(_frame.width == 10 || _frame.height == 10){
+      return;
+    }
+    if(_initialized == false){
+      init();
+      return;
+    }
+    
     int n = cellContainer.numChildren;
     Cell cell;
     List cellsToPool = [];
@@ -242,7 +260,7 @@ class ComponentList extends ComponentScrollable {
     for (int i = 0; i < n; i++) {
       cell = (cellContainer.getChildAt(i) as Cell);
       _bOrientationHorizontal ? cell.x += _scrollPos : cell.y += _scrollPos;
-      if ((_bOrientationHorizontal ? cell.x : cell.y) + (_bOrientationHorizontal ? cell.width : cell.height) < 0 || (_bOrientationHorizontal ? cell.x : cell.y) > (_bOrientationHorizontal ? _frame.width : _frame.height)) cellsToPool.add(cell);
+      if ((_bOrientationHorizontal ? cell.x : cell.y) + (_bOrientationHorizontal ? cell.widthAsSet : cell.heightAsSet) < 0 || (_bOrientationHorizontal ? cell.x : cell.y) > (_bOrientationHorizontal ? _frame.width : _frame.height)) cellsToPool.add(cell);
     }
 
     // Put collected cells in pool
@@ -270,8 +288,8 @@ class ComponentList extends ComponentScrollable {
       // Scrolling down
       cell = cellContainer.numChildren != 0 ? (cellContainer.getChildAt(cellContainer.numChildren - 1) as Cell) : _getCell(true);
       firstLoop = true;
-      
-      while ((_bOrientationHorizontal ? cell.x : cell.y) + (_bOrientationHorizontal ? cell.width : cell.height) < (_bOrientationHorizontal ? _frame.width : _frame.height)) {
+
+      while ((_bOrientationHorizontal ? cell.x : cell.y) + (_bOrientationHorizontal ? cell.widthAsSet : cell.heightAsSet) < (_bOrientationHorizontal ? _frame.width : _frame.height)) {
         if (firstLoop != null) {
           if (cell.parent == null) _putCellInPool(cell);
           firstLoop = false;
@@ -281,13 +299,14 @@ class ComponentList extends ComponentScrollable {
           print("x");
           break;
         }
-        (_bOrientationHorizontal ? cell.x : cell.y) + (_bOrientationHorizontal ? cell.width : cell.height) < 0 ? _putCellInPool(cell) : cellContainer.addChild(cell);
+        (_bOrientationHorizontal ? cell.x : cell.y) + (_bOrientationHorizontal ? cell.widthAsSet : cell.heightAsSet) < 0 ? _putCellInPool(cell) : cellContainer.addChild(cell);
       }
-    } else if (cell != null) {
+    } else {
 
       // TODO: FIXME: Schaune, ob nach unten oder oben angebaut werden muss
 
-      // Just update (e.g. render(cell as )) = cellContainer.numChildren != 0 ? Cell(cellContainer.getChildAt(0)) : _getCell(true);
+      // Just update (e.g. render()) 
+      cell = cellContainer.numChildren != 0 ? (cellContainer.getChildAt(0) as Cell) : _getCell(true);
       firstLoop = true;
       while ((_bOrientationHorizontal ? cell.x : cell.y) > 0) {
         if (firstLoop) {
@@ -299,15 +318,16 @@ class ComponentList extends ComponentScrollable {
         (_bOrientationHorizontal ? cell.x : cell.y) > (_bOrientationHorizontal ? _frame.width : _frame.height) ? _putCellInPool(cell) : cellContainer.addChildAt(cell, 0);
       }
       cell = cellContainer.numChildren != 0 ? (cellContainer.getChildAt(cellContainer.numChildren - 1) as Cell) : _getCell(true);
+      
       firstLoop = true;
-      while ((_bOrientationHorizontal ? cell.x : cell.y) + (_bOrientationHorizontal ? cell.width : cell.height) < (_bOrientationHorizontal ? _frame.width : _frame.height)) {
+      while ((_bOrientationHorizontal ? cell.x : cell.y) + (_bOrientationHorizontal ? cell.widthAsSet : cell.heightAsSet) < (_bOrientationHorizontal ? _frame.width : _frame.height)) {
         if (firstLoop) {
           if (cell.parent == null) _putCellInPool(cell);
           firstLoop = false;
         }
         cell = _addNewCell(cell);
         if (cell == null) break;
-        (_bOrientationHorizontal ? cell.x : cell.y) + (_bOrientationHorizontal ? cell.width : cell.height) < 0 ? _putCellInPool(cell) : cellContainer.addChild(cell);
+        (_bOrientationHorizontal ? cell.x : cell.y) + (_bOrientationHorizontal ? cell.widthAsSet : cell.heightAsSet) < 0 ? _putCellInPool(cell) : cellContainer.addChild(cell);
       }
     }
 
@@ -334,15 +354,15 @@ class ComponentList extends ComponentScrollable {
 
 
   Cell _addNewCell(Cell oldCell) {
-    if (data.length <= oldCell.id) return null;
-    
+    if (oldCell.id+1 >= data.length) return null;
+
     Cell newCell = _getCell();
     newCell.id = oldCell.id + 1;
-    newCell.data = data[oldCell.id];
+    newCell.data = data[newCell.id];
     newCell.visible = newCell.data != null;
     _cellSelectedLookup[newCell.id] != null ? newCell.select() : newCell.deselect();
 
-    num pos = ((_bOrientationHorizontal ? oldCell.x : oldCell.y) + (_bOrientationHorizontal ? oldCell.width : oldCell.height)).round() + _padding;
+    num pos = ((_bOrientationHorizontal ? oldCell.x : oldCell.y) + (_bOrientationHorizontal ? oldCell.widthAsSet : oldCell.heightAsSet)).round() + _padding;
     _bOrientationHorizontal ? newCell.x = pos : newCell.y = pos;
 
     return newCell;
@@ -356,7 +376,7 @@ class ComponentList extends ComponentScrollable {
     newCell.visible = newCell.data != null;
     _cellSelectedLookup[newCell.id] != null ? newCell.select() : newCell.deselect();
 
-    num pos = ((_bOrientationHorizontal ? oldCell.x : oldCell.y) - (_bOrientationHorizontal ? newCell.width : newCell.height)).round() - _padding;
+    num pos = ((_bOrientationHorizontal ? oldCell.x : oldCell.y) - (_bOrientationHorizontal ? newCell.widthAsSet : newCell.heightAsSet)).round() - _padding;
     _bOrientationHorizontal ? newCell.x = pos : newCell.y = pos;
 
     return newCell;
@@ -375,7 +395,7 @@ class ComponentList extends ComponentScrollable {
     Cell cell;
     if (_reusableCellPool.length == 0) {
       cell = reflectClass(_cellClass).newInstance(new Symbol(""), [widthAsSet]).reflectee;
-      cell.setSize(widthAsSet, heightAsSet);
+      //cell.setSize(widthAsSet, heightAsSet);
       cell.mouseChildren = false;
       cell.addEventListener(MouseEvent.MOUSE_DOWN, _onCellMouseDown, useCapture: false, priority: 0);
       cell.addEventListener(MouseEvent.MOUSE_UP, _onCellMouseUp, useCapture: false, priority: 0);
@@ -383,7 +403,7 @@ class ComponentList extends ComponentScrollable {
       return cell;
     }
     cell = pop ? _reusableCellPool.removeLast() : _reusableCellPool.removeAt(0);
-    cell.setSize(widthAsSet, heightAsSet);
+    //cell.setSize(widthAsSet, heightAsSet);
     return cell;
   }
 
@@ -395,7 +415,10 @@ class ComponentList extends ComponentScrollable {
     _originY = stage.mouseY;
 
     _mouseDownCell = (event.currentTarget as Cell);
-    stage.juggler.delayCall(_onDelayedCellMouseDown, 0.1);
+    if(_timer != null) {
+      _timer.cancel();
+    }
+    _timer = new Timer(new Duration(milliseconds: 100), _onDelayedCellMouseDown);
   }
 
 
@@ -463,7 +486,7 @@ class ComponentList extends ComponentScrollable {
 
     if ((_originX - stage.mouseX).abs() > 3 || (_originY - stage.mouseY).abs() > 3) {
       _cellMoved = true;
-      //stage.juggler.removeTweens(_onDelayedCellMouseDown);
+      _timer.cancel();
       if (_mouseDownCell != null) _mouseDownCell.deselect();
     }
 
@@ -471,7 +494,7 @@ class ComponentList extends ComponentScrollable {
 
 
   void _onCellSelected([Cell cell = null]) {
-    if(cell != null){
+    if (cell != null) {
       deselectAllCells(cell.id);
     }
   }
