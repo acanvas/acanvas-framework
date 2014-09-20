@@ -27,9 +27,8 @@ class ComponentImageLoader extends SpriteComponent {
       }
     }
     //print("BitmapData.load: $_href");
-    BitmapData.load(_href, new BitmapDataLoadOptions(corsEnabled: true)).then(onComplete)
-    .catchError(onIoError);
-    
+    BitmapData.load(_href, new BitmapDataLoadOptions(corsEnabled: true)).then(onComplete).catchError(onIoError);
+
   }
 
   void onComplete([BitmapData data = null]) {
@@ -41,18 +40,14 @@ class ComponentImageLoader extends SpriteComponent {
       dobj.graphics.fillColor(0xffff2222);
       BitmapData bmd = new BitmapData(widthAsSet, heightAsSet);
       bmd.draw(dobj);
-      _img = new Bitmap( bmd );
+      _img = new Bitmap(bmd);
     }
-
-    //_img.smoothing = true;
 
     // calculate and apply scale
     double scale = 0.0;
     if (_img.width > _img.height) {
-      // scale = _width/ _img.width;
       scale = _heightAsSet / _img.height;
     } else {
-      // scale = _heightAsSet / _img.height;
       scale = _widthAsSet / _img.width;
     }
     _img.scaleX = scale;
@@ -60,18 +55,11 @@ class ComponentImageLoader extends SpriteComponent {
     _img.x = (_widthAsSet - _img.width) / 2;
     _img.y = (_heightAsSet - _img.height) / 2;
 
-    // mask with rounded edges
-    // doesn't work with webgl
-    /*
-    Shape shape = new Shape();
-    shape.graphics.rectRound(_img.x.abs()/scale, 1, _widthAsSet/scale-2, _heightAsSet/scale-2, 2, 2);
-    shape.graphics.fillColor(0xff000000);
-    */
-    
-    Mask mask = new Mask.rectangle(_img.x.abs()/scale, 0, _widthAsSet/scale, _heightAsSet/scale);
+
+    Mask mask = new Mask.rectangle(_img.x.abs() / scale, 0, _widthAsSet / scale, _heightAsSet / scale);
     _img.mask = mask;
     addChild(_img);
-    
+
     dispatchEvent(new Event(Event.COMPLETE, false));
   }
 
@@ -80,13 +68,11 @@ class ComponentImageLoader extends SpriteComponent {
   int get height {
     return _heightAsSet;
   }
-		void onIoError(Error e)
-		
-		{
-		  print("IO error occured while loading image");
-			onComplete();
-		} 
-		  /*
+  void onIoError(Error e) {
+    print("IO error occured while loading image");
+    onComplete();
+  }
+  /*
 		void onSecurityError(SecurityErrorEvent event)
 		
 		{

@@ -25,7 +25,7 @@ part of rockdot_dart;
  */
 
 
-final _logger = new RockdotLogger('JSON-RPC');
+final _logger = new Logger('JSON-RPC');
 
 class ServerProxy {
   String url;

@@ -8,7 +8,7 @@ part of rockdot_dart;
 	 */
 class AbstractScreenService implements IScreenService {
 
-  RockdotLogger log = new RockdotLogger("IScreenService");
+  Logger log = new Logger("IScreenService");
 
   /**
 		 * GETTER AND SETTER

@@ -9,7 +9,6 @@ class ComponentScrollable extends SpriteComponent {
   int scrollStep = 10;
   //
   SpriteComponent _view;
-  Shape _frame;
   Type _scrollbarClass;
   Scrollbar _hScrollbar;
   Scrollbar _vScrollbar;
@@ -53,12 +52,6 @@ class ComponentScrollable extends SpriteComponent {
       _bOrientationHorizontal = false;
     }
 
-    _frame = new Shape();
-    _frame.graphics.rect(0, 0, 10, 10);
-    _frame.graphics.fillColor(0xffff0000);
-    _frame.applyCache(0, 0, 10, 10);
-    //addChildAt(_frame, 0);
-
     _addScrollbars();
 
     this.view = spriteComponent;
@@ -73,7 +66,7 @@ class ComponentScrollable extends SpriteComponent {
       InstanceMirror im = reflectClass(_scrollbarClass).newInstance(const Symbol(''), [Orientation.HORIZONTAL, 0, widthAsSet]);
       _hScrollbar = im.reflectee;
       _hScrollbar.ignoreCallSetSize = false;
-      _hScrollbar.y = (_frame.y + heightAsSet).round();
+      _hScrollbar.y = heightAsSet.round();
       _hScrollbar.addEventListener(SliderEvent.VALUE_CHANGE, _onHScrollbarChange, useCapture: false, priority: 0);
       _hScrollbar.mouseWheelSensitivity = 10;
       _hScrollbar.addEventListener(SliderEvent.INTERACTION_START, _onScrollbarInteractionStart, useCapture: false, priority: 0);
@@ -91,7 +84,7 @@ class ComponentScrollable extends SpriteComponent {
       InstanceMirror im = reflectClass(_scrollbarClass).newInstance(const Symbol(''), [Orientation.VERTICAL, 0, heightAsSet]);
       _vScrollbar = im.reflectee;
       _vScrollbar.ignoreCallSetSize = false;
-      _vScrollbar.x = (_frame.x + widthAsSet).round();
+      _vScrollbar.x = widthAsSet.round();
       _vScrollbar.addEventListener(SliderEvent.VALUE_CHANGE, _onVScrollbarChange, useCapture: false, priority: 0);
       _vScrollbar.mouseWheelSensitivity = 10;
       _vScrollbar.addEventListener(SliderEvent.INTERACTION_START, _onScrollbarInteractionStart, useCapture: false, priority: 0);
@@ -184,7 +177,6 @@ class ComponentScrollable extends SpriteComponent {
       clearMomentum();
       if (_view != null) removeChild(_view);
       _view = vw;
-      //_view.mask = new Mask.rectangle(_frame.x, _frame.y, widthAsSet, heightAsSet);
       _view.doubleClickEnabled = _doubleClickToZoom;
       touchEnabled = _touchEnabled;
       doubleClickToZoom = _doubleClickToZoom;
@@ -201,6 +193,7 @@ class ComponentScrollable extends SpriteComponent {
   }
 
   void set keyboardEnabled(bool value) {
+    if(_keyboardEnabled == value) return;
     _keyboardEnabled = value;
     if (_keyboardEnabled) addEventListener(KeyboardEvent.KEY_DOWN, _onKeyDown, useCapture: false, priority: 0); else removeEventListener(KeyboardEvent.KEY_DOWN, _onKeyDown);
   }
@@ -330,9 +323,11 @@ class ComponentScrollable extends SpriteComponent {
   void redraw() {
     _hScrollbar.y = heightAsSet - _hScrollbar.height;
     _vScrollbar.x = widthAsSet - _vScrollbar.width;
-    _frame.width = widthAsSet;
-    _frame.height = heightAsSet;
-   // if (widthAsSet > 0 && heightAsSet > 0) _frame.applyCache(0, 0, widthAsSet, heightAsSet);
+    
+    if(_view != null){
+      _view.mask = new Mask.rectangle(0, 0, widthAsSet, heightAsSet);
+    }
+          
     updateScrollbars();
   }
 

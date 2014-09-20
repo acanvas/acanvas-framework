@@ -53,7 +53,7 @@ class RockdotApplicationContext extends SpringApplicationContext {
       */
 
       /* MVC Postprocessor (BaseEvent + CoreCommand) */
-      addObjectFactoryPostProcessor(    new CoreMVCControllerObjectFactoryPostProcessor(-98) );
+      addObjectFactoryPostProcessor(    new MVCControllerObjectFactoryPostProcessor(-98) );
       
     } 
    

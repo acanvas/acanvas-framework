@@ -14,7 +14,7 @@ part of rockdot_dart;
 	 */
 	 class UGCPlugin extends AbstractOrderedFactoryPostProcessor{
 		 static const String MODEL_UGC = "MODEL_UGC";
-		 RockdotLogger _log = new RockdotLogger("UGCPlugin");
+		 Logger _log = new Logger("UGCPlugin");
 
 		 UGCPlugin():super(40) {
 

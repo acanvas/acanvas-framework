@@ -273,12 +273,22 @@ class Scrollbar extends Slider {
 
   @override
   void set value(num newValue) {
-    print("value set: $value");
     if (newValue < _min) newValue = _bounce ? _min + (newValue - _min) * 0.5 : _min; else if (newValue > _max) newValue = _bounce ? _max + (newValue - _max) * 0.5 : _max;
     if (!_continuous && newValue != null) newValue = (newValue).round();
 
     if (newValue != _value) {
-      _value = newValue;
+      num delta = _value-newValue;
+      
+      if(delta<0){
+        delta = _value - max(delta, -300);
+      }
+      else{
+        delta = _value - min(delta, 300);
+        
+      }
+      
+      _value = delta; 
+      
       redraw();
       dispatchEvent(new SliderEvent(SliderEvent.VALUE_CHANGE, _value));
     }
@@ -300,7 +310,7 @@ class Scrollbar extends Slider {
     } else if (pos > maxPos) {
       offset = pos - maxPos;
       thumbSize = max(10, (_size / _pages).round() - offset * 4);
-      pos = _size - thumbSize;
+      pos = (_size - thumbSize).round();
     } else {
       offset = 0;
       thumbSize = max(10, (_size / _pages).round() - offset * 4);

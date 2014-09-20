@@ -102,8 +102,9 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
 			return null;
 		} void _applyModalFilter()
 		 {
-			_uiService.content.enabled = false;
-//			_uiService.content.mouseEnabled = false;
+			//_uiService.content.enabled = false;
+			_uiService.content.mouseEnabled = false;
+			_uiService.content.mouseChildren = false;
 			_uiService.background.enabled = false;
 			
 			// blur background/content
@@ -118,7 +119,8 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
 //			if(_uiService.content.enabled != true){
 //				_uiService.content.enabled = true;
 //			}
-//			_uiService.content.mouseEnabled = true;
+			_uiService.content.mouseEnabled = true;
+			_uiService.content.mouseChildren = true;
 			_uiService.background.enabled = true;
 			// unblur background/content
 			_uiService.content.filters = [];

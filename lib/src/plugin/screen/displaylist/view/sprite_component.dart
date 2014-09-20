@@ -11,7 +11,7 @@ class SpriteComponent extends Sprite implements ISpriteComponent {
   bool _ignoreCallSetSize = true;
 
   //TODO logger
-  RockdotLogger log;
+  Logger log;
 
   //events
   RockdotEvent _submitEvent;
@@ -19,7 +19,7 @@ class SpriteComponent extends Sprite implements ISpriteComponent {
   List _submitCallbackParams;
 
   SpriteComponent() {
-    this.log = new RockdotLogger(reflect(this).type.qualifiedName.toString());
+    this.log = new Logger(reflect(this).type.qualifiedName.toString());
   }
 
   @override

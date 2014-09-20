@@ -9,7 +9,7 @@ part of rockdot_dart;
 @retain
 class StateModel implements IApplicationContextAware {
 
-  final RockdotLogger _log = new RockdotLogger("StateModel");
+  final Logger _log = new Logger("StateModel");
 
   IApplicationContext _context;
   IApplicationContext get applicationContext {

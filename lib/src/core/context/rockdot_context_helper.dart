@@ -9,7 +9,7 @@ part of rockdot_dart;
 
      static void registerCommands(IObjectFactory objectFactory,Map map)
      {
-      IController controller = objectFactory.getObject(CoreMVCControllerObjectFactoryPostProcessor.CONTROLLER_OBJECT_NAME);
+      IController controller = objectFactory.getObject(MVCControllerObjectFactoryPostProcessor.CONTROLLER_OBJECT_NAME);
       for (String commandName in map.keys) {
         registerCommand(objectFactory, commandName, map[commandName], ObjectDefinitionScope.PROTOTYPE, controller);
 
@@ -19,7 +19,7 @@ part of rockdot_dart;
      static void registerCommand(IObjectFactory objectFactory,String commandName,Type clazz,ObjectDefinitionScope scope,[IController controller=null])
      {
       if(controller == null){
-        controller = objectFactory.getObject(CoreMVCControllerObjectFactoryPostProcessor.CONTROLLER_OBJECT_NAME);
+        controller = objectFactory.getObject(MVCControllerObjectFactoryPostProcessor.CONTROLLER_OBJECT_NAME);
       }
       ObjectDefinition objectDefinition = new ObjectDefinition( reflectClass(clazz).qualifiedName.toString());
       objectDefinition.name = commandName;
@@ -28,7 +28,7 @@ part of rockdot_dart;
       objectDefinition.scope = scope;
       objectDefinition.autoWireMode = AutowireMode.NO;
       objectFactory.objectDefinitionRegistry.registerObjectDefinition(commandName, objectDefinition);
-      controller.registerCommandForEventType(commandName, commandName, CoreMVCControllerObjectFactoryPostProcessor.DEFAULT_EXECUTE_METHOD_NAME);
+      controller.registerCommandForEventType(commandName, commandName, MVCControllerObjectFactoryPostProcessor.DEFAULT_EXECUTE_METHOD_NAME);
     }
 
      static void registerClass(IObjectFactory objectFactory,String id,Type clazz,[bool singleton=false,bool isLazyInit=true])

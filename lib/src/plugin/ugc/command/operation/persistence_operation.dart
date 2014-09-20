@@ -16,7 +16,7 @@
 part of rockdot_dart;
 
 class PersistenceOperation extends AbstractOperation {
-	 RockdotLogger log = new RockdotLogger("PersistenceOperation");
+	 Logger log = new Logger("PersistenceOperation");
 
 	 PersistenceOperation(dynamic service,String methodName, [List args = null]) {
 	   

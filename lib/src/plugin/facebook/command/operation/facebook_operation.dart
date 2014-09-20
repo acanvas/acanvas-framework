@@ -17,7 +17,7 @@
 
 
 	 class FacebookOperation extends AbstractOperation {
-		 RockdotLogger log = new RockdotLogger("FacebookOperation");
+		 Logger log = new Logger("FacebookOperation");
 
 		// --------------------------------------------------------------------
 		//

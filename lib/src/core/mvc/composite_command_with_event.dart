@@ -26,7 +26,7 @@ part of rockdot_dart;
 	 */
 class CompositeCommandWithEvent extends AbstractProgressOperation implements ICompositeCommand {
 
-  RockdotLogger LOGGER;
+  Logger LOGGER;
 
   /**
 		 * Determines if the execution of all the <code>ICommands</code> should be aborted if an
@@ -56,7 +56,7 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
 		 * @default CompositeCommandKind.SEQUENCE
 		 */
   CompositeCommandWithEvent([String kind = null]) : super() {
-    LOGGER = new RockdotLogger("CompositeCommandWithEvent");
+    LOGGER = new Logger("CompositeCommandWithEvent");
     _kind = (kind != null) ? kind : CompositeCommandKind.SEQUENCE;
   }
 

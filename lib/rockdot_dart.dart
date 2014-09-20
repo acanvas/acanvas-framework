@@ -10,6 +10,9 @@ import 'dart:async';
 /* Rockdot depends on StageXL */
 import 'package:stagexl/stagexl.dart';
 
+/* required by Logger, configuration in Bootstrap */
+import 'package:logging/logging.dart' as logging;
+
 /* required by Rockdot UGCPlugin */
 //import 'package:jsonrpc2/jsonrpc_client.dart';
 /* required by RockdotConstants to decode URLVARs */
@@ -23,14 +26,15 @@ import 'package:spring_dart/spring_dart.dart';
 
 
 // CORE #####
+part 'src/core/project/abstract_bootstrap.dart';
+part 'src/core/project/abstract_project.dart';
+
 part 'src/core/context/rockdot_application_context.dart';
 part 'src/core/context/rockdot_context_helper.dart';
 
 part 'src/core/mvc/command_vo.dart';
 part 'src/core/mvc/composite_command_with_event.dart';
 part 'src/core/mvc/core_command.dart';
-part 'src/core/mvc/core_controller.dart';
-part 'src/core/mvc/core_mvccontroller_object_factory_post_processor.dart';
 
 
 part 'src/core/model/countries.dart';
@@ -53,6 +57,18 @@ part 'src/core/rpc/rpc_exceptions.dart';
 
 part 'src/core/view/component/flick_image.dart';
 
+part 'src/core/view/component/form/calendar/calendar.dart';
+part 'src/core/view/component/form/calendar/day_button.dart';
+part 'src/core/view/component/form/calendar/next_prev_button.dart';
+
+
+part 'src/core/view/component/common/box/accordeon/accordion.dart';
+part 'src/core/view/component/common/box/accordeon/accordion_cell.dart';
+part 'src/core/view/component/common/box/hbox.dart';
+part 'src/core/view/component/common/box/hbox_animated.dart';
+part 'src/core/view/component/common/box/vbox.dart';
+part 'src/core/view/component/common/box/vbox_animated.dart';
+
 part 'src/core/view/component/common/component_bitmap_data.dart';
 part 'src/core/view/component/common/component_image_loader.dart';
 part 'src/core/view/component/common/component_scrollable.dart';
@@ -64,8 +80,15 @@ part 'src/core/view/component/common/scrollable/default_scrollbar.dart';
 part 'src/core/view/component/common/scrollable/scrollbar.dart';
 part 'src/core/view/component/common/scrollable/slider.dart';
 
-part 'src/core/view/component/form/list/cell.dart';
-part 'src/core/view/component/form/button.dart';
+part 'src/core/view/component/form/button/cell.dart';
+part 'src/core/view/component/form/button/button.dart';
+part 'src/core/view/component/form/button/radio_button.dart';
+part 'src/core/view/component/form/button/radio_group_event.dart';
+part 'src/core/view/component/form/button/radio_group_h.dart';
+part 'src/core/view/component/form/button/radio_group_v.dart';
+part 'src/core/view/component/form/button/toggle_button.dart';
+part 'src/core/view/component/form/button/toggle_button_event.dart';
+
 part 'src/core/view/component/form/component_dropdown.dart';
 part 'src/core/view/component/form/component_list.dart';
 part 'src/core/view/component/form/component_pager.dart';

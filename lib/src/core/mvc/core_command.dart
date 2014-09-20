@@ -3,12 +3,12 @@ part of rockdot_dart;
 
 
 class CoreCommand extends AbstractOperation implements IAsyncCommand, IApplicationContextAware {
-  RockdotLogger log;
+  Logger log;
 
   Function _callback;
 
   CoreCommand() {
-    log = new RockdotLogger(this.toString());
+    log = new Logger(this.toString());
   }
 
   String getProperty(String key) {

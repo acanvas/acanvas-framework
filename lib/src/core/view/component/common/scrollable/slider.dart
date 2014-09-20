@@ -179,7 +179,7 @@ class Slider extends SpriteComponent {
 
   void set value(num newValue) {
     
-    if (newValue < _min) newValue = min; else if (newValue > _max) newValue = _max;
+    if (newValue < _min) newValue = minimum; else if (newValue > _max) newValue = _max;
     if (!_continuous) newValue = (newValue).round();
 
     if (newValue != _value) {
@@ -208,14 +208,14 @@ class Slider extends SpriteComponent {
   }
 
 
-  num get min {
+  num get minimum {
     return _min;
   }
 
 
-  void set min(num min) {
-    if (min != _min) {
-      _min = min;
+  void set minimum(num minimum) {
+    if (minimum != _min) {
+      _min = minimum;
       _updateThumbPosition();
     }
   }
@@ -296,8 +296,12 @@ class Slider extends SpriteComponent {
 
 
   void _onMouseWheel(MouseEvent event) {
-    if (event.deltaY < 0 && _value == _max) return;
-    if (event.deltaY > 0 && _value == _min) return;
+    if (event.deltaY < 0){
+      if(_value >= _max) return;
+    }
+    if (event.deltaY > 0){
+      if(_value == _min) return;
+    }
     
     interactionStart();
     

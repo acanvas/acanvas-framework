@@ -32,7 +32,7 @@
 				_isSelected = true;
 				redraw();
 				submitCallbackParams = [this];
-				_onClick();
+				onClick();
 			}
 		}
 
