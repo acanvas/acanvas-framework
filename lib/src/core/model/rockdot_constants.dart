@@ -6,8 +6,6 @@ class RockdotConstants {
 
   /* internals */
   LoaderInfo _loaderInfo;
-  Stage _stage;
-  bool _webgl;
   List<String> _bootStrap;
   IApplicationContext _context;
 
@@ -73,17 +71,17 @@ class RockdotConstants {
   }
 
   static Stage getStage() {
-    return _singleton._stage;
+    return ContextTool.STAGE;
   }
   static void setStage(Stage stage) {
-    _singleton._stage = (stage);
+    ContextTool.STAGE = (stage);
   }
 
   static bool get WEBGL {
-    return _singleton._webgl;
+    return ContextTool.WEBGL;
   }
   static void set WEBGL(bool gl) {
-    _singleton._webgl = gl;
+    ContextTool.WEBGL = gl;
   }
 
   static IApplicationContext getContext() {

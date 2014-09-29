@@ -5,7 +5,7 @@ class RockdotManagedSpriteComponent extends ManagedSpriteComponent implements IM
   RockdotApplicationContext _context;
 
   RockdotManagedSpriteComponent(String id) : super(id) {
-    _ignoreCallSetSize = true;
+    ignoreCallSetSize = true;
   }
 
   String getProperty(String key, [bool omitPrefix = false]) {

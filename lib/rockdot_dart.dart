@@ -42,10 +42,6 @@ part 'src/core/model/languages.dart';
 part 'src/core/model/markets.dart';
 part 'src/core/model/rockdot_constants.dart';
 
-part 'src/util/device_detector.dart';
-
-part 'src/core/rockdot_event.dart';
-part 'src/core/rockdot_vo.dart';
 
 // LIBRARY #####
 
@@ -55,51 +51,6 @@ part 'src/core/rpc/jsonrpc_client.dart';
 part 'src/core/rpc/jsonrpc_service.dart';
 part 'src/core/rpc/rpc_exceptions.dart';
 
-part 'src/core/view/component/flick_image.dart';
-
-part 'src/core/view/component/form/calendar/calendar.dart';
-part 'src/core/view/component/form/calendar/day_button.dart';
-part 'src/core/view/component/form/calendar/next_prev_button.dart';
-
-
-part 'src/core/view/component/common/box/accordeon/accordion.dart';
-part 'src/core/view/component/common/box/accordeon/accordion_cell.dart';
-part 'src/core/view/component/common/box/hbox.dart';
-part 'src/core/view/component/common/box/hbox_animated.dart';
-part 'src/core/view/component/common/box/vbox.dart';
-part 'src/core/view/component/common/box/vbox_animated.dart';
-
-part 'src/core/view/component/common/component_bitmap_data.dart';
-part 'src/core/view/component/common/component_image_loader.dart';
-part 'src/core/view/component/common/component_scrollable.dart';
-part 'src/core/view/component/common/keyboard.dart';
-part 'src/core/view/component/common/scrollable/event/scroll_view_event.dart';
-part 'src/core/view/component/common/scrollable/event/slider_event.dart';
-part 'src/core/view/component/common/scrollable/orientation.dart';
-part 'src/core/view/component/common/scrollable/default_scrollbar.dart';
-part 'src/core/view/component/common/scrollable/scrollbar.dart';
-part 'src/core/view/component/common/scrollable/slider.dart';
-
-part 'src/core/view/component/form/button/cell.dart';
-part 'src/core/view/component/form/button/button.dart';
-part 'src/core/view/component/form/button/radio_button.dart';
-part 'src/core/view/component/form/button/radio_group_event.dart';
-part 'src/core/view/component/form/button/radio_group_h.dart';
-part 'src/core/view/component/form/button/radio_group_v.dart';
-part 'src/core/view/component/form/button/toggle_button.dart';
-part 'src/core/view/component/form/button/toggle_button_event.dart';
-
-part 'src/core/view/component/form/component_dropdown.dart';
-part 'src/core/view/component/form/component_list.dart';
-part 'src/core/view/component/form/component_pager.dart';
-part 'src/core/view/component/form/component_with_data_proxy.dart';
-
-part 'src/core/view/effect/i_effect.dart';
-part 'src/core/view/effect/no_effect.dart';
-part 'src/core/view/effect/basic_effect.dart';
-
-part 'src/core/view/textfield/ui_text_field.dart';
-part 'src/core/view/textfield/ui_text_field_input.dart';
 
 // PLUGINS #####
 
@@ -137,13 +88,8 @@ part 'src/plugin/facebook/model/vo/fbuser_vo.dart';
 part 'src/plugin/io/model/data_proxy.dart';
 
 //screen
-part 'src/plugin/screen/displaylist/view/i_managed_sprite_component.dart';
-part 'src/plugin/screen/displaylist/view/i_sprite_component.dart';
-part 'src/plugin/screen/displaylist/view/managed_sprite_component.dart';
-part 'src/plugin/screen/displaylist/view/managed_sprite_component_event.dart';
 part 'src/plugin/screen/displaylist/view/rockdot_managed_sprite_component.dart';
 part 'src/plugin/screen/displaylist/view/rockdot_sprite_component.dart';
-part 'src/plugin/screen/displaylist/view/sprite_component.dart';
 part 'src/plugin/screen/screen_displaylist_plugin.dart';
 part 'src/plugin/screen/common/screen_plugin_base.dart';
 part 'src/plugin/screen/common/command/abstract_screen_command.dart';

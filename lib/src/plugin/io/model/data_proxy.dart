@@ -5,7 +5,7 @@ part of rockdot_dart;
 	/**
 	 * @author nilsdoehring
 	 */
-	 class DataProxy {
+	 class DataProxy implements IDataProxy{
 		
 		 int _dataPageSize;
 		
