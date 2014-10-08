@@ -1,4 +1,4 @@
-part of rockdot_dart;
+part of stagexl_rockdot;
 
 
 class AbstractStateCommand extends CoreCommand implements IStateModelAware, IScreenModelAware{

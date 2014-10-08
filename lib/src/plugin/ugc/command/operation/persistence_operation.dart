@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-part of rockdot_dart;
+part of stagexl_rockdot;
 
 class PersistenceOperation extends AbstractOperation {
 	 Logger log = new Logger("PersistenceOperation");

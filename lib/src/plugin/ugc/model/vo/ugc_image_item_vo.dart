@@ -1,4 +1,4 @@
-part of rockdot_dart;
+part of stagexl_rockdot;
 
 @retain
 class UGCImageItemVO extends RockdotVO {

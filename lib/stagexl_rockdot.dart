@@ -1,4 +1,4 @@
-library rockdot_dart;
+library stagexl_rockdot;
 
 @MirrorsUsed( metaTargets: const[Retain])
 import 'dart:mirrors';
@@ -20,8 +20,8 @@ import 'package:logging/logging.dart' as logging;
 
 /* local libs */
 //import 'package:rockdart/facebook/facebook.dart';
-import 'package:dart_commons/dart_commons.dart';
-import 'package:spring_dart/spring_dart.dart';
+import 'package:stagexl_commons/stagexl_commons.dart';
+import 'package:stagexl_spring/stagexl_spring.dart';
 
 
 
