@@ -18,8 +18,15 @@ class StateRequestCommand extends AbstractStateCommand {
 			super.execute(event);
 			List urlData = event.data.split("?");
 			StateVO stateVO = _stateModel.getPageVO(urlData[0].toLowerCase());
-
+			
 			if (stateVO != null) {
+			  
+        if(_stateModel.currentPage == null && stateVO.substate == StateConstants.SUB_MODAL){
+          // 0. nullToModal
+            new RockdotEvent(StateEvents.ADDRESS_SET, "/").dispatch();
+            return;
+        }
+			  
 				if (urlData.length > 1) {
 				  Map params = new Map();
 				  List list = (urlData[1] as String).split("&");

@@ -90,7 +90,7 @@ class AbstractScreenService implements IScreenService {
 
     log.finer("Stage width: ${RockdotConstants.WIDTH_STAGE}, Stage height: ${RockdotConstants.HEIGHT_STAGE}");
 
-    new RockdotEvent(ScreenEvents.RESIZE).dispatch();
+    //new RockdotEvent(ScreenEvents.RESIZE).dispatch();
 
   }
   void lock() {

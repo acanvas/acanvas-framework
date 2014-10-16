@@ -18,7 +18,7 @@ class ScreenResizeCommand extends AbstractScreenCommand {
 			}
 			else {
 			  ///only execute if not already resized via [AbstractScreenService]
-			  if(_stateModel.currentPage != null && _stateModel.currentPage.ignoreCallSetSize){
+			  if(_stateModel.currentPage != null && !_stateModel.currentPage.ignoreCallSetSize){
 				  //TODO failsafe minimal width/height
 				  _stateModel.currentPage.setSize(_uiService.stage.stageWidth, _uiService.stage.stageHeight);
 			  }

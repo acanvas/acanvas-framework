@@ -7,22 +7,19 @@ import 'dart:math';
 import 'dart:convert';
 import 'dart:async';
 
-/* Rockdot depends on StageXL */
-import 'package:stagexl/stagexl.dart';
-
 /* required by Logger, configuration in Bootstrap */
 import 'package:logging/logging.dart' as logging;
+
+/* Rockdot depends on StageXL */
+import 'package:stagexl/stagexl.dart';
+import 'package:stagexl_commons/stagexl_commons.dart';
+import 'package:stagexl_spring/stagexl_spring.dart';
 
 /* required by Rockdot UGCPlugin */
 //import 'package:jsonrpc2/jsonrpc_client.dart';
 /* required by RockdotConstants to decode URLVARs */
 //import 'package:base64_codec/base64_codec.dart';
-
-/* local libs */
 //import 'package:rockdart/facebook/facebook.dart';
-import 'package:stagexl_commons/stagexl_commons.dart';
-import 'package:stagexl_spring/stagexl_spring.dart';
-
 
 
 // CORE #####
