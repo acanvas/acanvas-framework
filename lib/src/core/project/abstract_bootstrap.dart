@@ -61,7 +61,8 @@ class AbstractBootstrap extends ManagedSpriteComponent {
   }
   
   void _initLogger() {
-    if (RockdotConstants.DEBUG == false && !DeviceDetector.IS_AIR) {
+    if (RockdotConstants.DEBUG == false) {
+      //logging.Logger.root.level = logging.Level.OFF;
       print("Logging Disabled. Good Bye.");
     } else {
       logging.Logger.root.level = logging.Level.ALL;

@@ -57,6 +57,22 @@ part of stagexl_rockdot;
            objectFactory.cache.putInstance("vo." + id, stateVO);
            
     }
+
+     static void registerScreenInstance(IObjectFactory objectFactory,String id,RockdotManagedSpriteComponent clazz,int tree_order,int tree_parent,String transition,String url, [String substate = StateConstants.SUB_NORMAL])
+     {
+       wire(clazz);
+       objectFactory.cache.putInstance(id, clazz);
+       
+       StateVO stateVO = objectFactory.createInstance(StateVO, "vo." + id);
+           stateVO.tree_order = tree_order;
+           stateVO.tree_parent = tree_parent;
+           stateVO.transition = transition;
+           stateVO.url = url;
+           stateVO.substate = substate;
+           stateVO.property_key = id;
+           stateVO.view_id = id;
+           objectFactory.cache.putInstance("vo." + id, stateVO);
+    }
     
      static String getConfigLocation()
      {

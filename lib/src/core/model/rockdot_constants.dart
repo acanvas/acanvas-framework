@@ -8,6 +8,7 @@ class RockdotConstants {
   LoaderInfo _loaderInfo;
   List<String> _bootStrap;
   IApplicationContext _context;
+  bool _debug;
 
   static const String VAR_ITEM_CONTAINER_ID = "item_container_id";
   static const String VAR_ITEM_ID = "item_id";
@@ -27,11 +28,6 @@ class RockdotConstants {
   static const int UPLOAD_WIDTH_THUMB = 120;
   static const int UPLOAD_HEIGHT_THUMB = 120;
 
-  static const int WIDTH_MIN = 320;
-  static const int HEIGHT_MIN = 480;
-
-  static const int WIDTH_MAX = 1920;
-  static const int HEIGHT_MAX = 1200;
 
   static int get WIDTH_STAGE_REAL {
     return RockdotConstants.getStage().stageWidth;
@@ -40,12 +36,6 @@ class RockdotConstants {
     return RockdotConstants.getStage().stageHeight;
   }
 
-  static int get WIDTH_STAGE {
-    return min(WIDTH_MAX, max(WIDTH_MIN, RockdotConstants.getStage().stageWidth));
-  }
-  static int get HEIGHT_STAGE {
-    return min(HEIGHT_MAX, max(HEIGHT_MIN, RockdotConstants.getStage().stageHeight));
-  }
 
   factory RockdotConstants() {
       return _singleton;
@@ -214,7 +204,10 @@ class RockdotConstants {
 		 *  @see config/users/username.properties
 		 */
   static bool get DEBUG {
-    return _singleton._loaderInfo.debug == "true" ? true : false;
+    return _singleton._debug;
+  }
+  static void set DEBUG (bool dbg){
+    _singleton._debug = dbg ;
   }
 
   /**

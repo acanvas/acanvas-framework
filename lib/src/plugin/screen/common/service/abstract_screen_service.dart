@@ -82,13 +82,13 @@ class AbstractScreenService implements IScreenService {
 
   void resize([Event event = null]) {
 
-    _background.setSize(RockdotConstants.WIDTH_STAGE, RockdotConstants.HEIGHT_STAGE);
-    _content.setSize(RockdotConstants.WIDTH_STAGE, RockdotConstants.HEIGHT_STAGE);
-    _navi.setSize(RockdotConstants.WIDTH_STAGE, RockdotConstants.HEIGHT_STAGE);
-    _layer.setSize(RockdotConstants.WIDTH_STAGE, RockdotConstants.HEIGHT_STAGE);
-    _foreground.setSize(RockdotConstants.WIDTH_STAGE, RockdotConstants.HEIGHT_STAGE);
+    _background.setSize(RockdotConstants.WIDTH_STAGE_REAL, RockdotConstants.HEIGHT_STAGE_REAL);
+    _content.setSize(RockdotConstants.WIDTH_STAGE_REAL, RockdotConstants.HEIGHT_STAGE_REAL);
+    _navi.setSize(RockdotConstants.WIDTH_STAGE_REAL, RockdotConstants.HEIGHT_STAGE_REAL);
+    _layer.setSize(RockdotConstants.WIDTH_STAGE_REAL, RockdotConstants.HEIGHT_STAGE_REAL);
+    _foreground.setSize(RockdotConstants.WIDTH_STAGE_REAL, RockdotConstants.HEIGHT_STAGE_REAL);
 
-    log.finer("Stage width: ${RockdotConstants.WIDTH_STAGE}, Stage height: ${RockdotConstants.HEIGHT_STAGE}");
+    log.finer("Stage width: ${RockdotConstants.WIDTH_STAGE_REAL}, Stage height: ${RockdotConstants.HEIGHT_STAGE_REAL}");
 
     //new RockdotEvent(ScreenEvents.RESIZE).dispatch();
 

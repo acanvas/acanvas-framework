@@ -46,8 +46,7 @@ class AbstractProject extends AbstractOrderedFactoryPostProcessor {
     throw new UnimplementedError("To be implemented in Project subclass");
   }
   
-  void addTransition(String id, Type clazz, num duration, [String transitionType = ScreenConstants.TRANSITION_PARALLEL, num initialAlpha = 0]) {
-    dynamic eff = objectFactory.createInstance(clazz, id);
+  void addTransition(String id, IEffect eff, num duration, [String transitionType = ScreenConstants.TRANSITION_PARALLEL, num initialAlpha = 0]) {
     eff.duration = duration;
     eff.type= transitionType;
     eff.initialAlpha = initialAlpha;
@@ -67,8 +66,15 @@ class AbstractProject extends AbstractOrderedFactoryPostProcessor {
   void addScreen(String id, Type clazz, int tree_order, int tree_parent, String transitionID, String url, [String modality = StateConstants.SUB_NORMAL]) {
     RockdotContextHelper.registerScreen( objectFactory, id, clazz, tree_order, tree_parent, transitionID, url, modality);
   }
+ 
+  void addScreenInstance(RockdotManagedSpriteComponent clazz, int tree_order, int tree_parent, String transitionID, String url, [String modality = StateConstants.SUB_NORMAL]) {
+    RockdotContextHelper.registerScreenInstance( objectFactory, clazz.name, clazz, tree_order, tree_parent, transitionID, url, modality);
+  }
   void addLayer(String id, Type clazz, int tree_order, int tree_parent, String transitionID, String url) {
     addScreen(id, clazz, tree_order, tree_parent, transitionID, url, StateConstants.SUB_MODAL);
+  }
+  void addLayerInstance(RockdotManagedSpriteComponent clazz, int tree_order, int tree_parent, String transitionID, String url) {
+    addScreenInstance(clazz, tree_order, tree_parent, transitionID, url, StateConstants.SUB_MODAL);
   }
 
   @override IOperation postProcessObjectFactory(IObjectFactory _objectFactory) {
