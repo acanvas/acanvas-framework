@@ -11,7 +11,7 @@ Port of [Rockdot Actionscript Framework](https://github.com/blockforest/rockdot)
 
 ### Rockdot features
 * Plugin system making use of all of the above
-* Mature screen (read: pages) lifecycle management
+* Mature UI lifecycle management
 * Asset load management (porting in progress)
 * Generic User Generated Content backend communication (porting in progress. reading does work.)
 * i18n

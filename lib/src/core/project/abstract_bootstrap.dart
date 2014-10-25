@@ -11,7 +11,7 @@ class AbstractBootstrap extends ManagedSpriteComponent {
   List propertyFiles = [];
 
   AbstractBootstrap(Stage stage) : super() {
-    //TODO get loaderInfo config from somewhere (JS?)
+    //XXX currently, LoaderInfo is just a leftover from Actionscript
     LoaderInfo loaderInfo = new LoaderInfo();
     RockdotConstants.setLoaderInfo(loaderInfo);
 
@@ -19,6 +19,7 @@ class AbstractBootstrap extends ManagedSpriteComponent {
     enabled = true;
   }
 
+  /* Assign and prepare some things for Rockdot */
   @override void init([data = null]) {
     super.init(data);
 
