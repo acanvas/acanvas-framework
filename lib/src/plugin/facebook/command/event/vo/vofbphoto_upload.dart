@@ -2,7 +2,7 @@ part of stagexl_rockdot;
 
 class VOFBPhotoUpload {
 
-  Bitmap bmp;
+  BitmapData bmd;
   String url;
   String message;
   String place;
@@ -11,7 +11,7 @@ class VOFBPhotoUpload {
   String fileName;
   String album_id;
 
-  VOFBPhotoUpload({this.fileName, this.album_id, this.bmp, this.place, this.message, this.url, this.no_story : true}) {
+  VOFBPhotoUpload(this.fileName, this.album_id, {this.bmd, this.place, this.message, this.url, this.no_story : true}) {
   }
 
 }

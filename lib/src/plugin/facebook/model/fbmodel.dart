@@ -101,6 +101,14 @@ class FBModel {
     _permsToRequest = permsToRequest;
   }
 
+  String _authToken;
+  String get accessToken {
+    return _authToken;
+  }
+  void set accessToken(String authToken) {
+    _authToken = authToken;
+  }
+
   List _userPermissions = [];
   List get userPermissions {
     return _userPermissions;

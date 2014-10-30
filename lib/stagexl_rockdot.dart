@@ -5,6 +5,7 @@ import 'dart:mirrors';
 import 'dart:html' as html;
 import 'dart:js' as js;
 import 'dart:math';
+import 'dart:typed_data';
 import 'dart:convert';
 import 'dart:async';
 

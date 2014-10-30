@@ -34,6 +34,7 @@ class FBInitBrowserCommand extends AbstractFBCommand {
     
     if (response["authResponse"] != null) {
       
+      _fbModel.accessToken = response["authResponse"]["accessToken"];
       _fbModel.userIsAuthenticated = true;
       _fbModel.user = new FBUserVO()
                         ..uid = response["authResponse"]["userID"];
