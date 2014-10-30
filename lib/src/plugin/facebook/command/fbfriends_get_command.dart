@@ -1,30 +1,28 @@
- part of stagexl_rockdot;
+part of stagexl_rockdot;
 
-
-
-
-
-
-
-	 @retain
+@retain
 class FBFriendsGetCommand extends AbstractFBCommand {
 
-		@override 
-		  dynamic execute([RockdotEvent event=null]) {
-			super.execute(event);
-//			new BaseEvent(StateEvents.STATE_SET, "loading_facebook_friends").dispatch();
-			
-			IOperation operation = _context.getObject(FacebookConstants.OPERATION_FB, ["/" + _fbModel.user.uid + "/friends"]);
-			operation.addCompleteListener(_handleComplete);
-			operation.addErrorListener(dispatchErrorEvent);
-		}
+  @override void execute([RockdotEvent event = null]) {
+    super.execute(event);
+//      showMessage("notification.facebook.loading")
 
-		
-		
-		  void _handleComplete(OperationEvent event) {
-//			new BaseEvent(StateEvents.STATE_SET, "loading_facebook_friends").dispatch();
-			_fbModel.friends = event.result;
-			dispatchCompleteEvent(event.result);
-		}
-	}
+    String uid = _fbModel.user.uid;
 
+    js.JsObject queryConfig = new js.JsObject.jsify({});
+    _fbModel.FB.callMethod("api", ["/$uid/friends", "get", queryConfig, _handleResult]);
+  }
+
+  void _handleResult(js.JsObject response) {
+//      hideMessage("notification.facebook.loading")
+    if (containsError(response)) return;
+
+    Map friends = {};
+    response["data"].forEach((e) {
+      friends[e["id"]] = e["name"];
+    });
+
+    _fbModel.friends = friends;
+    dispatchCompleteEvent(friends);
+  }
+}

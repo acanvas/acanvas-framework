@@ -1,17 +1,15 @@
 part of stagexl_rockdot;
 
-
-
-
-
-
-	 @retain
+@retain
 class UGCDeleteCommand extends AbstractUGCCommand {
 
-		@override dynamic execute([RockdotEvent event=null])
-		 {
-			super.execute(event);
-			amfOperation("UGCEndpoint.deleteItem", [_ugcModel.currentItemDAO.id]);
-		}
-	}
+  @override void execute([RockdotEvent event = null]) {
+    super.execute(event);
 
+    Map dto = {
+      'id': _ugcModel.currentItemDAO.id
+    };
+
+    amfOperation("UGCEndpoint.deleteItem", dto);
+  }
+}

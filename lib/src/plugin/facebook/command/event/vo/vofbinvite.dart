@@ -1,34 +1,29 @@
- part of stagexl_rockdot;
+part of stagexl_rockdot;
 
-	 class VOFBInvite
-	{
-		//http://developers.facebook.com/docs/reference/dialogs/requests/
+class VOFBInvite {
+  //http://developers.facebook.com/docs/reference/dialogs/requests/
 
-		 String app_id;
-		 String method;
-		 String display;
-		 String redirect_uri;
-		 String message;
-		 String to;
-		 String filters;
-		 String exclude_ids;
-		 String data;
-		 String title;
-		 int max_recipients;
+  String action_type; //send, askfor, turn
+  String object_id;
+  String method;
+  String message;
+  String to;
+  //f.ex. filters: [{name:'GROUP_1_NAME', user_ids:['USER_ID','USER_ID','USER_ID']},{name:'GROUP_2_NAME', user_ids: ['USER_ID','USER_ID','USER_ID']}]
+  String filters;
+  String app_id;
+  String redirect_uri;
+  String exclude_ids;
+  String data;
+  String title;
+  int max_recipients;
 
-		//Invite Source, will be put into 'data' String
-		 String reason;
-	 VOFBInvite([String title="", String message="", String data="", String reason="", String to="", int max_recipients=0]) {
-			this.title = title;
-			this.data = data;
-			this.message = message;
-			this.reason = reason;
-			this.to = to;
+  //unsure if still supported as of API v2.1
+  String display;
 
-			if(max_recipients>0){
-				this.max_recipients = max_recipients;
-			}
-		}
+  //Invite Source, will be put into 'data' String
+  String reason;
+  
+  VOFBInvite([this.title, this.message, this.data, this.reason, this.to, this.max_recipients = 0]) {
+  }
 
-	}
-
+}

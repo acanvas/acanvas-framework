@@ -1,18 +1,17 @@
- part of stagexl_rockdot;
-	 class VOFBPhotoUpload
-	{
+part of stagexl_rockdot;
 
+class VOFBPhotoUpload {
 
-		 Bitmap bmp;
-		 String location;
-		 String caption;
-		 String fileName;
-	 VOFBPhotoUpload(Bitmap bmp,String location,String caption,String fileName) {
-			this.location = location;
-			this.fileName = fileName;
-			this.caption = caption;
-			this.bmp = bmp;
-		}
+  Bitmap bmp;
+  String url;
+  String message;
+  String place;
+  bool no_story;
 
-	}
+  String fileName;
+  String album_id;
 
+  VOFBPhotoUpload({this.fileName, this.album_id, this.bmp, this.place, this.message, this.url, this.no_story : true}) {
+  }
+
+}

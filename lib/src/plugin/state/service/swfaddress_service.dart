@@ -1,45 +1,34 @@
 part of stagexl_rockdot;
 
-
-
-
-	/**
+/**
 	 * @author Nils Doehring (nilsdoehring(gmail as at).com)
 	 */
-	 class SWFAddressService extends BasicAddressService implements IAddressService{
-		 String _defaultTitle;
-		 Function _callback;
-	 SWFAddressService() {
-		}
+class SWFAddressService extends BasicAddressService implements IAddressService {
+  String _defaultTitle;
+  Function _callback;
+  SWFAddressService() {
+  }
 
-		@override void init()
-		 {
-		  window.onHashChange.listen(_onSWFAddressChange);
-			_defaultTitle = document.title;
-		  _onSWFAddressChange();
-		} 
-		
-		void _onSWFAddressChange([HashChangeEvent e = null])
-		 {
-		  var hash = window.location.hash;
-		  if(hash.length > 0 && hash[0] == "#") hash = hash.substring(1);
-			new RockdotEvent(StateEvents.STATE_REQUEST, hash, _callback).dispatch();
-		}
+  @override void init() {
+    html.window.onHashChange.listen(_onSWFAddressChange);
+    _defaultTitle = html.document.title;
+    _onSWFAddressChange();
+  }
 
-		@override void changeAddress(String url,[Function callback=null])
-		 {
-			_callback = callback;
-			if (url.contains("http"))
-			 window.open(url, "_blank");
-			else
-			  window.location.hash = url;
-		}
+  void _onSWFAddressChange([html.HashChangeEvent e = null]) {
+    var hash = html.window.location.hash;
+    if (hash.length > 0 && hash[0] == "#") hash = hash.substring(1);
+    new RockdotEvent(StateEvents.STATE_REQUEST, hash, _callback).dispatch();
+  }
 
-		@override void onAddressChanged(StateVO vo)
-		 {
-		  
-			document.title= (_defaultTitle + " - " + vo.title);
-			super.onAddressChanged(vo);
-		}
-	}
+  @override void changeAddress(String url, [Function callback = null]) {
+    _callback = callback;
+    if (url.contains("http")) html.window.open(url, "_blank"); else html.window.location.hash = url;
+  }
 
+  @override void onAddressChanged(StateVO vo) {
+
+    html.document.title = (_defaultTitle + " - " + vo.title);
+    super.onAddressChanged(vo);
+  }
+}

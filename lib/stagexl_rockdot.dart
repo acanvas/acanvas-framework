@@ -2,7 +2,8 @@ library stagexl_rockdot;
 
 @MirrorsUsed( metaTargets: const[Retain])
 import 'dart:mirrors';
-import 'dart:html';
+import 'dart:html' as html;
+import 'dart:js' as js;
 import 'dart:math';
 import 'dart:convert';
 import 'dart:async';
@@ -54,7 +55,6 @@ part 'src/core/rpc/rpc_exceptions.dart';
 //facebook
 part 'src/plugin/facebook/facebook_plugin.dart';
 part 'src/plugin/facebook/command/abstract_fbcommand.dart';
-part 'src/plugin/facebook/command/fbevent_create_command.dart';
 part 'src/plugin/facebook/command/fbfriends_get_command.dart';
 part 'src/plugin/facebook/command/fbfriends_get_info_command.dart';
 part 'src/plugin/facebook/command/fbinit_browser_command.dart';
@@ -72,12 +72,12 @@ part 'src/plugin/facebook/command/event/fbevents.dart';
 part 'src/plugin/facebook/command/event/vo/vofbinvite.dart';
 part 'src/plugin/facebook/command/event/vo/vofbphoto_upload.dart';
 part 'src/plugin/facebook/command/event/vo/vofbshare.dart';
-part 'src/plugin/facebook/command/operation/facebook_operation.dart';
 part 'src/plugin/facebook/inject/fbmodel_injector.dart';
 part 'src/plugin/facebook/inject/i_fbmodel_aware.dart';
 part 'src/plugin/facebook/model/fbmodel.dart';
 part 'src/plugin/facebook/model/facebook_constants.dart';
 part 'src/plugin/facebook/model/vo/fbalbum_vo.dart';
+part 'src/plugin/facebook/model/vo/fbcomment_vo.dart';
 part 'src/plugin/facebook/model/vo/fbphoto_vo.dart';
 part 'src/plugin/facebook/model/vo/fbuser_vo.dart';
 

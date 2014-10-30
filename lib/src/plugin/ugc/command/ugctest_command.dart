@@ -7,7 +7,7 @@ class UGCTestCommand extends AbstractUGCCommand {
 		 int _itemContainerID;
 		 int _itemID;
 
-		@override dynamic execute([RockdotEvent event=null])
+		@override void execute([RockdotEvent event=null])
 		 {
 			super.execute(event);
 

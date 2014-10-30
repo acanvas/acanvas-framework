@@ -18,15 +18,17 @@ part of stagexl_rockdot;
 class PersistenceOperation extends AbstractOperation {
 	 Logger log = new Logger("PersistenceOperation");
 
-	 PersistenceOperation(dynamic service,String methodName, [List args = null]) {
+	 PersistenceOperation(dynamic service,String methodName, [Map dto = null]) {
 	   
-//	   String url = _context.propertiesProvider.getProperty("project.host.json");
+	   String params = null;
+	   if(dto != null){
+	     params = JSON.encode(dto);
+	   }
+	   
 	   methodName = methodName.replaceAll(new RegExp(r'UGCEndpoint.'), '');
-	   
-	   
 	   String url = RockdotConstants.getContext().propertiesProvider.getProperty("project.host.json");
 	   ServerProxy proxy = new ServerProxy(url);
-     proxy.call(methodName,[JSON.encode(args[0].toMap())])
+     proxy.call(methodName, params)
           .then((returned)=>proxy.checkError(returned))
           .then((result){
            // print(result.toString());

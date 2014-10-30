@@ -3,19 +3,28 @@ part of stagexl_rockdot;
 @retain
 class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelAware {
   FBModel _modelFB;
-  @override dynamic execute([RockdotEvent event = null]) {
+  void set fbModel(FBModel model) {
+      _modelFB = model;
+    }
+ 
+  @override void execute([RockdotEvent event = null]) {
     super.execute(event);
 //			dispatchMessage("loading.backend.login");
 
-    dynamic amfObject;
+    UGCUserExtendedVO amfObject;
 
     if (event.data is UGCUserExtendedVO) {
+      
       amfObject = event.data;
       _ugcModel.userExtendedDAO = new UGCUserExtendedVO(amfObject);
+      
     } else if (RockdotConstants.LOCAL && RockdotConstants.DEBUG) {
+      
       _ugcModel.userExtendedDAO = _createDummyData();
       amfObject = _ugcModel.userExtendedDAO;
+      
     } else if (_ugcModel.userExtendedDAO == null) {
+      
       UGCUserExtendedVO user = new UGCUserExtendedVO();
       user.hometown_location = _modelFB.user.hometown_location;
       user.email = _modelFB.user.email;
@@ -35,8 +44,9 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
     amfObject.hash = _ugcModel.userExtendedDAO.hash;
 
     _ugcModel.hasUserExtendedDAO = true;
-    amfOperation("UGCEndpoint.createUserExtended", amfObject);
+    amfOperation("UGCEndpoint.createUserExtended", amfObject.toMap());
   }
+  
   UGCUserExtendedVO _createDummyData() {
     UGCUserExtendedVO user = new UGCUserExtendedVO();
     user.hometown_location = "Stuttgart, Germany";
@@ -56,7 +66,5 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
     return date.hour * 60 * 60 * 1000 + date.minute * 60 * 1000 + date.second * 1000 + date.millisecond;
   }
 
-  void set fbModel(FBModel model) {
-    _modelFB = model;
-  }
+  
 }

@@ -6,8 +6,10 @@ class UGCHasExtendedUserCommand extends AbstractUGCCommand{
 		@override dynamic execute([RockdotEvent event=null])
 		 {
 			super.execute(event);			
-			//event.data == uid String
-			amfOperation("UGCEndpoint.hasUserExtended", event.data ? event.data : _ugcModel.userDAO.uid);
+			
+			Map dto = {'uid': event.data ? event.data : _ugcModel.userDAO.uid};
+			
+			amfOperation("UGCEndpoint.hasUserExtended", dto);
 		}
 		
 		@override bool dispatchCompleteEvent([dynamic result=null])

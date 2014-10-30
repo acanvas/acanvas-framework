@@ -1,41 +1,49 @@
- part of stagexl_rockdot;
+part of stagexl_rockdot;
 
-	 @retain
+@retain
 class FBInitBrowserCommand extends AbstractFBCommand {
 
-		@override
-		  dynamic execute([RockdotEvent event=null]) {
-			super.execute(event);
+  @override
+  void execute([RockdotEvent event = null]) {
+    super.execute(event);
 
-			if(RockdotConstants.LOCAL) {
-				this.log.debug("Facebook Not Supported here.");
-				dispatchCompleteEvent();
-			} else {
-				Facebook._init(getProperty("project.facebook.appid"), _handleComplete);
-			}
-		}
+    if (RockdotConstants.LOCAL) {
+      
+      this.log.debug("Facebook Not Supported here.");
+      dispatchCompleteEvent();
+      
+    } else {
 
-		  void _handleComplete(Map response,[Map fail=null]) {
-			if (response != null && response["accessToken"]!= null) {
-				_fbModel.userIsAuthenticated = true;
-				_fbModel.session = response as FacebookSession;
+      _fbModel.FB = js.context["FB"];
 
-				new RockdotEvent(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions).dispatch();
+      js.JsObject initConfig = new js.JsObject.jsify({
+        "appId": getProperty("project.facebook.appid"),
+        "cookie": true,
+        "xfbml": false,
+        "version": 'v2.1',
+      });
 
-				return;
-			}
-			if( fail != null){
-			  this.log.debug("FB Init did not produce a valid access token: {1} (code: {2}, type: {3})", [fail["error"].message, fail["error"].code, fail["error"].type]);
-				dispatchErrorEvent(fail["error"]);
-			}
-			else{
-			  this.log.debug("FB Init did not produce any result.");
-				dispatchCompleteEvent();
-			}
-		}
+      _fbModel.FB.callMethod("init", [initConfig]);
+      _fbModel.FB.callMethod("getLoginStatus", [_handleResult]);
 
-		  void _onPermissions(List perms) {
-			dispatchCompleteEvent(_fbModel.session);
-		}
-	}
+    }
+  }
 
+  void _handleResult(js.JsObject response) {
+    if(containsError(response)) return;
+    
+    if (response["authResponse"] != null) {
+      
+      _fbModel.userIsAuthenticated = true;
+      _fbModel.user = new FBUserVO()
+                        ..uid = response["authResponse"]["userID"];
+
+     new RockdotEvent(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions).dispatch();
+    }
+    
+  }
+
+  void _onPermissions(List perms) {
+    dispatchCompleteEvent();
+  }
+}

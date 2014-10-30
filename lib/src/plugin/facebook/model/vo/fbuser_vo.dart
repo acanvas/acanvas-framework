@@ -1,6 +1,6 @@
 part of stagexl_rockdot;
 
-class FBUserVO extends RockdotVO {
+class FBUserVO {
 
   String id;
   String uid;
@@ -13,12 +13,18 @@ class FBUserVO extends RockdotVO {
   String email;
   String hometown_location;
   String birthday_date;
-  FBUserVO([Object obj = null]) : super(obj) {
-    if (id == "" && uid != "") {
-      id = uid;
-    }
-    if (uid == "" && id != "") {
-      uid = id;
+
+  FBUserVO([dynamic vo = null]) {
+    if (vo != null) {
+      birthday_date = vo["birthday_date"];
+      id = vo["uid"];
+      uid = vo["uid"];
+      name = vo["name"];
+      pic_square = vo["pic_square"];
+      email = vo["email"];
+      hometown_location = vo["hometown_location"] is js.JsObject ? vo["hometown_location"]["name"] : vo["hometown_location"];
+      locale = vo["locale"];
+      is_app_user = vo["is_app_user"];
     }
   }
 }

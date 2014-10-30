@@ -1,23 +1,30 @@
- part of stagexl_rockdot;
+part of stagexl_rockdot;
 
 
-	 @retain
+@retain
 class FBUserGetInfoPermissionsCommand extends AbstractFBCommand {
 
-		@override 
-		  dynamic execute([RockdotEvent event=null]) {
-			super.execute(event);
+  @override
+  void execute([RockdotEvent event = null]) {
+    super.execute(event);
 //			dispatchMessage("loading.facebook.login");
 
-			IOperation operation = _context.getObject(FacebookConstants.OPERATION_FB, ["/me/permissions"]);
-			operation.addCompleteListener(_handleComplete);
-			operation.addErrorListener(_handleError);
-		}
+    js.JsObject queryConfig = new js.JsObject.jsify({});
+    _fbModel.FB.callMethod("api", ["/me/permissions", "get", queryConfig, _handleResult]);
 
-		  void _handleComplete(OperationEvent event) {
+  }
+
+  void _handleResult(js.JsObject response, [js.JsObject fail = null]) {
 //			hideMessage("notification.facebook.loading")
-			_fbModel.userPermissions = event.result;
-			dispatchCompleteEvent(event.result);
-		}
-	}
+    if(containsError(response)) return;
 
+    List perms = [];
+    response["data"].forEach((e) {
+      if (e["status"] == "granted") perms.add(e["permission"]);
+    });
+
+    _fbModel.userPermissions = perms;
+
+    dispatchCompleteEvent();
+  }
+}

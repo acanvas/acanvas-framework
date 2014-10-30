@@ -1,20 +1,43 @@
- part of stagexl_rockdot;
+part of stagexl_rockdot;
 
-	 @retain
+//https://developers.facebook.com/docs/sharing/reference/share-dialog
+
+@retain
 class FBPromptShareCommand extends AbstractFBCommand {
 
-		@override 
-		  dynamic execute([RockdotEvent event=null]) {
-			super.execute(event);
-			VOFBShare vo = event.data;
-			Object attachment = {
-					'name': vo.title, 'href': vo.contentlink, 'description': vo.message, 'media': [{ 'type': 'image', 'src': vo.image, 'href': vo.contentlink}]
-					}; 
-			List action_links = [{'text': vo.actionText, 'href':vo.actionLink}];  
-				
-			//http://developers.facebook.com/docs/reference/dialogs
-			Facebook.ui("stream.publish", {attachment : attachment, action_links:action_links}, null, "iframe");
-			dispatchCompleteEvent();
-		}
-	}
+  @override void execute([RockdotEvent event = null]) {
+    super.execute(event);
+    VOFBShare vo = event.data;
 
+    js.JsObject shareConfig;
+    switch (vo.type) {
+      case VOFBShare.TYPE_SHARE_OG:
+        shareConfig = new js.JsObject.jsify({
+          'method': 'share_open_graph',
+          'action_type': 'og.likes',
+          'action_properties': JSON.encode({
+            'object': vo.contentlink,
+            //https://developers.facebook.com/docs/opengraph/using-actions/v2.1#capabilities
+            'image': vo.image,
+            //https://developers.facebook.com/docs/opengraph/using-actions/v2.1#mentions
+            'message': vo.message
+          })
+        });
+        break;
+      case VOFBShare.TYPE_SHARE:
+      default:
+        shareConfig = new js.JsObject.jsify({
+          'method': 'share',
+          'href': vo.contentlink
+        });
+        break;
+    }
+
+    _fbModel.FB.callMethod("ui", [shareConfig, _handleResult]);
+  }
+
+  void _handleResult(js.JsObject response) {
+    if (containsError(response)) return;
+    dispatchCompleteEvent();
+  }
+}

@@ -1,23 +1,27 @@
 part of stagexl_rockdot;
 
-
-
 @retain
 class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
   FBModel _fbModel;
+
   void set fbModel(FBModel fbModel) {
     _fbModel = fbModel;
   }
 
-  @override dynamic execute([RockdotEvent event = null]) {
+  @override void execute([RockdotEvent event = null]) {
     super.execute(event);
 //			dispatchMessage("loading.backend.login");
 
     if (event.data is UGCUserVO) {
+
       _ugcModel.userDAO = event.data;
+
     } else if (RockdotConstants.LOCAL && RockdotConstants.DEBUG) {
+
       _ugcModel.userDAO = _createDummyData();
+
     } else if (_ugcModel.userDAO == null) {
+
       UGCUserVO user = new UGCUserVO();
       user.network = UGCUserVO.NETWORK_FACEBOOK;
       user.name = _fbModel.user.name;
@@ -26,9 +30,13 @@ class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
       user.locale = _fbModel.user.locale;
       _ugcModel.userDAO = user;
     }
-    _ugcModel.userDAO.device = Capabilities.os;
-    amfOperation("UGCEndpoint.login", [_ugcModel.userDAO]);
+
+    _ugcModel.userDAO.device = html.window.navigator.platform;
+
+    amfOperation("UGCEndpoint.login", _ugcModel.userDAO.toMap());
   }
+
+
   UGCUserVO _createDummyData() {
     UGCUserVO user = new UGCUserVO();
     user.network = UGCUserVO.NETWORK_INPUTFORM;
@@ -39,6 +47,4 @@ class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
 
     return user;
   }
-
-
 }

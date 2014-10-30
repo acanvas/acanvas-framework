@@ -1,23 +1,15 @@
- part of stagexl_rockdot;
+part of stagexl_rockdot;
 
-	 class VOFBShare
-	{
 
-		 String message;
-		 String title;
-		 String image;
-		 String receiverUID;
-		 String contentlink;
-		 String actionText;
-		 String actionLink;
-	 VOFBShare([String title="", String message="", String image="", String contentlink="", String actionText="", String actionLink="" ]) {
-			this.image = image;
-			this.title = title;
-			this.message = message;
-			this.contentlink = contentlink;
-			this.actionText = actionText;
-			this.actionLink = actionLink == "" ? contentlink : actionLink;
-		}
+class VOFBShare {
+  static const String TYPE_SHARE = "TYPE_SHARE";
+  static const String TYPE_SHARE_OG = "TYPE_SHARE_OG";
 
-	}
+  String message;
+  String image;
+  String contentlink;
+  String type;
+  VOFBShare(this.type, [this.message = "", this.contentlink = "", this.image = ""]) {
+  }
 
+}

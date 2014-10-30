@@ -1,32 +1,34 @@
- part of stagexl_rockdot;
+part of stagexl_rockdot;
 
 
-	 @retain
+@retain
 class FBUserGetInfoCommand extends AbstractFBCommand {
 
-		@override
-		  dynamic execute([RockdotEvent event=null]) {
-			super.execute(event);
+  @override
+  void execute([RockdotEvent event = null]) {
+    super.execute(event);
 //			dispatchMessage("loading.facebook.login");
 
-			IOperation operation = _context.getObject(FacebookConstants.OPERATION_FB, ["fql.query", {query:"SELECT uid, name, pic_square, is_app_user, birthday_date, email, hometown_location, locale FROM user WHERE uid = me()"}]); //trick!
-			operation.addCompleteListener(_handleComplete);
-			operation.addErrorListener(_handleError);
-		}
+    js.JsObject queryConfig = new js.JsObject.jsify({
+      "method": "fql.query",
+      "query": "SELECT uid, name, pic_square, is_app_user, birthday_date, email, hometown_location, locale FROM user WHERE uid = ${_fbModel.user.uid}"
+    });
+    
+    _fbModel.FB.callMethod("api", [queryConfig, _handleResult]);
+  }
 
-		  void _handleComplete(OperationEvent event) {
-			FBUserVO user = new FBUserVO(event.result[0]);
-			if (user == null) {
-				error = ( "Error parsing user from " + event.result );
-				dispatchErrorEvent();
-				return;
-			}
-			_fbModel.user = user;
-			if(event.result[0]["hometown_location"] is Map){
-				_fbModel.user.hometown_location = event.result[0]["hometown_location"]["name"];
-			}
-			_fbModel.user.id = user.uid;
-			dispatchCompleteEvent(_fbModel.user);
-		}
-	}
+  void _handleResult(js.JsArray response) {
+    if(containsError(response)) return;
 
+    if (response == null || response[0] == null) {
+      error = ("Error parsing user from response");
+      dispatchErrorEvent();
+      return;
+    }
+    
+    FBUserVO user = new FBUserVO(response[0]);
+    _fbModel.user = user;
+
+    dispatchCompleteEvent(user);
+  }
+}

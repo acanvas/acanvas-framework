@@ -1,8 +1,6 @@
 part of stagexl_rockdot;
 
 
-
-
 /**
 	 * @author nilsdoehring
 	 */

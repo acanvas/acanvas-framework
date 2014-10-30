@@ -1,20 +1,20 @@
 part of stagexl_rockdot;
 
-
-
-
-
-
-	 @retain
+@retain
 class UGCRateCommand extends AbstractUGCCommand {
 
-		@override dynamic execute([RockdotEvent event=null])
-		 {
-			super.execute(event);
-			UGCRatingVO vo = event.data;
-			String uid = _ugcModel.userDAO.uid;
+  @override void execute([RockdotEvent event = null]) {
+    super.execute(event);
 
-			amfOperation("UGCEndpoint.rateItem", [{'id':vo.id, 'rating':vo.rating, 'uid':uid}]);
-		}
-	}
+    UGCRatingVO vo = event.data;
+    String uid = _ugcModel.userDAO.uid;
 
+    Map dto = {
+      'id': vo.id,
+      'rating': vo.rating,
+      'uid': uid
+    };
+
+    amfOperation("UGCEndpoint.rateItem", dto);
+  }
+}

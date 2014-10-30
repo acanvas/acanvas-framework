@@ -1,19 +1,20 @@
 part of stagexl_rockdot;
 
 
-	 @retain
+@retain
 class UGCComplainCommand extends AbstractUGCCommand {
 
-		@override dynamic execute([RockdotEvent event=null])
-		 {
-			super.execute(event);
+  @override void execute([RockdotEvent event = null]) {
+    super.execute(event);
 
-			int id = event.data;
-			String uid = _ugcModel.userDAO.uid;
+    int id = event.data;
+    String uid = _ugcModel.userDAO.uid;
 
-			amfOperation("UGCEndpoint.complainItem", [{id:id, uid:uid}]);
+    Map dto = {
+      'id': id,
+      'uid': uid
+    };
 
-			return null;
-		}
-	}
-
+    amfOperation("UGCEndpoint.complainItem", dto);
+  }
+}

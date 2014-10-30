@@ -1,25 +1,29 @@
- part of stagexl_rockdot;
+part of stagexl_rockdot;
 
-
-
-	 @retain
+@retain
 class FBPhotoGetAlbumsCommand extends AbstractFBCommand {
 
-		@override 
-		  dynamic execute([RockdotEvent event=null]) {
-			super.execute(event);
+  @override
+  void execute([RockdotEvent event = null]) {
+    super.execute(event);
 //			dispatchMessage("notification.facebook.loading");
-			
-			String uid = _fbModel.user.id;
-			IOperation operation = _context.getObject(FacebookConstants.OPERATION_FB, ["/" + uid + "/albums"]);
-			operation.addCompleteListener(_handleComplete);
-			operation.addErrorListener(_handleError);
-		}
 
-		  void _handleComplete(OperationEvent event) {
+    String uid = _fbModel.user.uid;
+
+    js.JsObject queryConfig = new js.JsObject.jsify({});
+    _fbModel.FB.callMethod("api", ["/$uid/albums", "get", queryConfig, _handleResult]);
+  }
+
+  void _handleResult(js.JsObject response) {
 //			hideMessage("notification.facebook.loading")
-			_fbModel.userAlbums = event.result;
-			dispatchCompleteEvent(event.result);
-		}
-	}
-
+    if(containsError(response)) return;
+    
+    List albums = [];
+    response["data"].forEach((e){
+      albums.add( new FBAlbumVO(e) );
+    });
+    
+    _fbModel.userAlbums = albums;
+    dispatchCompleteEvent(albums);
+  }
+}

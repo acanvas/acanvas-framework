@@ -1,30 +1,28 @@
- part of stagexl_rockdot;
+part of stagexl_rockdot;
 
-	 @retain
+@retain
 class FBLogoutBrowserCommand extends AbstractFBCommand {
-		@override
-		  dynamic execute([RockdotEvent event=null]) {
-			super.execute(event);
+  @override
+  void execute([RockdotEvent event = null]) {
+    super.execute(event);
 
-			if (RockdotConstants.LOCAL) {
-				this.log.debug("Facebook Not Supported here.");
+    if (RockdotConstants.LOCAL) {
+      this.log.debug("Facebook Not Supported here.");
+      RockdotConstants.getStage().juggler.delayCall(dispatchCompleteEvent, .05);
 
-				RockdotConstants.getStage().juggler.delayCall(dispatchCompleteEvent, .05);
+    } else {
+      _fbModel.FB.callMethod("logout", [_handleResult]);
+    }
+  }
 
-			} else {
-				Facebook.logout(_handleComplete);
-			}
-		}
+  void _handleResult(js.JsArray response) {
+    if (containsError(response)) return;
+    
+    _fbModel.userIsAuthenticated = false;
+    _fbModel.user = null;
+    _fbModel.userAlbumPhotos = [];
+    _fbModel.userAlbums = [];
 
-		  void _handleComplete(Map response,[Map fail=null]) {
-			if (response != null) {
-				_fbModel.userIsAuthenticated = false;
-				_fbModel.session = null;
-				_fbModel.user = null;
-				_fbModel.userAlbumPhotos = [];
-				_fbModel.userAlbums = [];
-			}
-			dispatchCompleteEvent(response);
-		}
-	}
-
+    dispatchCompleteEvent();
+  }
+}

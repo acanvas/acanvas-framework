@@ -1,42 +1,82 @@
- part of stagexl_rockdot;
+part of stagexl_rockdot;
 
-	 @retain
+//https://developers.facebook.com/docs/games/requests/v2.1
+
+@retain
 class FBPromptInviteBrowserCommand extends AbstractFBCommand {
-		 VOFBInvite _vo;
+  VOFBInvite _vo;
 
-		@override
-		  dynamic execute([RockdotEvent event=null]) {
-			super.execute(event);
+  @override
+  void execute([RockdotEvent event = null]) {
+    super.execute(event);
 
-			//http://developers.facebook.com/docs/reference/dialogs/requests/
 
-			_vo = event.data;//VOFBInvite
-			_vo.app_id = getProperty("project.facebook.appid");
+    _vo = event.data;//VOFBInvite
+    _vo.app_id = getProperty("project.facebook.appid");
+    _vo.method = "apprequests";
+    _vo.display = "iframe";
 
-			String reason = _vo.reason != null ? _vo.reason : RockdotConstants.VAR_REASON_VALUE_APPREQUEST_VIEW;
+    String reason = _vo.reason != "" ? _vo.reason : RockdotConstants.VAR_REASON_VALUE_APPREQUEST_VIEW;
 
-			//assemble data payload as query string.
-			//supported pairs: item_id=X OR item_container_id=Y
-			_vo.data = new Base64Codec().encodeString( _vo.data + "&reason=" + reason + "&uid=" + _fbModel.user.uid);
+    //assemble data payload as query string.
+    //supported pairs: item_id=X OR item_container_id=Y
+    _vo.data = html.window.btoa(_vo.data + "&reason=" + reason + "&uid=" + _fbModel.user.uid);
 
-			Facebook.ui("apprequests", _vo, _dialogCallback, "iframe");
-		}
+    
+    Map inviteMap = {
+       "method": _vo.method,
+       "app_id": _vo.app_id,
+       "title": _vo.title,
+       "message": _vo.message,
+       "data": _vo.data,             
+       "display": _vo.display
+    };
+    
+    if(_vo.to != null){
+      inviteMap["to"] = _vo.to;
+    }
+    if(_vo.filters != null){
+      inviteMap["filters"] = _vo.filters;
+    }
+    if(_vo.action_type != null){
+      inviteMap["action_type"] = _vo.action_type;
+    }
+    if(_vo.object_id != null){
+      inviteMap["object_id"] = _vo.object_id;
+    }
+    if(_vo.exclude_ids != null){
+      inviteMap["exclude_ids"] = _vo.exclude_ids;
+    }
+    if(_vo.max_recipients > 0){
+      inviteMap["max_recipients"] = _vo.max_recipients;
+    }
+    
+    js.JsObject inviteConfig = new js.JsObject.jsify( inviteMap );
+    
+    _fbModel.FB.callMethod("ui", [inviteConfig, _handleResult]);
+  }
 
-		  void _dialogCallback(Map response) {
-			//response.request (request object id)
-			//response.to[<uid>]
+  void _handleResult(js.JsArray response) {
+    if (containsError(response)) return;
+   
+    //response.request (request object id)
+    //response.to[<uid>]
 
-			if(response is bool){
-				dispatchCompleteEvent();
-				return;
-			}
+    if (response.length == 0) {
+      dispatchCompleteEvent();
+      return;
+    }
 
-			response["uid"] = _fbModel.session.uid;
-			response["data"] = _vo.data;
-			_fbModel.invitedUsers = response["to"];
+    _fbModel.invitedUsers = response["to"].toList();
+    
+    Map dto = {
+      'uid': _fbModel.user.uid,
+      'request': response["request"],
+      'data': _vo.data,
+      'to_ids': _fbModel.invitedUsers
+    };
 
-			new RockdotEvent(UGCEvents.TRACK_INVITE, response, dispatchCompleteEvent).dispatch();
+    new RockdotEvent(UGCEvents.TRACK_INVITE, dto, dispatchCompleteEvent).dispatch();
 
-		}
-	}
-
+  }
+}

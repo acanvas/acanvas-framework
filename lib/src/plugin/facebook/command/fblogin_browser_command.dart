@@ -1,36 +1,48 @@
- part of stagexl_rockdot;
+part of stagexl_rockdot;
 
-	 @retain
+@retain
 class FBLoginBrowserCommand extends AbstractFBCommand {
 
-		@override
-		  dynamic execute([RockdotEvent event=null]) {
-			super.execute(event);
+  @override
+  void execute([RockdotEvent event = null]) {
+    super.execute(event);
 
-			if(RockdotConstants.LOCAL) {
-				this.log.debug("Facebook Not Supported here.");
-				dispatchErrorEvent("Facebook Not Supported here.");
-			} else {
-				if(_fbModel.session != null && _fbModel.userIsAuthenticated && event.data == "" ) {
-					dispatchCompleteEvent(_fbModel.session);
-				} else {
-					Facebook.login(_handleLogin, {"perms": event.data });
-				}
-			}
-		}
+    if (RockdotConstants.LOCAL) {
+      this.log.debug("Facebook Not Supported here.");
+      dispatchErrorEvent("Facebook Not Supported here.");
+    } else {
+      if (_fbModel.userIsAuthenticated && event.data == "") {
+        dispatchCompleteEvent();
+      } else {
 
-		  void _handleLogin(Map response,[Map fail=null]) {
-			if (response != null && response["accessToken"] != null) {
-				_fbModel.userIsAuthenticated = true;
-				_fbModel.session = response as FacebookSession;
-				dispatchCompleteEvent(response);
-			} else if (fail != null){
-			  this.log.error("Not Connected: " + fail.toString());
-				dispatchErrorEvent(fail);
-			}
-			else{
-			  this.log.debug("stupid empty callback");
-			}
-		}
-	}
+        js.JsObject loginConfig = new js.JsObject.jsify({
+          "scope": event.data != null ? event.data : "",
+          "return_scopes" : true
+        });
 
+        _fbModel.FB.callMethod("login", [_handleLogin, loginConfig]);
+      }
+    }
+  }
+
+  void _handleLogin(js.JsObject response, [js.JsObject fail = null]) {
+    if(containsError(response)) return;
+    
+    if (response["authResponse"] != null) {
+      
+      _fbModel.userIsAuthenticated = true;
+      _fbModel.user = new FBUserVO()
+                        ..uid = response["authResponse"]["userID"];
+      
+      if(response["authResponse"]["grantedScopes"] != null){
+        _fbModel.userPermissions = response["authResponse"]["grantedScopes"].split(",");
+        //TODO check if the requested permissions have been granted (because user could have clicked "not now")
+      }
+      
+      dispatchCompleteEvent(response["authResponse"]);
+    } else {
+      this.log.debug("Received empty callback");
+      dispatchErrorEvent();
+    }
+  }
+}

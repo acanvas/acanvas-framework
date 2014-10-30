@@ -1,35 +1,36 @@
- part of stagexl_rockdot;
+part of stagexl_rockdot;
 
-
-
-
-
-
-
-	 @retain
+@retain
 class FBFriendsGetInfoCommand extends AbstractFBCommand {
 
-		@override
-		  dynamic execute([RockdotEvent event=null]) {
-			super.execute(event);
-//			new BaseEvent(StateEvents.STATE_SET, "loading_facebook_friends").dispatch();
+  @override void execute([RockdotEvent event = null]) {
+    super.execute(event);
 
+    //showMessage("notification.facebook.loading")
+    List arr = [];
 
-			Map friends = _fbModel.friends;
-			List arr = [];
+    _fbModel.friends.keys.forEach((key) {
+      arr.add(key);
+    });
 
-			for ( String k in friends ) {
-				arr.add(friends[ k ].id);
-			}
+    js.JsObject queryConfig = new js.JsObject.jsify({
+      "method": "fql.query",
+      "query": "SELECT uid, name, pic_square, is_app_user FROM user WHERE uid = me() OR uid IN ( ${arr.join(",")} )"
+    });
 
-			IOperation operation = _context.getObject(FacebookConstants.OPERATION_FB, ["fql.query", {'query':"SELECT uid, name, pic_square, is_app_user FROM user WHERE uid = me() OR uid IN (" + arr.join(",") + ")"}]); //trick!
-			operation.addCompleteListener(_handleComplete);
-			operation.addErrorListener(_handleError);
-		}
+    _fbModel.FB.callMethod("api", [queryConfig, _handleResult]);
+  }
 
-		  void _handleComplete(OperationEvent event) {
-			_fbModel.friendsWithAdditionalInfo = event.result;
-			dispatchCompleteEvent(event.result);
-		}
-	}
+  void _handleResult(js.JsArray response) {
+//      hideMessage("notification.facebook.loading")
+    if (containsError(response)) return;
 
+    List friendsWithAdditionalInfo = [];
+    response["data"].forEach((e) {
+      friendsWithAdditionalInfo.add(new FBUserVO(e));
+    });
+
+    _fbModel.friendsWithAdditionalInfo = friendsWithAdditionalInfo;
+    dispatchCompleteEvent(friendsWithAdditionalInfo);
+  }
+}

@@ -1,22 +1,25 @@
- part of stagexl_rockdot;
+part of stagexl_rockdot;
 
-
-
-
-
-
-	 @retain
+@retain
 class FBPhotoUploadCommand extends AbstractFBCommand {
 
-		@override
-		  dynamic execute([RockdotEvent event=null]) {
-			super.execute(event);
+  @override
+  void execute([RockdotEvent event = null]) {
+    super.execute(event);
 
-			VOFBPhotoUpload vo = event.data;
+    VOFBPhotoUpload vo = event.data;
 
-			IOperation operation = _context.getObject(FacebookConstants.OPERATION_FB, [vo.location, {"image":vo.bmp, "message":vo.caption, "fileName":vo.fileName}, "POST"]);
-			operation.addCompleteListener(dispatchCompleteEvent);
-			operation.addErrorListener(_handleError);
-		}
-	}
+    js.JsObject queryConfig = new js.JsObject.jsify({
+      "image": vo.bmp,
+      "message": vo.caption,
+      "fileName": vo.fileName
+    });
+    _fbModel.FB.callMethod("api", [vo.location, "post", queryConfig, _handleResult]);
+  }
 
+  void _handleResult(js.JsObject response) {
+//      hideMessage("notification.facebook.loading");
+    if (containsError(response)) return;
+    dispatchCompleteEvent();
+  }
+}

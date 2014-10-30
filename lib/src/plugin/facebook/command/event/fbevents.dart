@@ -30,9 +30,6 @@
 		//expects nothing, sets/returns _fbModel.friendsWithAdditionalInfo  (List<FBUserDataVO>)
 		 static const String FRIENDS_GETINFO 			= "CommandFB.FRIENDS_GETINFO";
 
-		//expects nothing, it's just a test
-		 static const String EVENT_CREATE 				= "CommandFB.EVENT_CREATE";
-
 		//expects nothing, sets/returns _fbModel.userAlbums  (List<FBAlbumDataVO>)
 		 static const String ALBUMS_GET 				= "CommandFB.ALBUMS_GET";
 
