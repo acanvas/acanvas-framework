@@ -3,7 +3,7 @@ part of stagexl_rockdot;
 @retain
 class UGCTrackInviteCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
     Map dto;
@@ -19,6 +19,6 @@ class UGCTrackInviteCommand extends AbstractUGCCommand {
       };
     }
     
-    amfOperation("UGCEndpoint.trackInvite", dto);
+    amfOperation("UGCEndpoint.trackInvite", map: dto);
   }
 }

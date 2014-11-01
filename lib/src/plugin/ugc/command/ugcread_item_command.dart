@@ -3,7 +3,7 @@ part of stagexl_rockdot;
 @retain
 class UGCReadItemCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
     //event.data == id INT
@@ -11,13 +11,13 @@ class UGCReadItemCommand extends AbstractUGCCommand {
       'id': event.data
     };
 
-    amfOperation("UGCEndpoint.readItem", dto);
+    amfOperation("UGCEndpoint.readItem", map: dto);
   }
 
   @override bool dispatchCompleteEvent([dynamic result = null]) {
-    UGCItemVO ret;
+    UGCItemDTO ret;
     if (result.result.length > 0) {
-      ret = new UGCItemVO(result.result[0]);
+      ret = new UGCItemDTO(result.result[0]);
       _ugcModel.currentItemDAO = ret;
     }
     return super.dispatchCompleteEvent(ret);

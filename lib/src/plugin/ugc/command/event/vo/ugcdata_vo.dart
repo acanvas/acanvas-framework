@@ -1,14 +1,10 @@
 part of stagexl_rockdot;
-	 class UGCDataVO  extends RockdotVO{
+class UGCDataVO implements IXLVO {
 
-		 RockdotVO dao;
-		 String condition;
-		 String limit;
-		 @retain
-    UGCDataVO(RockdotVO dao, [String condition="",String limit=""]) {
-			this.condition = condition;
-			this.limit = limit;
-			this.dao = dao != null ? dao : new RockdotVO();
-		}
-	}
+  IXLDTO dao;
+  String condition;
+  String limit;
 
+  UGCDataVO(this.dao, [this.condition = "", this.limit = ""]) {
+  }
+}

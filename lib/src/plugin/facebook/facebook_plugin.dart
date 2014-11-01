@@ -9,7 +9,7 @@ class FacebookPlugin extends AbstractOrderedFactoryPostProcessor {
   IOperation postProcessObjectFactory(IObjectFactory objectFactory) {
 
     /* Objects */
-    RockdotContextHelper.registerClass(objectFactory, MODEL_FB, FBModel, true);
+    RockdotContextHelper.registerInstance(objectFactory, MODEL_FB, new FBModel());
 
     /* Object Postprocessors */
     objectFactory.addObjectPostProcessor(new FBModelInjector(objectFactory));

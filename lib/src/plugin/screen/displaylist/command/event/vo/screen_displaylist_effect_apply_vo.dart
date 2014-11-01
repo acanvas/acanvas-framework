@@ -1,16 +1,13 @@
 part of stagexl_rockdot;
 
-	/**
-	 * @author nilsdoehring
-	 */
-	 class ScreenDisplaylistEffectApplyVO extends RockdotVO{
-		 IEffect effect;
-		 ISpriteComponent target;
-		 num duration;
-	 ScreenDisplaylistEffectApplyVO(IEffect effect,ISpriteComponent target,num duration) {
-			this.effect = effect;
-			this.target = target;
-			this.duration = duration;
-		}
-	}
+/**
+ * @author nilsdoehring
+ */
+class ScreenDisplaylistEffectApplyVO implements IXLVO {
+  IEffect effect;
+  ISpriteComponent target;
+  num duration;
 
+  ScreenDisplaylistEffectApplyVO(this.effect, this.target, this.duration) {
+  }
+}

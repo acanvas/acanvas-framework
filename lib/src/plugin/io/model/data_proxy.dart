@@ -25,7 +25,7 @@ part of stagexl_rockdot;
 		void set dataFilterVO(UGCFilterVO dataFilterVO) {
 			_dataFilterVO = dataFilterVO;
 		} 
-		UGCFilterVO get dataFilterVO {
+		UGCFilterVO get dataFilterVO { 
 			return _dataFilterVO;
 		}
 		
@@ -102,7 +102,7 @@ part of stagexl_rockdot;
 				_chunkSize = chunkSize;
 //				
 				_dataRetrieveCommand.addCompleteListener(_onData);
-				_dataRetrieveCommand.execute(new RockdotEvent("data", dataFilterVO));
+				_dataRetrieveCommand.execute(new XLSignal("data", dataFilterVO));
 			}
 		} void _onData(OperationEvent event)
 		 {

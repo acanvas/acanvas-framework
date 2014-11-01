@@ -3,7 +3,7 @@ part of stagexl_rockdot;
 @retain
 class UGCReadItemContainersByUIDCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
     if (event.data) {
 
@@ -11,7 +11,7 @@ class UGCReadItemContainersByUIDCommand extends AbstractUGCCommand {
         'uid': event.data
       };
 
-      amfOperation("UGCEndpoint.readItemContainersByUID", dto);
+      amfOperation("UGCEndpoint.readItemContainersByUID", map: dto);
     } else {
       dispatchErrorEvent("No UID");
     }
@@ -28,10 +28,10 @@ class UGCReadItemContainersByUIDCommand extends AbstractUGCCommand {
     List a_ret = [];
 
     if (result.length > 0) {
-      UGCItemContainerVO ret;
+      UGCItemContainerDTO ret;
 
       for (int i = 0; i < result.length; i++) {
-        ret = new UGCItemContainerVO(result[i]);
+        ret = new UGCItemContainerDTO(result[i]);
         a_ret.add(ret);
       }
     }

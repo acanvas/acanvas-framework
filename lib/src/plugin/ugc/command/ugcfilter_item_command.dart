@@ -9,7 +9,7 @@ class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAwar
     _stateModel = stateModel;
   }
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
     UGCFilterVO vo = event.data;
@@ -28,6 +28,7 @@ class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAwar
       case UGCFilterVO.CONDITION_ALL:
         break;
       case UGCFilterVO.CONDITION_UID:
+        //TODO
         break;
     }
 
@@ -36,7 +37,7 @@ class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAwar
 //				vo.condition = event.data;
 //			}
 
-    amfOperation("UGCEndpoint.filterItems", vo.toMap());
+    amfOperation("UGCEndpoint.filterItems", map: vo.toMap());
   }
 
 

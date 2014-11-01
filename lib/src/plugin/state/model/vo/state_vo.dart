@@ -1,26 +1,30 @@
 part of stagexl_rockdot;
 
-	/**
+/**
 	 * @author Nils Doehring (nilsdoehring(gmail as at).com)
 	 */
-@retain
-class StateVO extends RockdotVO {
-		 String view_id;
-		 String property_key;
-		 String substate;
-		 int tree_order;
-		 int tree_parent;
+class StateVO implements IXLVO {
+  String view_id;
 
-		 String url;
-		 String label;
-		 String title;
-		 Map params;
-		 String transition;
-	 StateVO([dynamic object = null]):super(object){
-			if(property_key == null){
-				property_key = view_id;
-			}
-		}
+  String _property_key;
+  void set property_key(String p) {
+    _property_key = p;
+  }
+  String get property_key {
+    return property_key == null ? view_id : property_key;
+  }
 
-	}
+  String substate;
+  int tree_order;
+  int tree_parent;
 
+  String url;
+  String label;
+  String title;
+  Map params;
+  String transition;
+
+  StateVO() {
+  }
+
+}

@@ -39,7 +39,7 @@ class CoreCommand extends AbstractOperation implements IAsyncCommand, IApplicati
     dispatchErrorEvent(event.error);
   }
 
-  void execute([RockdotEvent event = null]) {
+  void execute([XLSignal event = null]) {
     if (event != null && event.completeCallBack != null) {
       _callback = event.completeCallBack;
     }

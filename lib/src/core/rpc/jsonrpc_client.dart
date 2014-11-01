@@ -56,7 +56,7 @@ class ServerProxy {
 
   _executeRequest(package) {
     //return a future with the JSON-RPC response
-    HttpRequest request = new HttpRequest();
+    html.HttpRequest request = new html.HttpRequest();
     request.open("POST", url, async: true);
     request.timeout = timeout;
     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');

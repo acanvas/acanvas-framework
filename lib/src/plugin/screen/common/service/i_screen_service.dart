@@ -1,16 +1,9 @@
 part of stagexl_rockdot;
 
-
-
-
-
-
-
 /**
-	 * @author nilsdoehring
-	 */
+ * @author nilsdoehring
+ */
 
-@retain
 abstract class IScreenService {
   bool get initialized;
   ManagedSpriteComponent get background;

@@ -4,7 +4,7 @@ part of stagexl_rockdot;
 	 @retain
 class ScreenResizeCommand extends AbstractScreenCommand {
 
-		@override dynamic execute([RockdotEvent event=null])
+		@override dynamic execute([XLSignal event=null])
 		 {
 			super.execute(event);
 			

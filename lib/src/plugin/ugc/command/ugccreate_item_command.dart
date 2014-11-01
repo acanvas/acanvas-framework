@@ -3,10 +3,10 @@ part of stagexl_rockdot;
 @retain
 class UGCCreateItemCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
-    if (event.data is UGCItemVO) {
+    if (event.data is UGCItemDTO) {
       _ugcModel.currentItemDAO = event.data;
     }
 
@@ -15,7 +15,7 @@ class UGCCreateItemCommand extends AbstractUGCCommand {
         _ugcModel.currentItemDAO.container_id = _ugcModel.currentItemContainerDAO.id;
       }
       _ugcModel.currentItemDAO.creator_uid = _ugcModel.userDAO.uid;
-      amfOperation("UGCEndpoint.createItem", _ugcModel.currentItemDAO.toMap());
+      amfOperation("UGCEndpoint.createItem", dto: _ugcModel.currentItemDAO);
     } else {
       dispatchErrorEvent("Nothing to upload. Meh.");
     }

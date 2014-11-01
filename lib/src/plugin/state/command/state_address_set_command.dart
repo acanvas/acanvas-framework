@@ -6,7 +6,7 @@ part of stagexl_rockdot;
 	 */
 	 @retain
 class StateAddressSetCommand extends AbstractStateCommand {
-		@override dynamic execute([RockdotEvent event=null])
+		@override dynamic execute([XLSignal event=null])
 		 {
 			super.execute(event);
 			_stateModel.addressService.changeAddress(event.data, dispatchCompleteEvent);

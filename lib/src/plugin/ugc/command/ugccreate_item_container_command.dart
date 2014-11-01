@@ -3,12 +3,12 @@ part of stagexl_rockdot;
 @retain
 class UGCCreateItemContainerCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
-    if (event.data is UGCItemContainerVO) {
+    if (event.data is UGCItemContainerDTO) {
       _ugcModel.currentItemContainerDAO = event.data;
     }
-    amfOperation("UGCEndpoint.createItemContainer", _ugcModel.currentItemContainerDAO.toMap());
+    amfOperation("UGCEndpoint.createItemContainer", dto: _ugcModel.currentItemContainerDAO);
   }
 
 

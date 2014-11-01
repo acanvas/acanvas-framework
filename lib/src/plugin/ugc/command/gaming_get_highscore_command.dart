@@ -7,7 +7,7 @@ class GamingGetHighscoreCommand extends AbstractUGCCommand implements IFBModelAw
     _modelFB = model;
   }
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
     Map dto = {
@@ -15,7 +15,7 @@ class GamingGetHighscoreCommand extends AbstractUGCCommand implements IFBModelAw
       'friends': _modelFB.friendsWhoAreAppUsersIndexed
     };
 
-    amfOperation("GamingEndpoint.getHighscore", dto);
+    amfOperation("GamingEndpoint.getHighscore", map: dto);
   }
 
 

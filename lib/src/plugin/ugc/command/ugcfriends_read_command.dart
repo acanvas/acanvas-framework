@@ -9,7 +9,7 @@ class UGCFriendsReadCommand extends AbstractUGCCommand implements IFBModelAware 
     _modelFB = model;
   }
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
     if (_modelFB.friendsWhoAreAppUsers == null) {
@@ -24,7 +24,7 @@ class UGCFriendsReadCommand extends AbstractUGCCommand implements IFBModelAware 
     
     Map dto = {"ids" : arr};
 
-    amfOperation("UGCEndpoint.getFriendsWithItems", dto);
+    amfOperation("UGCEndpoint.getFriendsWithItems", map: dto);
   }
 
   void _handleComplete(OperationEvent event) {

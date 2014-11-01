@@ -3,7 +3,7 @@ part of stagexl_rockdot;
 @retain
 class UGCMailSendCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
     
     String sender = getProperty("email.confirm.sender").split(r"$sender").join(getProperty("project.host.email.sender"));
@@ -22,6 +22,6 @@ class UGCMailSendCommand extends AbstractUGCCommand {
       'email': _ugcModel.userExtendedDAO.email
     };
 
-    amfOperation("UGCEndpoint.sendMail", dto);
+    amfOperation("UGCEndpoint.sendMail", map: dto);
   }
 }

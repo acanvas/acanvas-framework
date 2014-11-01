@@ -3,14 +3,14 @@ part of stagexl_rockdot;
 @retain
 class GamingGetGamesCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
     Map dto = {
       'uid': _ugcModel.userDAO.uid
     };
 
-    amfOperation("GamingEndpoint.getGames", dto);
+    amfOperation("GamingEndpoint.getGames", map: dto);
   }
 
   @override bool dispatchCompleteEvent([dynamic result = null]) {

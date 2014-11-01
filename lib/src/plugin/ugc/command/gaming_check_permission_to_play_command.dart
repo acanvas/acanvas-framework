@@ -3,14 +3,14 @@ part of stagexl_rockdot;
 @retain
 class GamingCheckPermissionToPlayCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
     Map dto = {
       'uid': _ugcModel.userDAO.uid
     };
 
-    amfOperation("GamingEndpoint.checkPermissionToPlay", dto);
+    amfOperation("GamingEndpoint.checkPermissionToPlay", map: dto);
   }
 
 

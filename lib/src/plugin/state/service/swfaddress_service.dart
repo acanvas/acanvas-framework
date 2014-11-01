@@ -18,7 +18,7 @@ class SWFAddressService extends BasicAddressService implements IAddressService {
   void _onSWFAddressChange([html.HashChangeEvent e = null]) {
     var hash = html.window.location.hash;
     if (hash.length > 0 && hash[0] == "#") hash = hash.substring(1);
-    new RockdotEvent(StateEvents.STATE_REQUEST, hash, _callback).dispatch();
+    new XLSignal(StateEvents.STATE_REQUEST, hash, _callback).dispatch();
   }
 
   @override void changeAddress(String url, [Function callback = null]) {

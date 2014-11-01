@@ -5,7 +5,7 @@ part of stagexl_rockdot;
 	 */
 @retain
 class StateSetCommand extends AbstractStateCommand {
-  @override dynamic execute([RockdotEvent event = null]) {
+  @override dynamic execute([XLSignal event = null]) {
     super.execute(event);
 
     bool saveHistory = true;
@@ -28,10 +28,10 @@ class StateSetCommand extends AbstractStateCommand {
 
       _stateModel.currentStateVO = stateVO;
       _stateModel.currentPageVOParams = stateVO.params;
-      new RockdotEvent(StateEvents.STATE_CHANGE, new VOStateChange(oldNaviVO, stateVO), dispatchCompleteEvent).dispatch();
+      new XLSignal(StateEvents.STATE_CHANGE, new StateChangeVO(oldNaviVO, stateVO), dispatchCompleteEvent).dispatch();
 
       if (naviVOwasNull) {
-        new RockdotEvent(StateEvents.STATE_PARAMS_CHANGE, _stateModel.currentStateVO).dispatch();
+        new XLSignal(StateEvents.STATE_PARAMS_CHANGE, _stateModel.currentStateVO).dispatch();
       }
 
       if (saveToHistory) {

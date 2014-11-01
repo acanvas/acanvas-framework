@@ -7,16 +7,16 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
       _modelFB = model;
     }
  
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 //			dispatchMessage("loading.backend.login");
 
-    UGCUserExtendedVO amfObject;
+    UGCUserExtendedDTO amfObject;
 
-    if (event.data is UGCUserExtendedVO) {
+    if (event.data is UGCUserExtendedDTO) {
       
       amfObject = event.data;
-      _ugcModel.userExtendedDAO = new UGCUserExtendedVO(amfObject);
+      _ugcModel.userExtendedDAO = new UGCUserExtendedDTO(amfObject.toJson());
       
     } else if (RockdotConstants.LOCAL && RockdotConstants.DEBUG) {
       
@@ -25,7 +25,7 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
       
     } else if (_ugcModel.userExtendedDAO == null) {
       
-      UGCUserExtendedVO user = new UGCUserExtendedVO();
+      UGCUserExtendedDTO user = new UGCUserExtendedDTO();
       user.hometown_location = _modelFB.user.hometown_location;
       user.email = _modelFB.user.email;
       user.email_confirmed = 1;
@@ -44,11 +44,11 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
     amfObject.hash = _ugcModel.userExtendedDAO.hash;
 
     _ugcModel.hasUserExtendedDAO = true;
-    amfOperation("UGCEndpoint.createUserExtended", amfObject.toMap());
+    amfOperation("UGCEndpoint.createUserExtended", dto: amfObject);
   }
   
-  UGCUserExtendedVO _createDummyData() {
-    UGCUserExtendedVO user = new UGCUserExtendedVO();
+  UGCUserExtendedDTO _createDummyData() {
+    UGCUserExtendedDTO user = new UGCUserExtendedDTO();
     user.hometown_location = "Stuttgart, Germany";
     user.email = "anna-maria.fincke@jvm-neckar.de";
     user.email_confirmed = 1;

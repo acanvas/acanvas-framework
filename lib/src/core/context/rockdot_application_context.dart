@@ -64,7 +64,7 @@ class RockdotApplicationContext extends SpringApplicationContext {
 
       List array = RockdotConstants.getBootstrap();
       for (int i = 0; i < array.length; i++) {
-        compositeCommand.addCommandEvent(new RockdotEvent(array[i]), this);
+        compositeCommand.addCommandEvent(new XLSignal(array[i]), this);
       }
     
       /* add sequence listeners */

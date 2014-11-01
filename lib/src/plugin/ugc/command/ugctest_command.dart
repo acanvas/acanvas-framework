@@ -7,7 +7,7 @@ class UGCTestCommand extends AbstractUGCCommand {
 		 int _itemContainerID;
 		 int _itemID;
 
-		@override void execute([RockdotEvent event=null])
+		@override void execute([XLSignal event=null])
 		 {
 			super.execute(event);
 
@@ -16,19 +16,19 @@ class UGCTestCommand extends AbstractUGCCommand {
 
 			/* ******************** REGISTER USER ******************* */
 
-			UGCUserVO user = new UGCUserVO();
-			user.network = UGCUserVO.NETWORK_INPUTFORM;
+			UGCUserDTO user = new UGCUserDTO();
+			user.network = UGCUserDTO.NETWORK_INPUTFORM;
 			user.name = "Test User";
 			user.pic = "http://profile.ak.fbcdn.net/static-ak/rsrc.php/v1/yo/r/UlIqmHJn-SK.gif";
 			user.uid = "1234567890";
 			user.locale = "de_DE";
 
-			compositeCommand.addCommandEvent(new RockdotEvent(UGCEvents.USER_REGISTER, null, _onUserRegister), _context);
+			compositeCommand.addCommandEvent(new XLSignal(UGCEvents.USER_REGISTER, null, _onUserRegister), _context);
 
 
 			/* ******************** REGISTER USER (EXTENDED) ******************* */
 
-			UGCUserExtendedVO userExt = new UGCUserExtendedVO();
+			UGCUserExtendedDTO userExt = new UGCUserExtendedDTO();
 			userExt.hometown_location = "Musterstadt, Germany";
 			userExt.email = "anna-maria.fincke@jvm-neckar.de";
 			userExt.email_confirmed = 0;
@@ -38,27 +38,27 @@ class UGCTestCommand extends AbstractUGCCommand {
 			userExt.street = "Neckarstraße 155";
 			userExt.city = "70190 Stuttgart";
 
-			compositeCommand.addCommandEvent(new RockdotEvent(UGCEvents.USER_REGISTER_EXTENDED, userExt, _onUserRegisterExtended), _context);
+			compositeCommand.addCommandEvent(new XLSignal(UGCEvents.USER_REGISTER_EXTENDED, userExt, _onUserRegisterExtended), _context);
 
 
 			/* ******************** SEND CONFIRMATION MAIL ******************* */
 
-			compositeCommand.addCommandEvent(new RockdotEvent(UGCEvents.USER_MAIL_SEND, null, _onMailSent), _context);
+			compositeCommand.addCommandEvent(new XLSignal(UGCEvents.USER_MAIL_SEND, null, _onMailSent), _context);
 
 
 			/* ******************** CREATE ITEM CONTAINER ******************* */
 
-			UGCItemContainerVO albumVO = new UGCItemContainerVO();
+			UGCItemContainerDTO albumVO = new UGCItemContainerDTO();
 			albumVO.creator_uid = _ugcModel.userDAO.uid;
 			albumVO.title = "Album von " + _ugcModel.userDAO.name;
 
-			compositeCommand.addCommandEvent(new RockdotEvent(UGCEvents.CREATE_ITEM_CONTAINER, albumVO, _onCreateItemContainer), _context);
+			compositeCommand.addCommandEvent(new XLSignal(UGCEvents.CREATE_ITEM_CONTAINER, albumVO, _onCreateItemContainer), _context);
 
 
 			/* ******************** CREATE IMAGE ITEM ******************* */
 
 			//Database Item VO
-			UGCItemVO itemDAO = new UGCItemVO();
+			UGCItemDTO itemDAO = new UGCItemDTO();
 			itemDAO.title = "Test Image Title";
 			itemDAO.description = "Test Image Description";
 
@@ -67,60 +67,60 @@ class UGCTestCommand extends AbstractUGCCommand {
 			String filenameThumb = filenamePrefix + "_thumb.jpg";
 
 
-			UGCImageItemVO imageDAO = event.data[0];
+			UGCImageItemDTO imageDAO = event.data[0];
 			imageDAO.url_big = getProperty("project.host.download") + "/" + filenameBig;
 			imageDAO.url_thumb = getProperty("project.host.download") + "/" + filenameThumb;
 			imageDAO.w = 100;
 			imageDAO.h = 100;
 
-			itemDAO.type = UGCItemVO.TYPE_IMAGE;
+			itemDAO.type = UGCItemDTO.TYPE_IMAGE;
 			itemDAO.type_dao = imageDAO;
 
-			compositeCommand.addCommandEvent(new RockdotEvent(UGCEvents.CREATE_ITEM, itemDAO, _onCreateItem), _context);
+			compositeCommand.addCommandEvent(new XLSignal(UGCEvents.CREATE_ITEM, itemDAO, _onCreateItem), _context);
 
 
 			/* ******************** READ ITEM CONTAINER ******************* */
 
-			compositeCommand.addCommandEvent(new RockdotEvent(UGCEvents.READ_ITEM_CONTAINER, _itemContainerID, _onReadItemContainer), _context);
+			compositeCommand.addCommandEvent(new XLSignal(UGCEvents.READ_ITEM_CONTAINER, _itemContainerID, _onReadItemContainer), _context);
 
 
 			/* ******************** READ ITEM ******************* */
 
-			compositeCommand.addCommandEvent(new RockdotEvent(UGCEvents.READ_ITEM, _itemID, _onReadItem), _context);
+			compositeCommand.addCommandEvent(new XLSignal(UGCEvents.READ_ITEM, _itemID, _onReadItem), _context);
 
 
 			/* ******************** READ ITEM CONTAINER(BY as S) UID ******************* */
 
-			compositeCommand.addCommandEvent(new RockdotEvent(UGCEvents.READ_ITEM_CONTAINERS_UID, null, _onReadItemByUID), _context);
+			compositeCommand.addCommandEvent(new XLSignal(UGCEvents.READ_ITEM_CONTAINERS_UID, null, _onReadItemByUID), _context);
 
 
 			/* ******************** LIKE ITEM ******************* */
 
-			compositeCommand.addCommandEvent(new RockdotEvent(UGCEvents.ITEM_LIKE, _itemID, _onLikeOrComplainOrRateItem), _context);
+			compositeCommand.addCommandEvent(new XLSignal(UGCEvents.ITEM_LIKE, _itemID, _onLikeOrComplainOrRateItem), _context);
 
 
 			/* ******************** COMPLAIN ITEM ******************* */
 
-			compositeCommand.addCommandEvent(new RockdotEvent(UGCEvents.ITEM_COMPLAIN, _itemID, _onLikeOrComplainOrRateItem), _context);
+			compositeCommand.addCommandEvent(new XLSignal(UGCEvents.ITEM_COMPLAIN, _itemID, _onLikeOrComplainOrRateItem), _context);
 
 
 			/* ******************** RATE ITEM ******************* */
 
 			UGCRatingVO rateItem = new UGCRatingVO(_itemID, 3);
-			compositeCommand.addCommandEvent(new RockdotEvent(UGCEvents.ITEM_RATE, rateItem, _onLikeOrComplainOrRateItem), _context);
+			compositeCommand.addCommandEvent(new XLSignal(UGCEvents.ITEM_RATE, rateItem, _onLikeOrComplainOrRateItem), _context);
 
 
 			/* ******************** SET GAME SCORE ******************* */
 
-			UGCGameVO game = new UGCGameVO();
+			UGCGameDTO game = new UGCGameDTO();
 			game.level = 1;
 			game.score = 1000;
-			compositeCommand.addCommandEvent(new RockdotEvent(GamingEvents.SET_SCORE_AT_LEVEL, game, _onSetScore), _context);
+			compositeCommand.addCommandEvent(new XLSignal(GamingEvents.SET_SCORE_AT_LEVEL, game, _onSetScore), _context);
 
 
 			/* ******************** GET GAME HIGHSCORE ******************* */
 
-			compositeCommand.addCommandEvent(new RockdotEvent(GamingEvents.GET_HIGHSCORE, null, _onGetHighscore), _context);
+			compositeCommand.addCommandEvent(new XLSignal(GamingEvents.GET_HIGHSCORE, null, _onGetHighscore), _context);
 
 
 
@@ -146,7 +146,7 @@ class UGCTestCommand extends AbstractUGCCommand {
 			this.log.debug("_onCreateItemContainer, Insert ID: " + event.result + "(0 if item already present)");
 			Assert.notNull(event.result, "event.result is null");
 			_itemID = event.result;
-		} void _onReadItemContainer(UGCItemContainerVO container)
+		} void _onReadItemContainer(UGCItemContainerDTO container)
 		 {
 			Assert.notNull(container, "_onReadItemContainer, container is null");
 			Assert.notNull(_ugcModel.currentItemContainerDAO, "_onReadItemContainer, _ugcModel.currentItemContainerDAO is null");
@@ -155,7 +155,7 @@ class UGCTestCommand extends AbstractUGCCommand {
 			this.log.debug("_ugcModel.ownContainers: " + _ugcModel.ownContainers.toString());
 			this.log.debug("_ugcModel.followContainers: " + _ugcModel.followContainers.toString());
 			this.log.debug("_ugcModel.participantContainers: " + _ugcModel.participantContainers.toString());
-		} void _onReadItem(UGCItemVO item)
+		} void _onReadItem(UGCItemDTO item)
 		 {
 			Assert.notNull(item, "_onReadItem, item is null");
 			Assert.notNull(_ugcModel.currentItemDAO, "_onReadItem, _ugcModel.currentItemDAO is null");

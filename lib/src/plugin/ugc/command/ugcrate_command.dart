@@ -3,7 +3,7 @@ part of stagexl_rockdot;
 @retain
 class UGCRateCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
     UGCRatingVO vo = event.data;
@@ -15,6 +15,6 @@ class UGCRateCommand extends AbstractUGCCommand {
       'uid': uid
     };
 
-    amfOperation("UGCEndpoint.rateItem", dto);
+    amfOperation("UGCEndpoint.rateItem", map: dto);
   }
 }

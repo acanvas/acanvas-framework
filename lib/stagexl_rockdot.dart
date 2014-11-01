@@ -83,6 +83,10 @@ part 'src/plugin/facebook/model/vo/fbphoto_vo.dart';
 part 'src/plugin/facebook/model/vo/fbuser_vo.dart';
 
 //io
+part 'src/plugin/io/command/event/vo/io_image_upload_vo.dart';
+part 'src/plugin/io/command/event/io_events.dart';
+part 'src/plugin/io/command/io_image_upload_command.dart';
+part 'src/plugin/io/io_plugin.dart';
 part 'src/plugin/io/model/data_proxy.dart';
 
 //screen
@@ -127,7 +131,7 @@ part 'src/plugin/state/command/state_request_command.dart';
 part 'src/plugin/state/command/state_set_command.dart';
 part 'src/plugin/state/command/state_set_params_command.dart';
 part 'src/plugin/state/command/event/state_events.dart';
-part 'src/plugin/state/command/event/vo/vostate_change.dart';
+part 'src/plugin/state/command/event/vo/state_change_vo.dart';
 part 'src/plugin/state/inject/i_state_model_aware.dart';
 part 'src/plugin/state/inject/state_model_injector.dart';
 part 'src/plugin/state/model/state_model.dart';
@@ -176,21 +180,20 @@ part 'src/plugin/ugc/command/event/ugcevents.dart';
 part 'src/plugin/ugc/command/event/vo/ugcdata_vo.dart';
 part 'src/plugin/ugc/command/event/vo/ugcfilter_vo.dart';
 part 'src/plugin/ugc/command/event/vo/ugcrating_vo.dart';
-part 'src/plugin/ugc/command/operation/persistence_operation.dart';
 part 'src/plugin/ugc/inject/i_ugcmodel_aware.dart';
 part 'src/plugin/ugc/inject/ugcmodel_injector.dart';
 part 'src/plugin/ugc/model/ugcgaming_model.dart';
 part 'src/plugin/ugc/model/ugcmodel.dart';
-part 'src/plugin/ugc/model/vo/ugc_audio_item_vo.dart';
-part 'src/plugin/ugc/model/vo/ugc_game_vo.dart';
-part 'src/plugin/ugc/model/vo/ugc_image_item_vo.dart';
-part 'src/plugin/ugc/model/vo/ugc_item_container_role_vo.dart';
-part 'src/plugin/ugc/model/vo/ugc_item_container_vo.dart';
-part 'src/plugin/ugc/model/vo/ugc_item_vo.dart';
-part 'src/plugin/ugc/model/vo/ugc_task_vo.dart';
-part 'src/plugin/ugc/model/vo/ugc_text_item_vo.dart';
-part 'src/plugin/ugc/model/vo/ugc_user_extended_vo.dart';
-part 'src/plugin/ugc/model/vo/ugc_user_vo.dart';
-part 'src/plugin/ugc/model/vo/ugc_video_item_vo.dart';
+part 'src/plugin/ugc/model/dto/ugc_audio_item_dto.dart';
+part 'src/plugin/ugc/model/dto/ugc_game_dto.dart';
+part 'src/plugin/ugc/model/dto/ugc_image_item_dto.dart';
+part 'src/plugin/ugc/model/dto/ugc_item_container_role_dto.dart';
+part 'src/plugin/ugc/model/dto/ugc_item_container_dto.dart';
+part 'src/plugin/ugc/model/dto/ugc_item_dto.dart';
+part 'src/plugin/ugc/model/dto/ugc_task_dto.dart';
+part 'src/plugin/ugc/model/dto/ugc_text_item_dto.dart';
+part 'src/plugin/ugc/model/dto/ugc_user_extended_dto.dart';
+part 'src/plugin/ugc/model/dto/ugc_user_dto.dart';
+part 'src/plugin/ugc/model/dto/ugc_video_item_dto.dart';
 
 

@@ -4,7 +4,7 @@
 class FBPhotoGetFromAlbumCommand extends AbstractFBCommand {
 
 		@override 
-		  void execute([RockdotEvent event=null]) {
+		  void execute([XLSignal event=null]) {
 			super.execute(event);
 //			dispatchMessage("notification.facebook.loading");
 			

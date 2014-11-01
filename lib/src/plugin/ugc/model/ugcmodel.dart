@@ -1,13 +1,9 @@
 part of stagexl_rockdot;
 
-
-
-@retain
 class UGCModel {
 
-
-		 UGCUserVO _userDAO;
-		 UGCUserExtendedVO _userSweepstakeDAO;
+		 UGCUserDTO _userDAO;
+		 UGCUserExtendedDTO _userSweepstakeDAO;
 
 		 List _taskCategories;
 		 bool _hasUserExtendedDAO;
@@ -49,7 +45,7 @@ class UGCModel {
 		}
 
 		//these are detailed DB reads
-		 UGCItemVO _currentItemDAO;
+		 UGCItemDTO _currentItemDAO;
 
 		 List _friendsWithPhotosUIDs;
 		 bool _initialized;
@@ -71,16 +67,16 @@ class UGCModel {
 		/***********************************************************************
 		 * UserDAO
 		 ***********************************************************************/
-		UGCUserVO get userDAO {
+		UGCUserDTO get userDAO {
 			return _userDAO;
 		}
-		void set userDAO(UGCUserVO userDAO) {
+		void set userDAO(UGCUserDTO userDAO) {
 			_userDAO = userDAO;
 		}
-		UGCUserExtendedVO get userExtendedDAO {
+		UGCUserExtendedDTO get userExtendedDAO {
 			return _userSweepstakeDAO;
 		}
-		void set userExtendedDAO(UGCUserExtendedVO userSweepstakeDAO) {
+		void set userExtendedDAO(UGCUserExtendedDTO userSweepstakeDAO) {
 			_userSweepstakeDAO = userSweepstakeDAO;
 		}
 
@@ -88,10 +84,10 @@ class UGCModel {
 		/***********************************************************************
 		 * GALLERY - DAO
 		 ***********************************************************************/
-		UGCItemVO get currentItemDAO {
+		UGCItemDTO get currentItemDAO {
 			return _currentItemDAO;
 		}
-		void set currentItemDAO(UGCItemVO currentItemDAO) {
+		void set currentItemDAO(UGCItemDTO currentItemDAO) {
 			_currentItemDAO = currentItemDAO;
 		}
 		List get friendsWithUGCItems {
@@ -145,19 +141,19 @@ class UGCModel {
 		}
 
 
-		 UGCItemContainerVO _currentItemContainerDAO;
-		UGCItemContainerVO get currentItemContainerDAO {
+		 UGCItemContainerDTO _currentItemContainerDAO;
+		UGCItemContainerDTO get currentItemContainerDAO {
 			return _currentItemContainerDAO;
 		}
-		void set currentItemContainerDAO(UGCItemContainerVO currentItemContainerDAO) {
+		void set currentItemContainerDAO(UGCItemContainerDTO currentItemContainerDAO) {
 			_currentItemContainerDAO = currentItemContainerDAO;
 		}
 
-		 UGCItemContainerVO _loadedItemContainerDAO;
-		UGCItemContainerVO get loadedItemContainerDAO {
+		 UGCItemContainerDTO _loadedItemContainerDAO;
+		UGCItemContainerDTO get loadedItemContainerDAO {
 			return _loadedItemContainerDAO;
 		}
-		void set loadedItemContainerDAO(UGCItemContainerVO loadedItemContainerDAO) {
+		void set loadedItemContainerDAO(UGCItemContainerDTO loadedItemContainerDAO) {
 			_loadedItemContainerDAO = loadedItemContainerDAO;
 		}
 		bool get hasUserExtendedDAO {

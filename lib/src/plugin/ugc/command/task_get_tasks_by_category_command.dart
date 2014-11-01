@@ -3,14 +3,14 @@ part of stagexl_rockdot;
 @retain
 class TaskGetTasksByCategoryCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
     Map dto = {
       'id': event.data
     };
 
-    amfOperation("UGCEndpoint.getTasksOfCategory", dto);
+    amfOperation("UGCEndpoint.getTasksOfCategory", map: dto);
   }
 
 

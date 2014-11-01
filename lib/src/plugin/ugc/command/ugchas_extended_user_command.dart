@@ -3,13 +3,13 @@ part of stagexl_rockdot;
 	 @retain
 class UGCHasExtendedUserCommand extends AbstractUGCCommand{
 
-		@override dynamic execute([RockdotEvent event=null])
+		@override dynamic execute([XLSignal event=null])
 		 {
 			super.execute(event);			
 			
 			Map dto = {'uid': event.data ? event.data : _ugcModel.userDAO.uid};
 			
-			amfOperation("UGCEndpoint.hasUserExtended", dto);
+			amfOperation("UGCEndpoint.hasUserExtended", map: dto);
 		}
 		
 		@override bool dispatchCompleteEvent([dynamic result=null])

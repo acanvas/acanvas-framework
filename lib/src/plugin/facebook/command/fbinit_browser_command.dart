@@ -4,7 +4,7 @@ part of stagexl_rockdot;
 class FBInitBrowserCommand extends AbstractFBCommand {
 
   @override
-  void execute([RockdotEvent event = null]) {
+  void execute([XLSignal event = null]) {
     super.execute(event);
 
     if (RockdotConstants.LOCAL) {
@@ -39,7 +39,7 @@ class FBInitBrowserCommand extends AbstractFBCommand {
       _fbModel.user = new FBUserVO()
                         ..uid = response["authResponse"]["userID"];
 
-     new RockdotEvent(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions).dispatch();
+     new XLSignal(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions).dispatch();
     }
     
   }

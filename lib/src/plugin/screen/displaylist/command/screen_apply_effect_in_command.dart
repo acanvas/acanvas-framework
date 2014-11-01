@@ -1,22 +1,18 @@
 part of stagexl_rockdot;
 
 
-	 @retain
+@retain
 class ScreenApplyEffectInCommand extends AbstractScreenCommand {
 
-		@override dynamic execute([RockdotEvent event=null])
-		 {
-			super.execute(event);
+  @override void execute([XLSignal event = null]) {
+    super.execute(event);
 
-			ScreenDisplaylistEffectApplyVO vo = event.data;
-			vo.effect.runInEffect(vo.target, vo.duration, dispatchCompleteEvent);
-			return null;
-		}
-		
-		@override bool dispatchCompleteEvent([dynamic result=null])
-		 {
-			return super.dispatchCompleteEvent(result);
-		}
-		
-	}
+    ScreenDisplaylistEffectApplyVO vo = event.data;
+    vo.effect.runInEffect(vo.target, vo.duration, dispatchCompleteEvent);
+  }
 
+  @override bool dispatchCompleteEvent([dynamic result = null]) {
+    return super.dispatchCompleteEvent(result);
+  }
+
+}

@@ -3,12 +3,12 @@ part of stagexl_rockdot;
 @retain
 class GamingSetScoreAtLevelCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
-    UGCGameVO vo = event.data;
+    UGCGameDTO vo = event.data;
     vo.uid = _ugcModel.userDAO.uid;
 
-    amfOperation("GamingEndpoint.setScore", vo.toMap());
+    amfOperation("GamingEndpoint.setScore", dto: vo);
   }
 
   @override bool dispatchCompleteEvent([dynamic result = null]) {

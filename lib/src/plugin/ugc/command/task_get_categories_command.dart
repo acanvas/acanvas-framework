@@ -3,9 +3,10 @@ part of stagexl_rockdot;
 @retain
 class TaskGetCategoriesCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
-    amfOperation("UGCEndpoint.getTaskCategories", null);
+   
+    amfOperation("UGCEndpoint.getTaskCategories");
   }
 
 

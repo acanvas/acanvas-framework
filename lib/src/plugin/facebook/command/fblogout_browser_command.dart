@@ -3,7 +3,7 @@ part of stagexl_rockdot;
 @retain
 class FBLogoutBrowserCommand extends AbstractFBCommand {
   @override
-  void execute([RockdotEvent event = null]) {
+  void execute([XLSignal event = null]) {
     super.execute(event);
 
     if (RockdotConstants.LOCAL) {

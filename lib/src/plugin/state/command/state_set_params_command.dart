@@ -7,7 +7,7 @@ part of stagexl_rockdot;
 	 @retain
 class StateSetParamsCommand extends AbstractStateCommand {
 
-		@override dynamic execute([RockdotEvent event=null])
+		@override dynamic execute([XLSignal event=null])
 		 {
 			super.execute(event);
 			StateVO vo = event.data;

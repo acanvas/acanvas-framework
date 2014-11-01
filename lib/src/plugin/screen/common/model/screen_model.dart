@@ -1,17 +1,9 @@
 part of stagexl_rockdot;
 
-
-
-
-
-
-
-
 /**
-	 * @author Nils Doehring (nilsdoehring(gmail as at).com)
-	 */
+ * @author Nils Doehring (nilsdoehring(gmail as at).com)
+ */
 
-@retain
 class ScreenModel {
 
   num _lastResizeTime = 0;
@@ -21,6 +13,7 @@ class ScreenModel {
   void set lastResizeTime(num lastResizeTime) {
     _lastResizeTime = lastResizeTime;
   }
+
   ScreenModel() {
   }
 

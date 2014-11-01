@@ -12,7 +12,7 @@ class AbstractProject extends AbstractOrderedFactoryPostProcessor {
   /**
    * Registers Commands with FrontController 
    * You can then access them from anywhere:
-   * new RockdotEvent(ProjectEvents.SOME_COMMAND, optionalParamVO, optionalFunctionCallback).dispatch();
+   * new XLSignal(ProjectEvents.SOME_COMMAND, optionalParamVO, optionalFunctionCallback).dispatch();
    */
   void projectCommands() {
     throw new UnimplementedError("To be implemented in Project subclass");

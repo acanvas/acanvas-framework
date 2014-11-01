@@ -1,12 +1,9 @@
 part of stagexl_rockdot;
 
-
-
 /**
-	 * @author Nils Doehring (nilsdoehring(gmail as at).com)
-	 */
+ * @author Nils Doehring (nilsdoehring(gmail as at).com)
+ */
 
-@retain
 class StateModel implements IApplicationContextAware {
 
   final Logger _log = new Logger("StateModel");

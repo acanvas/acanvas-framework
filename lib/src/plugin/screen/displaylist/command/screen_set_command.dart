@@ -13,10 +13,10 @@ class ScreenSetCommand extends AbstractStateCommand {
   IManagedSpriteComponent _currentStateElement;
   IManagedSpriteComponent _nextStateElement;
 
-  @override dynamic execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
-    VOStateChange e = event.data;
+    StateChangeVO e = event.data;
     _currentVO = e.oldVO;
     _nextVO = e.newVO;
     bool modal = false;
@@ -91,7 +91,7 @@ class ScreenSetCommand extends AbstractStateCommand {
       }
     }
 
-    new RockdotEvent(ScreenDisplaylistEvents.TRANSITION_PREPARE, new ScreenDisplaylistTransitionPrepareVO(transitionType, _currentStateElement, _stateModel.currentTransition, _nextStateElement, modal, _stateModel.currentTransition.initialAlpha), _onTransitionEnd).dispatch();
+    new XLSignal(ScreenDisplaylistEvents.TRANSITION_PREPARE, new ScreenDisplaylistTransitionPrepareVO(transitionType, _currentStateElement, _stateModel.currentTransition, _nextStateElement, modal: modal, initialAlpha: _stateModel.currentTransition.initialAlpha), _onTransitionEnd).dispatch();
   }
   void _onTransitionEnd([dynamic payload = null]) {
     _stateModel.currentState = StateConstants.MAIN_PRESENTING;

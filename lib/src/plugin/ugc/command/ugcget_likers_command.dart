@@ -3,7 +3,7 @@ part of stagexl_rockdot;
 @retain
 class UGCGetLikersCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
     int currentImageID = (_ugcModel.currentItemDAO.id).toInt();
@@ -15,7 +15,7 @@ class UGCGetLikersCommand extends AbstractUGCCommand {
       'limit': vo.limit
     };
 
-    amfOperation("UGCEndpoint.getLikersOfItem", dto);
+    amfOperation("UGCEndpoint.getLikersOfItem", map: dto);
   }
 
   @override bool dispatchCompleteEvent([dynamic event = null]) {

@@ -8,11 +8,11 @@ class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
     _fbModel = fbModel;
   }
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 //			dispatchMessage("loading.backend.login");
 
-    if (event.data is UGCUserVO) {
+    if (event.data is UGCUserDTO) {
 
       _ugcModel.userDAO = event.data;
 
@@ -22,8 +22,8 @@ class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
 
     } else if (_ugcModel.userDAO == null) {
 
-      UGCUserVO user = new UGCUserVO();
-      user.network = UGCUserVO.NETWORK_FACEBOOK;
+      UGCUserDTO user = new UGCUserDTO();
+      user.network = UGCUserDTO.NETWORK_FACEBOOK;
       user.name = _fbModel.user.name;
       user.pic = _fbModel.user.pic_square;
       user.uid = _fbModel.user.uid;
@@ -33,13 +33,13 @@ class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
 
     _ugcModel.userDAO.device = html.window.navigator.platform;
 
-    amfOperation("UGCEndpoint.login", _ugcModel.userDAO.toMap());
+    amfOperation("UGCEndpoint.login", dto: _ugcModel.userDAO);
   }
 
 
-  UGCUserVO _createDummyData() {
-    UGCUserVO user = new UGCUserVO();
-    user.network = UGCUserVO.NETWORK_INPUTFORM;
+  UGCUserDTO _createDummyData() {
+    UGCUserDTO user = new UGCUserDTO();
+    user.network = UGCUserDTO.NETWORK_INPUTFORM;
     user.name = "Fake User";
     user.pic = "http://profile.ak.fbcdn.net/static-ak/rsrc.php/v1/yo/r/UlIqmHJn-SK.gif";
     user.uid = "1234-fake";

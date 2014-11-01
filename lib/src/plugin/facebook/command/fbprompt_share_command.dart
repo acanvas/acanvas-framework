@@ -5,7 +5,7 @@ part of stagexl_rockdot;
 @retain
 class FBPromptShareCommand extends AbstractFBCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
     VOFBShare vo = event.data;
 

@@ -3,7 +3,7 @@ part of stagexl_rockdot;
 @retain
 class FBFriendsGetCommand extends AbstractFBCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 //      showMessage("notification.facebook.loading")
 

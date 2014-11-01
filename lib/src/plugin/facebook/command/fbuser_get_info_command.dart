@@ -5,7 +5,7 @@ part of stagexl_rockdot;
 class FBUserGetInfoCommand extends AbstractFBCommand {
 
   @override
-  void execute([RockdotEvent event = null]) {
+  void execute([XLSignal event = null]) {
     super.execute(event);
 //			dispatchMessage("loading.facebook.login");
 

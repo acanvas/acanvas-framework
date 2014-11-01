@@ -3,7 +3,6 @@ part of stagexl_rockdot;
 /**
 	 * @author nilsdoehring
 	 */
-@retain
 class FBModel {
 
   js.JsObject _FB;

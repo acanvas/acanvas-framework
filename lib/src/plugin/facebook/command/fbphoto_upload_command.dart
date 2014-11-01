@@ -4,7 +4,7 @@ part of stagexl_rockdot;
 class FBPhotoUploadCommand extends AbstractFBCommand {
 
   @override
-  void execute([RockdotEvent event = null]) {
+  void execute([XLSignal event = null]) {
     super.execute(event);
 
     VOFBPhotoUpload vo = event.data;

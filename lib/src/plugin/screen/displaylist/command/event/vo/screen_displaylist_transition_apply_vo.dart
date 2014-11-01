@@ -1,20 +1,15 @@
 part of stagexl_rockdot;
 
-	/**
-	 * @author nilsdoehring
-	 */
-	 class ScreenDisplaylistTransitionApplyVO  extends RockdotVO{
-		 IEffect effect;
-		 String transitionType;
-		 ISpriteComponent targetPrimary;
-		 ISpriteComponent targetSecondary;
-		 num duration;
-	 ScreenDisplaylistTransitionApplyVO(IEffect effect,String transitionType,ISpriteComponent targetPrimary,num duration,[ISpriteComponent targetSecondary=null]) {
-			this.duration = duration;
-			this.targetPrimary = targetPrimary;
-			this.targetSecondary = targetSecondary;
-			this.transitionType = transitionType;
-			this.effect = effect;
-		}
-	}
+/**
+ * @author nilsdoehring
+ */
+class ScreenDisplaylistTransitionApplyVO implements IXLVO {
+  IEffect effect;
+  String transitionType;
+  ISpriteComponent targetPrimary;
+  ISpriteComponent targetSecondary;
+  num duration;
 
+  ScreenDisplaylistTransitionApplyVO(this.effect, this.transitionType, this.targetPrimary, this.duration, [this.targetSecondary = null]) {
+  }
+}

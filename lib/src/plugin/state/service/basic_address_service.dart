@@ -6,7 +6,7 @@ part of stagexl_rockdot;
 class BasicAddressService implements IAddressService {
   void init() {}
   void changeAddress(String url, [Function callback = null]) {
-    new RockdotEvent(StateEvents.STATE_REQUEST, url).dispatch();
+    new XLSignal(StateEvents.STATE_REQUEST, url).dispatch();
   }
   void onAddressChanged(StateVO vo) {}
 

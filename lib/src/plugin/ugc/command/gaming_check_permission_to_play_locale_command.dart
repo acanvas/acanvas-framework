@@ -3,7 +3,7 @@ part of stagexl_rockdot;
 @retain
 class GamingCheckPermissionToPlayLocaleCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
     Map dto = {
@@ -11,7 +11,7 @@ class GamingCheckPermissionToPlayLocaleCommand extends AbstractUGCCommand {
       'locale': RockdotConstants.LANGUAGE + "_" + RockdotConstants.MARKET
     };
 
-    amfOperation("GamingEndpoint.checkPermissionToPlayLocale", dto);
+    amfOperation("GamingEndpoint.checkPermissionToPlayLocale", map: dto);
   }
 
   @override bool dispatchCompleteEvent([dynamic result = null]) {

@@ -3,7 +3,7 @@ part of stagexl_rockdot;
 @retain
 class FBTestCommand extends AbstractFBCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
     CompositeCommandWithEvent compositeCommand = new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
@@ -12,19 +12,19 @@ class FBTestCommand extends AbstractFBCommand {
 
     /* ******************** LOGIN USER ******************* */
     String perms = getProperty("project.facebook.permissions");
-    compositeCommand.addCommandEvent(new RockdotEvent(FBEvents.USER_LOGIN, perms, _onUserLogin), _context);
+    compositeCommand.addCommandEvent(new XLSignal(FBEvents.USER_LOGIN, perms, _onUserLogin), _context);
 
     /* ******************** GET INFO FOR USER ******************* */
-    compositeCommand.addCommandEvent(new RockdotEvent(FBEvents.USER_GETINFO, null, _onUserGetInfo), _context);
+    compositeCommand.addCommandEvent(new XLSignal(FBEvents.USER_GETINFO, null, _onUserGetInfo), _context);
 
     /* ******************** GET FRIENDS OF USER ******************* */
-    compositeCommand.addCommandEvent(new RockdotEvent(FBEvents.FRIENDS_GET, null, _onFriendsGet), _context);
+    compositeCommand.addCommandEvent(new XLSignal(FBEvents.FRIENDS_GET, null, _onFriendsGet), _context);
 
     /* ******************** GET FRIENDS INFO OF USER ******************* */
-    compositeCommand.addCommandEvent(new RockdotEvent(FBEvents.FRIENDS_GETINFO, null, _onFriendsGetInfo), _context);
+    compositeCommand.addCommandEvent(new XLSignal(FBEvents.FRIENDS_GETINFO, null, _onFriendsGetInfo), _context);
 
     /* ******************** GET ALBUMS OF USER ******************* */
-    compositeCommand.addCommandEvent(new RockdotEvent(FBEvents.ALBUMS_GET, null, _onAlbumsGet), _context);
+    compositeCommand.addCommandEvent(new XLSignal(FBEvents.ALBUMS_GET, null, _onAlbumsGet), _context);
 
     /* ******************** INVITE USERS ******************* */
     //new BaseEvent(FBEvents.PROMPT_INVITE, new VOFBInvite(getProperty("fanbook.invite.title", true), getProperty("fanbook.invite.message", true), "item_container_id=" + _bitburgerModel.ownAlbum.id), _onInviteFinished);
@@ -70,7 +70,7 @@ class FBTestCommand extends AbstractFBCommand {
     this.log.debug("_onAlbumsGet, num of Albums: " + _fbModel.userAlbums.length.toString());
 
     /* ******************** GET PHOTOS OF FIRST USER ALBUM ******************* */
-    new RockdotEvent(FBEvents.PHOTOS_GET, new FBAlbumVO(_fbModel.userAlbums[0]).id, _onAlbumPhotosGet).dispatch();
+    new XLSignal(FBEvents.PHOTOS_GET, new FBAlbumVO(_fbModel.userAlbums[0]).id, _onAlbumPhotosGet).dispatch();
   }
 
   void _onAlbumPhotosGet(List userAlbumPhotos) {

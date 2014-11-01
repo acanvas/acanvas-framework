@@ -3,7 +3,7 @@ part of stagexl_rockdot;
 @retain
 class UGCLikeCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
     int id = event.data;
     String uid = _ugcModel.userDAO.uid;
@@ -13,6 +13,6 @@ class UGCLikeCommand extends AbstractUGCCommand {
       'uid': uid
     };
 
-    amfOperation("UGCEndpoint.likeItem", dto);
+    amfOperation("UGCEndpoint.likeItem", map: dto);
   }
 }

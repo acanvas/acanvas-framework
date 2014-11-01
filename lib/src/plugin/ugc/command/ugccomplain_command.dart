@@ -4,7 +4,7 @@ part of stagexl_rockdot;
 @retain
 class UGCComplainCommand extends AbstractUGCCommand {
 
-  @override void execute([RockdotEvent event = null]) {
+  @override void execute([XLSignal event = null]) {
     super.execute(event);
 
     int id = event.data;
@@ -15,6 +15,6 @@ class UGCComplainCommand extends AbstractUGCCommand {
       'uid': uid
     };
 
-    amfOperation("UGCEndpoint.complainItem", dto);
+    amfOperation("UGCEndpoint.complainItem", map: dto);
   }
 }

@@ -13,7 +13,7 @@ part of stagexl_rockdot;
 	 @retain
 class StateRequestCommand extends AbstractStateCommand {
 
-		@override dynamic execute([RockdotEvent event=null])
+		@override dynamic execute([XLSignal event=null])
 		 {
 			super.execute(event);
 			List urlData = event.data.split("?");
@@ -23,7 +23,7 @@ class StateRequestCommand extends AbstractStateCommand {
 			  
         if(_stateModel.currentPage == null && stateVO.substate == StateConstants.SUB_MODAL){
           // 0. nullToModal
-            new RockdotEvent(StateEvents.ADDRESS_SET, "/").dispatch();
+            new XLSignal(StateEvents.ADDRESS_SET, "/").dispatch();
             return;
         }
 			  
@@ -47,13 +47,13 @@ class StateRequestCommand extends AbstractStateCommand {
 					stateVO.params = null;
 				}
 
-				new RockdotEvent(StateEvents.STATE_VO_SET, stateVO, dispatchCompleteEvent).dispatch();
+				new XLSignal(StateEvents.STATE_VO_SET, stateVO, dispatchCompleteEvent).dispatch();
 
 
 
 			} else {
 				// TODO: Define routine for unregistered urls.
-				new RockdotEvent(StateEvents.ADDRESS_SET, "/", dispatchCompleteEvent).dispatch();
+				new XLSignal(StateEvents.ADDRESS_SET, "/", dispatchCompleteEvent).dispatch();
 			}
 
 		}
