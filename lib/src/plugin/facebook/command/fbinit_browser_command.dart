@@ -41,6 +41,9 @@ class FBInitBrowserCommand extends AbstractFBCommand {
 
      new XLSignal(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions).dispatch();
     }
+    else{
+      dispatchCompleteEvent();
+    }
     
   }
 

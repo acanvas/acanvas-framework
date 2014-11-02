@@ -11,7 +11,7 @@ class UGCUserDTO implements IXLDTO {
   String device;
   String name;
   String pic;
-  int login_count;
+  int login_count = 0;
   String timestamp_registered;
   String timestamp_lastlogin;
 
