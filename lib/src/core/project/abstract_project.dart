@@ -63,18 +63,22 @@ class AbstractProject extends AbstractOrderedFactoryPostProcessor {
      *                pretty url    - the uri of the page - will result in an anchor, f.ex. www.site.com/#/test
      *                modality      - the page's modality allows you to define your page as a layer
      */
-  void addScreen(String id, Type clazz, int tree_order, int tree_parent, String transitionID, String url, [String modality = StateConstants.SUB_NORMAL]) {
-    RockdotContextHelper.registerScreen( objectFactory, id, clazz, tree_order, tree_parent, transitionID, url, modality);
+  void addScreen(String id, Type clazz, String url, 
+                 {String substate : StateConstants.SUB_NORMAL, int tree_order : 0, int tree_parent : 0, String transition : "transition.default"}) {
+    RockdotContextHelper.registerScreen( objectFactory, id, clazz, url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate );
   }
  
-  void addScreenInstance(RockdotManagedSpriteComponent clazz, int tree_order, int tree_parent, String transitionID, String url, [String modality = StateConstants.SUB_NORMAL]) {
-    RockdotContextHelper.registerScreenInstance( objectFactory, clazz.name, clazz, tree_order, tree_parent, transitionID, url, modality);
+  void addScreenInstance(RockdotManagedSpriteComponent clazz, String url, 
+                         {String substate : StateConstants.SUB_NORMAL, int tree_order : 0, int tree_parent : 0, String transition : "transition.default"}) {
+    RockdotContextHelper.registerScreenInstance( objectFactory, clazz.name, clazz, url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate );
   }
-  void addLayer(String id, Type clazz, int tree_order, int tree_parent, String transitionID, String url) {
-    addScreen(id, clazz, tree_order, tree_parent, transitionID, url, StateConstants.SUB_MODAL);
+  void addLayer(String id, Type clazz, String url, 
+                {int tree_order : 0, int tree_parent : 0, String transition : "transition.default.modal"}) {
+    addScreen(id, clazz, url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: StateConstants.SUB_MODAL);
   }
-  void addLayerInstance(RockdotManagedSpriteComponent clazz, int tree_order, int tree_parent, String transitionID, String url) {
-    addScreenInstance(clazz, tree_order, tree_parent, transitionID, url, StateConstants.SUB_MODAL);
+  void addLayerInstance(RockdotManagedSpriteComponent clazz, String url, 
+                        {int tree_order : 0, int tree_parent : 0, String transition : "transition.default.modal"}) {
+    addScreenInstance(clazz, url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: StateConstants.SUB_MODAL);
   }
 
   @override IOperation postProcessObjectFactory(IObjectFactory _objectFactory) {

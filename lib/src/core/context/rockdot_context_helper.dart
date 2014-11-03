@@ -43,7 +43,8 @@ class RockdotContextHelper {
     objectFactory.cache.putInstance(id, clazz);
   }
 
-  static void registerScreen(IObjectFactory objectFactory, String id, Type clazz, int tree_order, int tree_parent, String transition, String url, [String substate = StateConstants.SUB_NORMAL]) {
+  static void registerScreen(IObjectFactory objectFactory, String id, Type clazz, String url, 
+                             {String substate : StateConstants.SUB_NORMAL, int tree_order : 0, int tree_parent : 0, String transition : "transition.default"}) {
     RockdotContextHelper.registerClass(objectFactory, id, clazz, false, true);
 
     StateVO stateVO = new StateVO();
@@ -58,7 +59,8 @@ class RockdotContextHelper {
 
   }
 
-  static void registerScreenInstance(IObjectFactory objectFactory, String id, RockdotManagedSpriteComponent clazz, int tree_order, int tree_parent, String transition, String url, [String substate = StateConstants.SUB_NORMAL]) {
+  static void registerScreenInstance(IObjectFactory objectFactory, String id, RockdotManagedSpriteComponent clazz, String url, 
+                                     {String substate : StateConstants.SUB_NORMAL, int tree_order : 0, int tree_parent : 0, String transition : "transition.default"}) {
     wire(clazz);
     objectFactory.cache.putInstance(id, clazz);
 
