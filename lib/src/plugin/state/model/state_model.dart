@@ -49,15 +49,6 @@ class StateModel implements IApplicationContextAware {
     _currentState = currentState;
   }
 
-  String _currentSubState;
-  String get currentSubState {
-    return _currentSubState;
-  }
-  void set currentSubState(String currentSubState) {
-    _currentSubState = currentSubState;
-  }
-
-
   IManagedSpriteComponent _currentPage;
   IManagedSpriteComponent get currentPage {
     return _currentPage;
@@ -132,15 +123,13 @@ class StateModel implements IApplicationContextAware {
     _pageVOs[voKey] = pageVO;
     _log.info("Registered URL: " + voKey);
   }
-  
+
   List getPageVOList([bool sort = true, int tree_parent = 0]) {
     List naviVOs = _pageVOs.values.toList();
     List arr = [];
     if (sort) {
-      naviVOs.sort((StateVO voa, StateVO vob){ 
-        if(voa.tree_order > vob.tree_order) return 1;
-        else if(voa.tree_order < vob.tree_order) return -1;
-        else return 0;
+      naviVOs.sort((StateVO voa, StateVO vob) {
+        if (voa.tree_order > vob.tree_order) return 1; else if (voa.tree_order < vob.tree_order) return -1; else return 0;
       });
     }
     for (int i = 0; i < naviVOs.length; i++) {

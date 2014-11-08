@@ -40,7 +40,7 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
 
     _ugcModel.userExtendedDAO.uid = _ugcModel.userDAO.uid;
     amfObject.uid = _ugcModel.userExtendedDAO.uid;
-    _ugcModel.userExtendedDAO.hash = (new Random().nextDouble() * getTimeInMilliseconds(new DateTime.now())).toString();
+    _ugcModel.userExtendedDAO.hash = (new math.Random().nextDouble() * getTimeInMilliseconds(new DateTime.now())).toString();
     amfObject.hash = _ugcModel.userExtendedDAO.hash;
 
     _ugcModel.hasUserExtendedDAO = true;

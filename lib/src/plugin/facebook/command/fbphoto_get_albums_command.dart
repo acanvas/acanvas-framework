@@ -6,7 +6,7 @@ class FBPhotoGetAlbumsCommand extends AbstractFBCommand {
   @override
   void execute([XLSignal event = null]) {
     super.execute(event);
-//			dispatchMessage("notification.facebook.loading");
+    showMessage(getProperty("message.facebook.loading.data"));
 
     String uid = _fbModel.user.uid;
 
@@ -15,7 +15,7 @@ class FBPhotoGetAlbumsCommand extends AbstractFBCommand {
   }
 
   void _handleResult(js.JsObject response) {
-//			hideMessage("notification.facebook.loading")
+    hideMessage();
     if(containsError(response)) return;
     
     List albums = [];

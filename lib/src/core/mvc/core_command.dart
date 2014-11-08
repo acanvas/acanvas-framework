@@ -5,6 +5,7 @@ part of stagexl_rockdot;
 class CoreCommand extends AbstractOperation implements IAsyncCommand, IApplicationContextAware {
   Logger log;
 
+  XLSignal _event;
   Function _callback;
 
   CoreCommand() {
@@ -40,20 +41,20 @@ class CoreCommand extends AbstractOperation implements IAsyncCommand, IApplicati
   }
 
   void execute([XLSignal event = null]) {
+    _event = event;
     if (event != null && event.completeCallBack != null) {
       _callback = event.completeCallBack;
     }
   }
 
-  //TODO void dispatchMessage(String string)
-  // {
-  //	log.info("Message: " + string);
-//			new BaseEvent(StateEvents.ADDRESS_SET, string).dispatch();
-  //	}
-  //TODO void hideMessage(String string)
-  // {
-//			new BaseEvent(StateEvents.ADDRESS_UNSET, string).dispatch();
-  //	}
-
+  void showMessage(String message, {int timeBox: 0, int type: StateMessageVO.TYPE_INFO, bool blur: false}) {
+    String id = (_event == null) ? "NO_ID" : _event.type;
+    new XLSignal(StateEvents.MESSAGE_SHOW, new StateMessageVO(id, message, timeBox, type, blur)).dispatch();
+  }
+  
+  void hideMessage([String id = null]) {
+    String id = (_event == null) ? "NO_ID" : _event.type;
+    new XLSignal(StateEvents.MESSAGE_HIDE, id).dispatch();
+  }
 
 }

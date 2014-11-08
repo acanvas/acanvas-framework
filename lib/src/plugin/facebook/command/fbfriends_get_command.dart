@@ -5,16 +5,18 @@ class FBFriendsGetCommand extends AbstractFBCommand {
 
   @override void execute([XLSignal event = null]) {
     super.execute(event);
-//      showMessage("notification.facebook.loading")
 
     String uid = _fbModel.user.uid;
 
     js.JsObject queryConfig = new js.JsObject.jsify({});
     _fbModel.FB.callMethod("api", ["/$uid/friends", "get", queryConfig, _handleResult]);
+
+    showMessage(getProperty("message.facebook.loading.data"));
   }
 
   void _handleResult(js.JsObject response) {
-//      hideMessage("notification.facebook.loading")
+    hideMessage();
+    
     if (containsError(response)) return;
 
     Map friends = {};

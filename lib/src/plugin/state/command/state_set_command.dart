@@ -19,20 +19,13 @@ class StateSetCommand extends AbstractStateCommand {
   void _setStateVO(StateVO stateVO, bool saveToHistory) {
     if (_stateModel.currentStateVO == null || stateVO.url != _stateModel.currentStateVO.url) {
       // initial view after app start
-      bool naviVOwasNull = false;
-      if (_stateModel.currentStateVO == null) {
-        naviVOwasNull = true;
-      }
 
       StateVO oldNaviVO = _stateModel.currentStateVO;
 
       _stateModel.currentStateVO = stateVO;
       _stateModel.currentPageVOParams = stateVO.params;
       new XLSignal(StateEvents.STATE_CHANGE, new StateChangeVO(oldNaviVO, stateVO), dispatchCompleteEvent).dispatch();
-
-      if (naviVOwasNull) {
-        new XLSignal(StateEvents.STATE_PARAMS_CHANGE, _stateModel.currentStateVO).dispatch();
-      }
+      new XLSignal(StateEvents.STATE_PARAMS_CHANGE, _stateModel.currentStateVO).dispatch();
 
       if (saveToHistory) {
         _addToHistory(_stateModel.currentStateVO);
@@ -52,6 +45,7 @@ class StateSetCommand extends AbstractStateCommand {
       }
     }
   }
+  
   void _addToHistory(StateVO naviVO) {
     _stateModel.historyCount++;
     _stateModel.history.add(naviVO);

@@ -1,0 +1,27 @@
+part of stagexl_rockdot;
+
+@retain
+class GooglePlusMomentsGetCommand extends AbstractGoogleCommand {
+
+  @override
+  void execute([XLSignal event = null]) {
+    super.execute(event);
+//			dispatchMessage("notification.facebook.loading");
+
+    String id = "me";
+    if (event.data != null && event.data is String) {
+      id = event.data;
+    }
+
+    new PlusApi(_gModel.client).moments.list(id, "vault").then(_handleResult).catchError(dispatchErrorEvent);
+    
+    showMessage(getProperty("message.google.loading.data"));
+  }
+
+  void _handleResult(MomentsFeed moments) {
+    hideMessage();
+    
+    _gModel.moments = moments;
+    dispatchCompleteEvent();
+  }
+}

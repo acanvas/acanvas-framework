@@ -17,6 +17,11 @@ class StateEvents {
   //expects nothing
   static const STATE_VO_FORWARD = "StateEvents.STATE_VO_FORWARD";
 
+  //expects StateMessageVO
+  static const MESSAGE_SHOW = "StateEvents.MESSAGE_SHOW";
+  //expects String with id
+  static const MESSAGE_HIDE = "StateEvents.MESSAGE_HIDE";
+
 
   /* The following Events are used internally. See config/docs/model/GetAddressSequence.png */
 

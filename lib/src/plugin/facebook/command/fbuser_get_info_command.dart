@@ -7,7 +7,7 @@ class FBUserGetInfoCommand extends AbstractFBCommand {
   @override
   void execute([XLSignal event = null]) {
     super.execute(event);
-//			dispatchMessage("loading.facebook.login");
+    showMessage(getProperty("message.facebook.loading.data"));
 
     js.JsObject queryConfig = new js.JsObject.jsify({
       "method": "fql.query",
@@ -18,17 +18,13 @@ class FBUserGetInfoCommand extends AbstractFBCommand {
   }
 
   void _handleResult(js.JsArray response) {
+    hideMessage();
+
     if(containsError(response)) return;
 
-    if (response == null || response[0] == null) {
-      error = ("Error parsing user from response");
-      dispatchErrorEvent();
-      return;
-    }
-    
     FBUserVO user = new FBUserVO(response[0]);
     _fbModel.user = user;
-
+    
     dispatchCompleteEvent(user);
   }
 }

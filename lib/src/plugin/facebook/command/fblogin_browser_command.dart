@@ -14,6 +14,7 @@ class FBLoginBrowserCommand extends AbstractFBCommand {
       if (_fbModel.userIsAuthenticated && event.data == "") {
         dispatchCompleteEvent();
       } else {
+        showMessage("message.facebook.login.waiting", blur:true);
 
         js.JsObject loginConfig = new js.JsObject.jsify({
           "scope": event.data != null ? event.data : "",

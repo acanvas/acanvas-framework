@@ -51,6 +51,13 @@ class AbstractScreenService implements IScreenService {
   void set modalBackgroundFilter(BitmapFilter filter) {
     _filter = filter;
   }
+  
+  bool _isBlurred;
+  bool get isBlurred => _isBlurred;
+  void set isBlurred(bool blurred){
+    _isBlurred = blurred;
+  }
+  
   AbstractScreenService() {
     _initialized = false;
   }
@@ -99,4 +106,29 @@ class AbstractScreenService implements IScreenService {
     _content.mouseEnabled = true;
     _content.mouseChildren = true;
   }
+  
+  void blur() {
+    _content.enabled = false;
+    _background.enabled = false;
+
+    // blur background/content
+    if (modalBackgroundFilter != null) {
+      _content.filters = [modalBackgroundFilter];
+      if (_background.numChildren > 0) {
+        _background.filters = [modalBackgroundFilter];
+      }
+    }
+    _isBlurred = true;
+  }
+
+  void unblur() {
+    _content.enabled = true;
+    _background.enabled = true;
+    // unblur background/content
+    _content.filters = [];
+    _background.filters = [];
+    _isBlurred = false;
+  }
+  
+  
 }

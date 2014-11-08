@@ -54,9 +54,13 @@ class FBPromptInviteBrowserCommand extends AbstractFBCommand {
     js.JsObject inviteConfig = new js.JsObject.jsify( inviteMap );
     
     _fbModel.FB.callMethod("ui", [inviteConfig, _handleResult]);
+    
+    showMessage("message.facebook.invite.waiting");
   }
 
   void _handleResult(js.JsArray response) {
+    hideMessage();
+    
     if (containsError(response)) return;
    
     //response.request (request object id)

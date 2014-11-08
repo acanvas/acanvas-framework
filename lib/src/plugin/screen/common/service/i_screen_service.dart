@@ -18,5 +18,9 @@ abstract class IScreenService {
   void resize([Event event = null]);
   void lock();
   void unlock();
+  void blur();
+  void unblur();
+  bool get isBlurred;
+  void set isBlurred(bool blurred);
 
 }

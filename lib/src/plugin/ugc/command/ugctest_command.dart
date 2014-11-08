@@ -59,7 +59,7 @@ class UGCTestCommand extends AbstractUGCCommand {
     itemDAO.title = "Test Image Title";
     itemDAO.description = "Test Image Description";
 
-    String filenamePrefix = "test_" + (new Random().nextDouble()).toString();
+    String filenamePrefix = "test_" + (new math.Random().nextDouble()).toString();
     String filenameBig = filenamePrefix + ".jpg";
     String filenameThumb = filenamePrefix + "_thumb.jpg";
 

@@ -4,10 +4,12 @@ library stagexl_rockdot;
 import 'dart:mirrors';
 import 'dart:html' as html;
 import 'dart:js' as js;
-import 'dart:math';
+import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:convert';
 import 'dart:async';
+import "package:googleapis_auth/auth_browser.dart"; 
+import 'package:googleapis/plus/v1.dart';
 
 /* required by Logger, configuration in Bootstrap */
 import 'package:logging/logging.dart' as logging;
@@ -76,11 +78,24 @@ part 'src/plugin/facebook/command/event/vo/vofbshare.dart';
 part 'src/plugin/facebook/inject/fbmodel_injector.dart';
 part 'src/plugin/facebook/inject/i_fbmodel_aware.dart';
 part 'src/plugin/facebook/model/fbmodel.dart';
-part 'src/plugin/facebook/model/facebook_constants.dart';
 part 'src/plugin/facebook/model/vo/fbalbum_vo.dart';
 part 'src/plugin/facebook/model/vo/fbcomment_vo.dart';
 part 'src/plugin/facebook/model/vo/fbphoto_vo.dart';
 part 'src/plugin/facebook/model/vo/fbuser_vo.dart';
+
+//google
+part 'src/plugin/google/google_plugin.dart';
+part 'src/plugin/google/command/abstract_google_command.dart';
+part 'src/plugin/google/command/google_init_command.dart';
+part 'src/plugin/google/command/google_login_command.dart';
+part 'src/plugin/google/command/google_plus_get_user_command.dart';
+part 'src/plugin/google/command/google_plus_moments_get_command.dart';
+part 'src/plugin/google/command/google_plus_people_get_command.dart';
+part 'src/plugin/google/command/google_plus_share_render_command.dart';
+part 'src/plugin/google/command/event/google_events.dart';
+part 'src/plugin/google/inject/google_model_injector.dart';
+part 'src/plugin/google/inject/i_google_model_aware.dart';
+part 'src/plugin/google/model/google_model.dart';
 
 //io
 part 'src/plugin/io/command/event/vo/io_image_upload_vo.dart';
@@ -132,6 +147,7 @@ part 'src/plugin/state/command/state_set_command.dart';
 part 'src/plugin/state/command/state_set_params_command.dart';
 part 'src/plugin/state/command/event/state_events.dart';
 part 'src/plugin/state/command/event/vo/state_change_vo.dart';
+part 'src/plugin/state/command/event/vo/state_message_vo.dart';
 part 'src/plugin/state/inject/i_state_model_aware.dart';
 part 'src/plugin/state/inject/state_model_injector.dart';
 part 'src/plugin/state/model/state_model.dart';

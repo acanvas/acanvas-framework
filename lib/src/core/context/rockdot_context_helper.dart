@@ -80,7 +80,7 @@ class RockdotContextHelper {
     String prefix = RockdotConstants.HOST_FRONTEND + RockdotConstants.VERSION + "/";
 
     /* Define Caching */
-    String postfix = RockdotConstants.DEBUG && !DeviceDetector.IS_MOBILE ? "?" + new Random().nextInt(1000000).toString() : "";
+    String postfix = RockdotConstants.DEBUG && !DeviceDetector.IS_MOBILE ? "?" + new math.Random().nextInt(1000000).toString() : "";
 
     /* Define Context XML */
     return prefix + "app-context.xml" + postfix;

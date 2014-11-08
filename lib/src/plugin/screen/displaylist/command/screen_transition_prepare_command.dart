@@ -63,7 +63,7 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
         compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, _vo.effect.type, _vo.outTarget, _vo.effect.duration, _vo.inTarget)), _context);
         break;
       case ScreenConstants.TRANSITION_NORMAL_TO_MODAL:
-        _applyModalFilter();
+        _uiService.blur();
         compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, ScreenConstants.EFFECT_IN, _vo.inTarget, _vo.effect.duration)), _context);
         break;
       case ScreenConstants.TRANSITION_MODAL_TO_MODAL:
@@ -73,12 +73,12 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
         break;
       case ScreenConstants.TRANSITION_MODAL_BACK:
         // unblur content
-        _removeModalFilter();
+        _uiService.unblur();
         compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, ScreenConstants.EFFECT_OUT, _uiService.layer.getChildAt(_uiService.layer.numChildren - 1) as ISpriteComponent, _vo.effect.duration), _destroyLayer), _context);
         break;
       case ScreenConstants.TRANSITION_MODAL_TO_NORMAL:
         // unblur content
-        _removeModalFilter();
+        _uiService.unblur();
         layer = _uiService.layer.getChildAt(0) as ISpriteComponent;
         compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.DISAPPEAR, new ScreenDisplaylistAppearDisappearVO(layer, 0, false)), _context);
         IEffect effect = _context.getObject("transition.default.modal");
@@ -96,33 +96,6 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
 
     _stateModel.compositeTransitionCommand = compositeCommand;
 
-  }
-
-  void _applyModalFilter() {
-    //_uiService.content.enabled = false;
-    _uiService.content.mouseEnabled = false;
-    _uiService.content.mouseChildren = false;
-    _uiService.background.enabled = false;
-
-    // blur background/content
-    if (_uiService.modalBackgroundFilter != null) {
-      _uiService.content.filters = [_uiService.modalBackgroundFilter];
-      if (_uiService.background.numChildren > 0) {
-        _uiService.background.filters = [_uiService.modalBackgroundFilter];
-      }
-    }
-  }
-
-  void _removeModalFilter() {
-//			if(_uiService.content.enabled != true){
-//				_uiService.content.enabled = true;
-//			}
-    _uiService.content.mouseEnabled = true;
-    _uiService.content.mouseChildren = true;
-    _uiService.background.enabled = true;
-    // unblur background/content
-    _uiService.content.filters = [];
-    _uiService.background.filters = [];
   }
 
   void _destroyLayer([dynamic result = null]) {
@@ -145,6 +118,7 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
     }
     _vo = null;
     _uiService.unlock();
+    _stateModel.compositeTransitionCommand = null;
     dispatchCompleteEvent();
   }
 }

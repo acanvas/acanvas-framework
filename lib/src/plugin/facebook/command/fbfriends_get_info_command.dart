@@ -19,10 +19,13 @@ class FBFriendsGetInfoCommand extends AbstractFBCommand {
     });
 
     _fbModel.FB.callMethod("api", [queryConfig, _handleResult]);
+    
+    showMessage(getProperty("message.facebook.loading.data"));
   }
 
   void _handleResult(js.JsArray response) {
-//      hideMessage("notification.facebook.loading")
+    hideMessage();
+    
     if (containsError(response)) return;
 
     List friendsWithAdditionalInfo = [];

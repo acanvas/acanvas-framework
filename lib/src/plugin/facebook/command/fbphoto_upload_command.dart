@@ -10,6 +10,9 @@ class FBPhotoUploadCommand extends AbstractFBCommand {
     VOFBPhotoUpload vo = event.data;
 
     if (vo.bmd != null) {
+
+      showMessage(getProperty("message.facebook.sending.image"));
+      
       //Convert target BitmapData to Blob (TODO revoke url after upload)
       String mimetype = vo.fileName.contains(new RegExp("jpg|jpeg")) ? "image/jpeg" : "image/png";
 
@@ -65,7 +68,7 @@ class FBPhotoUploadCommand extends AbstractFBCommand {
   }
 
   void _handleResult(js.JsObject response) {
-//      hideMessage("notification.facebook.loading");
+    hideMessage();
     if (containsError(response)) return;
     dispatchCompleteEvent();
   }

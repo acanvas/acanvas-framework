@@ -11,7 +11,7 @@ class RockdotManagedSpriteComponent extends ManagedSpriteComponent implements IM
   String getProperty(String key, [bool omitPrefix = false]) {
     key = (omitPrefix ? "" : name + ".") + key;
     String str = _context.propertiesProvider.getProperty(key);
-    if (str == "") {
+    if (str == null) {
       str = key;
     }
 

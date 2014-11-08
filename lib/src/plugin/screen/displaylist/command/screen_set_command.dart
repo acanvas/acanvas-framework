@@ -97,7 +97,6 @@ class ScreenSetCommand extends AbstractStateCommand {
     _stateModel.currentState = StateConstants.MAIN_PRESENTING;
 
     if (_nextVO.substate == StateConstants.SUB_MODAL) {
-      _stateModel.currentSubState = StateConstants.SUB_MODAL;
       _stateModel.modalizedPage = _stateModel.currentPage;
     }
 
