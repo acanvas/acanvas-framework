@@ -18,7 +18,7 @@ class GooglePlusGetUserCommand extends AbstractGoogleCommand {
           .catchError(dispatchErrorEvent);
     
 
-    showMessage(getProperty("message.google.loading.data"));
+    showMessage(getProperty(getProperty("message.google.loading.data")));
   }
 
   void _handleResult(Person person) {

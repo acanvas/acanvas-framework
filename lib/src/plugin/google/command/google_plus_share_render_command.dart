@@ -1,18 +1,38 @@
 part of stagexl_rockdot;
 
+/*
+ * https://developers.google.com/+/web/share/interactive#rendering_the_button_with_javascript
+ */
+
 @retain
 class GooglePlusShareRenderCommand extends AbstractGoogleCommand {
 
+  String GapiUrl = "https://apis.google.com/js/client:platform.js";
+  String recipients = "";
   @override
   void execute([XLSignal event = null]) {
     super.execute(event);
     
-    String recipients = "";
+    js.context['dartGapiPlusLoaded'] = () {
+      _handleLoaded();
+    };
+
+    var script = new html.ScriptElement();
+    script.src = '${GapiUrl}?onload=dartGapiPlusLoaded';
+    script.onError.first.then((errorEvent) {
+      dispatchErrorEvent('Failed to load gapi library.');
+    });
+    html.document.body.append(script);
+    
     if(event.data != null){
       recipients = event.data.join(",");
     }
-  
-    js.JsObject gapi = js.context["FB"];
+
+  }
+
+  void _handleLoaded() {
+
+    js.JsObject gapi = js.context["gapi"];
 
     js.JsObject initConfig = new js.JsObject.jsify({
       "clientid": getProperty("project.google.oauth.clientid"),
@@ -26,19 +46,15 @@ class GooglePlusShareRenderCommand extends AbstractGoogleCommand {
       "recipients": recipients
     });
 
-    gapi.callMethod("plus-button", [initConfig]);
-    
-    html.Element el = html.querySelector("#plus-button");
+    gapi["interactivepost"].callMethod("render", ["plus-button", initConfig]);
+
+    html.Element el = html.querySelector("#plus-button-holder");
     HtmlObject obj = new HtmlObject(el);
     RockdotConstants.getStage().addChild(obj);
+    obj.x = html.window.innerWidth/2 - obj.width/2;
+    obj.y = html.window.innerHeight/2 - obj.height/2;
+    obj.visible = true;
 
-  }
-
-  void _handleLogin(AutoRefreshingAuthClient client) {
-    _gModel.client = client;
-    _gModel.userScopes = client.credentials.scopes;
-    _gModel.accessToken = client.credentials.accessToken.data;
-    _gModel.userIsAuthenticated = true;
     dispatchCompleteEvent();
   }
 }

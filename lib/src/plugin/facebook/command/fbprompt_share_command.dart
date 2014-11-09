@@ -35,7 +35,7 @@ class FBPromptShareCommand extends AbstractFBCommand {
 
     _fbModel.FB.callMethod("ui", [shareConfig, _handleResult]);
     
-    showMessage("message.facebook.sharer.waiting");
+    showMessage(getProperty("message.facebook.share.waiting"), blur: true, type: StateMessageVO.TYPE_WAITING);
   }
 
   void _handleResult(js.JsObject response) {

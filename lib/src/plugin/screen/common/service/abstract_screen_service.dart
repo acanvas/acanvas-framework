@@ -60,6 +60,7 @@ class AbstractScreenService implements IScreenService {
   
   AbstractScreenService() {
     _initialized = false;
+    _isBlurred = false;
   }
   void init([Function callback = null]) {
 

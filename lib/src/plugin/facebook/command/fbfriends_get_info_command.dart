@@ -6,7 +6,6 @@ class FBFriendsGetInfoCommand extends AbstractFBCommand {
   @override void execute([XLSignal event = null]) {
     super.execute(event);
 
-    //showMessage("notification.facebook.loading")
     List arr = [];
 
     _fbModel.friends.keys.forEach((key) {

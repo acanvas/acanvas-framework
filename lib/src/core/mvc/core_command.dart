@@ -13,7 +13,11 @@ class CoreCommand extends AbstractOperation implements IAsyncCommand, IApplicati
   }
 
   String getProperty(String key) {
-    return _context.propertiesProvider.getProperty(key);
+    String str = _context.propertiesProvider.getProperty(key);
+    if (str == null) {
+      str = key;
+    }
+    return str;
   }
 
   IApplicationContext _context;
@@ -51,7 +55,7 @@ class CoreCommand extends AbstractOperation implements IAsyncCommand, IApplicati
     String id = (_event == null) ? "NO_ID" : _event.type;
     new XLSignal(StateEvents.MESSAGE_SHOW, new StateMessageVO(id, message, timeBox, type, blur)).dispatch();
   }
-  
+
   void hideMessage([String id = null]) {
     String id = (_event == null) ? "NO_ID" : _event.type;
     new XLSignal(StateEvents.MESSAGE_HIDE, id).dispatch();

@@ -7,7 +7,7 @@ class GoogleInitCommand extends AbstractGoogleCommand {
   void execute([XLSignal event = null]) {
     super.execute(event);
 
-    var id = new ClientId(getProperty("project.google.oauth.clientid"), null);
+    var id = new ClientId(getProperty(getProperty("project.google.oauth.clientid")), null);
     List scopes;
     if (event.data != null) {
       if (event.data is String) {

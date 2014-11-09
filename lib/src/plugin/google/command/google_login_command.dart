@@ -45,7 +45,7 @@ class GoogleLoginCommand extends AbstractGoogleCommand {
       }).catchError(dispatchErrorEvent);
     });
     
-    showMessage("message.google.login.waiting", blur:true);
+    showMessage(getProperty("message.google.login.waiting"), blur:true, type: StateMessageVO.TYPE_WAITING);
   }
 
   void _handleLogin(AutoRefreshingAuthClient client) {

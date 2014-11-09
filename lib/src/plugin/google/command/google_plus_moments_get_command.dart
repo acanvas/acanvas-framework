@@ -15,7 +15,7 @@ class GooglePlusMomentsGetCommand extends AbstractGoogleCommand {
 
     new PlusApi(_gModel.client).moments.list(id, "vault").then(_handleResult).catchError(dispatchErrorEvent);
     
-    showMessage(getProperty("message.google.loading.data"));
+    showMessage(getProperty(getProperty("message.google.loading.data")));
   }
 
   void _handleResult(MomentsFeed moments) {
