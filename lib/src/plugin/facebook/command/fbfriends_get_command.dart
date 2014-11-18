@@ -2,14 +2,21 @@ part of stagexl_rockdot;
 
 @retain
 class FBFriendsGetCommand extends AbstractFBCommand {
-
+  DataRetrieveVO _vo;
+  
   @override void execute([XLSignal event = null]) {
     super.execute(event);
+    
+    if (event.data != null && event.data is DataRetrieveVO) {
+        _vo = event.data;
+    }
 
     String uid = _fbModel.user.uid;
 
-    js.JsObject queryConfig = new js.JsObject.jsify({});
-    _fbModel.FB.callMethod("api", ["/$uid/friends", "get", queryConfig, _handleResult]);
+    js.JsObject queryConfig = new js.JsObject.jsify({
+      "fields": "name,picture.width(100).height(100)"
+    });
+    _fbModel.FB.callMethod("api", ["/$uid/taggable_friends", "get", queryConfig, _handleResult]);
 
     showMessage(getProperty("message.facebook.loading.data"));
   }
@@ -25,6 +32,14 @@ class FBFriendsGetCommand extends AbstractFBCommand {
     });
 
     _fbModel.friends = friends;
-    dispatchCompleteEvent(friends);
+
+    if(_vo != null){
+     _vo.nextToken = response["paging"]["cursors"]["after"];
+     _vo.totalSize = response["data"].length;
+     dispatchCompleteEvent(response["data"]);
+    }
+    else{
+      dispatchCompleteEvent(friends);
+    }
   }
 }

@@ -3,17 +3,26 @@ part of stagexl_rockdot;
 @retain
 class GooglePlusPeopleGetCommand extends AbstractGoogleCommand {
 
+  DataRetrieveVO _vo;
+  
   @override
   void execute([XLSignal event = null]) {
     super.execute(event);
 //			dispatchMessage("notification.facebook.loading");
 
     String id = "me";
-    if (event.data != null && event.data is String) {
-      id = event.data;
+    if (event.data != null) {
+      if(event.data is String){
+        id = event.data;
+      }
+      if(event.data is DataRetrieveVO){
+        _vo = event.data;
+      }
     }
+    
+    String nextToken = (_vo != null) ? _vo.nextToken : null;
 
-    new PlusApi(_gModel.client).people.list(id, "visible").then(_handleResult).catchError(dispatchErrorEvent);
+    new PlusApi(_gModel.client).people.list(id, "visible", pageToken: nextToken).then(_handleResult, onError: dispatchErrorEvent);
     
     showMessage(getProperty("message.google.loading.data"));
   }
@@ -21,6 +30,10 @@ class GooglePlusPeopleGetCommand extends AbstractGoogleCommand {
   void _handleResult(PeopleFeed circles) {
     hideMessage();
     _gModel.circles = circles;
-    dispatchCompleteEvent();
+    if(_vo != null){
+      _vo.nextToken = circles.nextPageToken;
+      _vo.totalSize = circles.totalItems;
+    }
+    dispatchCompleteEvent(circles.items);
   }
 }

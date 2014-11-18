@@ -4,6 +4,7 @@ part of stagexl_rockdot;
 @retain
 class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAware {
   StateModel _stateModel;
+  UGCFilterVO _vo;
 
   void set stateModel(StateModel stateModel) {
     _stateModel = stateModel;
@@ -12,18 +13,18 @@ class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAwar
   @override void execute([XLSignal event = null]) {
     super.execute(event);
 
-    UGCFilterVO vo = event.data;
+    _vo = event.data;
 
-    switch (vo.condition) {
+    switch (_vo.condition) {
       case UGCFilterVO.CONDITION_FRIENDS:
-        vo.creator_uids = _ugcModel.friendsWithUGCItems;
+        _vo.creator_uids = _ugcModel.friendsWithUGCItems;
         break;
       case UGCFilterVO.CONDITION_ME:
-        vo.creator_uid = _ugcModel.userDAO.uid;
+        _vo.creator_uid = _ugcModel.userDAO.uid;
         break;
       case UGCFilterVO.CONDITION_UGC_ID:
         int id = (_stateModel.currentStateVO.params["id"]).toInt();
-        vo.item_id = id;
+        _vo.item_id = id;
         break;
       case UGCFilterVO.CONDITION_ALL:
         break;
@@ -37,8 +38,12 @@ class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAwar
 //				vo.condition = event.data;
 //			}
 
-    amfOperation("UGCEndpoint.filterItems", map: vo.toMap());
+    amfOperation("UGCEndpoint.filterItems", map: _vo.toMap());
   }
 
+  @override bool dispatchCompleteEvent([dynamic result = null]) {
+    _vo.nextToken = null; //indicates that nextToken is to be set by DataProxy
+    return super.dispatchCompleteEvent(result);
+  }
 
 }

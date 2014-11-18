@@ -27,8 +27,7 @@ class GoogleInitCommand extends AbstractGoogleCommand {
         .then((AutoRefreshingAuthClient client) {
           _handleLogin(client);
           flow.close();
-        })
-        .catchError(dispatchErrorEvent);
+        }, onError: dispatchErrorEvent);
     });
   }
 

@@ -103,6 +103,7 @@ part 'src/plugin/io/command/event/io_events.dart';
 part 'src/plugin/io/command/io_image_upload_command.dart';
 part 'src/plugin/io/io_plugin.dart';
 part 'src/plugin/io/model/data_proxy.dart';
+part 'src/plugin/io/model/data_retrieve_vo.dart';
 
 //screen
 part 'src/plugin/screen/displaylist/view/rockdot_managed_sprite_component.dart';

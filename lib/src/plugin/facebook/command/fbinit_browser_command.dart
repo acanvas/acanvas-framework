@@ -2,52 +2,57 @@ part of stagexl_rockdot;
 
 @retain
 class FBInitBrowserCommand extends AbstractFBCommand {
+  
+  String facebookSDKUrl = "https://connect.facebook.net/en_US/sdk.js";
 
   @override
   void execute([XLSignal event = null]) {
     super.execute(event);
 
-    if (RockdotConstants.LOCAL) {
-      
-      this.log.debug("Facebook Not Supported here.");
-      dispatchCompleteEvent();
-      
-    } else {
+    var script = new html.ScriptElement();
+    script.id = "facebook-jssdk";
+    html.document.body.append(script);
+    script.onLoad.first.then((loadEvent) {
+      _handleSDKLoaded();
+    });
+    script.onError.first.then((errorEvent) {
+      dispatchErrorEvent('Failed to load Facebook library.');
+    });
+    script.src = facebookSDKUrl;
 
-      _fbModel.FB = js.context["FB"];
+  }
+  
+  void _handleSDKLoaded() {
+    _fbModel.FB = js.context["FB"];
 
-      js.JsObject initConfig = new js.JsObject.jsify({
-        "appId": getProperty("project.facebook.appid"),
-        "cookie": true,
-        "xfbml": false,
-        "version": 'v2.1',
-      });
+    js.JsObject initConfig = new js.JsObject.jsify({
+      "appId": getProperty("project.facebook.appid"),
+      "cookie": true,
+      "xfbml": false,
+      "version": 'v2.1',
+    });
 
-      _fbModel.FB.callMethod("init", [initConfig]);
-      _fbModel.FB.callMethod("getLoginStatus", [_handleResult]);
-
-    }
+    _fbModel.FB.callMethod("init", [initConfig]);
+    _fbModel.FB.callMethod("getLoginStatus", [_handleResult]);
   }
 
   void _handleResult(js.JsObject response) {
-    if(containsError(response)) return;
-    
+    if (containsError(response)) return;
+
     if (response["authResponse"] != null) {
-      
+
       _fbModel.accessToken = response["authResponse"]["accessToken"];
       _fbModel.userIsAuthenticated = true;
-      _fbModel.user = new FBUserVO()
-                        ..uid = response["authResponse"]["userID"];
+      _fbModel.user = new FBUserVO()..uid = response["authResponse"]["userID"];
 
-     new XLSignal(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions).dispatch();
-    }
-    else{
+      new XLSignal(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions).dispatch();
+    } else {
       dispatchCompleteEvent();
     }
-    
+
   }
 
-  void _onPermissions(List perms) {
+  void _onPermissions([List perms = null]) {
     dispatchCompleteEvent();
   }
 }

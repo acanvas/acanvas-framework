@@ -42,7 +42,7 @@ class GoogleLoginCommand extends AbstractGoogleCommand {
       flow.clientViaUserConsent().then((AutoRefreshingAuthClient client) {
         _handleLogin(client);
         flow.close();
-      }).catchError(dispatchErrorEvent);
+      }, onError: dispatchErrorEvent);
     });
     
     showMessage(getProperty("message.google.login.waiting"), blur:true, type: StateMessageVO.TYPE_WAITING);
@@ -54,7 +54,7 @@ class GoogleLoginCommand extends AbstractGoogleCommand {
     _gModel.client = client;
     _gModel.userScopes = client.credentials.scopes;
     _gModel.accessToken = client.credentials.accessToken.data;
-    _gModel.userIsAuthenticated;
+    _gModel.userIsAuthenticated = true;
     dispatchCompleteEvent();
   }
 }

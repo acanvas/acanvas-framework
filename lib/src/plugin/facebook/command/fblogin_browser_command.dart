@@ -27,6 +27,8 @@ class FBLoginBrowserCommand extends AbstractFBCommand {
   }
 
   void _handleLogin(js.JsObject response, [js.JsObject fail = null]) {
+    hideMessage();
+    
     if(containsError(response)) return;
     
     if (response["authResponse"] != null) {
@@ -41,7 +43,7 @@ class FBLoginBrowserCommand extends AbstractFBCommand {
         //TODO check if the requested permissions have been granted (because user could have clicked "not now")
       }
       
-      dispatchCompleteEvent(response["authResponse"]);
+      dispatchCompleteEvent();
     } else {
       this.log.debug("Received empty callback");
       dispatchErrorEvent();

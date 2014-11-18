@@ -34,7 +34,7 @@ class CoreCommand extends AbstractOperation implements IAsyncCommand, IApplicati
       result = result.result;
     }
     if (_callback != null) {
-      _callback.call(result);
+      (result != null) ? _callback.call(result) : _callback.call();
       _callback = null;
     }
     return super.dispatchCompleteEvent(result);

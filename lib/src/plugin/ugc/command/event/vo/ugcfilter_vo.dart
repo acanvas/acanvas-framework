@@ -3,7 +3,7 @@ part of stagexl_rockdot;
 /**
  * @author nilsdoehring
  */
-class UGCFilterVO implements IXLVO {
+class UGCFilterVO extends DataRetrieveVO {
 
   static const String CONDITION_ALL = "CONDITION_ALL";
   static const String CONDITION_ME = "CONDITION_ME";
@@ -16,16 +16,13 @@ class UGCFilterVO implements IXLVO {
 
   String condition;
   String order;
-  int limit;
-  int limitindex;
 
   //ONE (and only one) of these needs to be set
   List creator_uids; //CONDITION_FRIENDS
   String creator_uid; //CONDITION_ME, CONDITION_UID
   int item_id; //CONDITION_UGC_ID
 
-  UGCFilterVO(this.condition, this.order, this.limit) {
-    limitindex = 0;
+  UGCFilterVO(this.condition, this.order, int limit) : super(limit) {
   }
   
   Map toMap(){
@@ -33,7 +30,7 @@ class UGCFilterVO implements IXLVO {
       "condition": condition,         
       "order": order,         
       "limit": limit,         
-      "limitindex": limitindex         
+      "nextToken": nextToken         
     };
     
     switch(condition){

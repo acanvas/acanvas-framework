@@ -14,8 +14,7 @@ class GooglePlusGetUserCommand extends AbstractGoogleCommand {
     }
     
     new PlusApi(_gModel.client).people.get(id)
-          .then(_handleResult)
-          .catchError(dispatchErrorEvent);
+          .then(_handleResult, onError: dispatchErrorEvent);
     
 
     showMessage(getProperty(getProperty("message.google.loading.data")));

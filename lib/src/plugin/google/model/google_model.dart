@@ -26,7 +26,7 @@ class GoogleModel {
     return _circles;
   }
   void set circles(PeopleFeed circles) {
-    _moments = moments;
+    _circles = circles;
   }
 
   bool _userIsAuthenticated = false;
