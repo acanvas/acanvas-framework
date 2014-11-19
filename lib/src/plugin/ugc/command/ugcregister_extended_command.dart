@@ -49,15 +49,15 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
   
   UGCUserExtendedDTO _createDummyData() {
     UGCUserExtendedDTO user = new UGCUserExtendedDTO();
-    user.hometown_location = "Stuttgart, Germany";
-    user.email = "anna-maria.fincke@jvm-neckar.de";
+    user.hometown_location = "Karlsruhe, Germany";
+    user.email = "nilsdoehring@gmail.com";
     user.email_confirmed = 1;
-    user.birthday_date = "1981-12-24";
+    user.birthday_date = "1979-12-24";
     user.title = "Ms";
-    user.firstname = "Anna-Maria";
-    user.lastname = "Fincke";
-    user.street = "Neckarstraße 155";
-    user.city = "70190 Stuttgart";
+    user.firstname = "Karla-Krislotta";
+    user.lastname = "Karma";
+    user.street = "Karmastraße 155";
+    user.city = "70190 Nowhere";
     user.country = "DE";
     return user;
   }

@@ -27,13 +27,13 @@ class UGCTestCommand extends AbstractUGCCommand {
 
     UGCUserExtendedDTO userExt = new UGCUserExtendedDTO();
     userExt.hometown_location = "Musterstadt, Germany";
-    userExt.email = "anna-maria.fincke@jvm-neckar.de";
+    userExt.email = "ugc-text@email.com";
     userExt.email_confirmed = 0;
     userExt.birthday_date = "1981-12-24";
-    userExt.firstname = "Anna-Maria";
-    userExt.lastname = "Fincke";
-    userExt.street = "Neckarstraße 155";
-    userExt.city = "70190 Stuttgart";
+    userExt.firstname = "UGC-Test";
+    userExt.lastname = "DBUser";
+    userExt.street = "Nopestraße 124";
+    userExt.city = "70190 Nowhere";
 
     compositeCommand.addCommandEvent(new XLSignal(UGCEvents.USER_REGISTER_EXTENDED, userExt, _onUserRegisterExtended), _context);
 
