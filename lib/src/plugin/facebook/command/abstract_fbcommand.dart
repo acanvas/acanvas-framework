@@ -12,7 +12,7 @@ class AbstractFBCommand extends CoreCommand implements IFBModelAware {
       //If the Login went successful, execute this Event again.
       new XLSignal(FBEvents.USER_LOGIN, null, (){
         execute(event);
-      });
+      }).dispatch();
       //For now, cancel this Event.
       return true;
     }

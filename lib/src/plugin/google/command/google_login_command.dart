@@ -16,7 +16,7 @@ class GoogleLoginCommand extends AbstractGoogleCommand {
         scopes = event.data;
       }
     } else {
-      scopes = [];
+      scopes = [ getProperty("project.google.scope.plus") ];
     }
 
     if (_gModel.userIsAuthenticated) {

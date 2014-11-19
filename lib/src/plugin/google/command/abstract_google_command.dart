@@ -12,7 +12,7 @@ class AbstractGoogleCommand extends CoreCommand implements IGoogleModelAware {
       //If the Login went successful, execute this Event again.
       new XLSignal(GoogleEvents.USER_LOGIN, null, (){
         execute(event);
-      });
+      }).dispatch();
       //For now, cancel this Event.
       return true;
     }

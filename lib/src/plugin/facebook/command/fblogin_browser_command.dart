@@ -17,7 +17,7 @@ class FBLoginBrowserCommand extends AbstractFBCommand {
         showMessage(getProperty("message.facebook.login.waiting"), blur:true, type: StateMessageVO.TYPE_WAITING);
 
         js.JsObject loginConfig = new js.JsObject.jsify({
-          "scope": event.data != null ? event.data : "",
+          "scope": event.data != null ? event.data : getProperty("project.facebook.scopes"),
           "return_scopes" : true
         });
 
