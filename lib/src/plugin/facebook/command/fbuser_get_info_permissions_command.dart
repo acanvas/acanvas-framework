@@ -7,6 +7,8 @@ class FBUserGetInfoPermissionsCommand extends AbstractFBCommand {
   @override
   void execute([XLSignal event = null]) {
     super.execute(event);
+    
+    if (notLoggedIn(event)) return;
 
     js.JsObject queryConfig = new js.JsObject.jsify({});
     _fbModel.FB.callMethod("api", ["/me/permissions", "get", queryConfig, _handleResult]);

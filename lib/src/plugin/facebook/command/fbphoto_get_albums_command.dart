@@ -6,6 +6,8 @@ class FBPhotoGetAlbumsCommand extends AbstractFBCommand {
   @override
   void execute([XLSignal event = null]) {
     super.execute(event);
+    
+    if (notLoggedIn(event)) return;
     showMessage(getProperty("message.facebook.loading.data"));
 
     String uid = _fbModel.user.uid;

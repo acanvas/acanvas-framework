@@ -7,6 +7,8 @@ class GooglePlusGetUserCommand extends AbstractGoogleCommand {
   @override
   void execute([XLSignal event = null]) {
     super.execute(event);
+    
+    if (notLoggedIn(event)) return;
 
     String id = "me";
     if(event.data != null && event.data is String){

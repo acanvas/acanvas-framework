@@ -8,8 +8,9 @@ class GooglePlusPeopleGetCommand extends AbstractGoogleCommand {
   @override
   void execute([XLSignal event = null]) {
     super.execute(event);
-//			dispatchMessage("notification.facebook.loading");
 
+    if (notLoggedIn(event)) return;
+    
     String id = "me";
     if (event.data != null) {
       if(event.data is String){

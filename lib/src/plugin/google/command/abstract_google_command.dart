@@ -6,6 +6,21 @@ class AbstractGoogleCommand extends CoreCommand implements IGoogleModelAware {
   void set googleModel(GoogleModel gModel) {
     _gModel = gModel;
   }
+  
+  bool notLoggedIn(XLSignal event) {
+    if(!_gModel.userIsAuthenticated){
+      //If the Login went successful, execute this Event again.
+      new XLSignal(GoogleEvents.USER_LOGIN, null, (){
+        execute(event);
+      });
+      //For now, cancel this Event.
+      return true;
+    }
+    else{
+      //User logged in, all is peachy.
+      return false;
+    }
+  }
 
   bool containsError(js.JsObject response) {
     if (response["error"] != null) {

@@ -31,7 +31,7 @@ class GooglePlugin extends AbstractOrderedFactoryPostProcessor {
 
 
     /* Bootstrap Command */
-   // RockdotConstants.getBootstrap().add(GoogleEvents.INIT);
+    RockdotConstants.getBootstrap().add(GoogleEvents.INIT);
 
     return null;
   }

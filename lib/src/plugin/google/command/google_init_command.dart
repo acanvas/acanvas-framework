@@ -17,7 +17,7 @@ class GoogleInitCommand extends AbstractGoogleCommand {
       } 
     }
     else {
-      scopes = [];
+      scopes = [ getProperty("project.google.scope.plus") ];
     }
     
 

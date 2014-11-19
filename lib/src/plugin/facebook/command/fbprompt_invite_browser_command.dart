@@ -9,7 +9,8 @@ class FBPromptInviteBrowserCommand extends AbstractFBCommand {
   @override
   void execute([XLSignal event = null]) {
     super.execute(event);
-
+    
+    if (notLoggedIn(event)) return;
 
     _vo = event.data;//VOFBInvite
     _vo.app_id = getProperty("project.facebook.appid");

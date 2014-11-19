@@ -7,6 +7,9 @@ class FBPromptShareCommand extends AbstractFBCommand {
 
   @override void execute([XLSignal event = null]) {
     super.execute(event);
+    
+    if (notLoggedIn(event)) return;
+    
     VOFBShare vo = event.data;
 
     js.JsObject shareConfig;

@@ -7,10 +7,11 @@ class FBPhotoUploadCommand extends AbstractFBCommand {
   void execute([XLSignal event = null]) {
     super.execute(event);
 
+    if (notLoggedIn(event)) return;
+
     VOFBPhotoUpload vo = event.data;
 
     if (vo.bmd != null) {
-
       showMessage(getProperty("message.facebook.sending.image"));
       
       //Convert target BitmapData to Blob (TODO revoke url after upload)

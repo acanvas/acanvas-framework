@@ -7,6 +7,8 @@ class FBFriendsGetCommand extends AbstractFBCommand {
   @override void execute([XLSignal event = null]) {
     super.execute(event);
     
+    if (notLoggedIn(event)) return;
+    
     if (event.data != null && event.data is DataRetrieveVO) {
         _vo = event.data;
     }

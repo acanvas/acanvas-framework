@@ -7,6 +7,8 @@ class FBUserGetInfoCommand extends AbstractFBCommand {
   @override
   void execute([XLSignal event = null]) {
     super.execute(event);
+    
+    if (notLoggedIn(event)) return;
     showMessage(getProperty("message.facebook.loading.data"));
 
     js.JsObject queryConfig = new js.JsObject.jsify({

@@ -6,6 +6,21 @@ class AbstractFBCommand extends CoreCommand implements IFBModelAware {
   void set fbModel(FBModel fbModel) {
     _fbModel = fbModel;
   }
+  
+  bool notLoggedIn(XLSignal event) {
+    if(!_fbModel.userIsAuthenticated){
+      //If the Login went successful, execute this Event again.
+      new XLSignal(FBEvents.USER_LOGIN, null, (){
+        execute(event);
+      });
+      //For now, cancel this Event.
+      return true;
+    }
+    else{
+      //User logged in, all is peachy.
+      return false;
+    }
+  }
 
   bool containsError(js.JsObject response) {
     if (response == null) {
