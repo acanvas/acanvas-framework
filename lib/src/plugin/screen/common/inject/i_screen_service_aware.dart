@@ -2,7 +2,7 @@ part of stagexl_rockdot;
 	/**
 	 * @author nilsdoehring
 	 */
-	 abstract class ScreenServiceAware { 
+	 abstract class IScreenServiceAware { 
 		void set uiService(IScreenService uiService);
 	}
 

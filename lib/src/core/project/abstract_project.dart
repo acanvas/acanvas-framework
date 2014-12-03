@@ -1,12 +1,12 @@
 part of stagexl_rockdot;
 
-class AbstractProject extends AbstractOrderedFactoryPostProcessor {
+class AbstractPlugin extends AbstractOrderedFactoryPostProcessor {
 
   Map commandMap = new Map();
   String projectInitCommand;
   IObjectFactory objectFactory;
       
-  AbstractProject([int priority = 100]) : super(priority) {
+  AbstractPlugin([int priority = 100]) : super(priority) {
   }
 
   /**
@@ -14,11 +14,11 @@ class AbstractProject extends AbstractOrderedFactoryPostProcessor {
    * You can then access them from anywhere:
    * new XLSignal(ProjectEvents.SOME_COMMAND, optionalParamVO, optionalFunctionCallback).dispatch();
    */
-  void projectCommands() {
+  void configureCommands() {
     throw new UnimplementedError("To be implemented in Project subclass");
   }
 
-  void projectInjectors() {
+  void configureInjectors() {
     throw new UnimplementedError("To be implemented in Project subclass");
   }
 
@@ -35,14 +35,14 @@ class AbstractProject extends AbstractOrderedFactoryPostProcessor {
    *                pretty url    - the uri of the page - will result in an anchor, f.ex. www.site.com/#/test
    *                modality      - the page's modality allows you to define your page as a layer
    */
-  void projectScreens() {
+  void configureScreens() {
     throw new UnimplementedError("To be implemented in Project subclass");
   }
   
   /**
    * Define Page Transitions here
    */
-  void projectTransitions() {
+  void configureTransitions() {
     throw new UnimplementedError("To be implemented in Project subclass");
   }
   
@@ -86,17 +86,19 @@ class AbstractProject extends AbstractOrderedFactoryPostProcessor {
   @override IOperation postProcessObjectFactory(IObjectFactory _objectFactory) {
     objectFactory = _objectFactory;
 
-    projectCommands();
+    configureCommands();
     RockdotContextHelper.registerCommands(objectFactory, commandMap);
 
     /* Add this Project's Init Command to Bootstrap Command Sequence */
-    RockdotConstants.getBootstrap().add(projectInitCommand);
+    if(projectInitCommand != null){
+      RockdotConstants.getBootstrap().add(projectInitCommand);
+    }
     
-    projectInjectors();
+    configureInjectors();
     
-    projectScreens();
+    configureScreens();
 
-    projectTransitions();
+    configureTransitions();
 
     return null;
   }

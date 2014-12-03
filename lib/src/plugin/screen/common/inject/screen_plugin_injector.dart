@@ -43,8 +43,8 @@ part of stagexl_rockdot;
 			if (object is IScreenModelAware) {
 				(object as IScreenModelAware).uiModel = _applicationContext.getObject(ScreenPluginBase.MODEL_UI);
 			}
-			if (object is ScreenServiceAware) {
-				(object as ScreenServiceAware).uiService = _applicationContext.getObject(ScreenPluginBase.SERVICE_UI);
+			if (object is IScreenServiceAware) {
+				(object as IScreenServiceAware).uiService = _applicationContext.getObject(ScreenPluginBase.SERVICE_UI);
 			}
 			
 			return object;

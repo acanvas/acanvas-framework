@@ -2,15 +2,14 @@ part of stagexl_rockdot;
 
 class ScreenDisplaylistPlugin extends ScreenPluginBase {
 
-  @override IOperation postProcessObjectFactory(IObjectFactory objectFactory) {
-    super.postProcessObjectFactory(objectFactory);
+  /**
+   * Registers Commands with FrontController 
+   * You can then access them from anywhere:
+   * new XLSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   */
+  @override void configureCommands() {
+    super.configureCommands();
 
-    /* Objects */
-    _registerService(objectFactory);
-
-
-    /* Commands */
-    Map commandMap = new Map();
     commandMap[ScreenDisplaylistEvents.SCREEN_INIT] = ScreenInitCommand;
     commandMap[ScreenDisplaylistEvents.TRANSITION_PREPARE] = ScreenTransitionPrepareCommand;
     commandMap[ScreenDisplaylistEvents.APPEAR] = ScreenAppearCommand;
@@ -20,12 +19,16 @@ class ScreenDisplaylistPlugin extends ScreenPluginBase {
     commandMap[ScreenDisplaylistEvents.APPLY_EFFECT_OUT] = ScreenApplyEffectOutCommand;
 
     commandMap[StateEvents.STATE_CHANGE] = ScreenSetCommand;
-
-    RockdotContextHelper.registerCommands(objectFactory, commandMap);
-
-    return null;
   }
-  void _registerService(IObjectFactory objectFactory) {
+
+  /**
+     * Register this Plugin's Model as injectable
+     * Any class requiring this Model can implement IStateModelAware and the ObjectFactory will take care.
+     * This is called Interface Injection, the only kind of injection available in Spring Dart so far.
+     * Feel free to add more injectors. 
+     */
+  @override void configureInjectors() {
+    super.configureInjectors();
     RockdotContextHelper.registerInstance(objectFactory, ScreenPluginBase.SERVICE_UI, new ScreenDisplaylistService());
   }
 }

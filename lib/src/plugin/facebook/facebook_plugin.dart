@@ -1,27 +1,21 @@
 part of stagexl_rockdot;
 
-class FacebookPlugin extends AbstractOrderedFactoryPostProcessor {
+class FacebookPlugin extends AbstractPlugin {
   static const String MODEL_FB = "MODEL_FB";
   FacebookPlugin() : super(30) {
   }
-
-  @override
-  IOperation postProcessObjectFactory(IObjectFactory objectFactory) {
-
-    /* Objects */
-    RockdotContextHelper.registerInstance(objectFactory, MODEL_FB, new FBModel());
-
-    /* Object Postprocessors */
-    objectFactory.addObjectPostProcessor(new FBModelInjector(objectFactory));
-
-    /* Commands */
-    Map commandMap = new Map();
-
-    commandMap[FBEvents.PROMPT_SHARE] = FBPromptShareCommand;
+  
+  /**
+   * Registers Commands with FrontController 
+   * You can then access them from anywhere:
+   * new XLSignal(FacebookEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   */
+  @override void configureCommands() {
 
     commandMap[FBEvents.INIT] = FBInitBrowserCommand;
     commandMap[FBEvents.USER_LOGIN] = FBLoginBrowserCommand;
     commandMap[FBEvents.USER_LOGOUT] = FBLogoutBrowserCommand;
+    commandMap[FBEvents.PROMPT_SHARE] = FBPromptShareCommand;
     commandMap[FBEvents.PROMPT_INVITE] = FBPromptInviteBrowserCommand;
     commandMap[FBEvents.TEST] = FBTestCommand;
     commandMap[FBEvents.USER_GETINFO] = FBUserGetInfoCommand;
@@ -31,14 +25,19 @@ class FacebookPlugin extends AbstractOrderedFactoryPostProcessor {
     commandMap[FBEvents.ALBUMS_GET] = FBPhotoGetAlbumsCommand;
     commandMap[FBEvents.PHOTOS_GET] = FBPhotoGetFromAlbumCommand;
     commandMap[FBEvents.PHOTO_UPLOAD] = FBPhotoUploadCommand;
+    
+    projectInitCommand = FBEvents.INIT;
+  }
 
-    RockdotContextHelper.registerCommands(objectFactory, commandMap);
-
-
-    /* Bootstrap Command */
-    RockdotConstants.getBootstrap().add(FBEvents.INIT);
-
-    return null;
+  /**
+     * Register this Plugin's Model as injectable
+     * Any class requiring this Model can implement IFacebookModelAware and the ObjectFactory will take care.
+     * This is called Interface Injection, the only kind of injection available in Spring Dart so far.
+     * Feel free to add more injectors. 
+     */
+  @override void configureInjectors() {
+    RockdotContextHelper.registerInstance(objectFactory, MODEL_FB, new FBModel());
+    objectFactory.addObjectPostProcessor(new FBModelInjector(objectFactory));
   }
 
 }

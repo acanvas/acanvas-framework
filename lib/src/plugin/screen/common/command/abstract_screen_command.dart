@@ -1,5 +1,5 @@
 part of stagexl_rockdot;
-	 class AbstractScreenCommand extends CoreCommand implements IScreenModelAware, ScreenServiceAware, IStateModelAware{
+	 class AbstractScreenCommand extends CoreCommand implements IScreenModelAware, IScreenServiceAware, IStateModelAware{
 
 		 ScreenModel _uiModel; 
 		void set uiModel(ScreenModel uiModel) {
