@@ -116,7 +116,7 @@ part 'src/plugin/screen/common/command/screen_resize_command.dart';
 part 'src/plugin/screen/common/command/event/screen_events.dart';
 part 'src/plugin/screen/common/inject/i_screen_model_aware.dart';
 part 'src/plugin/screen/common/inject/screen_plugin_injector.dart';
-part 'src/plugin/screen/common/inject/screen_service_aware.dart';
+part 'src/plugin/screen/common/inject/i_screen_service_aware.dart';
 part 'src/plugin/screen/common/model/screen_constants.dart';
 part 'src/plugin/screen/common/model/screen_model.dart';
 part 'src/plugin/screen/common/service/abstract_screen_service.dart';
