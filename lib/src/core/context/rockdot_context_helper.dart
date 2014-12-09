@@ -6,6 +6,10 @@ class RockdotContextHelper {
     RockdotConstants.getContext().wire(uie);
   }
 
+  static dynamic getObject(String obj) {
+    return RockdotConstants.getContext().getObject(obj);
+  }
+
   static void registerCommands(IObjectFactory objectFactory, Map map) {
     IController controller = objectFactory.getObject(MVCControllerObjectFactoryPostProcessor.CONTROLLER_OBJECT_NAME);
     for (String commandName in map.keys) {

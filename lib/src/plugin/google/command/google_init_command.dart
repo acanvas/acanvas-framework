@@ -23,14 +23,21 @@ class GoogleInitCommand extends AbstractGoogleCommand {
 
 // Initialize the browser oauth2 flow functionality.
     createImplicitBrowserFlow(id, scopes).then((BrowserOAuth2Flow flow) {
+      _gModel.flow = flow;
       flow.clientViaUserConsent(immediate: true)
         .then((AutoRefreshingAuthClient client) {
           _handleLogin(client);
           flow.close();
-        }, onError: dispatchErrorEvent);
+        }, onError: (e){
+          _handleLoginError(e);
+          });
     });
   }
 
+  void _handleLoginError(UserConsentException ex) {
+    dispatchErrorEvent(ex.message);
+  }
+  
   void _handleLogin(AutoRefreshingAuthClient client) {
     _gModel.client = client;
     _gModel.userScopes = client.credentials.scopes;

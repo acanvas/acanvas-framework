@@ -5,6 +5,14 @@ part of stagexl_rockdot;
 	 */
 class GoogleModel {
 
+  BrowserOAuth2Flow _flow;
+  BrowserOAuth2Flow get flow {
+    return _flow;
+  }
+  void set flow(BrowserOAuth2Flow flow) {
+    _flow = flow;
+  }
+
   Person _user;
   Person get user {
     return _user;

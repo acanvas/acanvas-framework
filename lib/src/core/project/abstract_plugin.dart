@@ -36,14 +36,14 @@ class AbstractPlugin extends AbstractOrderedFactoryPostProcessor {
    *                modality      - the page's modality allows you to define your page as a layer
    */
   void configureScreens() {
-    throw new UnimplementedError("To be implemented in Project subclass");
+    //throw new UnimplementedError("To be implemented in Project subclass");
   }
   
   /**
    * Define Page Transitions here
    */
   void configureTransitions() {
-    throw new UnimplementedError("To be implemented in Project subclass");
+    //throw new UnimplementedError("To be implemented in Project subclass");
   }
   
   void addTransition(String id, IEffect eff, num duration, [String transitionType = ScreenConstants.TRANSITION_PARALLEL, num initialAlpha = 0]) {

@@ -28,7 +28,7 @@ import 'package:stagexl_spring/stagexl_spring.dart';
 
 // CORE #####
 part 'src/core/project/abstract_bootstrap.dart';
-part 'src/core/project/abstract_project.dart';
+part 'src/core/project/abstract_plugin.dart';
 
 part 'src/core/context/rockdot_application_context.dart';
 part 'src/core/context/rockdot_context_helper.dart';
@@ -72,6 +72,7 @@ part 'src/plugin/facebook/command/fbtest_command.dart';
 part 'src/plugin/facebook/command/fbuser_get_info_command.dart';
 part 'src/plugin/facebook/command/fbuser_get_info_permissions_command.dart';
 part 'src/plugin/facebook/command/event/fbevents.dart';
+part 'src/plugin/facebook/command//event/vo/facebook_login_vo.dart';
 part 'src/plugin/facebook/command/event/vo/vofbinvite.dart';
 part 'src/plugin/facebook/command/event/vo/vofbphoto_upload.dart';
 part 'src/plugin/facebook/command/event/vo/vofbshare.dart';
@@ -85,6 +86,7 @@ part 'src/plugin/facebook/model/vo/fbuser_vo.dart';
 
 //google
 part 'src/plugin/google/google_plugin.dart';
+part 'src/plugin/google/command//event/vo/google_login_vo.dart';
 part 'src/plugin/google/command/abstract_google_command.dart';
 part 'src/plugin/google/command/google_init_command.dart';
 part 'src/plugin/google/command/google_login_command.dart';
