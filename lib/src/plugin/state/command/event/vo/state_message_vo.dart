@@ -15,7 +15,10 @@ class StateMessageVO implements IXLVO {
   int timeBox;
   int type;
   bool blurContent;
+  
+  int bgColor;
+  int fontColor;
 
-  StateMessageVO(this.id, this.message, this.timeBox, this.type, this.blurContent) {
+  StateMessageVO(this.id, this.message, this.timeBox, {this.type: -1, this.blurContent: false, this.bgColor : -1, this.fontColor: -1}) {
   }
 }

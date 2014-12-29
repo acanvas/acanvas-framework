@@ -106,7 +106,7 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
     for (int i = 0; i < vcs.numChildren; i++) {
       child = vcs.getChildAt(i);
       if (child is ISpriteComponent) {
-        maxd = max(_getDepth(child as DisplayObjectContainer, depth + 1), maxd);
+        maxd = math.max(_getDepth(child as DisplayObjectContainer, depth + 1), maxd);
       }
     }
     return maxd;

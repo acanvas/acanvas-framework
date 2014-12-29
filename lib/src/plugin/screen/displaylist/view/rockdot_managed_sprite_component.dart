@@ -21,13 +21,13 @@ class RockdotManagedSpriteComponent extends ManagedSpriteComponent implements IM
   @override
   void appear([num duration = 0.5]) {
     super.appear(duration);
-    new Timer(new Duration(milliseconds: (duration * 100).toInt()), onAppear);
+    new Timer(new Duration(milliseconds: (duration * 1000).toInt()), onAppear);
   }
 
   @override
   void disappear([num duration = 0.5, bool autoDestroy = false]) {
     super.disappear(duration, autoDestroy);
-    new Timer(new Duration(milliseconds: (duration * 100).toInt()), onDisappear);
+    new Timer(new Duration(milliseconds: (duration * 1000).toInt()), onDisappear);
   }
 
   // TODO: implement applicationContext

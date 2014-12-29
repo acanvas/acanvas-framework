@@ -11,7 +11,7 @@ class UGCGetLikersCommand extends AbstractUGCCommand {
 
     Map dto = {
       'id': currentImageID,
-      'limitIndex': vo.limitindex,
+      'limitIndex': vo.nextToken,
       'limit': vo.limit
     };
 

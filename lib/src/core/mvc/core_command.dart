@@ -53,7 +53,7 @@ class CoreCommand extends AbstractOperation implements IAsyncCommand, IApplicati
 
   void showMessage(String message, {int timeBox: 0, int type: StateMessageVO.TYPE_INFO, bool blur: false}) {
     String id = (_event == null) ? "NO_ID" : _event.type;
-    new XLSignal(StateEvents.MESSAGE_SHOW, new StateMessageVO(id, message, timeBox, type, blur)).dispatch();
+    new XLSignal(StateEvents.MESSAGE_SHOW, new StateMessageVO(id, message, timeBox, type: type, blurContent: blur)).dispatch();
   }
 
   void hideMessage([String id = null]) {
