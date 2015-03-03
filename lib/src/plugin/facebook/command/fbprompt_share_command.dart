@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.facebook;
 
 //https://developers.facebook.com/docs/sharing/reference/share-dialog
 

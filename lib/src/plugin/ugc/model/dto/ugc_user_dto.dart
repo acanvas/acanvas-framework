@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.ugc;
 
 class UGCUserDTO implements IXLDTO {
   static const NETWORK_FACEBOOK = "facebook";

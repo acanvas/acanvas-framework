@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.screen;
 
 class RockdotManagedSpriteComponent extends ManagedSpriteComponent implements IManagedSpriteComponent, IApplicationContextAware {
 

@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.screen;
 
 class ScreenPluginBase extends AbstractPlugin {
   static const String MODEL_UI = "MODEL_UI";

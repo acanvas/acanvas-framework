@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.facebook;
 
 class VOFBInvite {
   //http://developers.facebook.com/docs/reference/dialogs/requests/

@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.state;
 
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)

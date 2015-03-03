@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.core;
 
 class RpcException implements Exception{
   int code = 0;

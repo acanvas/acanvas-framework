@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.ugc;
 
 class UGCItemDTO implements IXLDTO {
     static const TYPE_TEXT = 0;

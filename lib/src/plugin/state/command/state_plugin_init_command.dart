@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.state;
 
 
 
@@ -14,11 +14,11 @@ class StatePluginInitCommand extends AbstractStateCommand {
 				_stateModel.tracker = new GATracker(RockdotConstants.getStage(), getProperty("project.api.google.analytics.key"), "AS3", false);
 			}*/
 			
-			Assert.notNull(_context, "the objectFactory argument must not be null");
-			List<String> names = _context.cache.getCachedNamesForType(StateVO);
+			Assert.notNull(applicationContext, "the objectFactory argument must not be null");
+			List<String> names = applicationContext.cache.getCachedNamesForType(StateVO);
 			if (names != null) {
 				for (String name in names){
-					StateVO stateVO = _context.getObject(name);
+					StateVO stateVO = applicationContext.getObject(name);
 					_stateModel.addStateVO(stateVO);
 				}
 			} else {

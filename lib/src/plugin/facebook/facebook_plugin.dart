@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.facebook;
 
 class FacebookPlugin extends AbstractPlugin {
   static const String MODEL_FB = "MODEL_FB";

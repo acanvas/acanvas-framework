@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.state;
 
 
 class AbstractStateCommand extends CoreCommand implements IStateModelAware, IScreenModelAware{
@@ -9,6 +9,7 @@ class AbstractStateCommand extends CoreCommand implements IStateModelAware, IScr
 		}
 
 		 StateModel _stateModel; 
+			StateModel get stateModel => _stateModel;
 		void set stateModel(StateModel stateModel) {
 			_stateModel = stateModel;
 		}

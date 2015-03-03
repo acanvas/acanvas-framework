@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.screen;
 
 @retain
 class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
@@ -48,50 +48,50 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
         }
       }
 
-      compositeCommand.addCommandEvent(new XLSignal(ScreenEvents.RESIZE, _vo.inTarget), _context);
-      compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.SCREEN_INIT, _vo.inTarget), _context);
+      compositeCommand.addCommandEvent(new XLSignal(ScreenEvents.RESIZE, _vo.inTarget), applicationContext);
+      compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.SCREEN_INIT, _vo.inTarget), applicationContext);
     }
 
     ISpriteComponent layer;
 
     switch (_vo.transitionType) {
       case ScreenConstants.TRANSITION_NONE_TO_NORMAL:
-        compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, ScreenConstants.EFFECT_IN, _vo.inTarget, _vo.effect.duration)), _context);
+        compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, ScreenConstants.EFFECT_IN, _vo.inTarget, _vo.effect.duration)), applicationContext);
         break;
       case ScreenConstants.TRANSITION_NORMAL_TO_NORMAL:
-        compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.DISAPPEAR, new ScreenDisplaylistAppearDisappearVO(_vo.outTarget, 0, false)), _context);
-        compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, _vo.effect.type, _vo.outTarget, _vo.effect.duration, _vo.inTarget)), _context);
+        compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.DISAPPEAR, new ScreenDisplaylistAppearDisappearVO(_vo.outTarget, 0, false)), applicationContext);
+        compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, _vo.effect.type, _vo.outTarget, _vo.effect.duration, _vo.inTarget)), applicationContext);
         break;
       case ScreenConstants.TRANSITION_NORMAL_TO_MODAL:
         _uiService.blur();
-        compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, ScreenConstants.EFFECT_IN, _vo.inTarget, _vo.effect.duration)), _context);
+        compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, ScreenConstants.EFFECT_IN, _vo.inTarget, _vo.effect.duration)), applicationContext);
         break;
       case ScreenConstants.TRANSITION_MODAL_TO_MODAL:
         _vo.outTarget = _uiService.layer.getChildAt(0) as ISpriteComponent;
-        compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.DISAPPEAR, new ScreenDisplaylistAppearDisappearVO(_vo.outTarget, 0, false)), _context);
-        compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, _vo.effect.type, _vo.outTarget, _vo.effect.duration, _vo.inTarget)), _context);
+        compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.DISAPPEAR, new ScreenDisplaylistAppearDisappearVO(_vo.outTarget, 0, false)), applicationContext);
+        compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, _vo.effect.type, _vo.outTarget, _vo.effect.duration, _vo.inTarget)), applicationContext);
         break;
       case ScreenConstants.TRANSITION_MODAL_BACK:
         // unblur content
         _uiService.unblur();
-        compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, ScreenConstants.EFFECT_OUT, _uiService.layer.getChildAt(_uiService.layer.numChildren - 1) as ISpriteComponent, _vo.effect.duration), _destroyLayer), _context);
+        compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, ScreenConstants.EFFECT_OUT, _uiService.layer.getChildAt(_uiService.layer.numChildren - 1) as ISpriteComponent, _vo.effect.duration), _destroyLayer), applicationContext);
         break;
       case ScreenConstants.TRANSITION_MODAL_TO_NORMAL:
         // unblur content
         _uiService.unblur();
         layer = _uiService.layer.getChildAt(0) as ISpriteComponent;
-        compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.DISAPPEAR, new ScreenDisplaylistAppearDisappearVO(layer, 0, false)), _context);
-        IEffect effect = _context.getObject("transition.default.modal");
-        compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT, new ScreenDisplaylistEffectApplyVO(effect, layer, _vo.effect.duration), _destroyLayer), _context);
-        compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, _vo.effect.type, _vo.outTarget, _vo.effect.duration, _vo.inTarget)), _context);
+        compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.DISAPPEAR, new ScreenDisplaylistAppearDisappearVO(layer, 0, false)), applicationContext);
+        IEffect effect = applicationContext.getObject("transition.default.modal");
+        compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT, new ScreenDisplaylistEffectApplyVO(effect, layer, _vo.effect.duration), _destroyLayer), applicationContext);
+        compositeCommand.addCommandEvent(new XLSignal(APPLY_EFFECT, new ScreenDisplaylistTransitionApplyVO(_vo.effect, _vo.effect.type, _vo.outTarget, _vo.effect.duration, _vo.inTarget)), applicationContext);
         break;
     }
 
-    compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPEAR, new ScreenDisplaylistAppearDisappearVO(_vo.inTarget, _vo.effect.duration)), _context);
+    compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPEAR, new ScreenDisplaylistAppearDisappearVO(_vo.inTarget, _vo.effect.duration)), applicationContext);
 
     /* add sequence listeners */
     compositeCommand.addCompleteListener(_onSequenceComplete);
-    compositeCommand.addErrorListener(_handleError);
+    compositeCommand.addErrorListener(dispatchErrorEvent);
     compositeCommand.execute();
 
     _stateModel.compositeTransitionCommand = compositeCommand;

@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.facebook;
 
 @retain
 class FBTestCommand extends AbstractFBCommand {
@@ -12,19 +12,19 @@ class FBTestCommand extends AbstractFBCommand {
 
     /* ******************** LOGIN USER ******************* */
     String perms = getProperty("project.facebook.permissions");
-    compositeCommand.addCommandEvent(new XLSignal(FBEvents.USER_LOGIN, perms, _onUserLogin), _context);
+    compositeCommand.addCommandEvent(new XLSignal(FBEvents.USER_LOGIN, perms, _onUserLogin), applicationContext);
 
     /* ******************** GET INFO FOR USER ******************* */
-    compositeCommand.addCommandEvent(new XLSignal(FBEvents.USER_GETINFO, null, _onUserGetInfo), _context);
+    compositeCommand.addCommandEvent(new XLSignal(FBEvents.USER_GETINFO, null, _onUserGetInfo), applicationContext);
 
     /* ******************** GET FRIENDS OF USER ******************* */
-    compositeCommand.addCommandEvent(new XLSignal(FBEvents.FRIENDS_GET, null, _onFriendsGet), _context);
+    compositeCommand.addCommandEvent(new XLSignal(FBEvents.FRIENDS_GET, null, _onFriendsGet), applicationContext);
 
     /* ******************** GET FRIENDS INFO OF USER ******************* */
-    compositeCommand.addCommandEvent(new XLSignal(FBEvents.FRIENDS_GETINFO, null, _onFriendsGetInfo), _context);
+    compositeCommand.addCommandEvent(new XLSignal(FBEvents.FRIENDS_GETINFO, null, _onFriendsGetInfo), applicationContext);
 
     /* ******************** GET ALBUMS OF USER ******************* */
-    compositeCommand.addCommandEvent(new XLSignal(FBEvents.ALBUMS_GET, null, _onAlbumsGet), _context);
+    compositeCommand.addCommandEvent(new XLSignal(FBEvents.ALBUMS_GET, null, _onAlbumsGet), applicationContext);
 
     /* ******************** INVITE USERS ******************* */
     //new BaseEvent(FBEvents.PROMPT_INVITE, new VOFBInvite(getProperty("fanbook.invite.title", true), getProperty("fanbook.invite.message", true), "item_container_id=" + _bitburgerModel.ownAlbum.id), _onInviteFinished);
@@ -32,7 +32,7 @@ class FBTestCommand extends AbstractFBCommand {
 
     compositeCommand.failOnFault = true;
     compositeCommand.addCompleteListener(dispatchCompleteEvent);
-    compositeCommand.addErrorListener(_handleError);
+    compositeCommand.addErrorListener(dispatchErrorEvent);
     compositeCommand.execute();
   }
 

@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.state;
 
 class StatePlugin extends AbstractPlugin {
   StatePlugin() : super(10) {

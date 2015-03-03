@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.facebook;
 
 @retain
 class AbstractFBCommand extends CoreCommand implements IFBModelAware {

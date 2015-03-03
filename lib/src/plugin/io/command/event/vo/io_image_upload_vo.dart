@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.io;
 
 class IOImageUploadVO implements IXLVO {
 

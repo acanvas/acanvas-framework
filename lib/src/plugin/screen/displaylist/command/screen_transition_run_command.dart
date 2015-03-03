@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.screen;
 
 
 
@@ -35,35 +35,35 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
         if (_vo.effect.applyRecursively) {
           _addInEffectRecursively(target, 0, duration, duration, maxdepthTarget);
         }
-        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN, new ScreenDisplaylistEffectApplyVO(_vo.effect, target, duration)), _context);
+        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN, new ScreenDisplaylistEffectApplyVO(_vo.effect, target, duration)), applicationContext);
         break;
       case ScreenConstants.EFFECT_OUT:
         if (_vo.effect.applyRecursively) {
           _addOutEffectRecursively(target, 0, duration, 0, maxdepthTarget);
         }
-        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT, new ScreenDisplaylistEffectApplyVO(_vo.effect, target, duration)), _context);
+        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT, new ScreenDisplaylistEffectApplyVO(_vo.effect, target, duration)), applicationContext);
         break;
       case ScreenConstants.TRANSITION_SEQUENTIAL:
 
-        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT, new ScreenDisplaylistEffectApplyVO(_vo.effect, target, duration)), _context);
+        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT, new ScreenDisplaylistEffectApplyVO(_vo.effect, target, duration)), applicationContext);
 
         if (_vo.effect.applyRecursively) {
           _addOutEffectRecursively(target, 0, duration, 0, maxdepthTarget);
           _addInEffectRecursively(nextTarget, 0, duration, (maxdepthNextTarget * duration) + 2 * duration, maxdepthNextTarget);
         }
-        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN, new ScreenDisplaylistEffectApplyVO(_vo.effect, nextTarget, duration)), _context);
+        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN, new ScreenDisplaylistEffectApplyVO(_vo.effect, nextTarget, duration)), applicationContext);
 
         break;
       case ScreenConstants.TRANSITION_PARALLEL:
         _compositeCommand.kind = CompositeCommandKind.PARALLEL;
 
-        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT, new ScreenDisplaylistEffectApplyVO(_vo.effect, target, duration)), _context);
+        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT, new ScreenDisplaylistEffectApplyVO(_vo.effect, target, duration)), applicationContext);
 
         if (_vo.effect.applyRecursively) {
           _addOutEffectRecursively(target, 0, duration, 0, maxdepthTarget);
           _addInEffectRecursively(nextTarget, 0, duration, 0, maxdepthNextTarget);
         }
-        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN, new ScreenDisplaylistEffectApplyVO(_vo.effect, nextTarget, duration)), _context);
+        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN, new ScreenDisplaylistEffectApplyVO(_vo.effect, nextTarget, duration)), applicationContext);
 
         break;
     }
@@ -71,7 +71,7 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
 
     /* add sequence listeners */
     _compositeCommand.addCompleteListener(dispatchCompleteEvent);
-    _compositeCommand.addErrorListener(_handleError);
+    _compositeCommand.addErrorListener(dispatchErrorEvent);
     _compositeCommand.execute();
 
     _stateModel.compositeEffectCommand = _compositeCommand;
@@ -82,7 +82,7 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
     for (int i = 0; i < (vcs as DisplayObjectContainer).numChildren; i++) {
       child = (vcs as DisplayObjectContainer).getChildAt(i);
       if (child is ISpriteComponent) {
-        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN, new ScreenDisplaylistEffectApplyVO(_vo.effect, child as ISpriteComponent, duration)), _context);
+        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN, new ScreenDisplaylistEffectApplyVO(_vo.effect, child as ISpriteComponent, duration)), applicationContext);
         _addInEffectRecursively(child as ISpriteComponent, depth + 1, duration, delay, maxdepth);
       }
     }
@@ -94,7 +94,7 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
     for (int i = 0; i < (vcs as DisplayObjectContainer).numChildren; i++) {
       child = (vcs as DisplayObjectContainer).getChildAt(i);
       if (child is ISpriteComponent) {
-        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT, new ScreenDisplaylistEffectApplyVO(_vo.effect, child as ISpriteComponent, duration)), _context);
+        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT, new ScreenDisplaylistEffectApplyVO(_vo.effect, child as ISpriteComponent, duration)), applicationContext);
         _addOutEffectRecursively(child as ISpriteComponent, depth + 1, duration, delay, maxdepth);
       }
     }

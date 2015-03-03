@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.google;
 
 @retain
 class GoogleInitCommand extends AbstractGoogleCommand {

@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.screen;
 
 	 @retain
 class ScreenPluginInitCommand extends AbstractScreenCommand {
@@ -7,7 +7,7 @@ class ScreenPluginInitCommand extends AbstractScreenCommand {
 		 {
 			super.execute(event);
 			
-			IScreenService _uiService = _context.getObject(ScreenPluginBase.SERVICE_UI);
+			IScreenService _uiService = applicationContext.getObject(ScreenPluginBase.SERVICE_UI);
 			_uiService.init(dispatchCompleteEvent);
 			return;
 			

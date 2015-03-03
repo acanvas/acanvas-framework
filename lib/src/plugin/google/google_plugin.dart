@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.google;
 
 class GooglePlugin extends AbstractPlugin {
   static const String MODEL_GOOGLE = "MODEL_GOOGLE";

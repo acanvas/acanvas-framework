@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.screen;
 
 class RockdotSpriteComponent extends SpriteComponent implements IApplicationContextAware {
 
@@ -18,7 +18,7 @@ class RockdotSpriteComponent extends SpriteComponent implements IApplicationCont
   String getProperty(String key, [bool omitPrefix = false]) {
     key = (omitPrefix ? "" : name + ".") + key;
     String str = _context.propertiesProvider.getProperty(key);
-    if (str == "") {
+    if (str == "" || str == null) {
       str = key;
     }
 

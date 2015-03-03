@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.screen;
 
 
 
@@ -21,18 +21,18 @@ class ScreenSetCommand extends AbstractStateCommand {
     _nextVO = e.newVO;
     bool modal = false;
 
-    if (_stateModel.currentState == StateConstants.MAIN_TRANSITIONING) {
+    if (stateModel.currentState == StateConstants.MAIN_TRANSITIONING) {
 
-      _stateModel.currentTransition.cancel();
+      stateModel.currentTransition.cancel();
 
-      if (_stateModel.compositeTransitionCommand != null) {
-        _stateModel.compositeTransitionCommand.cancel();
-        _stateModel.compositeTransitionCommand = null;
+      if (stateModel.compositeTransitionCommand != null) {
+        stateModel.compositeTransitionCommand.cancel();
+        stateModel.compositeTransitionCommand = null;
       }
 
-      if (_stateModel.compositeEffectCommand != null) {
-        _stateModel.compositeEffectCommand.cancel();
-        _stateModel.compositeEffectCommand = null;
+      if (stateModel.compositeEffectCommand != null) {
+        stateModel.compositeEffectCommand.cancel();
+        stateModel.compositeEffectCommand = null;
       }
 
 //				TweenMax.killAll();
@@ -40,64 +40,64 @@ class ScreenSetCommand extends AbstractStateCommand {
 
     _currentStateElement = null;
 
-    if (_stateModel.currentPage != null && _currentVO != null && _nextVO != null && _stateModel.currentPage.name == _nextVO.view_id && _currentVO.substate == StateConstants.SUB_MODAL) {
+    if (stateModel.currentPage != null && _currentVO != null && _nextVO != null && stateModel.currentPage.name == _nextVO.view_id && _currentVO.substate == StateConstants.SUB_MODAL) {
       //do not retrieve nextStateElement from Context, since it is already present as modal background. see handling in switch/case below
     } else {
-      _nextStateElement = _context.getObject(_nextVO.view_id, [_nextVO.view_id]);
+      _nextStateElement = applicationContext.getObject(_nextVO.view_id, [_nextVO.view_id]);
 
       if (_nextVO.params != null) {
         _nextStateElement.setData(_nextVO.params);
       }
     }
 
-    _stateModel.currentState = StateConstants.MAIN_TRANSITIONING;
-    _stateModel.currentTransition = _context.getObject(_nextVO.transition);
+    stateModel.currentState = StateConstants.MAIN_TRANSITIONING;
+    stateModel.currentTransition = applicationContext.getObject(_nextVO.transition);
     String transitionType = "";
 
     if (_currentVO == null) {
       // 1. nullToNormal
       transitionType = ScreenConstants.TRANSITION_NONE_TO_NORMAL;
-      _stateModel.currentPage = _nextStateElement;
+      stateModel.currentPage = _nextStateElement;
     } else {
 
       if (_currentVO.substate == StateConstants.SUB_MODAL) {
 
-        if (_stateModel.currentPage.name == _nextVO.view_id) {
+        if (stateModel.currentPage.name == _nextVO.view_id) {
           // 5.modalBack. _nextStateElement hasn't been created (line 36)
           transitionType = ScreenConstants.TRANSITION_MODAL_BACK;
-          _stateModel.currentTransition = _context.getObject("transition.default.modal");
-          _nextStateElement = _stateModel.currentPage;
+          stateModel.currentTransition = applicationContext.getObject("transition.default.modal");
+          _nextStateElement = stateModel.currentPage;
         } else if (_nextVO.substate == StateConstants.SUB_MODAL) {
           // 4. modalToModal
           transitionType = ScreenConstants.TRANSITION_MODAL_TO_MODAL;
           modal = true;
         } else {
           // 6. modalToNormal
-          _currentStateElement = _stateModel.currentPage;
-          _stateModel.currentPage = _nextStateElement;
+          _currentStateElement = stateModel.currentPage;
+          stateModel.currentPage = _nextStateElement;
           transitionType = ScreenConstants.TRANSITION_MODAL_TO_NORMAL;
         }
       } else if (_nextVO.substate == StateConstants.SUB_MODAL) {
         // 3. normalToModal
-        _currentStateElement = _stateModel.currentPage;
+        _currentStateElement = stateModel.currentPage;
         transitionType = ScreenConstants.TRANSITION_NORMAL_TO_MODAL;
         modal = true;
-        _stateModel.currentPage.enabled = false;
+        stateModel.currentPage.enabled = false;
       } else {
         // 2. normalToNormal
-        _currentStateElement = _stateModel.currentPage;
-        _stateModel.currentPage = _nextStateElement;
+        _currentStateElement = stateModel.currentPage;
+        stateModel.currentPage = _nextStateElement;
         transitionType = ScreenConstants.TRANSITION_NORMAL_TO_NORMAL;
       }
     }
 
-    new XLSignal(ScreenDisplaylistEvents.TRANSITION_PREPARE, new ScreenDisplaylistTransitionPrepareVO(transitionType, _currentStateElement, _stateModel.currentTransition, _nextStateElement, modal: modal, initialAlpha: _stateModel.currentTransition.initialAlpha), _onTransitionEnd).dispatch();
+    new XLSignal(ScreenDisplaylistEvents.TRANSITION_PREPARE, new ScreenDisplaylistTransitionPrepareVO(transitionType, _currentStateElement, stateModel.currentTransition, _nextStateElement, modal: modal, initialAlpha: stateModel.currentTransition.initialAlpha), _onTransitionEnd).dispatch();
   }
   void _onTransitionEnd([dynamic payload = null]) {
-    _stateModel.currentState = StateConstants.MAIN_PRESENTING;
+    stateModel.currentState = StateConstants.MAIN_PRESENTING;
 
     if (_nextVO.substate == StateConstants.SUB_MODAL) {
-      _stateModel.modalizedPage = _stateModel.currentPage;
+      stateModel.modalizedPage = stateModel.currentPage;
     }
 
     dispatchCompleteEvent();

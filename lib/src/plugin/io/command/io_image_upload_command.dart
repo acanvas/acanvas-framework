@@ -1,4 +1,4 @@
-part of stagexl_rockdot;
+part of stagexl_rockdot.io;
 
 @retain
 class IOImageUploadCommand extends CoreCommand {
