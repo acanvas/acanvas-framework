@@ -8,10 +8,10 @@ class FBLoginBrowserCommand extends AbstractFBCommand {
   void execute([XLSignal event = null]) {
     super.execute(event);
 
-    String scopes = getProperty("project.facebook.scopes");
+    String scopes = "";
     if (event.data != null && event.data is FacebookLoginVO) {
       _nextSignal = event.data.nextSignal;
-      scopes = event.data.scopes != null ? event.data.scopes : [getProperty("project.google.scope.plus")];
+      scopes = event.data.scopes != null ? event.data.scopes : getProperty("project.facebook.scopes");
     }
 
     if (_fbModel.userIsAuthenticated && event.data == "") {
