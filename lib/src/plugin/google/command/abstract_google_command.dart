@@ -1,6 +1,6 @@
 part of stagexl_rockdot.google;
 
-@retain
+//@retain
 class AbstractGoogleCommand extends CoreCommand implements IGoogleModelAware {
   GoogleModel _gModel;
   void set googleModel(GoogleModel gModel) {

@@ -1,7 +1,7 @@
 part of stagexl_rockdot.facebook;
 
 
-@retain
+//@retain
 class FBUserGetInfoCommand extends AbstractFBCommand {
 
   @override

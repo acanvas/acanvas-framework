@@ -63,10 +63,10 @@ class AbstractPlugin extends AbstractOrderedFactoryPostProcessor {
      *                pretty url    - the uri of the page - will result in an anchor, f.ex. www.site.com/#/test
      *                modality      - the page's modality allows you to define your page as a layer
      */
-  void addScreen(String id, Type clazz,  
+  void addScreen(String id, Function func,
                  {String url, String substate : StateConstants.SUB_NORMAL, int tree_order : 0, int tree_parent : 0, String transition : "transition.default"}) {
     url = url == null ? objectFactory.propertiesProvider.getProperty("$id.url") : url;
-    RockdotContextHelper.registerScreen( objectFactory, id, clazz, url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate );
+    RockdotContextHelper.registerScreen( objectFactory, id, func, url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate );
   }
  
   void addScreenInstance(RockdotManagedSpriteComponent clazz, 
@@ -74,10 +74,12 @@ class AbstractPlugin extends AbstractOrderedFactoryPostProcessor {
     url = url == null ? objectFactory.propertiesProvider.getProperty("${clazz.name}.url") : url;
     RockdotContextHelper.registerScreenInstance( objectFactory, clazz.name, clazz, url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate );
   }
-  void addLayer(String id, Type clazz, 
+
+  void addLayer(String id, Function func,
                 {String url, int tree_order : 0, int tree_parent : 0, String transition : "transition.default.modal"}) {
-    addScreen(id, clazz, url: url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: StateConstants.SUB_MODAL);
+    addScreen(id, func, url: url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: StateConstants.SUB_MODAL);
   }
+
   void addLayerInstance(RockdotManagedSpriteComponent clazz,  
                         {String url, int tree_order : 0, int tree_parent : 0, String transition : "transition.default.modal"}) {
     addScreenInstance(clazz, url: url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: StateConstants.SUB_MODAL);

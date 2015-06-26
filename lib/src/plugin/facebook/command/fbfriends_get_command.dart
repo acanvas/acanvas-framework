@@ -1,6 +1,6 @@
 part of stagexl_rockdot.facebook;
 
-@retain
+//@retain
 class FBFriendsGetCommand extends AbstractFBCommand {
   DataRetrieveVO _vo;
   

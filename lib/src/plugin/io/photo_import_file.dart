@@ -5,7 +5,6 @@ part of rockdot_nikon;
  * parts taken from @see https://code.google.com/p/dart-examples/source/browse/examples/DartExamples/ImageScaling/ImageScaling.dart
  */
 
-@retain
 class PhotoImportFile extends AbstractLayer {
 
   final double SCALE_IMAGE = .5;

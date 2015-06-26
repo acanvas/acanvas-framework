@@ -1,7 +1,5 @@
 library stagexl_rockdot.io;
 
-@MirrorsUsed( metaTargets: const[Retain])
-import 'dart:mirrors';
 import 'dart:html' as html;
 import 'dart:math' as math;
 import 'dart:typed_data';

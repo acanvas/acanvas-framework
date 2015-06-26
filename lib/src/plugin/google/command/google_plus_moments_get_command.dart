@@ -1,6 +1,6 @@
 part of stagexl_rockdot.google;
 
-@retain
+//@retain
 class GooglePlusMomentsGetCommand extends AbstractGoogleCommand {
 
   @override
@@ -23,6 +23,6 @@ class GooglePlusMomentsGetCommand extends AbstractGoogleCommand {
     hideMessage();
     
     _gModel.moments = moments;
-    dispatchCompleteEvent();
+    dispatchCompleteEvent(moments.items);
   }
 }

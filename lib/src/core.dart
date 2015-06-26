@@ -1,7 +1,5 @@
 library stagexl_rockdot.core;
 
-@MirrorsUsed( metaTargets: const[Retain])
-import 'dart:mirrors';
 import 'dart:html' as html;
 import 'dart:math' as math;
 import 'dart:convert';
@@ -48,7 +46,7 @@ part 'core/model/rockdot_constants.dart';
 // LIBRARY #####
 
 /* required by Rockdot UGCPlugin */
-part 'core/rpc/dispatcher.dart';
+//part 'core/rpc/dispatcher.dart';
 part 'core/rpc/jsonrpc_client.dart';
-part 'core/rpc/jsonrpc_service.dart';
+//part 'core/rpc/jsonrpc_service.dart';
 part 'core/rpc/rpc_exceptions.dart';

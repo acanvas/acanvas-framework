@@ -1,7 +1,7 @@
 part of stagexl_rockdot.ugc;
 
 
-@retain
+//@retain
 class UGCFriendsReadCommand extends AbstractUGCCommand implements IFBModelAware {
   FBModel _modelFB;
 

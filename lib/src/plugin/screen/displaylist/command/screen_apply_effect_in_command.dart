@@ -1,13 +1,13 @@
 part of stagexl_rockdot.screen;
 
 
-@retain
+//@retain
 class ScreenApplyEffectInCommand extends AbstractScreenCommand {
 
   @override void execute([XLSignal event = null]) {
     super.execute(event);
-
     ScreenDisplaylistEffectApplyVO vo = event.data;
+
     vo.effect.runInEffect(vo.target, vo.duration, dispatchCompleteEvent);
   }
 

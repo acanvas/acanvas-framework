@@ -13,8 +13,8 @@ class ScreenPluginBase extends AbstractPlugin {
    * new XLSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override void configureCommands() {
-    commandMap[ScreenEvents.INIT] = ScreenPluginInitCommand;
-    commandMap[ScreenEvents.RESIZE] = ScreenResizeCommand;
+    commandMap[ScreenEvents.INIT] = () => new ScreenPluginInitCommand();
+    commandMap[ScreenEvents.RESIZE] = () => new ScreenResizeCommand();
     // ## COMMAND INSERTION PLACEHOLDER - DO NOT REMOVE ## //
 
 

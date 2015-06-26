@@ -1,7 +1,7 @@
 part of stagexl_rockdot.screen;
 
 
-	 @retain
+	 //@retain
 class ScreenResizeCommand extends AbstractScreenCommand {
 
 		@override dynamic execute([XLSignal event=null])

@@ -1,7 +1,5 @@
 library stagexl_rockdot.google;
 
-@MirrorsUsed( metaTargets: const[Retain])
-import 'dart:mirrors';
 import 'dart:html' as html;
 import 'dart:js' as js;
 import "package:googleapis_auth/auth_browser.dart"; 

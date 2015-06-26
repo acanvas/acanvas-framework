@@ -10,7 +10,7 @@ class IOPlugin extends AbstractPlugin {
    * new XLSignal(IOEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override void configureCommands() {
-    commandMap[IOEvents.UPLOAD_IMAGE] = IOImageUploadCommand;
+    commandMap[IOEvents.UPLOAD_IMAGE] = () => new IOImageUploadCommand();
   }
 
   /**

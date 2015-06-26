@@ -1,6 +1,6 @@
 part of stagexl_rockdot.ugc;
 
-@retain
+//@retain
 class GamingGetHighscoreCommand extends AbstractUGCCommand implements IFBModelAware {
   FBModel _modelFB;
   void set fbModel(FBModel model) {

@@ -1,6 +1,6 @@
 part of stagexl_rockdot.facebook;
 
-@retain
+//@retain
 class FBLoginBrowserCommand extends AbstractFBCommand {
   XLSignal _nextSignal;
 

@@ -6,7 +6,7 @@ part of stagexl_rockdot.screen;
 /**
 	 * @author Nils Doehring (nilsdoehring(gmail as at).com)
 	 */
-@retain
+//@retain
 class ScreenSetCommand extends AbstractStateCommand {
   StateVO _currentVO;
   StateVO _nextVO;

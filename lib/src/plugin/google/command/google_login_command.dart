@@ -1,6 +1,6 @@
 part of stagexl_rockdot.google;
 
-@retain
+//@retain
 class GoogleLoginCommand extends AbstractGoogleCommand {
   XLSignal _nextSignal;
 

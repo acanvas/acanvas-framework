@@ -10,21 +10,21 @@ class StatePlugin extends AbstractPlugin {
    * new XLSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override void configureCommands() {
-    commandMap[StateEvents.INIT] = StatePluginInitCommand;
+    commandMap[StateEvents.INIT] = () => new StatePluginInitCommand();
 
     // 1. dispatched by button, sent to proxy
-    commandMap[StateEvents.ADDRESS_SET] = StateAddressSetCommand;
+    commandMap[StateEvents.ADDRESS_SET] = () => new StateAddressSetCommand();
 
     // 2. select page vo by url, received from proxy
-    commandMap[StateEvents.STATE_REQUEST] = StateRequestCommand;
+    commandMap[StateEvents.STATE_REQUEST] = () => new StateRequestCommand();
 
     // 3. set page vo
-    commandMap[StateEvents.STATE_VO_SET] = StateSetCommand;
-    commandMap[StateEvents.STATE_VO_FORWARD] = StateForwardCommand;
-    commandMap[StateEvents.STATE_VO_BACK] = StateBackCommand;
+    commandMap[StateEvents.STATE_VO_SET] = () => new StateSetCommand();
+    commandMap[StateEvents.STATE_VO_FORWARD] = () => new StateForwardCommand();
+    commandMap[StateEvents.STATE_VO_BACK] = () => new StateBackCommand();
 
     // 4b. if it's the same state, only change params
-    commandMap[StateEvents.STATE_PARAMS_CHANGE] = StateSetParamsCommand;
+    commandMap[StateEvents.STATE_PARAMS_CHANGE] = () => new StateSetParamsCommand();
     // ## COMMAND INSERTION PLACEHOLDER - DO NOT REMOVE ## //
 
 

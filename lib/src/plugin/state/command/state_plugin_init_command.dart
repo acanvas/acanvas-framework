@@ -2,7 +2,7 @@ part of stagexl_rockdot.state;
 
 
 
-	 @retain
+	 //@retain
 class StatePluginInitCommand extends AbstractStateCommand {
 
 		@override dynamic execute([XLSignal event=null])

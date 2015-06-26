@@ -1,6 +1,6 @@
 part of stagexl_rockdot.facebook;
 
-@retain
+//@retain
 class AbstractFBCommand extends CoreCommand implements IFBModelAware {
   FBModel _fbModel;
   void set fbModel(FBModel fbModel) {

@@ -1,6 +1,6 @@
 part of stagexl_rockdot.facebook;
 
-@retain
+//@retain
 class FBPhotoGetFromAlbumCommand extends AbstractFBCommand {
 
   DataRetrieveVO _vo;

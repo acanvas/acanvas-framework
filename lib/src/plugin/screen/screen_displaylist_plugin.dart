@@ -10,15 +10,15 @@ class ScreenDisplaylistPlugin extends ScreenPluginBase {
   @override void configureCommands() {
     super.configureCommands();
 
-    commandMap[ScreenDisplaylistEvents.SCREEN_INIT] = ScreenInitCommand;
-    commandMap[ScreenDisplaylistEvents.TRANSITION_PREPARE] = ScreenTransitionPrepareCommand;
-    commandMap[ScreenDisplaylistEvents.APPEAR] = ScreenAppearCommand;
-    commandMap[ScreenDisplaylistEvents.DISAPPEAR] = ScreenDisappearCommand;
-    commandMap[ScreenDisplaylistEvents.TRANSITION_RUN] = ScreenTransitionRunCommand;
-    commandMap[ScreenDisplaylistEvents.APPLY_EFFECT_IN] = ScreenApplyEffectInCommand;
-    commandMap[ScreenDisplaylistEvents.APPLY_EFFECT_OUT] = ScreenApplyEffectOutCommand;
+    commandMap[ScreenDisplaylistEvents.SCREEN_INIT] = () => new ScreenInitCommand();
+    commandMap[ScreenDisplaylistEvents.TRANSITION_PREPARE] = () => new ScreenTransitionPrepareCommand();
+    commandMap[ScreenDisplaylistEvents.APPEAR] = () => new ScreenAppearCommand();
+    commandMap[ScreenDisplaylistEvents.DISAPPEAR] = () => new ScreenDisappearCommand();
+    commandMap[ScreenDisplaylistEvents.TRANSITION_RUN] = () => new ScreenTransitionRunCommand();
+    commandMap[ScreenDisplaylistEvents.APPLY_EFFECT_IN] = () => new ScreenApplyEffectInCommand();
+    commandMap[ScreenDisplaylistEvents.APPLY_EFFECT_OUT] = () => new ScreenApplyEffectOutCommand();
 
-    commandMap[StateEvents.STATE_CHANGE] = ScreenSetCommand;
+    commandMap[StateEvents.STATE_CHANGE] = () => new ScreenSetCommand();
   }
 
   /**

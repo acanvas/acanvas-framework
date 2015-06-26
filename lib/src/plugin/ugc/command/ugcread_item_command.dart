@@ -1,6 +1,6 @@
 part of stagexl_rockdot.ugc;
 
-@retain
+//@retain
 class UGCReadItemCommand extends AbstractUGCCommand {
 
   @override void execute([XLSignal event = null]) {

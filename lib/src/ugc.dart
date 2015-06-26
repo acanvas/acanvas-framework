@@ -1,8 +1,5 @@
 library stagexl_rockdot.ugc;
 
-@MirrorsUsed( metaTargets: const[Retain])
-import 'dart:mirrors';
-
 import 'dart:html' as html;
 import 'dart:math' as math;
 import 'dart:convert';

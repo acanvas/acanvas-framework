@@ -1,6 +1,6 @@
 part of stagexl_rockdot.io;
 
-@retain
+//@retain
 class IOImageUploadCommand extends CoreCommand {
 
   @override

@@ -3,7 +3,7 @@ part of stagexl_rockdot.state;
 /**
 	 * @author Nils Doehring (nilsdoehring(gmail as at).com)
 	 */
-@retain
+//@retain
 class StateSetCommand extends AbstractStateCommand {
   @override dynamic execute([XLSignal event = null]) {
     super.execute(event);

@@ -1,9 +1,8 @@
 name: stagexl_rockdot
-version: 0.0.2
+version: 0.2.0
 description: StageXL port of Rockdot framework, based on Spring framework for StageXL.
 dependencies:
   googleapis_auth: any
   googleapis: any
   stagexl_spring:
     git: https://github.com/blockforest/stagexl-spring
-    #path: /Users/ndoehring/git/stagexl-spring

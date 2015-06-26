@@ -2,7 +2,7 @@ part of stagexl_rockdot.screen;
 
 
 
-@retain
+//@retain
 class ScreenTransitionRunCommand extends AbstractScreenCommand {
 
   ScreenDisplaylistTransitionApplyVO _vo;

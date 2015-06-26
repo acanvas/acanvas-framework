@@ -1,6 +1,6 @@
 part of stagexl_rockdot.screen;
 
-@retain
+//@retain
 class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
   ScreenDisplaylistTransitionPrepareVO _vo;
 

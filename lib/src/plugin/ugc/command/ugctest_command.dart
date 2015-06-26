@@ -1,6 +1,6 @@
 part of stagexl_rockdot.ugc;
 
-@retain
+//@retain
 class UGCTestCommand extends AbstractUGCCommand {
   int _itemContainerID;
   int _itemID;

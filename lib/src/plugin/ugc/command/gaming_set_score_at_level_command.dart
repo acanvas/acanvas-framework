@@ -1,6 +1,6 @@
 part of stagexl_rockdot.ugc;
 
-@retain
+//@retain
 class GamingSetScoreAtLevelCommand extends AbstractUGCCommand {
 
   @override void execute([XLSignal event = null]) {

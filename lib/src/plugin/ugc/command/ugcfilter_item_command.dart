@@ -1,7 +1,7 @@
 part of stagexl_rockdot.ugc;
 
 
-@retain
+//@retain
 class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAware {
   StateModel _stateModel;
   UGCFilterVO _vo;

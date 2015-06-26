@@ -1,8 +1,5 @@
 library stagexl_rockdot.state;
 
-@MirrorsUsed( metaTargets: const[Retain])
-import 'dart:mirrors';
-
 import 'dart:html' as html;
 
 import 'package:stagexl_commons/stagexl_commons.dart';

@@ -1,8 +1,5 @@
 library stagexl_rockdot.facebook;
 
-@MirrorsUsed( metaTargets: const[Retain])
-import 'dart:mirrors';
-
 import 'dart:html' as html;
 import 'dart:js' as js;
 import 'dart:typed_data';

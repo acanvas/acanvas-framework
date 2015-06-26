@@ -1,6 +1,6 @@
 part of stagexl_rockdot.screen;
 
-@retain
+//@retain
 class ScreenAppearCommand extends AbstractScreenCommand {
   ScreenDisplaylistAppearDisappearVO _vo;
 

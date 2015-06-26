@@ -1,6 +1,6 @@
 part of stagexl_rockdot.facebook;
 
-@retain
+//@retain
 class FBTestCommand extends AbstractFBCommand {
 
   @override void execute([XLSignal event = null]) {

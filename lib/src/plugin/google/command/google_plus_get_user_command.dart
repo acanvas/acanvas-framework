@@ -1,7 +1,7 @@
 part of stagexl_rockdot.google;
 
 
-@retain
+//@retain
 class GooglePlusGetUserCommand extends AbstractGoogleCommand {
 
   @override
@@ -25,6 +25,6 @@ class GooglePlusGetUserCommand extends AbstractGoogleCommand {
   void _handleResult(Person person) {
     hideMessage();
     _gModel.user = person; 
-    dispatchCompleteEvent();
+    dispatchCompleteEvent(person);
   }
 }

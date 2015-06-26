@@ -1,6 +1,6 @@
 part of stagexl_rockdot.ugc;
 
-	 @retain
+	 //@retain
 class UGCHasExtendedUserCommand extends AbstractUGCCommand{
 
 		@override dynamic execute([XLSignal event=null])

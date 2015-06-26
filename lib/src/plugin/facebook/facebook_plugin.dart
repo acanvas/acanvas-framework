@@ -12,19 +12,19 @@ class FacebookPlugin extends AbstractPlugin {
    */
   @override void configureCommands() {
 
-    commandMap[FBEvents.INIT] = FBInitBrowserCommand;
-    commandMap[FBEvents.USER_LOGIN] = FBLoginBrowserCommand;
-    commandMap[FBEvents.USER_LOGOUT] = FBLogoutBrowserCommand;
-    commandMap[FBEvents.PROMPT_SHARE] = FBPromptShareCommand;
-    commandMap[FBEvents.PROMPT_INVITE] = FBPromptInviteBrowserCommand;
-    commandMap[FBEvents.TEST] = FBTestCommand;
-    commandMap[FBEvents.USER_GETINFO] = FBUserGetInfoCommand;
-    commandMap[FBEvents.USER_GETINFO_PERMISSIONS] = FBUserGetInfoPermissionsCommand;
-    commandMap[FBEvents.FRIENDS_GET] = FBFriendsGetCommand;
-    commandMap[FBEvents.FRIENDS_GETINFO] = FBFriendsGetInfoCommand;
-    commandMap[FBEvents.ALBUMS_GET] = FBPhotoGetAlbumsCommand;
-    commandMap[FBEvents.PHOTOS_GET] = FBPhotoGetFromAlbumCommand;
-    commandMap[FBEvents.PHOTO_UPLOAD] = FBPhotoUploadCommand;
+    commandMap[FBEvents.INIT] = () => new FBInitBrowserCommand();
+    commandMap[FBEvents.USER_LOGIN] = () => new FBLoginBrowserCommand();
+    commandMap[FBEvents.USER_LOGOUT] = () => new FBLogoutBrowserCommand();
+    commandMap[FBEvents.PROMPT_SHARE] = () => new FBPromptShareCommand();
+    commandMap[FBEvents.PROMPT_INVITE] = () => new FBPromptInviteBrowserCommand();
+    commandMap[FBEvents.TEST] = () => new FBTestCommand();
+    commandMap[FBEvents.USER_GETINFO] = () => new FBUserGetInfoCommand();
+    commandMap[FBEvents.USER_GETINFO_PERMISSIONS] = () => new FBUserGetInfoPermissionsCommand();
+    commandMap[FBEvents.FRIENDS_GET] = () => new FBFriendsGetCommand();
+    commandMap[FBEvents.FRIENDS_GETINFO] = () => new FBFriendsGetInfoCommand();
+    commandMap[FBEvents.ALBUMS_GET] = () => new FBPhotoGetAlbumsCommand();
+    commandMap[FBEvents.PHOTOS_GET] = () => new FBPhotoGetFromAlbumCommand();
+    commandMap[FBEvents.PHOTO_UPLOAD] = () => new FBPhotoUploadCommand();
     
     projectInitCommand = FBEvents.INIT;
   }

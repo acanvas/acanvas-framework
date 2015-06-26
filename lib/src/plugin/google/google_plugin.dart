@@ -11,14 +11,14 @@ class GooglePlugin extends AbstractPlugin {
    * new XLSignal(GoogleEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override void configureCommands() {
-    commandMap[GoogleEvents.INIT] = GoogleInitCommand;
-    commandMap[GoogleEvents.USER_LOGIN] = GoogleLoginCommand;
-    commandMap[GoogleEvents.PLUS_USER_GET] = GooglePlusGetUserCommand;
+    commandMap[GoogleEvents.INIT] = () => new GoogleInitCommand();
+    commandMap[GoogleEvents.USER_LOGIN] = () => new GoogleLoginCommand();
+    commandMap[GoogleEvents.PLUS_USER_GET] = () => new GooglePlusGetUserCommand();
     
-    commandMap[GoogleEvents.PLUS_MOMENTS_GET] = GooglePlusMomentsGetCommand;
-    commandMap[GoogleEvents.PLUS_PEOPLE_GET] = GooglePlusPeopleGetCommand;
+    commandMap[GoogleEvents.PLUS_MOMENTS_GET] = () => new GooglePlusMomentsGetCommand();
+    commandMap[GoogleEvents.PLUS_PEOPLE_GET] = () => new GooglePlusPeopleGetCommand();
     
-    commandMap[GoogleEvents.PLUS_SHARE_RENDER] = GooglePlusShareRenderCommand;
+    commandMap[GoogleEvents.PLUS_SHARE_RENDER] = () => new GooglePlusShareRenderCommand();
     
     projectInitCommand = GoogleEvents.INIT;
   }

@@ -1,7 +1,7 @@
 part of stagexl_rockdot.screen;
 
 
-@retain
+//@retain
 class ScreenApplyEffectOutCommand extends AbstractScreenCommand {
 
   @override void execute([XLSignal event = null]) {

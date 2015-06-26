@@ -1,8 +1,5 @@
 library stagexl_rockdot.screen;
 
-@MirrorsUsed( metaTargets: const[Retain])
-import 'dart:mirrors';
-
 import 'dart:math' as math;
 import 'dart:async' show Timer;
 

@@ -2,7 +2,7 @@ part of stagexl_rockdot.facebook;
 
 //https://developers.facebook.com/docs/sharing/reference/share-dialog
 
-@retain
+//@retain
 class FBPromptShareCommand extends AbstractFBCommand {
 
   @override void execute([XLSignal event = null]) {

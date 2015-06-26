@@ -1,6 +1,6 @@
 part of stagexl_rockdot.facebook;
 
-@retain
+//@retain
 class FBInitBrowserCommand extends AbstractFBCommand {
   
   String facebookSDKUrl = "https://connect.facebook.net/en_US/sdk.js";
