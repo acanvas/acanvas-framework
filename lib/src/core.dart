@@ -13,7 +13,7 @@ import 'package:stagexl/stagexl.dart';
 import 'package:stagexl_commons/stagexl_commons.dart';
 import 'package:stagexl_spring/stagexl_spring.dart';
 
-import 'state.dart' show StateConstants, StateMessageVO, StateEvents, StateVO;
+import 'state.dart' show StateConstants, StateMessageVO, StateEvents, StateVO, StateModel;
 import 'screen.dart' show ScreenConstants, RockdotManagedSpriteComponent;
 
 export 'screen.dart';

@@ -13,7 +13,8 @@ class StatePluginInitCommand extends AbstractStateCommand {
 		/*	if(!_stateModel.tracker && getProperty("project.api.google.analytics.key")) {
 				_stateModel.tracker = new GATracker(RockdotConstants.getStage(), getProperty("project.api.google.analytics.key"), "AS3", false);
 			}*/
-			
+
+			/*
 			Assert.notNull(applicationContext, "the objectFactory argument must not be null");
 			List<String> names = applicationContext.cache.getCachedNamesForType(StateVO);
 			if (names != null) {
@@ -23,6 +24,7 @@ class StatePluginInitCommand extends AbstractStateCommand {
 				}
 			} else {
 			}
+			*/
 
 			_stateModel.addressService = new SWFAddressService();
 			

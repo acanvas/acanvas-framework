@@ -88,7 +88,9 @@ class RockdotContextHelper {
     stateVO.substate = substate;
     stateVO.property_key = id;
     stateVO.view_id = id;
-    objectFactory.cache.putInstance("vo." + id, stateVO);
+    //objectFactory.cache.putInstance("vo." + id, stateVO);
+    StateModel m = objectFactory.getObject(StateConstants.CTX_MODEL_STATE) as StateModel;
+    m.addStateVO(stateVO);
 
   }
 

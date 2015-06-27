@@ -57,7 +57,7 @@ class StateModel implements IApplicationContextAware {
     _currentPage = currentPage;
   }
 
-  Map _pageVOs;
+  Map _pageVOs = new Map();
   Map get pageVOs {
     return _pageVOs;
   }
