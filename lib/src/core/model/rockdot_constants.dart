@@ -18,9 +18,9 @@ class RockdotConstants {
   static const String VAR_REASON_VALUE_SHARE = "share";
 
   /* defaults if no vars are given */
-  static const String COUNTRY_DEFAULT = Countries.GERMANY;
-  static const String MARKET_DEFAULT = Markets.GERMANY;
-  static const String LANGUAGE_DEFAULT = Languages.GERMAN;
+  static const String COUNTRY_DEFAULT = Countries.USA;
+  static const String MARKET_DEFAULT = Markets.USA;
+  static const String LANGUAGE_DEFAULT = Languages.ENGLISH;
 
 
   static const int UPLOAD_WIDTH_MAX = 720;
