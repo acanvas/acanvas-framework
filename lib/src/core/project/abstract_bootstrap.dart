@@ -2,26 +2,27 @@ part of stagexl_rockdot.core;
 
 
 /**
-   * @author Nils Doehring
-   */
-class AbstractBootstrap extends ManagedSpriteComponent {
+ * @author Nils Doehring
+ */
+class AbstractBootstrap extends LifecycleSprite {
   RockdotApplicationContext _applicationContext;
   Stage _stage;
-  List plugins = [];
-  List propertyFiles = [];
+  List<IObjectFactoryPostProcessor> plugins = [];
+  List<String> propertyFiles = [];
 
-  AbstractBootstrap(Stage stage) : super() {
+  AbstractBootstrap(Stage stage) : super("rockdot.bootstrap") {
     //XXX currently, LoaderInfo is just a leftover from Actionscript
     LoaderInfo loaderInfo = new LoaderInfo();
     RockdotConstants.setLoaderInfo(loaderInfo);
 
     _stage = stage;
     enabled = true;
+    requiresLoading = true;
   }
 
   /* Assign and prepare some things for Rockdot */
-  @override void init([data = null]) {
-    super.init(data);
+  @override void init({Map params: null}){
+    super.init(params: params);
 
     // Instantiate Context.
     _applicationContext = new RockdotApplicationContext(_stage);
@@ -39,28 +40,29 @@ class AbstractBootstrap extends ManagedSpriteComponent {
     //Logging
     _initLogger();
 
-    didInit();
+    onInitComplete();
   }
-  
+
   void _initPropertyFiles() {
     IObjectDefinitionsProvider provider = new DefaultObjectDefinitionsProvider();
 
-    for(int i = 0; i<propertyFiles.length;i++){
-      TextFileURI uri = new TextFileURI(propertyFiles.elementAt(i), true);
+    propertyFiles.forEach((file){
+      TextFileURI uri = new TextFileURI(file, true);
       provider.propertyURIs.add(uri);
-    }
+
+    });
 
     _applicationContext.addDefinitionProvider(provider);
   }
-  
+
   void _initPlugins() {
-    
-    for(int i = 0; i<plugins.length;i++){
-      _applicationContext.addObjectFactoryPostProcessor(plugins.elementAt(i));
-    }
-    
+
+    plugins.forEach((plugin){
+      _applicationContext.addObjectFactoryPostProcessor(plugin);
+    });
+
   }
-  
+
   void _initLogger() {
     if (RockdotConstants.DEBUG == false) {
       logging.Logger.root.level = logging.Level.OFF;
@@ -71,7 +73,7 @@ class AbstractBootstrap extends ManagedSpriteComponent {
         print('${rec.level.name}: ${rec.time}: ${rec.message}');
       });
 
-      this.log.info("Logging Enabled. Welcome.");
+      logger.info("Logging Enabled. Welcome.");
     }
   }
 
@@ -91,16 +93,17 @@ class AbstractBootstrap extends ManagedSpriteComponent {
    * Configures and executes (a as asynchronously) @see CompositeCommandWithEvent
    */
   void _onCoreApplicationContextLoadResult(Event e) {
-    this.log.info("CoreApplicationContext Loaded...");
+    logger.info("CoreApplicationContext Loaded...");
     _applicationContext.initApplication(_onCoreApplicationContextInitComplete, _onCoreApplicationContextInitError);
   }
 
   /**
    * Listener for @see IOErrorEvent of @see CoreApplicationContext
-   * TODO Display error message
+   * * TODO visually display error message
    */
   void _onCoreApplicationContextLoadFault(Event iOErrorEvent) {
-    this.log.severe("Spring Application Context Failed to Load: [" + iOErrorEvent.toString() + "]");
+    logger.severe("Spring Application Context Failed to Load: [${iOErrorEvent}]");
+    throw new StateError("Spring Application Context Failed to Load: [${iOErrorEvent}]");
   }
 
   /**
@@ -109,10 +112,10 @@ class AbstractBootstrap extends ManagedSpriteComponent {
    */
   void _onCoreApplicationContextInitComplete([OperationEvent event = null]) {
     // All models are loaded. Wiring is done. Extensions are ready. App is ready to go!
-    this.log.info("Application Context Initialized");
+    logger.info("Application Context Initialized");
 
     // App.as listens to ViewEvent.DID_LOAD and will hide AppPreloader and show this
-    didLoad();
+    onLoadComplete();
   }
 
   /**
@@ -120,7 +123,8 @@ class AbstractBootstrap extends ManagedSpriteComponent {
    * TODO visually display error message
    */
   void _onCoreApplicationContextInitError([OperationEvent event = null]) {
-    this.log.severe("Application Error: " + event.error);
+    logger.severe("Application Error: ${event.error}");
+    throw new StateError("Application Error: ${event.error}");
   }
 
   @override

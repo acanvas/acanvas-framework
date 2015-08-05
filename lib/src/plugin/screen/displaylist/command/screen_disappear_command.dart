@@ -8,17 +8,15 @@ class ScreenDisappearCommand extends AbstractScreenCommand {
     super.execute(event);
 
     _vo = event.data;
-    _vo.target.addEventListener(ManagedSpriteComponentEvent.DISAPPEAR_COMPLETE, dispatchCompleteEvent);
-    _vo.target.disappear(_vo.duration);
+    _vo.target.addEventListener(LifecycleEvent.DISAPPEAR_COMPLETE, dispatchCompleteEvent);
+    _vo.target.disappear(duration: _vo.duration);
   }
 
   @override bool dispatchCompleteEvent([dynamic result = null]) {
-    _vo.target.removeEventListener(ManagedSpriteComponentEvent.DISAPPEAR_COMPLETE, dispatchCompleteEvent);
-    // _vo.target.alpha = 0;
-    // _vo.target.visible = false;
+    _vo.target.removeEventListener(LifecycleEvent.DISAPPEAR_COMPLETE, dispatchCompleteEvent);
 
-    if (_vo.autoDestroy == true) {
-      _vo.target.destroy();
+    if (_vo.autoDispose == true) {
+      _vo.target.dispose();
     }
 
     return super.dispatchCompleteEvent(result);

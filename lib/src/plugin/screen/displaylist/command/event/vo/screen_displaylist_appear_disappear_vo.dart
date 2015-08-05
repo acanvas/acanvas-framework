@@ -4,10 +4,10 @@ part of stagexl_rockdot.screen;
  * @author nilsdoehring
  */
 class ScreenDisplaylistAppearDisappearVO implements IXLVO {
-  ISpriteComponent target;
+  LifecycleSprite target;
   num duration;
-  bool autoDestroy;
-  
-  ScreenDisplaylistAppearDisappearVO(this.target, this.duration, [this.autoDestroy = false]) {
+  bool autoDispose;
+
+  ScreenDisplaylistAppearDisappearVO(this.target, this.duration, [this.autoDispose = false]) {
   }
 }

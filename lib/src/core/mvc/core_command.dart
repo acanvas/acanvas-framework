@@ -1,7 +1,6 @@
 part of stagexl_rockdot.core;
 
 
-
 class CoreCommand extends AbstractOperation implements IAsyncCommand, IApplicationContextAware {
   Logger log;
 
@@ -21,10 +20,12 @@ class CoreCommand extends AbstractOperation implements IAsyncCommand, IApplicati
   }
 
   IApplicationContext _context;
-  IApplicationContext get applicationContext {
+
+  @override IApplicationContext get applicationContext {
     return _context;
   }
-  void set applicationContext(IApplicationContext value) {
+
+  @override void set applicationContext(IApplicationContext value) {
     _context = value;
   }
 
@@ -39,12 +40,13 @@ class CoreCommand extends AbstractOperation implements IAsyncCommand, IApplicati
     }
     return super.dispatchCompleteEvent(result);
   }
-  void _handleError(OperationEvent event) {
+
+  @override void errorHandler(OperationEvent event) {
     log.severe(event.error);
     dispatchErrorEvent(event.error);
   }
 
-  void execute([XLSignal event = null]) {
+  @override void execute([XLSignal event = null]) {
     _event = event;
     if (event != null && event.completeCallBack != null) {
       _callback = event.completeCallBack;

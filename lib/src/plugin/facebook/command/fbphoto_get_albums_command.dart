@@ -6,7 +6,7 @@ class FBPhotoGetAlbumsCommand extends AbstractFBCommand {
   @override
   void execute([XLSignal event = null]) {
     super.execute(event);
-    
+
     if (notLoggedIn(event)) return;
     showMessage(getProperty("message.facebook.loading.data"));
 
@@ -18,13 +18,13 @@ class FBPhotoGetAlbumsCommand extends AbstractFBCommand {
 
   void _handleResult(js.JsObject response) {
     hideMessage();
-    if(containsError(response)) return;
-    
+    if (containsError(response)) return;
+
     List albums = [];
-    response["data"].forEach((e){
-      albums.add( new FBAlbumVO(e) );
+    response["data"].forEach((e) {
+      albums.add(new FBAlbumVO(e));
     });
-    
+
     _fbModel.userAlbums = albums;
     dispatchCompleteEvent(albums);
   }

@@ -18,22 +18,28 @@ class UGCFilterVO extends DataRetrieveVO {
   String order;
 
   //ONE (and only one) of these needs to be set
-  List creator_uids; //CONDITION_FRIENDS
-  String creator_uid; //CONDITION_ME, CONDITION_UID
-  int item_id; //CONDITION_UGC_ID
+  List creator_uids;
+
+  //CONDITION_FRIENDS
+  String creator_uid;
+
+  //CONDITION_ME, CONDITION_UID
+  int item_id;
+
+  //CONDITION_UGC_ID
 
   UGCFilterVO(this.condition, this.order, int limit) : super(limit) {
   }
-  
-  Map toMap(){
+
+  Map toMap() {
     Map map = {
-      "condition": condition,         
-      "order": order,         
-      "limit": limit,         
-      "nextToken": nextToken         
+      "condition": condition,
+      "order": order,
+      "limit": limit,
+      "nextToken": nextToken
     };
-    
-    switch(condition){
+
+    switch (condition) {
       case CONDITION_FRIENDS:
         map["creator_uids"] = creator_uids;
         break;
@@ -45,8 +51,8 @@ class UGCFilterVO extends DataRetrieveVO {
         map["item_id"] = item_id;
         break;
     }
-    
+
     return map;
   }
-  
+
 }

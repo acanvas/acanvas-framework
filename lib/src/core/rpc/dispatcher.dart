@@ -3,18 +3,17 @@ part of stagexl_rockdot.core;
 
 /**
  * A Dispatcher is initialized with a class instance and will dispatch methods of that class.
- * 
+ *
  * Dispatcher.dispatch("someMethod") will return a Future of whatever value  it returns.
- * 
- * It's mainly a wrapper around reflect. 
- * 
+ *
+ * It's mainly a wrapper around reflect.
+ *
  * For any method dispatched, It returns either the return value of the method or instances of one
  * of three "Exception" classes. Most errors will be corralled into these objects, so that
  * runtime exceptions don't get thrown, instead returned in an orderly manner.
- * 
- *  
+ *
+ *
  */
-
 
 
 symbolizeKeys(namedParams) {
@@ -42,6 +41,7 @@ getMethodMirror(instanceMirror, methodName) {
 
 class Dispatcher {
   var instance;
+
   Dispatcher(this.instance);
 
   dispatch(methodName, [positionalParams = null, namedParams = null]) {
@@ -54,7 +54,9 @@ class Dispatcher {
     InstanceMirror instanceMirror = reflect(instance);
     var methodMirror = getMethodMirror(instanceMirror, methodName);
     if (methodMirror == null) {
-      return new Future.sync(() {return new MethodNotFound("Method not found: $methodName");});
+      return new Future.sync(() {
+        return new MethodNotFound("Method not found: $methodName");
+      });
       //return new MethodNotFound("Method not found: $methodName");
     }
     return new Future.sync(() {
@@ -66,7 +68,7 @@ class Dispatcher {
       } on NoSuchMethodError catch (e) {
         return new InvalidParameters('$e');
       } catch (e) {
-        if (e is RuntimeException){
+        if (e is RuntimeException) {
           return e;
         }
         return new RuntimeException(e);

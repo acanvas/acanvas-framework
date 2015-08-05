@@ -7,9 +7,9 @@ class FBPromptShareCommand extends AbstractFBCommand {
 
   @override void execute([XLSignal event = null]) {
     super.execute(event);
-    
+
     if (notLoggedIn(event)) return;
-    
+
     VOFBShare vo = event.data;
 
     js.JsObject shareConfig;
@@ -37,7 +37,7 @@ class FBPromptShareCommand extends AbstractFBCommand {
     }
 
     _fbModel.FB.callMethod("ui", [shareConfig, _handleResult]);
-    
+
     showMessage(getProperty("message.facebook.share.waiting"), blur: true, type: StateMessageVO.TYPE_WAITING);
   }
 

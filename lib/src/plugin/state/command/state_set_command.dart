@@ -1,8 +1,8 @@
 part of stagexl_rockdot.state;
 
 /**
-	 * @author Nils Doehring (nilsdoehring(gmail as at).com)
-	 */
+ * @author Nils Doehring (nilsdoehring(gmail as at).com)
+ */
 //@retain
 class StateSetCommand extends AbstractStateCommand {
   @override dynamic execute([XLSignal event = null]) {
@@ -15,16 +15,21 @@ class StateSetCommand extends AbstractStateCommand {
 
     _setStateVO(event.data, saveHistory);
     this.log.finer("Go  to: count {0}, url {1}, history: {2}", [_stateModel.historyCount, _stateModel.history[_stateModel.historyCount].url, saveHistory]);
+
+    return null;
   }
+
   void _setStateVO(StateVO stateVO, bool saveToHistory) {
+
     if (_stateModel.currentStateVO == null || stateVO.url != _stateModel.currentStateVO.url) {
       // initial view after app start
 
-      StateVO oldNaviVO = _stateModel.currentStateVO;
+      StateVO oldStateVO = _stateModel.currentStateVO;
 
       _stateModel.currentStateVO = stateVO;
-      _stateModel.currentPageVOParams = stateVO.params;
-      new XLSignal(StateEvents.STATE_CHANGE, new StateChangeVO(oldNaviVO, stateVO), dispatchCompleteEvent).dispatch();
+      _stateModel.currentStateURLParams = stateVO.params;
+
+      new XLSignal(StateEvents.STATE_CHANGE, new StateChangeVO(oldStateVO, stateVO), dispatchCompleteEvent).dispatch();
       new XLSignal(StateEvents.STATE_PARAMS_CHANGE, _stateModel.currentStateVO).dispatch();
 
       if (saveToHistory) {
@@ -32,23 +37,24 @@ class StateSetCommand extends AbstractStateCommand {
       }
     } else {
       // Same naviVO, check if params have changed.
-      if (stateVO.params != _stateModel.currentPageVOParams) {
+      if (stateVO.params != _stateModel.currentStateURLParams) {
         // Different params
-        _stateModel.currentPageVOParams = stateVO.params;
+        _stateModel.currentStateURLParams = stateVO.params;
 
         _stateModel.addressService.onAddressChanged(_stateModel.currentStateVO);
-        if (_stateModel.currentPage != null) {
-          _stateModel.currentPage.setData(_stateModel.currentPageVOParams);
+        if (_stateModel.currentScreen != null) {
+          _stateModel.currentScreen.params = _stateModel.currentStateURLParams;
         }
       } else {
         // Same params. Do nothing.
       }
     }
+
   }
-  
-  void _addToHistory(StateVO naviVO) {
+
+  void _addToHistory(StateVO stateVO) {
     _stateModel.historyCount++;
-    _stateModel.history.add(naviVO);
+    _stateModel.history.add(stateVO);
 
     // Cleanup
     int n = _stateModel.history.length;

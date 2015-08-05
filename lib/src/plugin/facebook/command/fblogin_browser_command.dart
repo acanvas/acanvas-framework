@@ -40,7 +40,8 @@ class FBLoginBrowserCommand extends AbstractFBCommand {
 
       _fbModel.accessToken = response["authResponse"]["accessToken"];
       _fbModel.userIsAuthenticated = true;
-      _fbModel.user = new FBUserVO()..uid = response["authResponse"]["userID"];
+      _fbModel.user = new FBUserVO()
+        ..uid = response["authResponse"]["userID"];
 
       if (response["authResponse"]["grantedScopes"] != null) {
         _fbModel.userPermissions = response["authResponse"]["grantedScopes"].split(",");

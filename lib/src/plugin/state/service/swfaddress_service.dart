@@ -1,11 +1,12 @@
 part of stagexl_rockdot.state;
 
 /**
-	 * @author Nils Doehring (nilsdoehring(gmail as at).com)
-	 */
+ * @author Nils Doehring (nilsdoehring(gmail as at).com)
+ */
 class SWFAddressService extends BasicAddressService implements IAddressService {
   String _defaultTitle;
   Function _callback;
+
   SWFAddressService() {
   }
 

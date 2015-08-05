@@ -2,7 +2,7 @@ part of stagexl_rockdot.facebook;
 
 //@retain
 class FBInitBrowserCommand extends AbstractFBCommand {
-  
+
   String facebookSDKUrl = "https://connect.facebook.net/en_US/sdk.js";
 
   @override
@@ -21,7 +21,7 @@ class FBInitBrowserCommand extends AbstractFBCommand {
     script.src = facebookSDKUrl;
 
   }
-  
+
   void _handleSDKLoaded() {
     _fbModel.FB = js.context["FB"];
 
@@ -43,7 +43,8 @@ class FBInitBrowserCommand extends AbstractFBCommand {
 
       _fbModel.accessToken = response["authResponse"]["accessToken"];
       _fbModel.userIsAuthenticated = true;
-      _fbModel.user = new FBUserVO()..uid = response["authResponse"]["userID"];
+      _fbModel.user = new FBUserVO()
+        ..uid = response["authResponse"]["userID"];
 
       new XLSignal(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions).dispatch();
     } else {

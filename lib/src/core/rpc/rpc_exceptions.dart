@@ -1,9 +1,11 @@
 part of stagexl_rockdot.core;
 
-class RpcException implements Exception{
+class RpcException implements Exception {
   int code = 0;
   String message;
+
   RpcException([this.message, this.code]);
+
   toString() {
     return this.message;
   }
@@ -25,17 +27,18 @@ class InvalidParameters extends RpcException {
 
 class RuntimeException extends RpcException {
   var error;
+
   RuntimeException([message = '', code = -32603]) {
     if (message is Exception) {
       this.error = message;
       this.message = error.message;
-      
-    } 
-    else if (message is Error){
-     this.error = message;
-     this.message = "$message";
+
     }
-    
+    else if (message is Error) {
+      this.error = message;
+      this.message = "$message";
+    }
+
     else {
       this.message = message;
 

@@ -9,7 +9,6 @@ class FBTestCommand extends AbstractFBCommand {
     CompositeCommandWithEvent compositeCommand = new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
 
 
-
     /* ******************** LOGIN USER ******************* */
     String perms = getProperty("project.facebook.permissions");
     compositeCommand.addCommandEvent(new XLSignal(FBEvents.USER_LOGIN, perms, _onUserLogin), applicationContext);

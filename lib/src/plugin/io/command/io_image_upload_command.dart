@@ -27,10 +27,10 @@ class IOImageUploadCommand extends CoreCommand {
     html.HttpRequest req = new html.HttpRequest();
     req.onReadyStateChange.listen((html.ProgressEvent e) {
       if (req.readyState == html.HttpRequest.DONE) {
-        if(req.status == 200 || req.status == 0){
+        if (req.status == 200 || req.status == 0) {
           dispatchCompleteEvent();
         }
-        else{
+        else {
           dispatchErrorEvent();
         }
       }

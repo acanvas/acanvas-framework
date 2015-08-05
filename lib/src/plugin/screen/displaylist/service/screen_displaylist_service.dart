@@ -1,8 +1,8 @@
 part of stagexl_rockdot.screen;
 
 /**
-	 * @author nilsdoehring
-	 */
+ * @author nilsdoehring
+ */
 class ScreenDisplaylistService extends AbstractScreenService {
 
   ScreenDisplaylistService() : super() {

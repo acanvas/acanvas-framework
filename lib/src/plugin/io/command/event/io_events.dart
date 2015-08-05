@@ -1,8 +1,8 @@
 part of stagexl_rockdot.io;
 
 /**
-	 * @author nilsdoehring
-	 */
+ * @author nilsdoehring
+ */
 class IOEvents {
   static const String UPLOAD_IMAGE = "CommandIO.UPLOAD_IMAGE";
 }

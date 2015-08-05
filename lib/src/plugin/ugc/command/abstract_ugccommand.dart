@@ -34,7 +34,7 @@ class AbstractUGCCommand extends CoreCommand implements IUGCModelAware {
       */
   }
 
-  @override void _handleError(OperationEvent event) {
+  @override void errorHandler(OperationEvent event) {
     this.log.error(event.error);
     dispatchCompleteEvent(event.error);
   }

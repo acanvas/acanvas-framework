@@ -3,20 +3,21 @@ part of stagexl_rockdot.google;
 //@retain
 class AbstractGoogleCommand extends CoreCommand implements IGoogleModelAware {
   GoogleModel _gModel;
+
   void set googleModel(GoogleModel gModel) {
     _gModel = gModel;
   }
-  
+
   bool notLoggedIn(XLSignal event) {
-    if(!_gModel.userIsAuthenticated){
+    if (!_gModel.userIsAuthenticated) {
       //If the Login went successful, execute this Event again.
-      new XLSignal(GoogleEvents.USER_LOGIN, null, (){
+      new XLSignal(GoogleEvents.USER_LOGIN, null, () {
         execute(event);
       }).dispatch();
       //For now, cancel this Event.
       return true;
     }
-    else{
+    else {
       //User logged in, all is peachy.
       return false;
     }

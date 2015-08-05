@@ -14,30 +14,32 @@ class GoogleInitCommand extends AbstractGoogleCommand {
         scopes = [event.data];
       } else if (event.data is List) {
         scopes = event.data;
-      } 
+      }
     }
     else {
       scopes = [ getProperty("project.google.scope.plus") ];
     }
-    
+
 
 // Initialize the browser oauth2 flow functionality.
     createImplicitBrowserFlow(id, scopes).then((BrowserOAuth2Flow flow) {
       _gModel.flow = flow;
       flow.clientViaUserConsent(immediate: true)
-        .then((AutoRefreshingAuthClient client) {
-          _handleLogin(client);
-          flow.close();
-        }, onError: (e){
-          _handleLoginError(e);
-          });
+      .then((AutoRefreshingAuthClient client) {
+        _handleLogin(client);
+        flow.close();
+      }, onError: (e) {
+        _handleLoginError(e);
+      });
     });
   }
 
   void _handleLoginError(UserConsentException ex) {
-    dispatchErrorEvent(ex.message);
+    //dispatchErrorEvent(ex.message);
+    log.error(ex.message);
+    dispatchCompleteEvent();
   }
-  
+
   void _handleLogin(AutoRefreshingAuthClient client) {
     _gModel.client = client;
     _gModel.userScopes = client.credentials.scopes;

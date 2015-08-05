@@ -17,30 +17,32 @@ part of stagexl_rockdot.core;
 
 
 /**
-	 * Basic implementation of the <code>ICompositeCommand</code> that executes a list of <code>ICommand</code> instances
-	 * that were added through the <code>addCommand()</code> method. The commands are executed in the order in which
-	 * they were added.
-	 * @author Christophe Herreman
-	 * @author Roland Zwaga
-	 * @docref the_operation_api.html#composite_commands
-	 */
+ * Basic implementation of the <code>ICompositeCommand</code> that executes a list of <code>ICommand</code> instances
+ * that were added through the <code>addCommand()</code> method. The commands are executed in the order in which
+ * they were added.
+ * @author Christophe Herreman
+ * @author Roland Zwaga
+ * @docref the_operation_api.html#composite_commands
+ */
 class CompositeCommandWithEvent extends AbstractProgressOperation implements ICompositeCommand {
 
   Logger LOGGER;
 
   /**
-		 * Determines if the execution of all the <code>ICommands</code> should be aborted if an
-		 * <code>IAsyncCommand</code> instance dispatches an <code>AsyncCommandFaultEvent</code> event.
-		 * @default false
-		 * @see org.springextensions.actionscript.core.command.IAsyncCommand IAsyncCommand
-		 */
+   * Determines if the execution of all the <code>ICommands</code> should be aborted if an
+   * <code>IAsyncCommand</code> instance dispatches an <code>AsyncCommandFaultEvent</code> event.
+   * @default false
+   * @see org.springextensions.actionscript.core.command.IAsyncCommand IAsyncCommand
+   */
   bool failOnFault = false;
 
   List<CommandVO> _commands = [];
   int _timer;
+
   List get commands {
     return _commands;
   }
+
   void setCommands(List value) {
     _commands = value;
   }
@@ -52,9 +54,9 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   // --------------------------------------------------------------------
 
   /**
-		 * Creates a new <code>CompositeCommand</code> instance.
-		 * @default CompositeCommandKind.SEQUENCE
-		 */
+   * Creates a new <code>CompositeCommand</code> instance.
+   * @default CompositeCommandKind.SEQUENCE
+   */
   CompositeCommandWithEvent([String kind = null]) : super() {
     LOGGER = new Logger("CompositeCommandWithEvent");
     _kind = (kind != null) ? kind : CompositeCommandKind.SEQUENCE;
@@ -67,16 +69,18 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   // --------------------------------------------------------------------
 
   String _kind;
+
   String get kind {
     return _kind;
   }
+
   void set kind(String value) {
     _kind = value;
   }
 
   /**
-		 * @inheritDoc
-		 */
+   * @inheritDoc
+   */
   int get numCommands {
     return _commands.length;
   }
@@ -84,8 +88,8 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   CommandVO _currentCommandVO;
 
   /**
-		 * The <code>ICommand</code> that is currently being executed.
-		 */
+   * The <code>ICommand</code> that is currently being executed.
+   */
   CommandVO get currentCommandVO {
     return _currentCommandVO;
   }
@@ -97,8 +101,8 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   // --------------------------------------------------------------------
 
   /**
-		 * @inheritDoc
-		 */
+   * @inheritDoc
+   */
   void execute([XLSignal event = null]) {
     if (_commands != null) {
       switch (_kind) {
@@ -118,6 +122,7 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
       dispatchCompleteEvent();
     }
   }
+
   void cancel() {
     _commands = [];
   }
@@ -130,8 +135,8 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   // --------------------------------------------------------------------
 
   /**
-		 * @inheritDoc
-		 */
+   * @inheritDoc
+   */
   ICompositeCommand addCommandEvent(XLSignal event, IObjectFactory objectFactory) {
     if (event == null) {
       LOGGER.info("The event argument must not be null");
@@ -145,6 +150,7 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
     total++;
     return this;
   }
+
   /*
 		ICompositeCommand addOperation(Class operationClass,%# ... constructorArgs%#)
 		 {
@@ -161,12 +167,13 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   // --------------------------------------------------------------------
 
   /**
-		 * If the specified <code>ICommand</code> implements the <code>IAsyncCommand</code> abstract class the <code>onCommandResult</code>
-		 * and <code>onCommandFault</code> event handlers are added. Before the <code>ICommand.execute()</code> method is invoked
-		 * the <code>CompositeCommandEvent.EXECUTE_COMMAND</code> event is dispatched.
-		 * <p>When the <code>command</code> argument is <code>null</code> the <code>CompositeCommandEvent.COMPLETE</code> event is dispatched instead.</p>
-		 * @see org.springextensions.actionscript.core.command.event.CommandEvent CompositeCommandEvent
-		 */ void executeCommand(CommandVO commandVO) {
+   * If the specified <code>ICommand</code> implements the <code>IAsyncCommand</code> abstract class the <code>onCommandResult</code>
+   * and <code>onCommandFault</code> event handlers are added. Before the <code>ICommand.execute()</code> method is invoked
+   * the <code>CompositeCommandEvent.EXECUTE_COMMAND</code> event is dispatched.
+   * <p>When the <code>command</code> argument is <code>null</code> the <code>CompositeCommandEvent.COMPLETE</code> event is dispatched instead.</p>
+   * @see org.springextensions.actionscript.core.command.event.CommandEvent CompositeCommandEvent
+   */
+  void executeCommand(CommandVO commandVO) {
 
     if (commandVO == null) {
       LOGGER.info("The 'command' must not be null");
@@ -187,10 +194,10 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
     // execute the next command if the executed command was synchronous
     if (commandVO.command is IOperation) {
       LOGGER.info("Command '{0}' is asynchronous. Waiting for response.", [commandVO.command]);
-    } 
-    
+    }
+
     commandVO.command.execute(commandVO.event);
-    
+
     if (!(commandVO.command is IOperation)) {
       dispatchAfterCommandEvent(commandVO.command);
       progress++;
@@ -202,9 +209,10 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   }
 
   /**
-		 * Retrieves and removes the next <code>ICommand</code> from the internal list and passes it to the
-		 * <code>executeCommand()</code> method.
-		 */ void executeNextCommand() {
+   * Retrieves and removes the next <code>ICommand</code> from the internal list and passes it to the
+   * <code>executeCommand()</code> method.
+   */
+  void executeNextCommand() {
     CommandVO nextCommand = _commands.length > 0 ? _commands.removeAt(0) : null;
     if (_timer == null) {
       _timer = new DateTime.now().millisecondsSinceEpoch;
@@ -219,6 +227,7 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
       dispatchCompleteEvent();
     }
   }
+
   void removeCommand(IOperation asyncCommand) {
 
     if (asyncCommand == null) {
@@ -240,6 +249,7 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
       }
     }
   }
+
   void executeCommandsInParallel() {
     bool containsOperations = false;
     for (CommandVO cmd in _commands) {
@@ -259,8 +269,9 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   }
 
   /**
-		 * Adds the <code>onCommandResult</code> and <code>onCommandFault</code> event handlers to the specified <code>IAsyncCommand</code> instance.
-		 */ void addCommandListeners(IOperation asyncCommand) {
+   * Adds the <code>onCommandResult</code> and <code>onCommandFault</code> event handlers to the specified <code>IAsyncCommand</code> instance.
+   */
+  void addCommandListeners(IOperation asyncCommand) {
     if (asyncCommand != null) {
       asyncCommand.addCompleteListener(onCommandResult);
       asyncCommand.addErrorListener(onCommandFault);
@@ -268,13 +279,15 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   }
 
   /**
-		 * Removes the <code>onCommandResult</code> and <code>onCommandFault</code> event handlers from the specified <code>IAsyncCommand</code> instance.
-		 */ void removeCommandListeners(IOperation asyncCommand) {
+   * Removes the <code>onCommandResult</code> and <code>onCommandFault</code> event handlers from the specified <code>IAsyncCommand</code> instance.
+   */
+  void removeCommandListeners(IOperation asyncCommand) {
     if (asyncCommand != null) {
       asyncCommand.removeCompleteListener(onCommandResult);
       asyncCommand.removeErrorListener(onCommandFault);
     }
   }
+
   void onCommandResult(OperationEvent event) {
     progress++;
     dispatchProgressEvent();
@@ -292,6 +305,7 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
         break;
     }
   }
+
   void onCommandFault(OperationEvent event) {
     LOGGER.info("Asynchronous command '{0}' returned error.", [event.target]);
     dispatchErrorEvent(event.error);
@@ -311,6 +325,7 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
         break;
     }
   }
+
   void dispatchAfterCommandEvent(ICommand command) {
     if (command == null) {
       LOGGER.warning("the command argument must not be null");
@@ -318,6 +333,7 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
       dispatchEvent(new CompositeCommandEvent(CompositeCommandEvent.AFTER_EXECUTE_COMMAND, command));
     }
   }
+
   void dispatchBeforeCommandEvent(ICommand command) {
     if (command == null) {
       LOGGER.warning("the command argument must not be null");
@@ -325,18 +341,19 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
       dispatchEvent(new CompositeCommandEvent(CompositeCommandEvent.BEFORE_EXECUTE_COMMAND, command));
     }
   }
+
   ICompositeCommand addCommand(ICommand command) {
     return null;
   }
+
   ICompositeCommand addCommandAt(ICommand command, int index) {
     return null;
   }
-  /*
+/*
 		ICompositeCommand addOperationAt(Class operationClass,int index,%# ... constructorArgs%#)
 		 {
 			return null;
 		}*/
-
 
 
 }

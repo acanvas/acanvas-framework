@@ -1,8 +1,8 @@
 part of stagexl_rockdot.ugc;
 
 /**
-	 * @author nilsdoehring
-	 */
+ * @author nilsdoehring
+ */
 class UGCGameDTO implements IXLDTO {
   String uid;
   int level;

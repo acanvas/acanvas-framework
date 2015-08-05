@@ -5,7 +5,7 @@ class StatePlugin extends AbstractPlugin {
   }
 
   /**
-   * Registers Commands with FrontController 
+   * Registers Commands with FrontController
    * You can then access them from anywhere:
    * new XLSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
@@ -33,11 +33,11 @@ class StatePlugin extends AbstractPlugin {
   }
 
   /**
-     * Register this Plugin's Model as injectable
-     * Any class requiring this Model can implement IStateModelAware and the ObjectFactory will take care.
-     * This is called Interface Injection, the only kind of injection available in Spring Dart so far.
-     * Feel free to add more injectors. 
-     */
+   * Register this Plugin's Model as injectable
+   * Any class requiring this Model can implement IStateModelAware and the ObjectFactory will take care.
+   * This is called Interface Injection, the only kind of injection available in Spring Dart so far.
+   * Feel free to add more injectors.
+   */
   @override void configureInjectors() {
     RockdotContextHelper.registerInstance(objectFactory, StateConstants.CTX_MODEL_STATE, new StateModel());
     objectFactory.addObjectPostProcessor(new StateModelInjector(objectFactory));

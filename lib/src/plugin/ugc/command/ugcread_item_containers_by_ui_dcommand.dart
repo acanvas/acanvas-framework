@@ -24,6 +24,7 @@ class UGCReadItemContainersByUIDCommand extends AbstractUGCCommand {
     _ugcModel.participantContainers = _createContainers(result.result.participantContainers);
     return super.dispatchCompleteEvent();
   }
+
   List _createContainers(List result) {
     List a_ret = [];
 

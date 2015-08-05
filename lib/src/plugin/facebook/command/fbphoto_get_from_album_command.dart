@@ -8,16 +8,16 @@ class FBPhotoGetFromAlbumCommand extends AbstractFBCommand {
   @override
   void execute([XLSignal event = null]) {
     super.execute(event);
-    
+
     if (notLoggedIn(event)) return;
     showMessage(getProperty("message.facebook.loading.data"));
-    
+
     String id = "me";
     if (event.data != null) {
-      if(event.data is String){
+      if (event.data is String) {
         id = event.data;
       }
-      if(event.data is DataRetrieveVO){
+      if (event.data is DataRetrieveVO) {
         _vo = event.data;
         id = _vo.id;
       }
@@ -39,7 +39,7 @@ class FBPhotoGetFromAlbumCommand extends AbstractFBCommand {
     _fbModel.userAlbumPhotos = photos;
     _fbModel.userAlbumPhotos[0].totalrows = photos.length;
 
-    if(_vo != null){
+    if (_vo != null) {
       _vo.nextToken = response["paging"]["cursors"]["after"];
       _vo.totalSize = photos.length;
     }

@@ -1,7 +1,6 @@
 library stagexl_rockdot.screen;
 
 import 'dart:math' as math;
-import 'dart:async' show Timer;
 
 /* Rockdot depends on StageXL */
 import 'package:stagexl/stagexl.dart';
@@ -11,8 +10,9 @@ import 'package:stagexl_spring/stagexl_spring.dart';
 import 'core.dart';
 import 'state.dart' show IStateModelAware, StateModel, AbstractStateCommand, StateVO, StateChangeVO, StateConstants, StateEvents;
 
-part 'plugin/screen/displaylist/view/rockdot_managed_sprite_component.dart';
-part 'plugin/screen/displaylist/view/rockdot_sprite_component.dart';
+part 'plugin/screen/displaylist/view/rockdot_lifecycle_sprite.dart';
+part 'plugin/screen/displaylist/view/rockdot_box_sprite.dart';
+part 'plugin/screen/displaylist/view/m_application_context_aware.dart';
 part 'plugin/screen/screen_displaylist_plugin.dart';
 part 'plugin/screen/common/screen_plugin_base.dart';
 part 'plugin/screen/common/command/abstract_screen_command.dart';

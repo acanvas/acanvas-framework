@@ -1,19 +1,19 @@
 part of stagexl_rockdot.state;
 
 /**
-	 * @author Nils Doehring (nilsdoehring(gmail as at).com)
-	 */
+ * @author Nils Doehring (nilsdoehring(gmail as at).com)
+ */
 //@retain
 class StateRequestCommand extends AbstractStateCommand {
 
   @override void execute([XLSignal event = null]) {
     super.execute(event);
     List urlData = event.data.split("?");
-    StateVO stateVO = _stateModel.getPageVO(urlData[0].toLowerCase());
+    StateVO stateVO = _stateModel.getStateVO(urlData[0].toLowerCase());
 
     if (stateVO != null) {
 
-      if (_stateModel.currentPage == null && stateVO.substate == StateConstants.SUB_MODAL) {
+      if (_stateModel.currentScreen == null && stateVO.substate == StateConstants.SUB_MODAL) {
         // 0. nullToModal
         new XLSignal(StateEvents.ADDRESS_SET, "/").dispatch();
         return;
@@ -41,9 +41,8 @@ class StateRequestCommand extends AbstractStateCommand {
       new XLSignal(StateEvents.STATE_VO_SET, stateVO, dispatchCompleteEvent).dispatch();
 
 
-
     } else {
-      // TODO: Define routine for unregistered urls.
+      //If url not found in registry, default to root
       new XLSignal(StateEvents.ADDRESS_SET, "/", dispatchCompleteEvent).dispatch();
     }
 

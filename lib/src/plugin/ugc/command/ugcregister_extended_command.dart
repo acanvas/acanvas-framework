@@ -3,10 +3,11 @@ part of stagexl_rockdot.ugc;
 //@retain
 class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelAware {
   FBModel _modelFB;
+
   void set fbModel(FBModel model) {
-      _modelFB = model;
-    }
- 
+    _modelFB = model;
+  }
+
   @override void execute([XLSignal event = null]) {
     super.execute(event);
 //			dispatchMessage("loading.backend.login");
@@ -14,17 +15,17 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
     UGCUserExtendedDTO amfObject;
 
     if (event.data is UGCUserExtendedDTO) {
-      
+
       amfObject = event.data;
       _ugcModel.userExtendedDAO = new UGCUserExtendedDTO(amfObject.toJson());
-      
+
     } else if (RockdotConstants.LOCAL && RockdotConstants.DEBUG) {
-      
+
       _ugcModel.userExtendedDAO = _createDummyData();
       amfObject = _ugcModel.userExtendedDAO;
-      
+
     } else if (_ugcModel.userExtendedDAO == null) {
-      
+
       UGCUserExtendedDTO user = new UGCUserExtendedDTO();
       user.hometown_location = _modelFB.user.hometown_location;
       user.email = _modelFB.user.email;
@@ -46,7 +47,7 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
     _ugcModel.hasUserExtendedDAO = true;
     amfOperation("UGCEndpoint.createUserExtended", dto: amfObject);
   }
-  
+
   UGCUserExtendedDTO _createDummyData() {
     UGCUserExtendedDTO user = new UGCUserExtendedDTO();
     user.hometown_location = "Karlsruhe, Germany";
@@ -66,5 +67,5 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
     return date.hour * 60 * 60 * 1000 + date.minute * 60 * 1000 + date.second * 1000 + date.millisecond;
   }
 
-  
+
 }

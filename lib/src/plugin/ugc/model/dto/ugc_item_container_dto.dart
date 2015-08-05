@@ -1,14 +1,15 @@
 part of stagexl_rockdot.ugc;
 
 /**
-	 * @author nilsdoehring
-	 */
+ * @author nilsdoehring
+ */
 class UGCItemContainerDTO implements IXLDTO {
   int id;
   int parent_container_id;
   int privacy_level;
 
   String creator_uid;
+
   // assembled in AMF Endpoint via uid relation
   UGCUserDTO creator;
   String title;
@@ -16,14 +17,18 @@ class UGCItemContainerDTO implements IXLDTO {
   num like_count = 0;
   int complain_count = 0;
   int flag = 0;
+
   // 0: not blocked, 1: blocked
   // calculated extras (calculated in SQL query)
   int rowindex;
   String totalrows;
+
   // (assembled in AMF Endpoint via container_id relation in itemcontainer_roles table)
   List<UGCItemContainerRoleDTO> roles = [];
+
   // (assembled in AMF Endpoint via container_id relation in items table)
   List<UGCItemDTO> items = [];
+
   // (assembled in AMF Endpoint via task_id relation in itemcontainer_tasks crosstable)
   UGCTaskDTO task;
 

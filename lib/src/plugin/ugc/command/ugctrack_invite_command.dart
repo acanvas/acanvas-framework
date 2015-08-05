@@ -7,10 +7,10 @@ class UGCTrackInviteCommand extends AbstractUGCCommand {
     super.execute(event);
 
     Map dto;
-    if(event.data is Map){
+    if (event.data is Map) {
       dto = event.data;
     }
-    else{
+    else {
       dto = {
         'uid': event.data.uid,
         'request': event.data.request,
@@ -18,7 +18,7 @@ class UGCTrackInviteCommand extends AbstractUGCCommand {
         'to_ids': event.data.to_ids
       };
     }
-    
+
     amfOperation("UGCEndpoint.trackInvite", map: dto);
   }
 }

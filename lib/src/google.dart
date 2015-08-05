@@ -2,7 +2,7 @@ library stagexl_rockdot.google;
 
 import 'dart:html' as html;
 import 'dart:js' as js;
-import "package:googleapis_auth/auth_browser.dart"; 
+import "package:googleapis_auth/auth_browser.dart";
 import 'package:googleapis/plus/v1.dart';
 
 /* Rockdot depends on StageXL */

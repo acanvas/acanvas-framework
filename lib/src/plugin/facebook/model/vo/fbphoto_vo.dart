@@ -17,7 +17,9 @@ class FBPhotoVO {
   num position;
   List<FBCommentVO> comments;
 
-  int totalrows; //internal
+  int totalrows;
+
+  //internal
 
   FBPhotoVO([dynamic obj = null]) {
 

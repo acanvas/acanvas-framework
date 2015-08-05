@@ -9,13 +9,13 @@ class StateMessageVO implements IXLVO {
   static const int TYPE_ERROR = 2;
   static const int TYPE_WAITING = 3;
   static const int TYPE_LOADING = 4;
-  
+
   String id;
   String message;
   int timeBox;
   int type;
   bool blurContent;
-  
+
   int bgColor;
   int fontColor;
 

@@ -6,19 +6,18 @@ class ScreenInitCommand extends AbstractScreenCommand {
   @override void execute([XLSignal event = null]) {
     super.execute(event);
 
-    IManagedSpriteComponent ui;
+    LifecycleSprite ui;
     if (event.data != null) {
-      ui = (event.data as IManagedSpriteComponent);
-    } else if (_stateModel.currentPage != null) {
-      //TODO failsafe minimal width/height
-      ui = _stateModel.currentPage;
+      ui = (event.data as LifecycleSprite);
+    } else if (_stateModel.currentScreen != null) {
+      ui = _stateModel.currentScreen;
     }
 
-    if (ui.getInitialized()) {
+    if (ui.initialized == true) {
       dispatchCompleteEvent();
     } else {
-      ui.addEventListener(ManagedSpriteComponentEvent.INIT_COMPLETE, dispatchCompleteEvent);
-      ui.init(_stateModel.currentPageVOParams);
+      ui.addEventListener(LifecycleEvent.INIT_COMPLETE, dispatchCompleteEvent);
+      ui.init(params: _stateModel.currentStateURLParams);
     }
   }
 }

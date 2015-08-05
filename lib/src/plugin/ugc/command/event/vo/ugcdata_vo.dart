@@ -1,4 +1,5 @@
 part of stagexl_rockdot.ugc;
+
 class UGCDataVO implements IXLVO {
 
   IXLDTO dao;

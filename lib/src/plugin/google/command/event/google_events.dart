@@ -1,8 +1,8 @@
 part of stagexl_rockdot.google;
 
 /**
-	 * @author nilsdoehring
-	 */
+ * @author nilsdoehring
+ */
 class GoogleEvents {
 
   static const String INIT = "GoogleEvents.INIT";

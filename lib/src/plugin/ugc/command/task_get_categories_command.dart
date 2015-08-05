@@ -5,7 +5,7 @@ class TaskGetCategoriesCommand extends AbstractUGCCommand {
 
   @override void execute([XLSignal event = null]) {
     super.execute(event);
-   
+
     amfOperation("UGCEndpoint.getTaskCategories");
   }
 

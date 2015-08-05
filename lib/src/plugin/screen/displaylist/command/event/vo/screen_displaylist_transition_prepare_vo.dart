@@ -1,11 +1,11 @@
 part of stagexl_rockdot.screen;
 
 /**
-	 * @author nilsdoehring
-	 */
+ * @author nilsdoehring
+ */
 class ScreenDisplaylistTransitionPrepareVO implements IXLVO {
-  ISpriteComponent outTarget;
-  ISpriteComponent inTarget;
+  LifecycleSprite outTarget;
+  LifecycleSprite inTarget;
   IEffect effect;
   bool modal;
   String transitionType;

@@ -7,9 +7,11 @@ part of stagexl_rockdot.screen;
 class ScreenModel {
 
   num _lastResizeTime = 0;
+
   num get lastResizeTime {
     return _lastResizeTime;
   }
+
   void set lastResizeTime(num lastResizeTime) {
     _lastResizeTime = lastResizeTime;
   }

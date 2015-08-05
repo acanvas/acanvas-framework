@@ -29,7 +29,7 @@ class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAwar
       case UGCFilterVO.CONDITION_ALL:
         break;
       case UGCFilterVO.CONDITION_UID:
-        //TODO
+      //TODO
         break;
     }
 

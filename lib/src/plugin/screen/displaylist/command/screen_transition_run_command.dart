@@ -1,7 +1,6 @@
 part of stagexl_rockdot.screen;
 
 
-
 //@retain
 class ScreenTransitionRunCommand extends AbstractScreenCommand {
 
@@ -16,16 +15,16 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
 
   }
 
-  void _applyEffect(String effectType, ISpriteComponent target, num duration, Function callback, [ISpriteComponent nextTarget = null]) {
+  void _applyEffect(String effectType, Sprite target, num duration, Function callback, [Sprite nextTarget = null]) {
 
     if (duration == null) duration = _vo.effect.duration;
 
     int maxdepthTarget = 0;
     int maxdepthNextTarget = 0;
     if (_vo.effect.applyRecursively) {
-      maxdepthTarget = _getDepth(target as DisplayObjectContainer, 0);
+      maxdepthTarget = _getDepth(target, 0);
       if (nextTarget != null) {
-        maxdepthNextTarget = _getDepth(nextTarget as DisplayObjectContainer, 0);
+        maxdepthNextTarget = _getDepth(nextTarget, 0);
       }
     }
 
@@ -76,46 +75,34 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
 
     _stateModel.compositeEffectCommand = _compositeCommand;
   }
-  
-  void _addInEffectRecursively(ISpriteComponent vcs, int depth, num duration, num delay, int maxdepth) {
-    DisplayObject child;
-    for (int i = 0; i < (vcs as DisplayObjectContainer).numChildren; i++) {
-      child = (vcs as DisplayObjectContainer).getChildAt(i);
-      if (child is ISpriteComponent) {
-        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN, new ScreenDisplaylistEffectApplyVO(_vo.effect, child as ISpriteComponent, duration)), applicationContext);
-        _addInEffectRecursively(child as ISpriteComponent, depth + 1, duration, delay, maxdepth);
-      }
-    }
 
+  void _addInEffectRecursively(Sprite parent, int depth, num duration, num delay, int maxdepth) {
+    parent.children.where((c) => c is Sprite).forEach((child) {
+      _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN, new ScreenDisplaylistEffectApplyVO(_vo.effect, child, duration)), applicationContext);
+      _addInEffectRecursively(child, depth + 1, duration, delay, maxdepth);
+    });
   }
-  
-  void _addOutEffectRecursively(ISpriteComponent vcs, int depth, num duration, num delay, int maxdepth) {
-    DisplayObject child;
-    for (int i = 0; i < (vcs as DisplayObjectContainer).numChildren; i++) {
-      child = (vcs as DisplayObjectContainer).getChildAt(i);
-      if (child is ISpriteComponent) {
-        _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT, new ScreenDisplaylistEffectApplyVO(_vo.effect, child as ISpriteComponent, duration)), applicationContext);
-        _addOutEffectRecursively(child as ISpriteComponent, depth + 1, duration, delay, maxdepth);
-      }
-    }
+
+  void _addOutEffectRecursively(Sprite parent, int depth, num duration, num delay, int maxdepth) {
+    if (depth > maxdepth) return;
+    parent.children.where((c) => c is Sprite).forEach((child) {
+      _compositeCommand.addCommandEvent(new XLSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT, new ScreenDisplaylistEffectApplyVO(_vo.effect, child, duration)), applicationContext);
+      _addOutEffectRecursively(child, depth + 1, duration, delay, maxdepth);
+    });
   }
-  
-  int _getDepth(DisplayObjectContainer vcs, int depth) {
+
+  int _getDepth(Sprite vcs, int depth) {
     int maxd = depth;
-    DisplayObject child;
-    for (int i = 0; i < vcs.numChildren; i++) {
-      child = vcs.getChildAt(i);
-      if (child is ISpriteComponent) {
-        maxd = math.max(_getDepth(child as DisplayObjectContainer, depth + 1), maxd);
-      }
-    }
+    vcs.children.where((c) => c is Sprite).forEach((child) {
+      maxd = math.max(_getDepth(child as DisplayObjectContainer, depth + 1), maxd);
+    });
     return maxd;
   }
 
   @override bool dispatchCompleteEvent([dynamic result = null]) {
 
     if (_vo.transitionType != ScreenConstants.EFFECT_IN) {
-      _vo.targetPrimary.destroy();
+      _vo.targetPrimary.dispose();
       _vo.targetPrimary = null;
       _vo = null;
     } else {

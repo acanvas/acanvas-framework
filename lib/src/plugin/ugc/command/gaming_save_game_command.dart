@@ -5,7 +5,7 @@ class GamingSaveGameCommand extends AbstractUGCCommand {
 
   @override void execute([XLSignal event = null]) {
     super.execute(event);
-    
+
     UGCGameDTO vo = event.data;
     vo.uid = _ugcModel.userDAO.uid;
 

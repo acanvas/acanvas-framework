@@ -1,7 +1,6 @@
 part of stagexl_rockdot.core;
 
 
-
 /* basic usage:
  *    import "package:jsonrpc2/jsonrpc_client.dart"
  *
@@ -31,6 +30,7 @@ class ServerProxy {
   String url;
   int timeout = 0;
   String serverVersion = '2.0';
+
   ServerProxy(this.url);
 
   notify(method, [params = null]) {
@@ -91,7 +91,7 @@ class ServerProxy {
       if (request.status == 204 || body.isEmpty) {
         return null;
       } else {
-       // print(body);
+        // print(body);
         body = body.replaceAllMapped(new RegExp(r'"(\d+)"'), (Match m) => m.group(1));
         return JSON.decode(body);
       }
@@ -117,6 +117,7 @@ class ServerProxy {
 class BatchServerProxy extends ServerProxy {
 
   BatchServerProxy(url) : super(url);
+
   var requests = [];
   var responses = {};
   var used_ids = {};
@@ -168,6 +169,7 @@ class JsonRpcMethod {
   bool notify;
   var _id;
   String serverVersion;
+
   JsonRpcMethod(this.method, this.args, {this.notify: false, this.serverVersion: '2.0'});
 
   get id {
@@ -208,12 +210,13 @@ class JsonRpcMethod {
 }
 
 
-
 class RemoteException implements Exception {
   int code;
   String message;
   var data;
+
   RemoteException([this.message, this.code, this.data]);
+
   toString() => data != null ? "RemoteException $code '$message' Data:($data))" : "RemoteException $code: $message";
 }
 
@@ -221,7 +224,9 @@ class HttpStatusError implements Exception {
   var message;
   var data;
   var request;
+
   HttpStatusError([this.message, this.request, this.data]);
+
   toString() => "$message";
 }
 
@@ -230,6 +235,8 @@ class TimeoutException implements Exception {
   String message;
   var data;
   var request;
+
   TimeoutException([this.message, this.request, this.data]);
+
   toString() => "$message";
 }

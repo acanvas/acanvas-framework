@@ -14,14 +14,14 @@ class DataRetrieveVO implements IXLVO {
 
   DataRetrieveVO(this.limit, {this.nextToken: null, this.id: null}) {
   }
-  
-  Map toMap(){
+
+  Map toMap() {
     Map map = {
-      "limit": limit,         
-      "nextToken": nextToken         
+      "limit": limit,
+      "nextToken": nextToken
     };
-    
+
     return map;
   }
-  
+
 }

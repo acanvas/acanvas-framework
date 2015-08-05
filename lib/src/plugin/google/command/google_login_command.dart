@@ -35,7 +35,7 @@ class GoogleLoginCommand extends AbstractGoogleCommand {
       });
 
       if (count == scopes.length) {
-        if(_nextSignal != null){
+        if (_nextSignal != null) {
           _nextSignal.dispatch();
         }
         dispatchCompleteEvent();
@@ -67,7 +67,7 @@ class GoogleLoginCommand extends AbstractGoogleCommand {
 
     dispatchCompleteEvent();
 
-    if(_nextSignal != null){
+    if (_nextSignal != null) {
       _nextSignal.dispatch();
     }
   }

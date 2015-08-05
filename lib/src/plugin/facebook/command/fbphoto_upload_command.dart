@@ -13,7 +13,7 @@ class FBPhotoUploadCommand extends AbstractFBCommand {
 
     if (vo.bmd != null) {
       showMessage(getProperty("message.facebook.sending.image"));
-      
+
       //Convert target BitmapData to Blob (TODO revoke url after upload)
       String mimetype = vo.fileName.contains(new RegExp("jpg|jpeg")) ? "image/jpeg" : "image/png";
 

@@ -13,10 +13,10 @@ class RockdotContextHelper {
   static void registerCommands(IObjectFactory objectFactory, Map map) {
     IController controller = objectFactory.getObject(MVCControllerObjectFactoryPostProcessor.CONTROLLER_OBJECT_NAME);
     for (String commandName in map.keys) {
-      if(map[commandName] is Function){
+      if (map[commandName] is Function) {
         registerCommandFunction(objectFactory, commandName, map[commandName], ObjectDefinitionScope.PROTOTYPE, controller);
       }
-      else{
+      else {
         registerCommand(objectFactory, commandName, map[commandName], ObjectDefinitionScope.PROTOTYPE, controller);
       }
 
@@ -86,7 +86,7 @@ class RockdotContextHelper {
     stateVO.transition = transition;
     stateVO.url = url;
     stateVO.substate = substate;
-    stateVO.property_key = id;
+    stateVO.propertyKey = id;
     stateVO.view_id = id;
     //objectFactory.cache.putInstance("vo." + id, stateVO);
     StateModel m = objectFactory.getObject(StateConstants.CTX_MODEL_STATE) as StateModel;
@@ -94,7 +94,7 @@ class RockdotContextHelper {
 
   }
 
-  static void registerScreenInstance(IObjectFactory objectFactory, String id, RockdotManagedSpriteComponent clazz, String url, 
+  static void registerScreenInstance(IObjectFactory objectFactory, String id, RockdotLifecycleSprite clazz, String url,
                                      {String substate : StateConstants.SUB_NORMAL, int tree_order : 0, int tree_parent : 0, String transition : "transition.default"}) {
     wire(clazz);
     objectFactory.cache.putInstance(id, clazz);
@@ -105,7 +105,7 @@ class RockdotContextHelper {
     stateVO.transition = transition;
     stateVO.url = url;
     stateVO.substate = substate;
-    stateVO.property_key = id;
+    stateVO.propertyKey = id;
     stateVO.view_id = id;
     objectFactory.cache.putInstance("vo." + id, stateVO);
   }

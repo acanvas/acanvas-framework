@@ -17,8 +17,8 @@ class PhotoImportFile extends AbstractLayer {
   PhotoImportFile(String id) : super(id) {
   }
 
-  @override void init([dynamic data = null]) {
-    super.init(data);
+  @override void init({Map params: null}){
+    super.init(params: params);
 
     _headline.text = getProperty("headline").toUpperCase();
 
@@ -26,7 +26,7 @@ class PhotoImportFile extends AbstractLayer {
     _copy = new Copy(getProperty("copy"), 18, Colors.GREY_MIDDLE);// + _appModel.currentUGCItem.timestamp, 11, Colors.GREY);
     addChild(_copy);
 
-    //_pic = new ComponentImageLoader((_appModel.currentUGCItem.type_dao as UGCImageItemVO).url_big, AbstractLayer.LAYER_WIDTH_MAX, AbstractLayer.LAYER_WIDTH_MAX);
+    //_pic = new ImageSprite((_appModel.currentUGCItem.type_dao as UGCImageItemVO).url_big, AbstractLayer.LAYER_WIDTH_MAX, AbstractLayer.LAYER_WIDTH_MAX);
     //addChild(_pic);
 
     observeFileInput();
@@ -35,12 +35,12 @@ class PhotoImportFile extends AbstractLayer {
     _buttonClose.submitEvent = new XLSignal(StateEvents.STATE_VO_BACK);
     addChild(_buttonClose);
 
-    didInit();
+    onInitComplete();
   }
 
-  @override void redraw() {
+  @override void refresh() {
 
-    num w = widthAsSet - 2 * BootstrapConstants.SPACER;
+    num w = spanWidth - 2 * BootstrapConstants.SPACER;
 
     _kamera.visible = false;
     _headlineY = 60;
@@ -60,14 +60,14 @@ class PhotoImportFile extends AbstractLayer {
     } else {
       _buttonClose.y = _copy.y + _copy.textHeight;
     }
-    _buttonClose.setSize(widthAsSet, BootstrapConstants.HEIGHT_RASTER);
+    _buttonClose.setSize(spanWidth, BootstrapConstants.HEIGHT_RASTER);
 
-    LAYER_HEIGHT = (_buttonClose.y + _buttonClose.heightAsSet).round();
-    
-    super.redraw();
+    LAYER_HEIGHT = (_buttonClose.y + _buttonClose.spanHeight).round();
+
+    super.refresh();
 
     if (_pic != null) {
-     // _pic.x = -_pic.width / 2;
+      // _pic.x = -_pic.width / 2;
     }
   }
 
@@ -120,22 +120,22 @@ class PhotoImportFile extends AbstractLayer {
     //Scaling (TODO calculate scale according to image dimensions)
     int targetWidth = (sourceBitmapData.width * SCALE_IMAGE).ceil();
     int targetHeight = (sourceBitmapData.height * SCALE_IMAGE).ceil();
-    
+
     //Draw source BitmapData (scaled) to target
     BitmapData targetBitmapData = new BitmapData(targetWidth, targetHeight);
     targetBitmapData.draw(sourceBitmapData, new Matrix(SCALE_IMAGE, 0, 0, SCALE_IMAGE, 0, 0));
-    
+
     //Draw logo BitmapData (scaled) to target
     IAMLogo logo = new IAMLogo(getProperty("element.header.logo.text", true));
-    num tx = targetWidth/2 - logo.width/2 * SCALE_LOGO;
-    num ty = targetHeight/2 - logo.height/2 * SCALE_LOGO;
+    num tx = targetWidth / 2 - logo.width / 2 * SCALE_LOGO;
+    num ty = targetHeight / 2 - logo.height / 2 * SCALE_LOGO;
     targetBitmapData.draw(logo, new Matrix(SCALE_LOGO, 0, 0, SCALE_LOGO, tx, ty));
-    
+
     //Create Bitmap from target BitmapData and add to Stage
     _pic = new ComponentBitmapData(targetBitmapData);
     addChild(_pic);
-    _pic.setSize(widthAsSet, 400);
-    redraw();
+    _pic.setSize(spanWidth, 400);
+    refresh();
 
     //Convert target BitmapData to Blob (TODO revoke url after upload)
     String url = targetBitmapData.toDataUrl("image/jpeg", 0.95);
@@ -144,7 +144,7 @@ class PhotoImportFile extends AbstractLayer {
     //Add target BitmapData dataurl to DOM (just to see if all is peachy)
     //ImageElement img = querySelector("#originImg");
     //img.src = Url.createObjectUrlFromBlob(blob);
-    
+
     //Add target BitmapData to Multipart Form
     FormData formData = new FormData();
     formData.appendBlob("Filedata", blob, "test.jpg");
@@ -162,7 +162,7 @@ class PhotoImportFile extends AbstractLayer {
       }
     });
     //req.open("POST", "http://www.local.com:8888/upload");
-      req.open("POST", "http://rockdot.sounddesignz.com/upload");
+    req.open("POST", "http://rockdot.sounddesignz.com/upload");
     req.send(data);
   }
 
@@ -180,7 +180,7 @@ class PhotoImportFile extends AbstractLayer {
     Blob blob = new Blob([arrayBuffer], mimeString);
     return blob;
   }
-  
+
   /**
    * @see http://stackoverflow.com/questions/22196593/make-picture-from-base64-on-client-side
    */

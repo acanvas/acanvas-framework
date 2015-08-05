@@ -2,11 +2,12 @@ part of stagexl_rockdot.google;
 
 class GooglePlugin extends AbstractPlugin {
   static const String MODEL_GOOGLE = "MODEL_GOOGLE";
+
   GooglePlugin() : super(30) {
   }
-  
+
   /**
-   * Registers Commands with FrontController 
+   * Registers Commands with FrontController
    * You can then access them from anywhere:
    * new XLSignal(GoogleEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
@@ -14,21 +15,21 @@ class GooglePlugin extends AbstractPlugin {
     commandMap[GoogleEvents.INIT] = () => new GoogleInitCommand();
     commandMap[GoogleEvents.USER_LOGIN] = () => new GoogleLoginCommand();
     commandMap[GoogleEvents.PLUS_USER_GET] = () => new GooglePlusGetUserCommand();
-    
+
     commandMap[GoogleEvents.PLUS_MOMENTS_GET] = () => new GooglePlusMomentsGetCommand();
     commandMap[GoogleEvents.PLUS_PEOPLE_GET] = () => new GooglePlusPeopleGetCommand();
-    
+
     commandMap[GoogleEvents.PLUS_SHARE_RENDER] = () => new GooglePlusShareRenderCommand();
-    
+
     projectInitCommand = GoogleEvents.INIT;
   }
 
   /**
-     * Register this Plugin's Model as injectable
-     * Any class requiring this Model can implement IGoogleModelAware and the ObjectFactory will take care.
-     * This is called Interface Injection, the only kind of injection available in Spring Dart so far.
-     * Feel free to add more injectors. 
-     */
+   * Register this Plugin's Model as injectable
+   * Any class requiring this Model can implement IGoogleModelAware and the ObjectFactory will take care.
+   * This is called Interface Injection, the only kind of injection available in Spring Dart so far.
+   * Feel free to add more injectors.
+   */
   @override void configureInjectors() {
     RockdotContextHelper.registerInstance(objectFactory, MODEL_GOOGLE, new GoogleModel());
     objectFactory.addObjectPostProcessor(new GoogleModelInjector(objectFactory));

@@ -1,14 +1,18 @@
 part of stagexl_rockdot.state;
 
 /**
-	 * @author Nils Doehring (nilsdoehring(gmail as at).com)
-	 */
+ * @author Nils Doehring (nilsdoehring(gmail as at).com)
+ */
 class BasicAddressService implements IAddressService {
-  void init() {}
+  void init() {
+  }
+
   void changeAddress(String url, [Function callback = null]) {
     new XLSignal(StateEvents.STATE_REQUEST, url).dispatch();
   }
-  void onAddressChanged(StateVO vo) {}
+
+  void onAddressChanged(StateVO vo) {
+  }
 
 
 }

@@ -1,7 +1,6 @@
 part of stagexl_rockdot.core;
 
 
-
 class RockdotConstants {
 
   /* internals */
@@ -32,21 +31,22 @@ class RockdotConstants {
   static int get WIDTH_STAGE_REAL {
     return RockdotConstants.getStage().stageWidth;
   }
+
   static int get HEIGHT_STAGE_REAL {
     return RockdotConstants.getStage().stageHeight;
   }
 
 
   factory RockdotConstants() {
-      return _singleton;
-    }
-  
+    return _singleton;
+  }
+
   static final RockdotConstants _singleton = new RockdotConstants._internal();
-    
+
   RockdotConstants._internal() {
-       // initialization logic here
-      _bootStrap = new List<String>();
-    }
+    // initialization logic here
+    _bootStrap = new List<String>();
+  }
 
   /*
 		 * Setting Loaderinfo 
@@ -63,6 +63,7 @@ class RockdotConstants {
   static Stage getStage() {
     return ContextTool.STAGE;
   }
+
   static void setStage(Stage stage) {
     ContextTool.STAGE = (stage);
   }
@@ -70,6 +71,7 @@ class RockdotConstants {
   static bool get WEBGL {
     return ContextTool.WEBGL;
   }
+
   static void set WEBGL(bool gl) {
     ContextTool.WEBGL = gl;
   }
@@ -83,9 +85,9 @@ class RockdotConstants {
   }
 
   /**
-		 *  The PHP session ID
-		 *  "" if LOCAL is true
-		 */
+   *  The PHP session ID
+   *  "" if LOCAL is true
+   */
   static String get PHP_SESSION_ID {
     if (_singleton._loaderInfo.php_session_id != "") {
       return _singleton._loaderInfo.php_session_id;
@@ -94,9 +96,9 @@ class RockdotConstants {
   }
 
   /**
-		 *  The Protocol as detected by php
-		 *  "" if LOCAL is true
-		 */
+   *  The Protocol as detected by php
+   *  "" if LOCAL is true
+   */
   static String get PROTOCOL {
     if (_singleton._loaderInfo.protocol != "") {
       return _singleton._loaderInfo.protocol;
@@ -106,9 +108,9 @@ class RockdotConstants {
 
 
   /**
-		 *  The Frontend Host as configured in @see project.properties
-		 *  "" if LOCAL is true
-		 */
+   *  The Frontend Host as configured in @see project.properties
+   *  "" if LOCAL is true
+   */
   static String get HOST_FRONTEND {
     if (_singleton._loaderInfo.host_frontend != "") {
       return _singleton._loaderInfo.host_frontend;
@@ -117,10 +119,10 @@ class RockdotConstants {
   }
 
   /**
-		 *  The Language of the user's locale 
-		 *  OR the one set by $_GET["language"]
-		 *  OR the default language as configured in @see project.properties
-		 */
+   *  The Language of the user's locale
+   *  OR the one set by $_GET["language"]
+   *  OR the default language as configured in @see project.properties
+   */
   static String get LANGUAGE {
     if (_singleton._loaderInfo.language != "") {
       return _singleton._loaderInfo.language;
@@ -131,9 +133,9 @@ class RockdotConstants {
   }
 
   /**
-		 * The Market set in PHP (mostly via $_GET["market"]) 
-		 *  OR the default market as configured in @see project.properties
-		 */
+   * The Market set in PHP (mostly via $_GET["market"])
+   *  OR the default market as configured in @see project.properties
+   */
   static String get MARKET {
     if (_singleton._loaderInfo.market != "") {
       return _singleton._loaderInfo.market;
@@ -143,9 +145,9 @@ class RockdotConstants {
   }
 
   /**
-		 *  The Country of the user's locale 
-		 *  OR the default country as configured in @see project.properties
-		 */
+   *  The Country of the user's locale
+   *  OR the default country as configured in @see project.properties
+   */
   static String get COUNTRY {
     if (_singleton._loaderInfo.market != "") {
       return _singleton._loaderInfo.country;
@@ -155,8 +157,8 @@ class RockdotConstants {
   }
 
   /**
-		 *  The directory to load the config from. The standard is "v1", as configured in @see project.properties
-		 */
+   *  The directory to load the config from. The standard is "v1", as configured in @see project.properties
+   */
   static String get VERSION {
     if (_singleton._loaderInfo.version != "") {
       return _singleton._loaderInfo.version;
@@ -165,17 +167,17 @@ class RockdotConstants {
   }
 
   /**
-		 *  Direct access to APP_DATA FlashParam
-		 */
+   *  Direct access to APP_DATA FlashParam
+   */
   static String get APP_DATA {
     //retrieve URLVariable ("app_data")
     return _singleton._loaderInfo.app_data;
   }
 
   /**
-		 *  Reads keys from base64 encoded string in APP_DATA FlashVar
-		 *  mostly set if there's an initial deeplink (which can't be set as Anchor via Facebook's Frame) 
-		 */
+   *  Reads keys from base64 encoded string in APP_DATA FlashVar
+   *  mostly set if there's an initial deeplink (which can't be set as Anchor via Facebook's Frame)
+   */
   static String URLVAR(String key) {
     //retrieve URLVariable ("app_data")
     if (_singleton._loaderInfo.app_data == "") {
@@ -198,21 +200,21 @@ class RockdotConstants {
   }
 
 
-
   /**
-		 *  Debug mode switch. Enables/Disables Logger.
-		 *  @see config/users/username.properties
-		 */
+   *  Debug mode switch. Enables/Disables Logger.
+   *  @see config/users/username.properties
+   */
   static bool get DEBUG {
     return _singleton._debug;
   }
-  static void set DEBUG (bool dbg){
-    _singleton._debug = dbg ;
+
+  static void set DEBUG(bool dbg) {
+    _singleton._debug = dbg;
   }
 
   /**
-		 * Local mode switch. Enables/Disables Facebook Functionality and Fake User 
-		 */
+   * Local mode switch. Enables/Disables Facebook Functionality and Fake User
+   */
   static bool get LOCAL {
     return _singleton._loaderInfo.local == "true" ? true : false;
   }

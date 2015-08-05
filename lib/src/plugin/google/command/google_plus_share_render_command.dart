@@ -9,10 +9,11 @@ class GooglePlusShareRenderCommand extends AbstractGoogleCommand {
 
   String GapiUrl = "https://apis.google.com/js/client:platform.js";
   String recipients = "";
+
   @override
   void execute([XLSignal event = null]) {
     super.execute(event);
-    
+
     js.context['dartGapiPlusLoaded'] = () {
       _handleLoaded();
     };
@@ -23,8 +24,8 @@ class GooglePlusShareRenderCommand extends AbstractGoogleCommand {
       dispatchErrorEvent('Failed to load gapi library.');
     });
     html.document.body.append(script);
-    
-    if(event.data != null){
+
+    if (event.data != null) {
       recipients = event.data.join(",");
     }
 
@@ -51,8 +52,8 @@ class GooglePlusShareRenderCommand extends AbstractGoogleCommand {
     html.Element el = html.querySelector("#plus-button-holder");
     HtmlObject obj = new HtmlObject(el);
     RockdotConstants.getStage().addChild(obj);
-    obj.x = html.window.innerWidth/2 - obj.width/2;
-    obj.y = html.window.innerHeight/2 - obj.height/2;
+    obj.x = html.window.innerWidth / 2 - obj.width / 2;
+    obj.y = html.window.innerHeight / 2 - obj.height / 2;
     obj.visible = true;
 
     dispatchCompleteEvent();

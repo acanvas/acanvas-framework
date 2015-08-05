@@ -13,49 +13,60 @@ class DataProxy implements IDataProxy {
   int _chunkSize;
 
   List _dataCache;
+
   void set dataCache(List dataCache) {
     _dataCache = dataCache;
   }
+
   List get dataCache {
     return _dataCache;
   }
 
   DataRetrieveVO _dataRetrieveCommandVO;
+
   void set dataRetrieveCommandVO(DataRetrieveVO dataRetrieveCommandVO) {
     _dataRetrieveCommandVO = dataRetrieveCommandVO;
     reset();
   }
+
   DataRetrieveVO get dataRetrieveCommandVO {
     return _dataRetrieveCommandVO;
   }
 
   int _dataTotalSize;
+
   void set dataTotalSize(int dataTotalSize) {
     _dataTotalSize = dataTotalSize;
   }
+
   int get dataTotalSize {
     return _dataTotalSize;
   }
 
   Function _onDataCallback;
+
   void set onDataCallback(Function onDataCallback) {
     _onDataCallback = onDataCallback;
   }
 
   IAsyncCommand _dataRetrieveCommand;
+
   void set dataRetrieveCommand(IAsyncCommand dataRetrieveCommand) {
     _dataRetrieveCommand = dataRetrieveCommand;
     reset();
   }
+
   DataProxy() {
     reset();
   }
+
   void reset() {
     _dataTotalSize = 0;
     _dataCache = [];
     _dataPageSize = 100;
     _cursor = 0;
   }
+
   int hasChunk(int chunkIndex, int chunkSize) {
 
     if (chunkIndex < 0) {
@@ -70,34 +81,35 @@ class DataProxy implements IDataProxy {
     }
     return 0;
   }
+
   void requestChunk(Function callBack, [int chunkIndex = -1, int chunkSize = -1]) {
     _onDataCallback = callBack;
-    
+
     /* Special case: If the chunkIndex is set to -1, all data must be in our internal Cache */
     if (chunkIndex == -1) {
       callBack.call(null, _dataCache);
-    } 
+    }
     /* Special case: If the chunkSize is set to -1, our dataRetrieveCommand doesn't support paging */
     else if (chunkSize == -1) {
       _chunkSize = chunkSize;
       _chunkIndex = chunkIndex;
-      _dataRetrieveCommand.addCompleteListener(_onData);
+      _dataRetrieveCommand.addCompleteListener(onData);
       _dataRetrieveCommand.execute();
-    } 
+    }
     /* Is the start of the requested data range below the current theoretical maximum of loaded datasets? */
     else if (chunkIndex < _cursor) {
       /* Is the end of the requested data range above the current theoretical maximum of loaded datasets? */
       if (chunkIndex + chunkSize >= _cursor) {
         /* Is the end of the requested data range below the actual maximum of available datasets? */
-        if(chunkIndex + chunkSize <= _dataTotalSize){
+        if (chunkIndex + chunkSize <= _dataTotalSize) {
           //request the data via our dataRetrieveCommand
-          _requestChunkExecute(callBack, chunkIndex, chunkSize);  
+          _requestChunkExecute(callBack, chunkIndex, chunkSize);
           return;
         }
-        
+
         //cut the end of the requested data range to the actual maximum of available datasets
         chunkSize = (_cursor < _dataTotalSize ? _cursor : _dataTotalSize) - chunkIndex;
-        
+
       }
       //request data from internal Cache
       _onDataCallback.call(new List.from(_dataCache.getRange(chunkIndex, chunkIndex + chunkSize)));
@@ -120,11 +132,12 @@ class DataProxy implements IDataProxy {
     _chunkIndex = chunkIndex;
     _chunkSize = chunkSize;
     //
-    _dataRetrieveCommand.addCompleteListener(_onData);
+    _dataRetrieveCommand.addCompleteListener(onData);
     _dataRetrieveCommand.execute(new XLSignal("data", dataRetrieveCommandVO));
   }
-  void _onData(OperationEvent event) {
-    _dataRetrieveCommand.removeCompleteListener(_onData);
+
+  void onData(OperationEvent event) {
+    _dataRetrieveCommand.removeCompleteListener(onData);
 
     /* No data */
     if (event.operation.result.length == 0) {
@@ -140,7 +153,7 @@ class DataProxy implements IDataProxy {
         if (_cursor > _dataTotalSize) {
           _cursor = _dataTotalSize;
         }
-      } 
+      }
       /* Retrieve _dataTotalSize from VO (has been set inside dataRetrieveCommand) */
       else if (_dataRetrieveCommandVO.totalSize != null) {
         _dataTotalSize = _dataRetrieveCommandVO.totalSize;

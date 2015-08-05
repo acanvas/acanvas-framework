@@ -3,14 +3,14 @@ part of stagexl_rockdot.facebook;
 //@retain
 class FBFriendsGetCommand extends AbstractFBCommand {
   DataRetrieveVO _vo;
-  
+
   @override void execute([XLSignal event = null]) {
     super.execute(event);
-    
+
     if (notLoggedIn(event)) return;
-    
+
     if (event.data != null && event.data is DataRetrieveVO) {
-        _vo = event.data;
+      _vo = event.data;
     }
 
     String uid = _fbModel.user.uid;
@@ -25,7 +25,7 @@ class FBFriendsGetCommand extends AbstractFBCommand {
 
   void _handleResult(js.JsObject response) {
     hideMessage();
-    
+
     if (containsError(response)) return;
 
     Map friends = {};
@@ -35,12 +35,12 @@ class FBFriendsGetCommand extends AbstractFBCommand {
 
     _fbModel.friends = friends;
 
-    if(_vo != null){
-     _vo.nextToken = response["paging"]["cursors"]["after"];
-     _vo.totalSize = response["data"].length;
-     dispatchCompleteEvent(response["data"]);
+    if (_vo != null) {
+      _vo.nextToken = response["paging"]["cursors"]["after"];
+      _vo.totalSize = response["data"].length;
+      dispatchCompleteEvent(response["data"]);
     }
-    else{
+    else {
       dispatchCompleteEvent(friends);
     }
   }

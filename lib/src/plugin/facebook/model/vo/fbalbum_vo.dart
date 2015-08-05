@@ -16,8 +16,10 @@ class FBAlbumVO {
   String type;
   String created_time;
   String updated_time;
-  
-  int totalrows; //internal
+
+  int totalrows;
+
+  //internal
 
   FBAlbumVO([dynamic obj = null]) {
     if (obj != null) {

@@ -13,40 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- part of stagexl_rockdot.facebook;
+part of stagexl_rockdot.facebook;
 
 
+/**
+ * <code>IObjectPostProcessor</code> implementation that checks for objects that implement the <code>IApplicationContextAware</code>
+ * abstract class and injects them with the provided <code>IApplicationContext</code> instance.
+ * <p>
+ * <b>Author:</b> Christophe Herreman<br/>
+ * <b>Version:</b> $Revision: 21 $, $Date: 2008-11-01 22:58:42 +0100 (za, 01 nov 2008) $, $Author: dmurat $<br/>
+ * <b>Since:</b> 0.1
+ * </p>
+ * @inheritDoc
+ */
+class FBModelInjector implements IObjectPostProcessor {
+  IObjectFactory _applicationContext;
 
-	/**
-	 * <code>IObjectPostProcessor</code> implementation that checks for objects that implement the <code>IApplicationContextAware</code>
-	 * abstract class and injects them with the provided <code>IApplicationContext</code> instance.
-	 * <p>
-	 * <b>Author:</b> Christophe Herreman<br/>
-	 * <b>Version:</b> $Revision: 21 $, $Date: 2008-11-01 22:58:42 +0100 (za, 01 nov 2008) $, $Author: dmurat $<br/>
-	 * <b>Since:</b> 0.1
-	 * </p>
-	 * @inheritDoc
-	 */
-	 class FBModelInjector implements IObjectPostProcessor {
-		 IObjectFactory _applicationContext;
-	 FBModelInjector(IObjectFactory applicationContext) {
-			_applicationContext = applicationContext;
-		}
+  FBModelInjector(IObjectFactory applicationContext) {
+    _applicationContext = applicationContext;
+  }
 
 
-		/**
-		 * @inheritDoc
-		 */
-		  dynamic postProcessAfterInitialization(dynamic object,String objectName) {
-			if (object is IFBModelAware) {
-				object.fbModel = _applicationContext.getObject(FacebookPlugin.MODEL_FB);
-			}
-			
-			return object;
-		}
+  /**
+   * @inheritDoc
+   */
+  dynamic postProcessAfterInitialization(dynamic object, String objectName) {
+    if (object is IFBModelAware) {
+      object.fbModel = _applicationContext.getObject(FacebookPlugin.MODEL_FB);
+    }
 
-		  dynamic postProcessBeforeInitialization(dynamic object,String objectName) {
-		    return object;
-		}
-	}
+    return object;
+  }
+
+  dynamic postProcessBeforeInitialization(dynamic object, String objectName) {
+    return object;
+  }
+}
 

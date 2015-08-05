@@ -11,7 +11,7 @@ class FBLogoutBrowserCommand extends AbstractFBCommand {
 
   void _handleResult(js.JsArray response) {
     if (containsError(response)) return;
-    
+
     _fbModel.userIsAuthenticated = false;
     _fbModel.user = null;
     _fbModel.userAlbumPhotos = [];

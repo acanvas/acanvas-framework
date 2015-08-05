@@ -5,7 +5,7 @@ part of stagexl_rockdot.screen;
  */
 class ScreenDisplaylistEffectApplyVO implements IXLVO {
   IEffect effect;
-  ISpriteComponent target;
+  LifecycleSprite target;
   num duration;
 
   ScreenDisplaylistEffectApplyVO(this.effect, this.target, this.duration) {

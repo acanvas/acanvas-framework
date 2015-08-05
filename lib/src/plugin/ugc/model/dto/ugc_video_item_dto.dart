@@ -9,7 +9,7 @@ class UGCVideoItemDTO implements IXLDTO {
   String url_big;
   String url_thumb;
   String timestamp;
-  
+
   UGCVideoItemDTO([Map inputDTO = null]) {
     if (inputDTO != null) {
       id = inputDTO["id"];
