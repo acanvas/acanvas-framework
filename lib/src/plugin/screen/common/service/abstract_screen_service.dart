@@ -90,11 +90,12 @@ class AbstractScreenService implements IScreenService {
 
     _initialized = true;
 
+    resize();
+
     if (callback != null) {
       callback();
     }
 
-    resize();
     stage.addEventListener(Event.RESIZE, resize);
   }
 
