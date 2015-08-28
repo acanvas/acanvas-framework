@@ -72,10 +72,6 @@ class RockdotConstants {
     return ContextTool.WEBGL;
   }
 
-  static void set WEBGL(bool gl) {
-    ContextTool.WEBGL = gl;
-  }
-
   static IApplicationContext getContext() {
     return _singleton._context;
   }
