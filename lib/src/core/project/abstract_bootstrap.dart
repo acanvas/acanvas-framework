@@ -21,7 +21,7 @@ class AbstractBootstrap extends LifecycleSprite {
   }
 
   /* Assign and prepare some things for Rockdot */
-  @override void init({Map params: null}){
+  @override void init({Map params: null}) {
     super.init(params: params);
 
     // Instantiate Context.
@@ -46,7 +46,7 @@ class AbstractBootstrap extends LifecycleSprite {
   void _initPropertyFiles() {
     IObjectDefinitionsProvider provider = new DefaultObjectDefinitionsProvider();
 
-    propertyFiles.forEach((file){
+    propertyFiles.forEach((file) {
       TextFileURI uri = new TextFileURI(file, true);
       provider.propertyURIs.add(uri);
 
@@ -57,7 +57,7 @@ class AbstractBootstrap extends LifecycleSprite {
 
   void _initPlugins() {
 
-    plugins.forEach((plugin){
+    plugins.forEach((plugin) {
       _applicationContext.addObjectFactoryPostProcessor(plugin);
     });
 

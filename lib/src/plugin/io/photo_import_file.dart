@@ -17,7 +17,7 @@ class PhotoImportFile extends AbstractLayer {
   PhotoImportFile(String id) : super(id) {
   }
 
-  @override void init({Map params: null}){
+  @override void init({Map params: null}) {
     super.init(params: params);
 
     _headline.text = getProperty("headline").toUpperCase();

@@ -1,5 +1,5 @@
 name: stagexl_rockdot
-version: 0.2.0
+version: 0.5.0
 description: StageXL port of Rockdot framework, based on Spring framework for StageXL.
 dependencies:
   googleapis_auth: any
