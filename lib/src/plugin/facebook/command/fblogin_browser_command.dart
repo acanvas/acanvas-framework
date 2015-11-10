@@ -55,6 +55,7 @@ class FBLoginBrowserCommand extends AbstractFBCommand {
       dispatchCompleteEvent();
     } else {
       this.log.debug("Received empty callback");
+      hideMessage();
       dispatchErrorEvent();
     }
   }

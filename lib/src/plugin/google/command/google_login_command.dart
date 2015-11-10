@@ -53,6 +53,8 @@ class GoogleLoginCommand extends AbstractGoogleCommand {
   }
 
   void _handleLoginError(UserConsentException ex) {
+    _gModel.flow.close();
+    hideMessage();
     dispatchErrorEvent(ex.message);
   }
 
