@@ -61,15 +61,15 @@ class RdConstants {
   }
 
   static Stage getStage() {
-    return RdEnvironment.STAGE;
+    return Rd.STAGE;
   }
 
   static void setStage(Stage stage) {
-    RdEnvironment.STAGE = (stage);
+    Rd.STAGE = (stage);
   }
 
   static bool get WEBGL {
-    return RdEnvironment.WEBGL;
+    return Rd.WEBGL;
   }
 
   static IApplicationContext getContext() {

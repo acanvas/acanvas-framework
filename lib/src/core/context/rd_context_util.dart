@@ -115,7 +115,7 @@ class RdContextUtil {
     String prefix = RdConstants.HOST_FRONTEND + RdConstants.VERSION + "/";
 
     /* Define Caching */
-    String postfix = RdConstants.DEBUG && !RdEnvironment.MOBILE ? "?" + new math.Random().nextInt(1000000).toString() : "";
+    String postfix = RdConstants.DEBUG && !Rd.MOBILE ? "?" + new math.Random().nextInt(1000000).toString() : "";
 
     /* Define Context XML */
     return prefix + "app-context.xml" + postfix;
