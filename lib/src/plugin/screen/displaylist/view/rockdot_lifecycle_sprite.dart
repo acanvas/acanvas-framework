@@ -3,7 +3,7 @@ part of stagexl_rockdot.screen;
 class RockdotLifecycleSprite extends LifecycleSprite with MApplicationContextAware {
 
   RockdotLifecycleSprite(String id) : super(id) {
-    RockdotContextHelper.wire(this);
+    RdContextUtil.wire(this);
     inheritSpan = false;
   }
 

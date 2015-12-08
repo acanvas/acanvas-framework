@@ -11,7 +11,7 @@ class UGCPlugin extends AbstractOrderedFactoryPostProcessor {
   @override IOperation postProcessObjectFactory(IObjectFactory objectFactory) {
 
     /* Objects */
-    RockdotContextHelper.registerInstance(objectFactory, MODEL_UGC, new UGCModel());
+    RdContextUtil.registerInstance(objectFactory, MODEL_UGC, new UGCModel());
 
     /* Object Postprocessors */
     objectFactory.addObjectPostProcessor(new UGCModelInjector(objectFactory));
@@ -60,11 +60,11 @@ class UGCPlugin extends AbstractOrderedFactoryPostProcessor {
     commandMap[UGCEvents.TASK_GET_CATEGORIES] = () => new TaskGetCategoriesCommand();
     commandMap[UGCEvents.TASK_GET_TASK_BY_CATEGORY] = () => new TaskGetTasksByCategoryCommand();
 
-    RockdotContextHelper.registerCommands(objectFactory, commandMap);
+    RdContextUtil.registerCommands(objectFactory, commandMap);
 
 
     /* Bootstrap Command */
-    RockdotConstants.getBootstrap().add(UGCEvents.INIT);
+    RdConstants.getBootstrap().add(UGCEvents.INIT);
 
 
     return null;

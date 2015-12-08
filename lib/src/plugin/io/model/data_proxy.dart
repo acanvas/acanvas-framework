@@ -133,7 +133,7 @@ class DataProxy implements IDataProxy {
     _chunkSize = chunkSize;
     //
     _dataRetrieveCommand.addCompleteListener(onData);
-    _dataRetrieveCommand.execute(new XLSignal("data", dataRetrieveCommandVO));
+    _dataRetrieveCommand.execute(new RdSignal("data", dataRetrieveCommandVO));
   }
 
   void onData(OperationEvent event) {

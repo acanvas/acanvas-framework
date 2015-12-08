@@ -1,7 +1,7 @@
 part of stagexl_rockdot.state;
 
 
-class AbstractStateCommand extends CoreCommand implements IStateModelAware, IScreenModelAware {
+class AbstractStateCommand extends RdCommand implements IStateModelAware, IScreenModelAware {
 
   ScreenModel _uiModel;
 

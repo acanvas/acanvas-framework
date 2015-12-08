@@ -6,7 +6,7 @@ class FBInitBrowserCommand extends AbstractFBCommand {
   String facebookSDKUrl = "https://connect.facebook.net/en_US/sdk.js";
 
   @override
-  void execute([XLSignal event = null]) {
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     var script = new html.ScriptElement();
@@ -46,7 +46,7 @@ class FBInitBrowserCommand extends AbstractFBCommand {
       _fbModel.user = new FBUserVO()
         ..uid = response["authResponse"]["userID"];
 
-      new XLSignal(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions).dispatch();
+      new RdSignal(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions).dispatch();
     } else {
       dispatchCompleteEvent();
     }

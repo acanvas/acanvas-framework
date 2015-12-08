@@ -4,7 +4,7 @@ part of stagexl_rockdot.google;
 class GoogleInitCommand extends AbstractGoogleCommand {
 
   @override
-  void execute([XLSignal event = null]) {
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     var id = new ClientId(getProperty(getProperty("project.google.oauth.clientid")), null);

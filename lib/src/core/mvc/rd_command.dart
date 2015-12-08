@@ -1,13 +1,13 @@
 part of stagexl_rockdot.core;
 
 
-class CoreCommand extends AbstractOperation implements IAsyncCommand, IApplicationContextAware {
+class RdCommand extends AbstractOperation implements IAsyncCommand, IApplicationContextAware {
   Logger log;
 
-  XLSignal _event;
+  RdSignal _event;
   Function _callback;
 
-  CoreCommand() {
+  RdCommand() {
     log = new Logger(this.toString());
   }
 
@@ -46,7 +46,7 @@ class CoreCommand extends AbstractOperation implements IAsyncCommand, IApplicati
     dispatchErrorEvent(event.error);
   }
 
-  @override void execute([XLSignal event = null]) {
+  @override void execute([RdSignal event = null]) {
     _event = event;
     if (event != null && event.completeCallBack != null) {
       _callback = event.completeCallBack;
@@ -55,12 +55,12 @@ class CoreCommand extends AbstractOperation implements IAsyncCommand, IApplicati
 
   void showMessage(String message, {int timeBox: 0, int type: StateMessageVO.TYPE_INFO, bool blur: false}) {
     String id = (_event == null) ? "NO_ID" : _event.type;
-    new XLSignal(StateEvents.MESSAGE_SHOW, new StateMessageVO(id, message, timeBox, type: type, blurContent: blur)).dispatch();
+    new RdSignal(StateEvents.MESSAGE_SHOW, new StateMessageVO(id, message, timeBox, type: type, blurContent: blur)).dispatch();
   }
 
   void hideMessage([String id = null]) {
     String id = (_event == null) ? "NO_ID" : _event.type;
-    new XLSignal(StateEvents.MESSAGE_HIDE, id).dispatch();
+    new RdSignal(StateEvents.MESSAGE_HIDE, id).dispatch();
   }
 
 }

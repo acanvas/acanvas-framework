@@ -3,7 +3,7 @@ part of stagexl_rockdot.screen;
 //@retain
 class ScreenPluginInitCommand extends AbstractScreenCommand {
 
-  @override dynamic execute([XLSignal event=null]) {
+  @override dynamic execute([RdSignal event=null]) {
     super.execute(event);
 
     IScreenService _uiService = applicationContext.getObject(ScreenPluginBase.SERVICE_UI);

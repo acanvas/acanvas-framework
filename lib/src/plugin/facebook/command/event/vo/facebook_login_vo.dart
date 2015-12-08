@@ -3,7 +3,7 @@ part of stagexl_rockdot.facebook;
 class FacebookLoginVO {
 
   String scopes;
-  XLSignal nextSignal;
+  RdSignal nextSignal;
 
   FacebookLoginVO({this.scopes, this.nextSignal}) {
   }

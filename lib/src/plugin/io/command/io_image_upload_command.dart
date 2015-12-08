@@ -1,10 +1,10 @@
 part of stagexl_rockdot.io;
 
 //@retain
-class IOImageUploadCommand extends CoreCommand {
+class IOImageUploadCommand extends RdCommand {
 
   @override
-  void execute([XLSignal event = null]) {
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     IOImageUploadVO vo = event.data;

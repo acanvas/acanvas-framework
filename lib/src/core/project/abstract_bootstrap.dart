@@ -5,7 +5,7 @@ part of stagexl_rockdot.core;
  * @author Nils Doehring
  */
 class AbstractBootstrap extends LifecycleSprite {
-  RockdotApplicationContext _applicationContext;
+  RdContext _applicationContext;
   Stage _stage;
   List<IObjectFactoryPostProcessor> plugins = [];
   List<String> propertyFiles = [];
@@ -13,7 +13,7 @@ class AbstractBootstrap extends LifecycleSprite {
   AbstractBootstrap(Stage stage) : super("rockdot.bootstrap") {
     //XXX currently, LoaderInfo is just a leftover from Actionscript
     LoaderInfo loaderInfo = new LoaderInfo();
-    RockdotConstants.setLoaderInfo(loaderInfo);
+    RdConstants.setLoaderInfo(loaderInfo);
 
     _stage = stage;
     enabled = true;
@@ -25,11 +25,11 @@ class AbstractBootstrap extends LifecycleSprite {
     super.init(params: params);
 
     // Instantiate Context.
-    _applicationContext = new RockdotApplicationContext(_stage);
+    _applicationContext = new RdContext(_stage);
 
     //Feed RockdotConstants 
-    RockdotConstants.setStage(_stage);
-    RockdotConstants.setContext(_applicationContext);
+    RdConstants.setStage(_stage);
+    RdConstants.setContext(_applicationContext);
 
     //Add property files
     _initPropertyFiles();
@@ -64,7 +64,7 @@ class AbstractBootstrap extends LifecycleSprite {
   }
 
   void _initLogger() {
-    if (RockdotConstants.DEBUG == false) {
+    if (RdConstants.DEBUG == false) {
       logging.Logger.root.level = logging.Level.OFF;
       print("Logging Disabled. Good Bye.");
     } else {

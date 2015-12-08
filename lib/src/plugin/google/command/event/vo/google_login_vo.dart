@@ -3,7 +3,7 @@ part of stagexl_rockdot.google;
 class GoogleLoginVO {
 
   List scopes;
-  XLSignal nextSignal;
+  RdSignal nextSignal;
 
   GoogleLoginVO({this.scopes, this.nextSignal}) {
   }

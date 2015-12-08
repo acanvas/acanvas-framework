@@ -3,7 +3,7 @@ part of stagexl_rockdot.ugc;
 //@retain
 class UGCCreateItemContainerCommand extends AbstractUGCCommand {
 
-  @override void execute([XLSignal event = null]) {
+  @override void execute([RdSignal event = null]) {
     super.execute(event);
     if (event.data is UGCItemContainerDTO) {
       _ugcModel.currentItemContainerDAO = event.data;

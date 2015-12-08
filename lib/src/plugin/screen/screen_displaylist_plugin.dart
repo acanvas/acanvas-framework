@@ -5,7 +5,7 @@ class ScreenDisplaylistPlugin extends ScreenPluginBase {
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new XLSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   * new RdSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override void configureCommands() {
     super.configureCommands();
@@ -29,6 +29,6 @@ class ScreenDisplaylistPlugin extends ScreenPluginBase {
    */
   @override void configureInjectors() {
     super.configureInjectors();
-    RockdotContextHelper.registerInstance(objectFactory, ScreenPluginBase.SERVICE_UI, new ScreenDisplaylistService());
+    RdContextUtil.registerInstance(objectFactory, ScreenPluginBase.SERVICE_UI, new ScreenDisplaylistService());
   }
 }

@@ -1,17 +1,17 @@
 part of stagexl_rockdot.facebook;
 
 //@retain
-class AbstractFBCommand extends CoreCommand implements IFBModelAware {
+class AbstractFBCommand extends RdCommand implements IFBModelAware {
   FBModel _fbModel;
 
   void set fbModel(FBModel fbModel) {
     _fbModel = fbModel;
   }
 
-  bool notLoggedIn(XLSignal event) {
+  bool notLoggedIn(RdSignal event) {
     if (!_fbModel.userIsAuthenticated) {
       //If the Login went successful, execute this Event again.
-      new XLSignal(FBEvents.USER_LOGIN, null, () {
+      new RdSignal(FBEvents.USER_LOGIN, null, () {
         execute(event);
       }).dispatch();
       //For now, cancel this Event.

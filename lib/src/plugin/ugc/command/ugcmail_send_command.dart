@@ -3,7 +3,7 @@ part of stagexl_rockdot.ugc;
 //@retain
 class UGCMailSendCommand extends AbstractUGCCommand {
 
-  @override void execute([XLSignal event = null]) {
+  @override void execute([RdSignal event = null]) {
     super.execute(event);
 
     String sender = getProperty("email.confirm.sender").split(r"$sender").join(getProperty("project.host.email.sender"));

@@ -32,7 +32,7 @@ class PhotoImportFile extends AbstractLayer {
     observeFileInput();
 
     _buttonClose = new YellowButton(getProperty("button.back"));
-    _buttonClose.submitEvent = new XLSignal(StateEvents.STATE_VO_BACK);
+    _buttonClose.submitEvent = new RdSignal(StateEvents.STATE_VO_BACK);
     addChild(_buttonClose);
 
     onInitComplete();

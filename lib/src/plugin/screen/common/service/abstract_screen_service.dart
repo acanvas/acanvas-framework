@@ -42,7 +42,7 @@ class AbstractScreenService implements IScreenService {
   }
 
   Stage get stage {
-    return RockdotConstants.getStage();
+    return RdConstants.getStage();
   }
 
   bool _initialized;
@@ -100,16 +100,15 @@ class AbstractScreenService implements IScreenService {
   }
 
   void resize([Event event = null]) {
+    _background.span(RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
+    _content.span(RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
+    _navi.span(RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
+    _layer.span(RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
+    _foreground.span(RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
 
-    _background.span(RockdotConstants.WIDTH_STAGE_REAL, RockdotConstants.HEIGHT_STAGE_REAL);
-    _content.span(RockdotConstants.WIDTH_STAGE_REAL, RockdotConstants.HEIGHT_STAGE_REAL);
-    _navi.span(RockdotConstants.WIDTH_STAGE_REAL, RockdotConstants.HEIGHT_STAGE_REAL);
-    _layer.span(RockdotConstants.WIDTH_STAGE_REAL, RockdotConstants.HEIGHT_STAGE_REAL);
-    _foreground.span(RockdotConstants.WIDTH_STAGE_REAL, RockdotConstants.HEIGHT_STAGE_REAL);
+    log.finer("Stage width: ${RdConstants.WIDTH_STAGE_REAL}, Stage height: ${RdConstants.HEIGHT_STAGE_REAL}");
 
-    log.finer("Stage width: ${RockdotConstants.WIDTH_STAGE_REAL}, Stage height: ${RockdotConstants.HEIGHT_STAGE_REAL}");
-
-    //new XLSignal(ScreenEvents.RESIZE).dispatch();
+    //new RdSignal(ScreenEvents.RESIZE).dispatch();
 
   }
 

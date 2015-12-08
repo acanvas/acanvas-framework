@@ -21,14 +21,14 @@ part of stagexl_rockdot.core;
  * @author Roland Zwaga
  */
 
-class RockdotApplicationContext extends SpringApplicationContext {
+class RdContext extends SpringApplicationContext {
 
   /**
    * Creates a new <code>ApplicationContext</code> instance.
    * @param parent
    * @param objFactory
    */
-  RockdotApplicationContext([dynamic source=null, IApplicationContext parent=null, List<DisplayObject> rootViews=null, IObjectFactory objFactory=null]) : super(rootViews, objFactory) {
+  RdContext([dynamic source=null, IApplicationContext parent=null, List<DisplayObject> rootViews=null, IObjectFactory objFactory=null]) : super(rootViews, objFactory) {
 
     //Only needed if we want to automatically identify FactoryPostProcessors in Context
     //addObjectFactoryPostProcessor(new RegisterObjectFactoryPostProcessorsFactoryPostProcessor(-99));
@@ -60,9 +60,9 @@ class RockdotApplicationContext extends SpringApplicationContext {
     /* initializing the UI is mandatory, but feel free to add other commands */
     CompositeCommandWithEvent compositeCommand = new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
 
-    List array = RockdotConstants.getBootstrap();
+    List array = RdConstants.getBootstrap();
     for (int i = 0; i < array.length; i++) {
-      compositeCommand.addCommandEvent(new XLSignal(array[i]), this);
+      compositeCommand.addCommandEvent(new RdSignal(array[i]), this);
     }
 
     /* add sequence listeners */

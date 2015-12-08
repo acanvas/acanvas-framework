@@ -7,7 +7,7 @@ class StatePlugin extends AbstractPlugin {
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new XLSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   * new RdSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override void configureCommands() {
     commandMap[StateEvents.INIT] = () => new StatePluginInitCommand();
@@ -39,7 +39,7 @@ class StatePlugin extends AbstractPlugin {
    * Feel free to add more injectors.
    */
   @override void configureInjectors() {
-    RockdotContextHelper.registerInstance(objectFactory, StateConstants.CTX_MODEL_STATE, new StateModel());
+    RdContextUtil.registerInstance(objectFactory, StateConstants.CTX_MODEL_STATE, new StateModel());
     objectFactory.addObjectPostProcessor(new StateModelInjector(objectFactory));
   }
 

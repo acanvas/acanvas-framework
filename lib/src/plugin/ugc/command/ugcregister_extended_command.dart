@@ -8,7 +8,7 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
     _modelFB = model;
   }
 
-  @override void execute([XLSignal event = null]) {
+  @override void execute([RdSignal event = null]) {
     super.execute(event);
 //			dispatchMessage("loading.backend.login");
 
@@ -19,7 +19,7 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
       amfObject = event.data;
       _ugcModel.userExtendedDAO = new UGCUserExtendedDTO(amfObject.toJson());
 
-    } else if (RockdotConstants.LOCAL && RockdotConstants.DEBUG) {
+    } else if (RdConstants.LOCAL && RdConstants.DEBUG) {
 
       _ugcModel.userExtendedDAO = _createDummyData();
       amfObject = _ugcModel.userExtendedDAO;

@@ -2,7 +2,7 @@ part of stagexl_rockdot.screen;
 
 abstract class MApplicationContextAware implements IApplicationContextAware {
 
-  RockdotApplicationContext _context;
+  RdContext _context;
 
   @override IApplicationContext get applicationContext => _context;
 

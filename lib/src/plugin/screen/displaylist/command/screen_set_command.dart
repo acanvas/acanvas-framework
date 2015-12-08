@@ -11,7 +11,7 @@ class ScreenSetCommand extends AbstractStateCommand {
   MLifecycle _currentStateElement;
   MLifecycle _nextStateElement;
 
-  @override void execute([XLSignal event = null]) {
+  @override void execute([RdSignal event = null]) {
     super.execute(event);
 
     StateChangeVO e = event.data;
@@ -89,7 +89,7 @@ class ScreenSetCommand extends AbstractStateCommand {
       }
     }
 
-    new XLSignal(ScreenDisplaylistEvents.TRANSITION_PREPARE, new ScreenDisplaylistTransitionPrepareVO(transitionType, _currentStateElement, stateModel.currentTransition, _nextStateElement, modal: modal, initialAlpha: stateModel.currentTransition.initialAlpha), _onTransitionEnd).dispatch();
+    new RdSignal(ScreenDisplaylistEvents.TRANSITION_PREPARE, new ScreenDisplaylistTransitionPrepareVO(transitionType, _currentStateElement, stateModel.currentTransition, _nextStateElement, modal: modal, initialAlpha: stateModel.currentTransition.initialAlpha), _onTransitionEnd).dispatch();
   }
 
   void _onTransitionEnd([dynamic payload = null]) {

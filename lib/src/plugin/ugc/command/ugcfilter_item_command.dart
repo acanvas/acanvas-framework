@@ -10,7 +10,7 @@ class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAwar
     _stateModel = stateModel;
   }
 
-  @override void execute([XLSignal event = null]) {
+  @override void execute([RdSignal event = null]) {
     super.execute(event);
 
     _vo = event.data;

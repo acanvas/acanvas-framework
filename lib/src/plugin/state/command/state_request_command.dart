@@ -6,7 +6,7 @@ part of stagexl_rockdot.state;
 //@retain
 class StateRequestCommand extends AbstractStateCommand {
 
-  @override void execute([XLSignal event = null]) {
+  @override void execute([RdSignal event = null]) {
     super.execute(event);
     List urlData = event.data.split("?");
     StateVO stateVO = _stateModel.getStateVO(urlData[0].toLowerCase());
@@ -15,7 +15,7 @@ class StateRequestCommand extends AbstractStateCommand {
 
       if (_stateModel.currentScreen == null && stateVO.substate == StateConstants.SUB_MODAL) {
         // 0. nullToModal
-        new XLSignal(StateEvents.ADDRESS_SET, "/").dispatch();
+        new RdSignal(StateEvents.ADDRESS_SET, "/").dispatch();
         return;
       }
 
@@ -38,12 +38,12 @@ class StateRequestCommand extends AbstractStateCommand {
         stateVO.params = null;
       }
 
-      new XLSignal(StateEvents.STATE_VO_SET, stateVO, dispatchCompleteEvent).dispatch();
+      new RdSignal(StateEvents.STATE_VO_SET, stateVO, dispatchCompleteEvent).dispatch();
 
 
     } else {
       //If url not found in registry, default to root
-      new XLSignal(StateEvents.ADDRESS_SET, "/", dispatchCompleteEvent).dispatch();
+      new RdSignal(StateEvents.ADDRESS_SET, "/", dispatchCompleteEvent).dispatch();
     }
 
   }

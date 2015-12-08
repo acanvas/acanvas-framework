@@ -3,7 +3,7 @@ part of stagexl_rockdot.facebook;
 //@retain
 class FBLogoutBrowserCommand extends AbstractFBCommand {
   @override
-  void execute([XLSignal event = null]) {
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     _fbModel.FB.callMethod("logout", [_handleResult]);

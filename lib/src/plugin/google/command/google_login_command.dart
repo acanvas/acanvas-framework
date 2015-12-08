@@ -2,10 +2,10 @@ part of stagexl_rockdot.google;
 
 //@retain
 class GoogleLoginCommand extends AbstractGoogleCommand {
-  XLSignal _nextSignal;
+  RdSignal _nextSignal;
 
   @override
-  void execute([XLSignal event = null]) {
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     var id = new ClientId(getProperty("project.google.oauth.clientid"), null);

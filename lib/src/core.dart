@@ -30,17 +30,17 @@ export 'io.dart' show DataRetrieveVO;
 part 'core/project/abstract_bootstrap.dart';
 part 'core/project/abstract_plugin.dart';
 
-part 'core/context/rockdot_application_context.dart';
-part 'core/context/rockdot_context_helper.dart';
+part 'core/context/rd_context.dart';
+part 'core/context/rd_context_util.dart';
 
 part 'core/mvc/command_vo.dart';
 part 'core/mvc/composite_command_with_event.dart';
-part 'core/mvc/core_command.dart';
+part 'core/mvc/rd_command.dart';
 
 part 'core/model/countries.dart';
 part 'core/model/languages.dart';
 part 'core/model/markets.dart';
-part 'core/model/rockdot_constants.dart';
+part 'core/model/rd_constants.dart';
 
 
 // LIBRARY #####

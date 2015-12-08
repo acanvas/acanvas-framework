@@ -4,7 +4,7 @@ part of stagexl_rockdot.screen;
 class ScreenDisappearCommand extends AbstractScreenCommand {
   ScreenDisplaylistAppearDisappearVO _vo;
 
-  @override void execute([XLSignal event = null]) {
+  @override void execute([RdSignal event = null]) {
     super.execute(event);
 
     _vo = event.data;

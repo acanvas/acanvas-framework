@@ -8,7 +8,7 @@ class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
     _fbModel = fbModel;
   }
 
-  @override void execute([XLSignal event = null]) {
+  @override void execute([RdSignal event = null]) {
     super.execute(event);
 //			dispatchMessage("loading.backend.login");
 
@@ -16,7 +16,7 @@ class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
 
       _ugcModel.userDAO = event.data;
 
-    } else if (RockdotConstants.LOCAL && RockdotConstants.DEBUG) {
+    } else if (RdConstants.LOCAL && RdConstants.DEBUG) {
 
       _ugcModel.userDAO = _createDummyData();
 

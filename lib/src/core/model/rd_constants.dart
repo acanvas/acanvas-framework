@@ -1,7 +1,7 @@
 part of stagexl_rockdot.core;
 
 
-class RockdotConstants {
+class RdConstants {
 
   /* internals */
   LoaderInfo _loaderInfo;
@@ -29,21 +29,21 @@ class RockdotConstants {
 
 
   static int get WIDTH_STAGE_REAL {
-    return RockdotConstants.getStage().stageWidth;
+    return RdConstants.getStage().stageWidth;
   }
 
   static int get HEIGHT_STAGE_REAL {
-    return RockdotConstants.getStage().stageHeight;
+    return RdConstants.getStage().stageHeight;
   }
 
 
-  factory RockdotConstants() {
+  factory RdConstants() {
     return _singleton;
   }
 
-  static final RockdotConstants _singleton = new RockdotConstants._internal();
+  static final RdConstants _singleton = new RdConstants._internal();
 
-  RockdotConstants._internal() {
+  RdConstants._internal() {
     // initialization logic here
     _bootStrap = new List<String>();
   }
@@ -61,15 +61,15 @@ class RockdotConstants {
   }
 
   static Stage getStage() {
-    return ContextTool.STAGE;
+    return RdEnvironment.STAGE;
   }
 
   static void setStage(Stage stage) {
-    ContextTool.STAGE = (stage);
+    RdEnvironment.STAGE = (stage);
   }
 
   static bool get WEBGL {
-    return ContextTool.WEBGL;
+    return RdEnvironment.WEBGL;
   }
 
   static IApplicationContext getContext() {

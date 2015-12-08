@@ -1,13 +1,13 @@
 part of stagexl_rockdot.core;
 
-class RockdotContextHelper {
+class RdContextUtil {
 
   static void wire(dynamic uie) {
-    RockdotConstants.getContext().wire(uie);
+    RdConstants.getContext().wire(uie);
   }
 
   static dynamic getObject(String obj) {
-    return RockdotConstants.getContext().getObject(obj);
+    return RdConstants.getContext().getObject(obj);
   }
 
   static void registerCommands(IObjectFactory objectFactory, Map map) {
@@ -78,7 +78,7 @@ class RockdotContextHelper {
 
   static void registerScreen(IObjectFactory objectFactory, String id, Function func, String url,
                              {String substate : StateConstants.SUB_NORMAL, int tree_order : 0, int tree_parent : 0, String transition : "transition.default"}) {
-    RockdotContextHelper.registerClassFunction(objectFactory, id, func, false, true);
+    RdContextUtil.registerClassFunction(objectFactory, id, func, false, true);
 
     StateVO stateVO = new StateVO();
     stateVO.tree_order = tree_order;
@@ -112,10 +112,10 @@ class RockdotContextHelper {
 
   static String getConfigLocation() {
     /* Define URL to load from */
-    String prefix = RockdotConstants.HOST_FRONTEND + RockdotConstants.VERSION + "/";
+    String prefix = RdConstants.HOST_FRONTEND + RdConstants.VERSION + "/";
 
     /* Define Caching */
-    String postfix = RockdotConstants.DEBUG && !DeviceDetector.IS_MOBILE ? "?" + new math.Random().nextInt(1000000).toString() : "";
+    String postfix = RdConstants.DEBUG && !DeviceDetector.IS_MOBILE ? "?" + new math.Random().nextInt(1000000).toString() : "";
 
     /* Define Context XML */
     return prefix + "app-context.xml" + postfix;

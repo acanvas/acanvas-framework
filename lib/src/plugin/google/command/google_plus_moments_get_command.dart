@@ -4,7 +4,7 @@ part of stagexl_rockdot.google;
 class GooglePlusMomentsGetCommand extends AbstractGoogleCommand {
 
   @override
-  void execute([XLSignal event = null]) {
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     if (notLoggedIn(event)) return;

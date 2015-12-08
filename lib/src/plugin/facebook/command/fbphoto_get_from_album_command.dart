@@ -6,7 +6,7 @@ class FBPhotoGetFromAlbumCommand extends AbstractFBCommand {
   DataRetrieveVO _vo;
 
   @override
-  void execute([XLSignal event = null]) {
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     if (notLoggedIn(event)) return;

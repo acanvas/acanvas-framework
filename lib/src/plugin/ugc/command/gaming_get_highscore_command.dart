@@ -8,7 +8,7 @@ class GamingGetHighscoreCommand extends AbstractUGCCommand implements IFBModelAw
     _modelFB = model;
   }
 
-  @override void execute([XLSignal event = null]) {
+  @override void execute([RdSignal event = null]) {
     super.execute(event);
 
     Map dto = {

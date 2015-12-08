@@ -11,7 +11,7 @@ class GooglePlusShareRenderCommand extends AbstractGoogleCommand {
   String recipients = "";
 
   @override
-  void execute([XLSignal event = null]) {
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     js.context['dartGapiPlusLoaded'] = () {
@@ -51,7 +51,7 @@ class GooglePlusShareRenderCommand extends AbstractGoogleCommand {
 
     html.Element el = html.querySelector("#plus-button-holder");
     HtmlObject obj = new HtmlObject(el);
-    RockdotConstants.getStage().addChild(obj);
+    RdConstants.getStage().addChild(obj);
     obj.x = html.window.innerWidth / 2 - obj.width / 2;
     obj.y = html.window.innerHeight / 2 - obj.height / 2;
     obj.visible = true;

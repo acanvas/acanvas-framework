@@ -4,7 +4,7 @@ part of stagexl_rockdot.ugc;
 //@retain
 class UGCComplainCommand extends AbstractUGCCommand {
 
-  @override void execute([XLSignal event = null]) {
+  @override void execute([RdSignal event = null]) {
     super.execute(event);
 
     int id = event.data;

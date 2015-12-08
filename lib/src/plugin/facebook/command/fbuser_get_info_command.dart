@@ -5,7 +5,7 @@ part of stagexl_rockdot.facebook;
 class FBUserGetInfoCommand extends AbstractFBCommand {
 
   @override
-  void execute([XLSignal event = null]) {
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     if (notLoggedIn(event)) return;

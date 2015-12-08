@@ -9,7 +9,7 @@ class GooglePlugin extends AbstractPlugin {
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new XLSignal(GoogleEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   * new RdSignal(GoogleEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override void configureCommands() {
     commandMap[GoogleEvents.INIT] = () => new GoogleInitCommand();
@@ -31,7 +31,7 @@ class GooglePlugin extends AbstractPlugin {
    * Feel free to add more injectors.
    */
   @override void configureInjectors() {
-    RockdotContextHelper.registerInstance(objectFactory, MODEL_GOOGLE, new GoogleModel());
+    RdContextUtil.registerInstance(objectFactory, MODEL_GOOGLE, new GoogleModel());
     objectFactory.addObjectPostProcessor(new GoogleModelInjector(objectFactory));
   }
 

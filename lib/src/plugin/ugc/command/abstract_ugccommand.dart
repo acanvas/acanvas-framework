@@ -1,7 +1,7 @@
 part of stagexl_rockdot.ugc;
 
 
-class AbstractUGCCommand extends CoreCommand implements IUGCModelAware {
+class AbstractUGCCommand extends RdCommand implements IUGCModelAware {
   UGCModel _ugcModel;
 
   void set ugcModel(UGCModel ugcModel) {

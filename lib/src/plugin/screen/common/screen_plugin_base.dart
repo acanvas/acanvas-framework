@@ -10,7 +10,7 @@ class ScreenPluginBase extends AbstractPlugin {
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new XLSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   * new RdSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override void configureCommands() {
     commandMap[ScreenEvents.INIT] = () => new ScreenPluginInitCommand();
@@ -29,7 +29,7 @@ class ScreenPluginBase extends AbstractPlugin {
    * Feel free to add more injectors.
    */
   @override void configureInjectors() {
-    RockdotContextHelper.registerInstance(objectFactory, MODEL_UI, new ScreenModel());
+    RdContextUtil.registerInstance(objectFactory, MODEL_UI, new ScreenModel());
     objectFactory.addObjectPostProcessor(new ScreenPluginInjector(objectFactory));
   }
 

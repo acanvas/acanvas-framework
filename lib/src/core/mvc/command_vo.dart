@@ -4,9 +4,9 @@ part of stagexl_rockdot.core;
  */
 class CommandVO {
   ICommand command;
-  XLSignal event;
+  RdSignal event;
 
-  CommandVO(ICommand command, XLSignal event) {
+  CommandVO(ICommand command, RdSignal event) {
 
     this.event = event;
     this.command = command;

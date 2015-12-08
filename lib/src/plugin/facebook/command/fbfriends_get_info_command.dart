@@ -3,7 +3,7 @@ part of stagexl_rockdot.facebook;
 //@retain
 class FBFriendsGetInfoCommand extends AbstractFBCommand {
 
-  @override void execute([XLSignal event = null]) {
+  @override void execute([RdSignal event = null]) {
     super.execute(event);
 
     if (notLoggedIn(event)) return;

@@ -3,7 +3,7 @@ part of stagexl_rockdot.ugc;
 //@retain
 class UGCGetLikersCommand extends AbstractUGCCommand {
 
-  @override void execute([XLSignal event = null]) {
+  @override void execute([RdSignal event = null]) {
     super.execute(event);
 
     int currentImageID = (_ugcModel.currentItemDAO.id).toInt();

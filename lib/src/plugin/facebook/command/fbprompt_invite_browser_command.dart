@@ -7,7 +7,7 @@ class FBPromptInviteBrowserCommand extends AbstractFBCommand {
   VOFBInvite _vo;
 
   @override
-  void execute([XLSignal event = null]) {
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     if (notLoggedIn(event)) return;
@@ -17,7 +17,7 @@ class FBPromptInviteBrowserCommand extends AbstractFBCommand {
     _vo.method = "apprequests";
     _vo.display = "iframe";
 
-    String reason = _vo.reason != null ? _vo.reason : RockdotConstants.VAR_REASON_VALUE_APPREQUEST_VIEW;
+    String reason = _vo.reason != null ? _vo.reason : RdConstants.VAR_REASON_VALUE_APPREQUEST_VIEW;
 
     //assemble data payload as query string.
     //supported pairs: item_id=X OR item_container_id=Y
@@ -81,7 +81,7 @@ class FBPromptInviteBrowserCommand extends AbstractFBCommand {
       'to_ids': _fbModel.invitedUsers
     };
 
-    new XLSignal(UGCEvents.TRACK_INVITE, dto, dispatchCompleteEvent).dispatch();
+    new RdSignal(UGCEvents.TRACK_INVITE, dto, dispatchCompleteEvent).dispatch();
 
   }
 }

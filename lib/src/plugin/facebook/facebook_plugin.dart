@@ -9,7 +9,7 @@ class FacebookPlugin extends AbstractPlugin {
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new XLSignal(FacebookEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   * new RdSignal(FacebookEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override void configureCommands() {
 
@@ -37,7 +37,7 @@ class FacebookPlugin extends AbstractPlugin {
    * Feel free to add more injectors.
    */
   @override void configureInjectors() {
-    RockdotContextHelper.registerInstance(objectFactory, MODEL_FB, new FBModel());
+    RdContextUtil.registerInstance(objectFactory, MODEL_FB, new FBModel());
     objectFactory.addObjectPostProcessor(new FBModelInjector(objectFactory));
   }
 

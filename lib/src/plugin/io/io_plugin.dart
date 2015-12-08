@@ -7,7 +7,7 @@ class IOPlugin extends AbstractPlugin {
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new XLSignal(IOEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   * new RdSignal(IOEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override void configureCommands() {
     commandMap[IOEvents.UPLOAD_IMAGE] = () => new IOImageUploadCommand();

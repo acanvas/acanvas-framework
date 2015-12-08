@@ -2,10 +2,10 @@ part of stagexl_rockdot.facebook;
 
 //@retain
 class FBLoginBrowserCommand extends AbstractFBCommand {
-  XLSignal _nextSignal;
+  RdSignal _nextSignal;
 
   @override
-  void execute([XLSignal event = null]) {
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     String scopes = "";

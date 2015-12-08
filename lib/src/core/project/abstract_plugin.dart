@@ -12,7 +12,7 @@ class AbstractPlugin extends AbstractOrderedFactoryPostProcessor {
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new XLSignal(ProjectEvents.SOME_COMMAND, optionalParamVO, optionalFunctionCallback).dispatch();
+   * new RdSignal(ProjectEvents.SOME_COMMAND, optionalParamVO, optionalFunctionCallback).dispatch();
    */
   void configureCommands() {
     throw new UnimplementedError("To be implemented in Project subclass");
@@ -66,13 +66,13 @@ class AbstractPlugin extends AbstractOrderedFactoryPostProcessor {
   void addScreen(String id, Function func,
                  {String url, String substate : StateConstants.SUB_NORMAL, int tree_order : 0, int tree_parent : 0, String transition : "transition.default"}) {
     url = url == null ? objectFactory.propertiesProvider.getProperty("$id.url") : url;
-    RockdotContextHelper.registerScreen(objectFactory, id, func, url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate);
+    RdContextUtil.registerScreen(objectFactory, id, func, url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate);
   }
 
   void addScreenInstance(RockdotLifecycleSprite clazz,
                          {String url: null, String substate : StateConstants.SUB_NORMAL, int tree_order : 0, int tree_parent : 0, String transition : "transition.default"}) {
     url = url == null ? objectFactory.propertiesProvider.getProperty("${clazz.name}.url") : url;
-    RockdotContextHelper.registerScreenInstance(objectFactory, clazz.name, clazz, url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate);
+    RdContextUtil.registerScreenInstance(objectFactory, clazz.name, clazz, url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate);
   }
 
   void addLayer(String id, Function func,
@@ -89,11 +89,11 @@ class AbstractPlugin extends AbstractOrderedFactoryPostProcessor {
     objectFactory = _objectFactory;
 
     configureCommands();
-    RockdotContextHelper.registerCommands(objectFactory, commandMap);
+    RdContextUtil.registerCommands(objectFactory, commandMap);
 
     /* Add this Project's Init Command to Bootstrap Command Sequence */
     if (projectInitCommand != null) {
-      RockdotConstants.getBootstrap().add(projectInitCommand);
+      RdConstants.getBootstrap().add(projectInitCommand);
     }
 
     configureInjectors();

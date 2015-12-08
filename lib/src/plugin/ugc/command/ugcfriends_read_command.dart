@@ -9,7 +9,7 @@ class UGCFriendsReadCommand extends AbstractUGCCommand implements IFBModelAware 
     _modelFB = model;
   }
 
-  @override void execute([XLSignal event = null]) {
+  @override void execute([RdSignal event = null]) {
     super.execute(event);
 
     if (_modelFB.friendsWhoAreAppUsers == null) {

@@ -103,7 +103,7 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   /**
    * @inheritDoc
    */
-  void execute([XLSignal event = null]) {
+  void execute([RdSignal event = null]) {
     if (_commands != null) {
       switch (_kind) {
         case CompositeCommandKind.SEQUENCE:
@@ -137,7 +137,7 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   /**
    * @inheritDoc
    */
-  ICompositeCommand addCommandEvent(XLSignal event, IObjectFactory objectFactory) {
+  ICompositeCommand addCommandEvent(RdSignal event, IObjectFactory objectFactory) {
     if (event == null) {
       LOGGER.info("The event argument must not be null");
       return null;

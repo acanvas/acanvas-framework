@@ -8,7 +8,7 @@ class BasicAddressService implements IAddressService {
   }
 
   void changeAddress(String url, [Function callback = null]) {
-    new XLSignal(StateEvents.STATE_REQUEST, url).dispatch();
+    new RdSignal(StateEvents.STATE_REQUEST, url).dispatch();
   }
 
   void onAddressChanged(StateVO vo) {
