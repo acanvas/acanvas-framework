@@ -3,7 +3,7 @@ part of stagexl_rockdot.state;
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
  */
-class StateMessageVO implements IXLVO {
+class StateMessageVO implements IRdVO {
   static const int TYPE_INFO = 0;
   static const int TYPE_WARN = 1;
   static const int TYPE_ERROR = 2;

@@ -1,6 +1,6 @@
 part of stagexl_rockdot.ugc;
 
-class UGCUserDTO implements IXLDTO {
+class UGCUserDTO implements IRdDTO {
   static const NETWORK_FACEBOOK = "facebook";
   static const NETWORK_GPLUS = "google+";
   static const NETWORK_INPUTFORM = "input form";

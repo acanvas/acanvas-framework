@@ -3,7 +3,7 @@ part of stagexl_rockdot.screen;
 /**
  * @author nilsdoehring
  */
-class ScreenDisplaylistAppearDisappearVO implements IXLVO {
+class ScreenDisplaylistAppearDisappearVO implements IRdVO {
   LifecycleSprite target;
   num duration;
   bool autoDispose;

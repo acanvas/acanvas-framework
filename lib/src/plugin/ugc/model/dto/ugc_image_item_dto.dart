@@ -1,6 +1,6 @@
 part of stagexl_rockdot.ugc;
 
-class UGCImageItemDTO implements IXLDTO {
+class UGCImageItemDTO implements IRdDTO {
   int id;
   int w;
   int h;

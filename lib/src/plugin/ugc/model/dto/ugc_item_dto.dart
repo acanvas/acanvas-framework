@@ -1,6 +1,6 @@
 part of stagexl_rockdot.ugc;
 
-class UGCItemDTO implements IXLDTO {
+class UGCItemDTO implements IRdDTO {
   static const TYPE_TEXT = 0;
   static const TYPE_IMAGE = 1;
   static const TYPE_VIDEO = 2;
@@ -27,7 +27,7 @@ class UGCItemDTO implements IXLDTO {
   int type_id;
 
   // assembled in AMF Endpoint via type_id relation
-  IXLDTO type_dao;
+  IRdDTO type_dao;
 
   // assembled in AMF Endpoint by counting array index
   int rowindex;
@@ -74,8 +74,10 @@ class UGCItemDTO implements IXLDTO {
       }
       type_dao = inputDTO["type_dao"];
 
-      for (int i = 0; i < inputDTO["likers"].length; i++) {
-        inputDTO["likers"][i] = new UGCItemContainerRoleDTO(inputDTO["likers"][i]);
+      if(inputDTO["likers"] != null){
+        for (int i = 0; i < inputDTO["likers"].length; i++) {
+          inputDTO["likers"][i] = new UGCItemContainerRoleDTO(inputDTO["likers"][i]);
+        }
       }
       likers = inputDTO["likers"];
 

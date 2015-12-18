@@ -1,6 +1,6 @@
 part of stagexl_rockdot.ugc;
 
-class UGCTextItemDTO implements IXLDTO {
+class UGCTextItemDTO implements IRdDTO {
   int id;
   String text;
 

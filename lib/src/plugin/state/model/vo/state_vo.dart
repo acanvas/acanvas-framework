@@ -3,7 +3,7 @@ part of stagexl_rockdot.state;
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
  */
-class StateVO implements IXLVO {
+class StateVO implements IRdVO {
   String view_id;
 
   String _propertyKey;

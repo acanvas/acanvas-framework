@@ -8,7 +8,7 @@ class AbstractUGCCommand extends RdCommand implements IUGCModelAware {
     _ugcModel = ugcModel;
   }
 
-  void amfOperation(String methodName, {IXLDTO dto: null, Map map: null, String json: null}) {
+  void amfOperation(String methodName, {IRdDTO dto: null, Map map: null, String json: null}) {
 
     String params = null;
     if (dto != null) {

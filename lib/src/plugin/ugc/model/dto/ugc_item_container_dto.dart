@@ -3,7 +3,7 @@ part of stagexl_rockdot.ugc;
 /**
  * @author nilsdoehring
  */
-class UGCItemContainerDTO implements IXLDTO {
+class UGCItemContainerDTO implements IRdDTO {
   int id;
   int parent_container_id;
   int privacy_level;

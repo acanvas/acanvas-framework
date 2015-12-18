@@ -1,6 +1,6 @@
 part of stagexl_rockdot.ugc;
 
-class UGCAudioItemDTO implements IXLDTO {
+class UGCAudioItemDTO implements IRdDTO {
   int id;
   String url;
   int length;

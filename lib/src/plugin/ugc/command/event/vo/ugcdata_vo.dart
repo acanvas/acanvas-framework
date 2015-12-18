@@ -1,8 +1,8 @@
 part of stagexl_rockdot.ugc;
 
-class UGCDataVO implements IXLVO {
+class UGCDataVO implements IRdVO {
 
-  IXLDTO dao;
+  IRdDTO dao;
   String condition;
   String limit;
 

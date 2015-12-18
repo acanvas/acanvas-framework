@@ -3,7 +3,7 @@ part of stagexl_rockdot.screen;
 /**
  * @author nilsdoehring
  */
-class ScreenDisplaylistTransitionPrepareVO implements IXLVO {
+class ScreenDisplaylistTransitionPrepareVO implements IRdVO {
   LifecycleSprite outTarget;
   LifecycleSprite inTarget;
   IEffect effect;

@@ -1,6 +1,6 @@
 part of stagexl_rockdot.io;
 
-class IOImageUploadVO implements IXLVO {
+class IOImageUploadVO implements IRdVO {
 
   String targetUrl;
   String fileName;

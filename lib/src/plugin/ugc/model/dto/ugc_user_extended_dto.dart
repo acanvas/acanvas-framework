@@ -3,7 +3,7 @@ part of stagexl_rockdot.ugc;
 /**
  * @author nilsdoehring
  */
-class UGCUserExtendedDTO implements IXLDTO {
+class UGCUserExtendedDTO implements IRdDTO {
   String uid;
   String hash;
 

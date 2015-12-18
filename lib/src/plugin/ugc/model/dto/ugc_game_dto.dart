@@ -3,7 +3,7 @@ part of stagexl_rockdot.ugc;
 /**
  * @author nilsdoehring
  */
-class UGCGameDTO implements IXLDTO {
+class UGCGameDTO implements IRdDTO {
   String uid;
   int level;
   num score;

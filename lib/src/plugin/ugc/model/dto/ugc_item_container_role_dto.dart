@@ -3,7 +3,7 @@ part of stagexl_rockdot.ugc;
 /**
  * @author nilsdoehring
  */
-class UGCItemContainerRoleDTO implements IXLDTO {
+class UGCItemContainerRoleDTO implements IRdDTO {
   int id;
   int container_id;
   String uid;

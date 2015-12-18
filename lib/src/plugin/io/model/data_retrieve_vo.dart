@@ -3,7 +3,7 @@ part of stagexl_rockdot.io;
 /**
  * @author nilsdoehring
  */
-class DataRetrieveVO implements IXLVO {
+class DataRetrieveVO implements IRdVO {
 
   int limit;
   int totalSize;
