@@ -1,4 +1,4 @@
-library stagexl_rockdot.io;
+library rockdot_framework.io;
 
 import 'dart:html' as html;
 import 'dart:math' as math;
@@ -6,7 +6,7 @@ import 'dart:typed_data';
 
 /* Rockdot depends on StageXL */
 import 'package:stagexl/stagexl.dart';
-import 'package:stagexl_commons/stagexl_commons.dart';
+import 'package:rockdot_commons/rockdot_commons.dart';
 
 import 'core.dart';
 

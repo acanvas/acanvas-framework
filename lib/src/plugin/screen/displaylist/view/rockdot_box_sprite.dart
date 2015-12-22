@@ -1,4 +1,4 @@
-part of stagexl_rockdot.screen;
+part of rockdot_framework.screen;
 
 class RockdotBoxSprite extends BoxSprite with MApplicationContextAware {
 

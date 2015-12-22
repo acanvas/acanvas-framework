@@ -3,10 +3,10 @@
 Port of [Rockdot Actionscript Framework](https://github.com/blockforest/rockdot) to StageXL/Dart.
 
 ### Rockdot brings together the goodness of 
-* [StageXL Spring](https://github.com/blockforest/stagexl-spring) IoC container (ObjectFactory, ObjectFactory and Object Postprocessing, Interface Injection)
-* [StageXL Commons](https://github.com/blockforest/stagexl-commons) Async library (FrontController and Commands/Operations, also sequences)
-* [StageXL Commons](https://github.com/blockforest/stagexl-commons) EventBus (with some tweaks to Operations to make them as effective as Signals)
-* [StageXL Commons](https://github.com/blockforest/stagexl-commons) Logging
+* [StageXL Spring](https://github.com/blockforest/rockdot-spring) IoC container (ObjectFactory, ObjectFactory and Object Postprocessing, Interface Injection)
+* [StageXL Commons](https://github.com/blockforest/rockdot-commons) Async library (FrontController and Commands/Operations, also sequences)
+* [StageXL Commons](https://github.com/blockforest/rockdot-commons) EventBus (with some tweaks to Operations to make them as effective as Signals)
+* [StageXL Commons](https://github.com/blockforest/rockdot-commons) Logging
 * [StageXL](https://github.com/bp74/StageXL) - Flash API for Dart
 
 ### Rockdot features

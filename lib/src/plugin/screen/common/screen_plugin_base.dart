@@ -1,6 +1,6 @@
-part of stagexl_rockdot.screen;
+part of rockdot_framework.screen;
 
-class ScreenPluginBase extends AbstractPlugin {
+class ScreenPluginBase extends AbstractRdPlugin {
   static const String MODEL_UI = "MODEL_UI";
   static const String SERVICE_UI = "SERVICE_UI";
 

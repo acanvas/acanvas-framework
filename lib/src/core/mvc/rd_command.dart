@@ -1,4 +1,4 @@
-part of stagexl_rockdot.core;
+part of rockdot_framework.core;
 
 
 class RdCommand extends AbstractOperation implements IAsyncCommand, IApplicationContextAware {

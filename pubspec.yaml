@@ -1,8 +1,8 @@
-name: stagexl_rockdot
+name: rockdot-framework
 version: 0.5.0
-description: StageXL port of Rockdot framework, based on Spring framework for StageXL.
+description: Röckdöt Framewörk, based on a Spring framework implementation for StageXL.
 dependencies:
   googleapis_auth: any
   googleapis: any
-  stagexl_spring:
-    git: https://github.com/blockforest/stagexl-spring
+  rockdot_spring:
+    git: https://github.com/blockforest/rockdot-spring

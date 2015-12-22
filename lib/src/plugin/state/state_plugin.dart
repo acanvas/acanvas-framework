@@ -1,6 +1,6 @@
-part of stagexl_rockdot.state;
+part of rockdot_framework.state;
 
-class StatePlugin extends AbstractPlugin {
+class StatePlugin extends AbstractRdPlugin {
   StatePlugin() : super(10) {
   }
 

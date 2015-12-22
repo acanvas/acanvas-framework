@@ -1,4 +1,4 @@
-part of stagexl_rockdot.io;
+part of rockdot_framework.io;
 
 /**
  * @author nilsdoehring
@@ -146,7 +146,7 @@ class DataProxy implements IDataProxy {
     } else {
       List res = event.result;
       var json = res.elementAt(0);
-      /* Retrieve _dataTotalSize from "totalRows" attribute in first Element of List (this is how stagexl-rockdot-zend backend handles this) */
+      /* Retrieve _dataTotalSize from "totalRows" attribute in first Element of List (this is how rockdot-framework-zend backend handles this) */
       if (res.elementAt(0) is Map && res.elementAt(0)["totalrows"] != null) {
         _dataTotalSize = res.elementAt(0)["totalrows"];
 

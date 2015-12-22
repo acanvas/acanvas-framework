@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-part of stagexl_rockdot.google;
+part of rockdot_framework.google;
 
 
 /**

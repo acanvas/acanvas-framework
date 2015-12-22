@@ -1,4 +1,4 @@
-part of stagexl_rockdot.facebook;
+part of rockdot_framework.facebook;
 
 //@retain
 class FBFriendsGetInfoCommand extends AbstractFBCommand {

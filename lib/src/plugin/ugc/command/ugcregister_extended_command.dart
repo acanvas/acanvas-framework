@@ -1,4 +1,4 @@
-part of stagexl_rockdot.ugc;
+part of rockdot_framework.ugc;
 
 //@retain
 class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelAware {

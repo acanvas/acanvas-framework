@@ -1,6 +1,6 @@
-part of stagexl_rockdot.google;
+part of rockdot_framework.google;
 
-class GooglePlugin extends AbstractPlugin {
+class GooglePlugin extends AbstractRdPlugin {
   static const String MODEL_GOOGLE = "MODEL_GOOGLE";
 
   GooglePlugin() : super(30) {

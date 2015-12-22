@@ -1,6 +1,6 @@
-part of stagexl_rockdot.facebook;
+part of rockdot_framework.facebook;
 
-class FacebookPlugin extends AbstractPlugin {
+class FacebookPlugin extends AbstractRdPlugin {
   static const String MODEL_FB = "MODEL_FB";
 
   FacebookPlugin() : super(30) {

@@ -1,4 +1,4 @@
-library stagexl_rockdot.facebook;
+library rockdot_framework.facebook;
 
 import 'dart:html' as html;
 import 'dart:js' as js;
@@ -7,8 +7,8 @@ import 'dart:convert';
 
 /* Rockdot depends on StageXL */
 import 'package:stagexl/stagexl.dart';
-import 'package:stagexl_commons/stagexl_commons.dart';
-import 'package:stagexl_spring/stagexl_spring.dart';
+import 'package:rockdot_commons/rockdot_commons.dart';
+import 'package:rockdot_spring/rockdot_spring.dart';
 
 import 'core.dart';
 //import 'io.dart' show DataRetrieveVO;

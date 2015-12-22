@@ -1,4 +1,4 @@
-part of stagexl_rockdot.google;
+part of rockdot_framework.google;
 
 /**
  * @author nilsdoehring

@@ -1,4 +1,4 @@
-library stagexl_rockdot;
+library rockdot_framework;
 
 // CORE #####
 export 'src/core.dart';

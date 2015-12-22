@@ -1,4 +1,4 @@
-part of stagexl_rockdot.screen;
+part of rockdot_framework.screen;
 
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)

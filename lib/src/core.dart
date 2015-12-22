@@ -1,4 +1,4 @@
-library stagexl_rockdot.core;
+library rockdot_framework.core;
 
 import 'dart:html' as html;
 import 'dart:math' as math;
@@ -10,8 +10,8 @@ import 'package:logging/logging.dart' as logging;
 
 /* Rockdot depends on StageXL */
 import 'package:stagexl/stagexl.dart';
-import 'package:stagexl_commons/stagexl_commons.dart';
-import 'package:stagexl_spring/stagexl_spring.dart';
+import 'package:rockdot_commons/rockdot_commons.dart';
+import 'package:rockdot_spring/rockdot_spring.dart';
 
 import 'state.dart' show StateConstants, StateMessageVO, StateEvents, StateVO, StateModel;
 import 'screen.dart' show ScreenConstants, RockdotLifecycleSprite;
@@ -27,8 +27,8 @@ export 'io.dart' show DataRetrieveVO;
 //import 'package:rockdart/facebook/facebook.dart';
 
 // CORE #####
-part 'core/project/abstract_bootstrap.dart';
-part 'core/project/abstract_plugin.dart';
+part 'core/project/abstract_rd_bootstrap.dart';
+part 'core/project/abstract_rd_plugin.dart';
 
 part 'core/context/rd_context.dart';
 part 'core/context/rd_context_util.dart';

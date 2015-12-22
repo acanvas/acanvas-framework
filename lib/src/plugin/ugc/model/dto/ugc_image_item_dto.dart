@@ -1,4 +1,4 @@
-part of stagexl_rockdot.ugc;
+part of rockdot_framework.ugc;
 
 class UGCImageItemDTO implements IRdDTO {
   int id;

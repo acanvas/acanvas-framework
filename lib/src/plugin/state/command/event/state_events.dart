@@ -1,4 +1,4 @@
-part of stagexl_rockdot.state;
+part of rockdot_framework.state;
 
 class StateEvents {
 

@@ -1,4 +1,4 @@
-part of stagexl_rockdot.ugc;
+part of rockdot_framework.ugc;
 
 class UGCPlugin extends AbstractOrderedFactoryPostProcessor {
   static const String MODEL_UGC = "MODEL_UGC";

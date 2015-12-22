@@ -1,4 +1,4 @@
-part of stagexl_rockdot.ugc;
+part of rockdot_framework.ugc;
 
 class UGCItemDTO implements IRdDTO {
   static const TYPE_TEXT = 0;

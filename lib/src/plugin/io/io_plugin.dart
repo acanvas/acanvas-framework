@@ -1,6 +1,6 @@
-part of stagexl_rockdot.io;
+part of rockdot_framework.io;
 
-class IOPlugin extends AbstractPlugin {
+class IOPlugin extends AbstractRdPlugin {
   IOPlugin() : super(35) {
   }
 

@@ -1,12 +1,12 @@
-part of stagexl_rockdot.core;
+part of rockdot_framework.core;
 
-class AbstractPlugin extends AbstractOrderedFactoryPostProcessor {
+class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
 
   Map commandMap = new Map();
   String projectInitCommand;
   IObjectFactory objectFactory;
 
-  AbstractPlugin([int priority = 100]) : super(priority) {
+  AbstractRdPlugin([int priority = 100]) : super(priority) {
   }
 
   /**

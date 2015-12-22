@@ -1,11 +1,11 @@
-library stagexl_rockdot.ugc;
+library rockdot_framework.ugc;
 
 import 'dart:html' as html;
 import 'dart:math' as math;
 import 'dart:convert';
 
-import 'package:stagexl_commons/stagexl_commons.dart';
-import 'package:stagexl_spring/stagexl_spring.dart';
+import 'package:rockdot_commons/rockdot_commons.dart';
+import 'package:rockdot_spring/rockdot_spring.dart';
 
 import 'core.dart';
 import 'state.dart' show IStateModelAware, StateModel;

@@ -1,16 +1,16 @@
-part of stagexl_rockdot.core;
+part of rockdot_framework.core;
 
 
 /**
  * @author Nils Doehring
  */
-class AbstractBootstrap extends LifecycleSprite {
+class AbstractRdBootstrap extends LifecycleSprite {
   RdContext _applicationContext;
   Stage _stage;
   List<IObjectFactoryPostProcessor> plugins = [];
   List<String> propertyFiles = [];
 
-  AbstractBootstrap(Stage stage) : super("rockdot.bootstrap") {
+  AbstractRdBootstrap(Stage stage) : super("rockdot.bootstrap") {
     //XXX currently, LoaderInfo is just a leftover from Actionscript
     LoaderInfo loaderInfo = new LoaderInfo();
     RdConstants.setLoaderInfo(loaderInfo);

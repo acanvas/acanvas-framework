@@ -1,4 +1,4 @@
-part of stagexl_rockdot.google;
+part of rockdot_framework.google;
 
 /*
  * https://developers.google.com/+/web/share/interactive#rendering_the_button_with_javascript

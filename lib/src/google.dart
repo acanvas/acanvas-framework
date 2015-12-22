@@ -1,4 +1,4 @@
-library stagexl_rockdot.google;
+library rockdot_framework.google;
 
 import 'dart:html' as html;
 import 'dart:js' as js;
@@ -7,8 +7,8 @@ import 'package:googleapis/plus/v1.dart';
 
 /* Rockdot depends on StageXL */
 import 'package:stagexl/stagexl.dart';
-import 'package:stagexl_commons/stagexl_commons.dart';
-import 'package:stagexl_spring/stagexl_spring.dart';
+import 'package:rockdot_commons/rockdot_commons.dart';
+import 'package:rockdot_spring/rockdot_spring.dart';
 
 import 'core.dart';
 //import 'state.dart' show StateMessageVO;

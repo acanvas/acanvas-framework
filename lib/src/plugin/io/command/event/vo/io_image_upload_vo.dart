@@ -1,4 +1,4 @@
-part of stagexl_rockdot.io;
+part of rockdot_framework.io;
 
 class IOImageUploadVO implements IRdVO {
 

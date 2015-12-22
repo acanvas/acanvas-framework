@@ -1,4 +1,4 @@
-part of stagexl_rockdot.core;
+part of rockdot_framework.core;
 
 class Markets {
   //WEST

@@ -1,9 +1,9 @@
-library stagexl_rockdot.state;
+library rockdot_framework.state;
 
 import 'dart:html' as html;
 
-import 'package:stagexl_commons/stagexl_commons.dart';
-import 'package:stagexl_spring/stagexl_spring.dart';
+import 'package:rockdot_commons/rockdot_commons.dart';
+import 'package:rockdot_spring/rockdot_spring.dart';
 
 import 'core.dart';
 import 'screen.dart' show IScreenModelAware, ScreenModel;
