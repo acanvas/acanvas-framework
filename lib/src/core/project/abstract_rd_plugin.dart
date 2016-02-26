@@ -15,11 +15,11 @@ class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
    * new RdSignal(ProjectEvents.SOME_COMMAND, optionalParamVO, optionalFunctionCallback).dispatch();
    */
   void configureCommands() {
-    throw new UnimplementedError("To be implemented in Project subclass");
+    //throw new UnimplementedError("To be implemented in Project subclass");
   }
 
   void configureInjectors() {
-    throw new UnimplementedError("To be implemented in Project subclass");
+    //throw new UnimplementedError("To be implemented in Project subclass");
   }
 
   /**

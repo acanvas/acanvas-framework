@@ -88,9 +88,13 @@ class AbstractScreenService implements IScreenService {
     stage.addChild(_layer);
     stage.addChild(_foreground);
 
-    _initialized = true;
-
     resize();
+
+    _background.init();
+    _content.init();
+    _navi.init();
+    _layer.init();
+    _foreground.init();
 
     if (callback != null) {
       callback();
