@@ -16,7 +16,7 @@ class FBInitBrowserCommand extends AbstractFBCommand {
       _handleSDKLoaded();
     });
     script.onError.first.then((errorEvent) {
-      dispatchErrorEvent('Failed to load Facebook library.');
+      dispatchCompleteEvent('Failed to load Facebook library.');
     });
     script.src = facebookSDKUrl;
 

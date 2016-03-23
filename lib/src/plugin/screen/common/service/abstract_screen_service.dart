@@ -91,10 +91,15 @@ class AbstractScreenService implements IScreenService {
     resize();
 
     _background.init();
+    _background.onInitComplete();
     _content.init();
+    _content.onInitComplete();
     _navi.init();
+    _navi.onInitComplete();
     _layer.init();
+    _layer.onInitComplete();
     _foreground.init();
+    _foreground.onInitComplete();
 
     if (callback != null) {
       callback();

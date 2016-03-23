@@ -31,6 +31,7 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
 
     if (_vo.inTarget != null && _vo.transitionType != ScreenConstants.TRANSITION_MODAL_BACK) {
       _vo.inTarget.alpha = _vo.initialAlpha;
+      _vo.inTarget.inheritInit = false;
 
       // provide intarget with stage
       if (_vo.inTarget.stage == null) {
@@ -46,7 +47,9 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
         }
       }
 
-      compositeCommand.addCommandEvent(new RdSignal(ScreenEvents.RESIZE, _vo.inTarget), applicationContext);
+      if(_vo.inTarget.spanWidth == 0 || _vo.inTarget.spanHeight == 0){
+        compositeCommand.addCommandEvent(new RdSignal(ScreenEvents.RESIZE, _vo.inTarget), applicationContext);
+      }
       compositeCommand.addCommandEvent(new RdSignal(ScreenDisplaylistEvents.SCREEN_INIT, _vo.inTarget), applicationContext);
     }
 

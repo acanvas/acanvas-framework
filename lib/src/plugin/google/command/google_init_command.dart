@@ -29,12 +29,15 @@ class GoogleInitCommand extends AbstractGoogleCommand {
         _handleLogin(client);
         flow.close();
       }, onError: (e) {
-        _handleLoginError(e);
+        _handleInitError(e);
       });
+    }).catchError((e){
+      log.error("Error while creating ImplicitBrowserFlow: ${e}");
+      dispatchCompleteEvent();
     });
   }
 
-  void _handleLoginError(UserConsentException ex) {
+  void _handleInitError(UserConsentException ex) {
     //dispatchErrorEvent(ex.message);
     log.error(ex.message);
     dispatchCompleteEvent();

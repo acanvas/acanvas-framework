@@ -112,7 +112,7 @@ class DataProxy implements IDataProxy {
 
       }
       //request data from internal Cache
-      _onDataCallback.call(new List.from(_dataCache.getRange(chunkIndex, chunkIndex + chunkSize)));
+      _onDataCallback.call(new List.from(_dataCache.getRange(chunkIndex, math.min(dataTotalSize, chunkIndex + chunkSize))));
     } else {
       //request the data via our dataRetrieveCommand
       _requestChunkExecute(callBack, chunkIndex, chunkSize);
