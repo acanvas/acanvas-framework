@@ -1,6 +1,5 @@
 part of rockdot_framework.io;
 
-//@retain
 class IOImageUploadCommand extends RdCommand {
 
   @override

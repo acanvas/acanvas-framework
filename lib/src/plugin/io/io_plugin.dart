@@ -1,6 +1,9 @@
 part of rockdot_framework.io;
 
 class IOPlugin extends AbstractRdPlugin {
+
+  static const String MODEL_IO = "MODEL_IO";
+
   IOPlugin() : super(35) {
   }
 
@@ -11,6 +14,8 @@ class IOPlugin extends AbstractRdPlugin {
    */
   @override void configureCommands() {
     commandMap[IOEvents.UPLOAD_IMAGE] = () => new IOImageUploadCommand();
+    commandMap[IOEvents.MIC_RECORD_START] = () => new IOMicRecordStartCommand();
+    commandMap[IOEvents.MIC_RECORD_STOP] = () => new IOMicRecordStopCommand();
   }
 
   /**
@@ -20,7 +25,8 @@ class IOPlugin extends AbstractRdPlugin {
    * Feel free to add more injectors.
    */
   @override void configureInjectors() {
-    /* This Plugin doesn't need a Model */
+    RdContextUtil.registerInstance(objectFactory, IOPlugin.MODEL_IO, new IOModel());
+    objectFactory.addObjectPostProcessor(new IOModelInjector(objectFactory));
   }
 
 }

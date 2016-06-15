@@ -25,16 +25,6 @@ class GoogleModel {
     _user = user;
   }
 
-  MomentsFeed _moments;
-
-  MomentsFeed get moments {
-    return _moments;
-  }
-
-  void set moments(MomentsFeed moments) {
-    _moments = moments;
-  }
-
   PeopleFeed _circles;
 
   PeopleFeed get circles {

@@ -16,10 +16,11 @@ class GooglePlugin extends AbstractRdPlugin {
     commandMap[GoogleEvents.USER_LOGIN] = () => new GoogleLoginCommand();
     commandMap[GoogleEvents.PLUS_USER_GET] = () => new GooglePlusGetUserCommand();
 
-    commandMap[GoogleEvents.PLUS_MOMENTS_GET] = () => new GooglePlusMomentsGetCommand();
     commandMap[GoogleEvents.PLUS_PEOPLE_GET] = () => new GooglePlusPeopleGetCommand();
 
     commandMap[GoogleEvents.PLUS_SHARE_RENDER] = () => new GooglePlusShareRenderCommand();
+
+    commandMap[GoogleEvents.SPEECH_RECOGNIZE] = () => new GoogleSpeechRestCommand();
 
     projectInitCommand = GoogleEvents.INIT;
   }

@@ -12,8 +12,10 @@ class GoogleEvents {
 
   /* The following Events require a valid _gModel.client*/
   static const String PLUS_USER_GET = "GoogleEvents.PLUS_USER_GET";
-  static const String PLUS_MOMENTS_GET = "GoogleEvents.MOMENTS_GET";
   static const String PLUS_PEOPLE_GET = "GoogleEvents.PEOPLE_GET";
 
   static const String PLUS_SHARE_RENDER = "GoogleEvents.PLUS_SHARE_RENDER";
+
+  /* Sppech API Alpha */
+  static const String SPEECH_RECOGNIZE = "GoogleEvents.SPEECH_RECOGNIZE";
 }
