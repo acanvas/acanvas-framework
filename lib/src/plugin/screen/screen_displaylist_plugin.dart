@@ -11,6 +11,7 @@ class ScreenDisplaylistPlugin extends ScreenPluginBase {
     super.configureCommands();
 
     commandMap[ScreenDisplaylistEvents.SCREEN_INIT] = () => new ScreenInitCommand();
+    commandMap[ScreenDisplaylistEvents.SCREEN_LOAD] = () => new ScreenLoadCommand();
     commandMap[ScreenDisplaylistEvents.TRANSITION_PREPARE] = () => new ScreenTransitionPrepareCommand();
     commandMap[ScreenDisplaylistEvents.APPEAR] = () => new ScreenAppearCommand();
     commandMap[ScreenDisplaylistEvents.DISAPPEAR] = () => new ScreenDisappearCommand();

@@ -1,5 +1,5 @@
 name: rockdot_framework
-version: 0.5.0
+version: 0.5.1
 description: Röckdöt Framewörk, based on a Spring framework implementation for StageXL.
 dependencies:
   googleapis_auth: any

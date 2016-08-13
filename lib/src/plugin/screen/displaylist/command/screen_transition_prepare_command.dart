@@ -50,6 +50,7 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
       if(_vo.inTarget.spanWidth == 0 || _vo.inTarget.spanHeight == 0){
         compositeCommand.addCommandEvent(new RdSignal(ScreenEvents.RESIZE, _vo.inTarget), applicationContext);
       }
+      compositeCommand.addCommandEvent(new RdSignal(ScreenDisplaylistEvents.SCREEN_LOAD, _vo.inTarget), applicationContext);
       compositeCommand.addCommandEvent(new RdSignal(ScreenDisplaylistEvents.SCREEN_INIT, _vo.inTarget), applicationContext);
     }
 

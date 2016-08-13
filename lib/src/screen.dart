@@ -31,6 +31,7 @@ part 'plugin/screen/displaylist/command/screen_appear_command.dart';
 part 'plugin/screen/displaylist/command/screen_apply_effect_in_command.dart';
 part 'plugin/screen/displaylist/command/screen_apply_effect_out_command.dart';
 part 'plugin/screen/displaylist/command/screen_disappear_command.dart';
+part 'plugin/screen/displaylist/command/screen_load_command.dart';
 part 'plugin/screen/displaylist/command/screen_init_command.dart';
 part 'plugin/screen/displaylist/command/screen_set_command.dart';
 part 'plugin/screen/displaylist/command/screen_transition_run_command.dart';

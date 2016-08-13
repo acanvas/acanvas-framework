@@ -5,6 +5,7 @@ part of rockdot_framework.screen;
  */
 class ScreenDisplaylistEvents {
 
+  static const String SCREEN_LOAD = "ScreenDisplaylistEvents.SCREEN_LOAD";
   static const String SCREEN_INIT = "ScreenDisplaylistEvents.SCREEN_INIT";
 
   //expects VOUITransition
