@@ -14,9 +14,16 @@ class ScreenLoadCommand extends AbstractScreenCommand {
     }
 
     if (ui.requiresLoading == true) {
-      ui.addEventListener(LifecycleEvent.LOAD_COMPLETE, dispatchCompleteEvent);
-      ui.addEventListener(LifecycleEvent.LOAD_ERROR, dispatchErrorEvent);
-      ui.load(params: _stateModel.currentStateURLParams);
+      new RdSignal(StateEvents.MESSAGE_SHOW, new StateMessageVO("lifecycle.load", getProperty("screen.common.loading"), 0, type: StateMessageVO.TYPE_LOADING, blurContent: false)).dispatch();
+      ui.load(params: _stateModel.currentStateURLParams).then((completed){
+        new RdSignal(StateEvents.MESSAGE_HIDE, "lifecycle.load").dispatch();
+        if(completed){
+          dispatchCompleteEvent();
+        }
+        else{
+          dispatchErrorEvent();
+        }
+      });
     } else {
       dispatchCompleteEvent();
     }
