@@ -1,8 +1,11 @@
 name: rockdot_framework
-version: 0.5.1
-description: Röckdöt Framewörk, based on a Spring framework implementation for StageXL.
+version: 0.6.0
+description: Rockdot Framework, based on a Spring framework implementation for StageXL/Dart.
 dependencies:
+  js: ^0.6.0
   googleapis_auth: any
   googleapis: any
   rockdot_spring:
     git: https://github.com/blockforest/rockdot-spring
+  babylonjs_facade:
+    git: https://github.com/blockforest/babylonjs-dart-facade

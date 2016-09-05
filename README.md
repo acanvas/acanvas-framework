@@ -16,7 +16,7 @@ Port of [Rockdot Actionscript Framework](https://github.com/blockforest/rockdot)
 * Generic User Generated Content backend communication (porting in progress. reading does work.)
 * i18n
 * Focus on highly interactive rich media applications
-* LOTS of examples (porting in progress, coming soon)
+* LOTS of examples
 
 Rockdot Dart is based on [Rockdot Actionscript Framework](https://github.com/blockforest/rockdot), which has been in continuous development for several years,
 and was used in dozens of highly interactive rich media projects (marketing) for clients such as Mercedes-Benz, Nike, and Nikon, serving millions of users.  
