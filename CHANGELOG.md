@@ -1,5 +1,10 @@
 # CHANGELOG ROCKDOT_FRAMEWORK
 
+## 0.6.5
+
+- Strong mode fixes
+- Simplified initialization methods to use Futures, so they can get processed with async/await syntax
+
 ## 0.6.0
 
 - New Plugin: BabylonJS integration via Dart wrapper and BabylonBitmapData 

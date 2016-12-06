@@ -62,7 +62,7 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
         compositeCommand.addCommandEvent(new RdSignal(TRANSITION_APPLY, new ScreenDisplaylistTransitionApplyVO(_vo.effect, ScreenConstants.EFFECT_IN, _vo.inTarget, _vo.effect.duration)), applicationContext);
         break;
       case ScreenConstants.TRANSITION_NORMAL_TO_NORMAL:
-        compositeCommand.addCommandEvent(new RdSignal(ScreenDisplaylistEvents.DISAPPEAR, new ScreenDisplaylistAppearDisappearVO(_vo.outTarget, 0, false)), applicationContext);
+        compositeCommand.addCommandEvent(new RdSignal(ScreenDisplaylistEvents.DISAPPEAR, new ScreenDisplaylistAppearDisappearVO(_vo.outTarget, 0.0, false)), applicationContext);
         compositeCommand.addCommandEvent(new RdSignal(TRANSITION_APPLY, new ScreenDisplaylistTransitionApplyVO(_vo.effect, _vo.effect.type, _vo.outTarget, _vo.effect.duration, _vo.inTarget)), applicationContext);
         break;
       case ScreenConstants.TRANSITION_NORMAL_TO_MODAL:
@@ -71,7 +71,7 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
         break;
       case ScreenConstants.TRANSITION_MODAL_TO_MODAL:
         _vo.outTarget = _uiService.layer.getChildAt(0) as LifecycleSprite;
-        compositeCommand.addCommandEvent(new RdSignal(ScreenDisplaylistEvents.DISAPPEAR, new ScreenDisplaylistAppearDisappearVO(_vo.outTarget, 0, false)), applicationContext);
+        compositeCommand.addCommandEvent(new RdSignal(ScreenDisplaylistEvents.DISAPPEAR, new ScreenDisplaylistAppearDisappearVO(_vo.outTarget, 0.0, false)), applicationContext);
         compositeCommand.addCommandEvent(new RdSignal(TRANSITION_APPLY, new ScreenDisplaylistTransitionApplyVO(_vo.effect, _vo.effect.type, _vo.outTarget, _vo.effect.duration, _vo.inTarget)), applicationContext);
         break;
       case ScreenConstants.TRANSITION_MODAL_BACK:
@@ -83,7 +83,7 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
       // unblur content
         _uiService.unblur();
         layer = _uiService.layer.getChildAt(0) as LifecycleSprite;
-        compositeCommand.addCommandEvent(new RdSignal(ScreenDisplaylistEvents.DISAPPEAR, new ScreenDisplaylistAppearDisappearVO(layer, 0, false)), applicationContext);
+        compositeCommand.addCommandEvent(new RdSignal(ScreenDisplaylistEvents.DISAPPEAR, new ScreenDisplaylistAppearDisappearVO(layer, 0.0, false)), applicationContext);
         IEffect effect = applicationContext.getObject("transition.default.modal");
         compositeCommand.addCommandEvent(new RdSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT, new ScreenDisplaylistEffectApplyVO(effect, layer, _vo.effect.duration), _destroyLayer), applicationContext);
         compositeCommand.addCommandEvent(new RdSignal(TRANSITION_APPLY, new ScreenDisplaylistTransitionApplyVO(_vo.effect, _vo.effect.type, _vo.outTarget, _vo.effect.duration, _vo.inTarget)), applicationContext);

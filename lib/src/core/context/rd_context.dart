@@ -56,7 +56,7 @@ class RdContext extends SpringApplicationContext {
 
   }
 
-  void initApplication(Function completeCallback, Function errorCallback) {
+  Future initApplication(){
     /* initializing the UI is mandatory, but feel free to add other commands */
     CompositeCommandWithEvent compositeCommand = new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
 
@@ -66,9 +66,10 @@ class RdContext extends SpringApplicationContext {
     }
 
     /* add sequence listeners */
-    compositeCommand.addCompleteListener(completeCallback);
-    compositeCommand.addErrorListener(errorCallback);
+    Completer c = new Completer();
+    compositeCommand.addCompleteListener(c.complete);
     compositeCommand.execute();
+    return c.future;
   }
 
 

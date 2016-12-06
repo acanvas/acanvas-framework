@@ -18,9 +18,11 @@ class UGCFriendsReadCommand extends AbstractUGCCommand implements IFBModelAware 
     }
 
     List arr = [];
-    for (String k in _modelFB.friendsWhoAreAppUsers) {
-      arr.add(_modelFB.friendsWhoAreAppUsers[k].id);
-    }
+
+    _modelFB.friendsWhoAreAppUsers.forEach((k, v){
+      arr.add(v.id);
+    });
+
 
     Map dto = {"ids" : arr};
 

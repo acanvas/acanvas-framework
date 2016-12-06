@@ -63,13 +63,13 @@ class FBModel {
     _userIsAuthenticated = userIsAuthenticated;
   }
 
-  Map _friends;
+  Map<String, FBUserVO> _friends;
 
-  Map get friends {
+  Map<String, FBUserVO> get friends {
     return _friends;
   }
 
-  void set friends(Map friends) {
+  void set friends(Map<String, FBUserVO> friends) {
     _friends = friends;
   }
 
@@ -85,7 +85,7 @@ class FBModel {
   }
 
   void _createAppUserFriendList(List collection) {
-    _friendsWhoAreAppUsers = {};
+    _friendsWhoAreAppUsers = new Map<String, FBUserVO>();
     _friendsWhoAreAppUsersIndexed = [];
     for (num i = 0; i < collection.length; i++) {
       FBUserVO user = new FBUserVO(collection[i]);
@@ -97,9 +97,9 @@ class FBModel {
 
   }
 
-  Map _friendsWhoAreAppUsers;
+  Map<String, FBUserVO> _friendsWhoAreAppUsers;
 
-  Map get friendsWhoAreAppUsers {
+  Map<String, FBUserVO> get friendsWhoAreAppUsers {
     return _friendsWhoAreAppUsers;
   }
 
