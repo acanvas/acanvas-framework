@@ -1,6 +1,5 @@
 part of rockdot_framework.ugc;
 
-
 class AbstractUGCCommand extends RdCommand implements IUGCModelAware {
   UGCModel _ugcModel;
 
@@ -9,7 +8,6 @@ class AbstractUGCCommand extends RdCommand implements IUGCModelAware {
   }
 
   void amfOperation(String methodName, {IRdDTO dto: null, Map map: null, String json: null}) {
-
     String params = null;
     if (dto != null) {
       params = JSON.encode(dto);
@@ -22,11 +20,10 @@ class AbstractUGCCommand extends RdCommand implements IUGCModelAware {
     methodName = methodName.replaceAll(new RegExp(r'UGCEndpoint.|GamingEndpoint.'), '');
     String url = getProperty("project.host.json");
     ServerProxy proxy = new ServerProxy(url);
-    proxy.call(methodName, [params]).then((returned) => proxy.checkError(returned))
-    .then((result) {
-      // print(result.toString());
-      dispatchCompleteEvent(result);
-    });
+    proxy.call(methodName, [params]).then((returned) => proxy.checkError(returned)).then((result) {
+          // print(result.toString());
+          dispatchCompleteEvent(result);
+        });
     /*
                  })
          .catchError((error){
@@ -34,7 +31,8 @@ class AbstractUGCCommand extends RdCommand implements IUGCModelAware {
       */
   }
 
-  @override void errorHandler(OperationEvent event) {
+  @override
+  void errorHandler(OperationEvent event) {
     this.log.error(event.error);
     dispatchCompleteEvent(event.error);
   }

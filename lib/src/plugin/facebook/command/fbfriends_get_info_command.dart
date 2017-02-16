@@ -2,8 +2,8 @@ part of rockdot_framework.facebook;
 
 //@retain
 class FBFriendsGetInfoCommand extends AbstractFBCommand {
-
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     if (notLoggedIn(event)) return;

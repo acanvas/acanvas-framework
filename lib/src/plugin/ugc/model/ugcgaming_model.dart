@@ -1,8 +1,6 @@
 part of rockdot_framework.ugc;
 
-
 class UGCGamingModel {
-
   List _games;
   List _highscore;
   List _highscoreFriends;
@@ -57,6 +55,4 @@ class UGCGamingModel {
   bool get allowedToPlay {
     return _allowedToPlay;
   }
-
 }
-

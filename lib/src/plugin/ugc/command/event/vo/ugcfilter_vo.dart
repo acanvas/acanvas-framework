@@ -4,7 +4,6 @@ part of rockdot_framework.ugc;
  * @author nilsdoehring
  */
 class UGCFilterVO extends DataRetrieveVO {
-
   static const String CONDITION_ALL = "CONDITION_ALL";
   static const String CONDITION_ME = "CONDITION_ME";
   static const String CONDITION_FRIENDS = "CONDITION_FRIENDS";
@@ -28,16 +27,10 @@ class UGCFilterVO extends DataRetrieveVO {
 
   //CONDITION_UGC_ID
 
-  UGCFilterVO(this.condition, this.order, int limit) : super(limit) {
-  }
+  UGCFilterVO(this.condition, this.order, int limit) : super(limit) {}
 
   Map toMap() {
-    Map map = {
-      "condition": condition,
-      "order": order,
-      "limit": limit,
-      "nextToken": nextToken
-    };
+    Map map = {"condition": condition, "order": order, "limit": limit, "nextToken": nextToken};
 
     switch (condition) {
       case CONDITION_FRIENDS:
@@ -54,5 +47,4 @@ class UGCFilterVO extends DataRetrieveVO {
 
     return map;
   }
-
 }

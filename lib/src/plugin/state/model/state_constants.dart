@@ -18,4 +18,3 @@ class StateConstants {
   /* Context IDs: Models */
   static const String CTX_MODEL_STATE = "CTX_MODEL_STATE";
 }
-

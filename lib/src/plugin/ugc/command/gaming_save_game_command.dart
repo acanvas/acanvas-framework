@@ -2,8 +2,8 @@ part of rockdot_framework.ugc;
 
 //@retain
 class GamingSaveGameCommand extends AbstractUGCCommand {
-
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     UGCGameDTO vo = event.data;
@@ -12,7 +12,8 @@ class GamingSaveGameCommand extends AbstractUGCCommand {
     amfOperation("GamingEndpoint.saveGame", dto: vo);
   }
 
-  @override bool dispatchCompleteEvent([dynamic result = null]) {
+  @override
+  bool dispatchCompleteEvent([dynamic result = null]) {
     return super.dispatchCompleteEvent();
   }
 }

@@ -1,15 +1,15 @@
 part of rockdot_framework.state;
 
 class StatePlugin extends AbstractRdPlugin {
-  StatePlugin() : super(10) {
-  }
+  StatePlugin() : super(10) {}
 
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
    * new RdSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
-  @override void configureCommands() {
+  @override
+  void configureCommands() {
     commandMap[StateEvents.INIT] = () => new StatePluginInitCommand();
 
     // 1. dispatched by button, sent to proxy
@@ -27,7 +27,6 @@ class StatePlugin extends AbstractRdPlugin {
     commandMap[StateEvents.STATE_PARAMS_CHANGE] = () => new StateSetParamsCommand();
     // ## COMMAND INSERTION PLACEHOLDER - DO NOT REMOVE ## //
 
-
     /* Add this Plugin's Init Command to Bootstrap Command Sequence */
     projectInitCommand = StateEvents.INIT;
   }
@@ -38,9 +37,9 @@ class StatePlugin extends AbstractRdPlugin {
    * This is called Interface Injection, the only kind of injection available in Spring Dart so far.
    * Feel free to add more injectors.
    */
-  @override void configureInjectors() {
+  @override
+  void configureInjectors() {
     RdContextUtil.registerInstance(objectFactory, StateConstants.CTX_MODEL_STATE, new StateModel());
     objectFactory.addObjectPostProcessor(new StateModelInjector(objectFactory));
   }
-
 }

@@ -5,8 +5,7 @@ part of rockdot_framework.io;
  */
 
 class IOMicRecordStartCommand extends AbstractIOCommand {
-
-  EventStreamSubscription _stream;
+  StreamSubscription<AudioProcessingEvent> _stream;
 
   @override
   void execute([RdSignal event = null]) {
@@ -29,9 +28,9 @@ class IOMicRecordStartCommand extends AbstractIOCommand {
       int bufferSize = 2048;
       ScriptProcessorNode recorder = context.createScriptProcessor(bufferSize, 2, 2);
 
-      _stream  = recorder.onAudioProcess.listen((AudioProcessingEvent e) {
+      _stream = recorder.onAudioProcess.listen((AudioProcessingEvent e) {
         if (!ioModel.mic_recording) {
-         /* audioInput.disconnect();
+          /* audioInput.disconnect();
           context.close();
           recorder.disconnect(); */
           _cancelStream();
@@ -42,20 +41,17 @@ class IOMicRecordStartCommand extends AbstractIOCommand {
         log.debug('recording');
 
         // process Data
-        ioModel.mic_leftchannel.add(new Float32List.fromList( e.inputBuffer.getChannelData(0) ));
-        ioModel.mic_rightchannel.add(new Float32List.fromList( e.inputBuffer.getChannelData(1) ));
+        ioModel.mic_leftchannel.add(new Float32List.fromList(e.inputBuffer.getChannelData(0)));
+        ioModel.mic_rightchannel.add(new Float32List.fromList(e.inputBuffer.getChannelData(1)));
         ioModel.mic_recordingLength += bufferSize;
-
       });
 
       volume.connectNode(recorder);
       recorder.connectNode(context.destination);
-
     });
   }
 
-  void _cancelStream(){
+  void _cancelStream() {
     _stream.cancel();
   }
-
 }

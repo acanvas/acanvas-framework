@@ -8,24 +8,20 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
     _modelFB = model;
   }
 
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 //			dispatchMessage("loading.backend.login");
 
     UGCUserExtendedDTO amfObject;
 
     if (event.data is UGCUserExtendedDTO) {
-
       amfObject = event.data;
       _ugcModel.userExtendedDAO = new UGCUserExtendedDTO(amfObject.toJson());
-
     } else if (RdConstants.LOCAL && RdConstants.DEBUG) {
-
       _ugcModel.userExtendedDAO = _createDummyData();
       amfObject = _ugcModel.userExtendedDAO;
-
     } else if (_ugcModel.userExtendedDAO == null) {
-
       UGCUserExtendedDTO user = new UGCUserExtendedDTO();
       user.hometown_location = _modelFB.user.hometown_location;
       user.email = _modelFB.user.email;
@@ -41,7 +37,8 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
 
     _ugcModel.userExtendedDAO.uid = _ugcModel.userDAO.uid;
     amfObject.uid = _ugcModel.userExtendedDAO.uid;
-    _ugcModel.userExtendedDAO.hash = (new math.Random().nextDouble() * getTimeInMilliseconds(new DateTime.now())).toString();
+    _ugcModel.userExtendedDAO.hash =
+        (new math.Random().nextDouble() * getTimeInMilliseconds(new DateTime.now())).toString();
     amfObject.hash = _ugcModel.userExtendedDAO.hash;
 
     _ugcModel.hasUserExtendedDAO = true;
@@ -66,6 +63,4 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
   num getTimeInMilliseconds(DateTime date) {
     return date.hour * 60 * 60 * 1000 + date.minute * 60 * 1000 + date.second * 1000 + date.millisecond;
   }
-
-
 }

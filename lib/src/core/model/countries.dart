@@ -1,7 +1,6 @@
 part of rockdot_framework.core;
 
 class Countries {
-
   //WEST
   static const String GERMANY = "DE";
   static const String UK = "GB";
@@ -40,11 +39,8 @@ class Countries {
   static const String JAPAN = "JP";
   static const String ARABIA = "AR";
 
-
   // --------------------------------------------------------------------
   // --------------------------------------------------------------------
   // --------------------------------------------------------------------
-  Countries() {
-  }
+  Countries() {}
 }
-

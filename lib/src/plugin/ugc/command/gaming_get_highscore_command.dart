@@ -8,19 +8,17 @@ class GamingGetHighscoreCommand extends AbstractUGCCommand implements IFBModelAw
     _modelFB = model;
   }
 
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
-    Map dto = {
-      'uid': _ugcModel.userDAO.uid,
-      'friends': _modelFB.friendsWhoAreAppUsersIndexed
-    };
+    Map dto = {'uid': _ugcModel.userDAO.uid, 'friends': _modelFB.friendsWhoAreAppUsersIndexed};
 
     amfOperation("GamingEndpoint.getHighscore", map: dto);
   }
 
-
-  @override bool dispatchCompleteEvent([dynamic result = null]) {
+  @override
+  bool dispatchCompleteEvent([dynamic result = null]) {
     _ugcModel.gaming.highscoreFriends = result.result.topFiveFriends;
     _ugcModel.gaming.highscoreAll = result.result.topTen;
     _ugcModel.gaming.rank = result.result.rank;

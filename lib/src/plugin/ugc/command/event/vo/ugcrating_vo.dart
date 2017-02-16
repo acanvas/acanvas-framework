@@ -7,6 +7,5 @@ class UGCRatingVO implements IRdVO {
   int id;
   int rating;
 
-  UGCRatingVO(this.id, [this.rating = -1]) {
-  }
+  UGCRatingVO(this.id, [this.rating = -1]) {}
 }

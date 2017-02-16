@@ -2,15 +2,14 @@ part of rockdot_framework.ugc;
 
 //@retain
 class UGCTrackInviteCommand extends AbstractUGCCommand {
-
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     Map dto;
     if (event.data is Map) {
       dto = event.data;
-    }
-    else {
+    } else {
       dto = {
         'uid': event.data.uid,
         'request': event.data.request,

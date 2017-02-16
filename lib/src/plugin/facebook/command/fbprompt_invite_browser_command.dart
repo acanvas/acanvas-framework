@@ -12,7 +12,7 @@ class FBPromptInviteBrowserCommand extends AbstractFBCommand {
 
     if (notLoggedIn(event)) return;
 
-    _vo = event.data;//VOFBInvite
+    _vo = event.data; //VOFBInvite
     _vo.app_id = getProperty("project.facebook.appid");
     _vo.method = "apprequests";
     _vo.display = "iframe";
@@ -22,7 +22,6 @@ class FBPromptInviteBrowserCommand extends AbstractFBCommand {
     //assemble data payload as query string.
     //supported pairs: item_id=X OR item_container_id=Y
     _vo.data = html.window.btoa(_vo.data + "&reason=" + reason + "&uid=" + _fbModel.user.uid);
-
 
     Map inviteMap = {
       "method": _vo.method,
@@ -56,7 +55,7 @@ class FBPromptInviteBrowserCommand extends AbstractFBCommand {
 
     _fbModel.FB.callMethod("ui", [inviteConfig, _handleResult]);
 
-    showMessage(getProperty("message.facebook.invite.waiting"), blur:true, type: StateMessageVO.TYPE_WAITING);
+    showMessage(getProperty("message.facebook.invite.waiting"), blur: true, type: StateMessageVO.TYPE_WAITING);
   }
 
   void _handleResult(js.JsArray response) {
@@ -82,6 +81,5 @@ class FBPromptInviteBrowserCommand extends AbstractFBCommand {
     };
 
     new RdSignal(UGCEvents.TRACK_INVITE, dto, dispatchCompleteEvent).dispatch();
-
   }
 }

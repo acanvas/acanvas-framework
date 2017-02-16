@@ -42,7 +42,6 @@ part 'core/model/languages.dart';
 part 'core/model/markets.dart';
 part 'core/model/rd_constants.dart';
 
-
 // LIBRARY #####
 
 /* required by Rockdot UGCPlugin */

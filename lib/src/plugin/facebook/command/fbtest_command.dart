@@ -2,12 +2,11 @@ part of rockdot_framework.facebook;
 
 //@retain
 class FBTestCommand extends AbstractFBCommand {
-
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     CompositeCommandWithEvent compositeCommand = new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
-
 
     /* ******************** LOGIN USER ******************* */
     String perms = getProperty("project.facebook.permissions");
@@ -20,7 +19,8 @@ class FBTestCommand extends AbstractFBCommand {
     compositeCommand.addCommandEvent(new RdSignal(FBEvents.FRIENDS_GET, null, _onFriendsGet), applicationContext);
 
     /* ******************** GET FRIENDS INFO OF USER ******************* */
-    compositeCommand.addCommandEvent(new RdSignal(FBEvents.FRIENDS_GETINFO, null, _onFriendsGetInfo), applicationContext);
+    compositeCommand.addCommandEvent(
+        new RdSignal(FBEvents.FRIENDS_GETINFO, null, _onFriendsGetInfo), applicationContext);
 
     /* ******************** GET ALBUMS OF USER ******************* */
     compositeCommand.addCommandEvent(new RdSignal(FBEvents.ALBUMS_GET, null, _onAlbumsGet), applicationContext);
@@ -28,13 +28,11 @@ class FBTestCommand extends AbstractFBCommand {
     /* ******************** INVITE USERS ******************* */
     //new BaseEvent(FBEvents.PROMPT_INVITE, new VOFBInvite(getProperty("fanbook.invite.title", true), getProperty("fanbook.invite.message", true), "item_container_id=" + _bitburgerModel.ownAlbum.id), _onInviteFinished);
 
-
     compositeCommand.failOnFault = true;
     compositeCommand.addCompleteListener(dispatchCompleteEvent);
     compositeCommand.addErrorListener(dispatchErrorEvent);
     compositeCommand.execute();
   }
-
 
   void _onUserLogin([OperationEvent event = null]) {
     Assert.isTrue(_fbModel.userIsAuthenticated == true, "_fbModel.userIsAuthenticated is false");
@@ -59,8 +57,10 @@ class FBTestCommand extends AbstractFBCommand {
   void _onFriendsGetInfo(List friendsWithAdditionalInfo) {
     Assert.notNull(friendsWithAdditionalInfo, "friendsWithAdditionalInfo is null");
     Assert.notNull(_fbModel.friendsWithAdditionalInfo, "_fbModel.friendsWithAdditionalInfo is null");
-    this.log.debug("_onFriendsGetInfo, num of Friends with additional info: " + _fbModel.friendsWithAdditionalInfo.length.toString());
-    this.log.debug("_onFriendsGetInfo, num of Friends who are App Users: " + _fbModel.friendsWhoAreAppUsers.length.toString());
+    this.log.debug("_onFriendsGetInfo, num of Friends with additional info: " +
+        _fbModel.friendsWithAdditionalInfo.length.toString());
+    this.log.debug(
+        "_onFriendsGetInfo, num of Friends who are App Users: " + _fbModel.friendsWhoAreAppUsers.length.toString());
   }
 
   void _onAlbumsGet(List userAlbums) {

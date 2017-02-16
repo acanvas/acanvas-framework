@@ -8,6 +8,5 @@ class ScreenDisplaylistEffectApplyVO implements IRdVO {
   LifecycleSprite target;
   num duration;
 
-  ScreenDisplaylistEffectApplyVO(this.effect, this.target, this.duration) {
-  }
+  ScreenDisplaylistEffectApplyVO(this.effect, this.target, this.duration) {}
 }

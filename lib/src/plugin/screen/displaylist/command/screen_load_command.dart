@@ -2,8 +2,8 @@ part of rockdot_framework.screen;
 
 //@retain
 class ScreenLoadCommand extends AbstractScreenCommand {
-
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     LifecycleSprite ui;
@@ -14,13 +14,16 @@ class ScreenLoadCommand extends AbstractScreenCommand {
     }
 
     if (ui.requiresLoading == true) {
-      new RdSignal(StateEvents.MESSAGE_SHOW, new StateMessageVO("lifecycle.load", getProperty("screen.common.loading"), 0, type: StateMessageVO.TYPE_LOADING, blurContent: false)).dispatch();
-      ui.load(params: _stateModel.currentStateURLParams).then((completed){
+      new RdSignal(
+              StateEvents.MESSAGE_SHOW,
+              new StateMessageVO("lifecycle.load", getProperty("screen.common.loading"), 0,
+                  type: StateMessageVO.TYPE_LOADING, blurContent: false))
+          .dispatch();
+      ui.load(params: _stateModel.currentStateURLParams).then((completed) {
         new RdSignal(StateEvents.MESSAGE_HIDE, "lifecycle.load").dispatch();
-        if(completed){
+        if (completed) {
           dispatchCompleteEvent();
-        }
-        else{
+        } else {
           dispatchErrorEvent();
         }
       });

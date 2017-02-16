@@ -38,6 +38,4 @@ class Markets {
   static const String TAIWAN = "TW";
   static const String JAPAN = "JP";
   static const String ARABIA = "AR";
-
 }
-

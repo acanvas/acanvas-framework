@@ -1,7 +1,6 @@
 part of rockdot_framework.facebook;
 
 class FBPhotoVO {
-
   String id;
   String from_id;
   String from_name;
@@ -22,7 +21,6 @@ class FBPhotoVO {
   //internal
 
   FBPhotoVO([dynamic obj = null]) {
-
     if (obj != null) {
       id = obj["id"];
       name = obj["name"];
@@ -39,16 +37,11 @@ class FBPhotoVO {
 
       images = [];
       obj["images"].forEach((e) {
-        images.add({
-          "width": e["width"],
-          "height": e["height"],
-          "source": e["source"]
-        });
+        images.add({"width": e["width"], "height": e["height"], "source": e["source"]});
       });
 
       comments = [];
       if (obj["comments"] != null) {
-
         obj["comments"]["data"].forEach((e) {
           comments.add(new FBCommentVO(e));
         });

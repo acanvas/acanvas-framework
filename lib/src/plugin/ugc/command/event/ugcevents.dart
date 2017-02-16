@@ -4,7 +4,6 @@ part of rockdot_framework.ugc;
  * @author nilsdoehring
  */
 class UGCEvents {
-
   //expects nothing, returns nothing
   static const String INIT = "UGCEvents.INIT";
   static const String TEST = "UGCEvents.TEST";
@@ -15,14 +14,12 @@ class UGCEvents {
   //expects DAOUGCCRUD, returns OperationEvent with result = List<UGCItemDAO>
   static const String READ_ITEM = "UGCEvents.READ_ITEMS";
 
-
   //expects DAOUGCCRUD, returns OperationEvent with result = id of inserted row
   static const String CREATE_ITEM_CONTAINER = "UGCEvents.CREATE_ITEM_CONTAINER";
 
   //expects DAOUGCCRUD, returns OperationEvent with result = List<UGCItemDAO>
   static const String READ_ITEM_CONTAINER = "UGCEvents.READ_ITEM_CONTAINER";
   static const String READ_ITEM_CONTAINERS_UID = "UGCEvents.READ_ITEM_CONTAINERS_UID";
-
 
   //expects nothing, uses _ugcModel.userDAO or creates new User (from FB data!), returns UserDAO
   static const String USER_REGISTER = "UGCEvents.USER_REGISTER";
@@ -75,6 +72,4 @@ class UGCEvents {
   static const String TASK_ASSIGN_TO_CONTAINER = "UGCEvents.TASK_ASSIGN_TO_CONTAINER";
   static const String USER_HAS_EXTENDED = "UGCEvents.USER_READ_EXTENDED";
   static const String USER_HAS_EXTENDED_TODAY = "UGCEvents.USER_HAS_EXTENDED_TODAY";
-
 }
-

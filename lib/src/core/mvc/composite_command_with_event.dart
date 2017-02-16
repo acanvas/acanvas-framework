@@ -15,7 +15,6 @@
  */
 part of rockdot_framework.core;
 
-
 /**
  * Basic implementation of the <code>ICompositeCommand</code> that executes a list of <code>ICommand</code> instances
  * that were added through the <code>addCommand()</code> method. The commands are executed in the order in which
@@ -25,7 +24,6 @@ part of rockdot_framework.core;
  * @docref the_operation_api.html#composite_commands
  */
 class CompositeCommandWithEvent extends AbstractProgressOperation implements ICompositeCommand {
-
   Logger LOGGER;
 
   /**
@@ -39,11 +37,11 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   List<CommandVO> _commands = [];
   int _timer;
 
-  List get commands {
+  List<CommandVO> get commands {
     return _commands;
   }
 
-  void setCommands(List value) {
+  void setCommands(List<CommandVO> value) {
     _commands = value;
   }
 
@@ -127,7 +125,6 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
     _commands = [];
   }
 
-
   // --------------------------------------------------------------------
   //
   // Public Methods
@@ -174,7 +171,6 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
    * @see org.springextensions.actionscript.core.command.event.CommandEvent CompositeCommandEvent
    */
   void executeCommand(CommandVO commandVO) {
-
     if (commandVO == null) {
       LOGGER.info("The 'command' must not be null");
       return;
@@ -205,7 +201,6 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
       LOGGER.info("Command '{0}' is synchronous and is executed. Trying to execute next command.", [commandVO.command]);
       executeNextCommand();
     }
-
   }
 
   /**
@@ -220,7 +215,8 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
     int time = new DateTime.now().millisecondsSinceEpoch;
 
     if (nextCommand != null) {
-      LOGGER.info("Executing next command '{0}'. Remaining number of commands: '{1}'. Time: {2}", [nextCommand.command, _commands.length, time - _timer]);
+      LOGGER.info("Executing next command '{0}'. Remaining number of commands: '{1}'. Time: {2}",
+          [nextCommand.command, _commands.length, time - _timer]);
       executeCommand(nextCommand);
     } else {
       LOGGER.info("All commands in '{0}' have been executed. Dispatching 'complete' event.", [this]);
@@ -229,13 +225,11 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   }
 
   void removeCommand(IOperation asyncCommand) {
-
     if (asyncCommand == null) {
       LOGGER.info("asyncCommand argument must not be null.");
       return;
     }
     if (_commands != null) {
-
       for (CommandVO cmd in _commands) {
         int idx = _commands.indexOf(cmd);
         if (idx > -1) {
@@ -354,6 +348,5 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
 		 {
 			return null;
 		}*/
-
 
 }

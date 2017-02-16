@@ -1,7 +1,6 @@
 part of rockdot_framework.facebook;
 
 class FBAlbumVO {
-
   bool can_upload;
 
   String id;

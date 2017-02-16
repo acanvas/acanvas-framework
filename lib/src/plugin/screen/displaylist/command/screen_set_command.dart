@@ -1,6 +1,5 @@
 part of rockdot_framework.screen;
 
-
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
  */
@@ -11,7 +10,8 @@ class ScreenSetCommand extends AbstractStateCommand {
   MLifecycle _currentStateElement;
   MLifecycle _nextStateElement;
 
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     StateChangeVO e = event.data;
@@ -20,7 +20,6 @@ class ScreenSetCommand extends AbstractStateCommand {
     bool modal = false;
 
     if (stateModel.currentState == StateConstants.MAIN_TRANSITIONING) {
-
       stateModel.currentTransition.cancel();
 
       if (stateModel.compositeTransitionCommand != null) {
@@ -38,7 +37,11 @@ class ScreenSetCommand extends AbstractStateCommand {
 
     _currentStateElement = null;
 
-    if (stateModel.currentScreen != null && _currentVO != null && _nextVO != null && stateModel.currentScreen.name == _nextVO.view_id && _currentVO.substate == StateConstants.SUB_MODAL) {
+    if (stateModel.currentScreen != null &&
+        _currentVO != null &&
+        _nextVO != null &&
+        stateModel.currentScreen.name == _nextVO.view_id &&
+        _currentVO.substate == StateConstants.SUB_MODAL) {
       //do not retrieve nextStateElement from Context, since it is already present as modal background. see handling in switch/case below
     } else {
       _nextStateElement = applicationContext.getObject(_nextVO.view_id, [_nextVO.view_id]);
@@ -57,9 +60,7 @@ class ScreenSetCommand extends AbstractStateCommand {
       transitionType = ScreenConstants.TRANSITION_NONE_TO_NORMAL;
       stateModel.currentScreen = _nextStateElement;
     } else {
-
       if (_currentVO.substate == StateConstants.SUB_MODAL) {
-
         if (stateModel.currentScreen.name == _nextVO.view_id) {
           // 5.modalBack. _nextStateElement hasn't been created (line 36)
           transitionType = ScreenConstants.TRANSITION_MODAL_BACK;
@@ -89,7 +90,13 @@ class ScreenSetCommand extends AbstractStateCommand {
       }
     }
 
-    new RdSignal(ScreenDisplaylistEvents.TRANSITION_PREPARE, new ScreenDisplaylistTransitionPrepareVO(transitionType, _currentStateElement, stateModel.currentTransition, _nextStateElement, modal: modal, initialAlpha: stateModel.currentTransition.initialAlpha), _onTransitionEnd).dispatch();
+    new RdSignal(
+            ScreenDisplaylistEvents.TRANSITION_PREPARE,
+            new ScreenDisplaylistTransitionPrepareVO(
+                transitionType, _currentStateElement, stateModel.currentTransition, _nextStateElement,
+                modal: modal, initialAlpha: stateModel.currentTransition.initialAlpha),
+            _onTransitionEnd)
+        .dispatch();
   }
 
   void _onTransitionEnd([dynamic payload = null]) {

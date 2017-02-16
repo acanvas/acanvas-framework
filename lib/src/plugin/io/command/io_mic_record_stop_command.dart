@@ -7,7 +7,6 @@ part of rockdot_framework.io;
  *
  */
 class IOMicRecordStopCommand extends AbstractIOCommand {
-
   static const bool MINIMIZE = true;
   static const int MINIMIZE_SAMPLE_RATE = 16000;
 
@@ -19,24 +18,22 @@ class IOMicRecordStopCommand extends AbstractIOCommand {
     ioModel.mic_recording = false;
 
     // flatten left channel
-    Float32List leftBuffer = mergeBuffers ( ioModel.mic_leftchannel, ioModel.mic_recordingLength );
+    Float32List leftBuffer = mergeBuffers(ioModel.mic_leftchannel, ioModel.mic_recordingLength);
 
-    if(MINIMIZE){
+    if (MINIMIZE) {
       // downsample to 16KHz, only left channel (mono)
-      _downSample(MINIMIZE_SAMPLE_RATE, _ioModel.mic_sampleRate, leftBuffer).then((AudioBuffer buffer){
+      _downSample(MINIMIZE_SAMPLE_RATE, _ioModel.mic_sampleRate, leftBuffer).then((AudioBuffer buffer) {
         ByteData result = _encodeWAV(1, MINIMIZE_SAMPLE_RATE, buffer.getChannelData(0));
         _finalize(result);
       });
-    }
-    else{
+    } else {
       // flatten right channel, too
-      Float32List rightBuffer = mergeBuffers ( ioModel.mic_rightchannel, ioModel.mic_recordingLength );
+      Float32List rightBuffer = mergeBuffers(ioModel.mic_rightchannel, ioModel.mic_recordingLength);
       // we interleave both channels together
-      Float32List interleaved = interleave( leftBuffer, rightBuffer );
+      Float32List interleaved = interleave(leftBuffer, rightBuffer);
       ByteData result = _encodeWAV(2, _ioModel.mic_sampleRate, interleaved);
       _finalize(result);
     }
-
   }
 
   /**
@@ -59,12 +56,10 @@ class IOMicRecordStopCommand extends AbstractIOCommand {
     return o.startRendering();
   }
 
-  ByteData _encodeWAV(int numChannels, int sampleRate, Float32List interleaved){
-
+  ByteData _encodeWAV(int numChannels, int sampleRate, Float32List interleaved) {
     // we create our wav file
     ByteBuffer buffer = new Uint8List(44 + interleaved.length * 2).buffer;
     ByteData view = new ByteData.view(buffer);
-
 
     // RIFF chunk descriptor
     writeUTFBytes(view, 0, 'RIFF');
@@ -91,7 +86,7 @@ class IOMicRecordStopCommand extends AbstractIOCommand {
     int lng = interleaved.length;
     int offset = 44;
     int volume = 1;
-    for (int i = 0; i < lng; i++){
+    for (int i = 0; i < lng; i++) {
       num s = math.max(-1, math.min(1, interleaved[i]));
       view.setInt16(offset, (s < 0 ? s * 0x8000 : s * 0x7FFF).truncate(), Endianness.LITTLE_ENDIAN);
       // old: view.setInt16(offset, (interleaved[i] * (0x7FFF * volume)).truncate(), Endianness.LITTLE_ENDIAN);
@@ -101,11 +96,9 @@ class IOMicRecordStopCommand extends AbstractIOCommand {
     return view;
   }
 
-
   void _finalize(ByteData result) {
-
     // our final binary blob
-    ioModel.mic_recorded_blob = new html.Blob ( [ result ] , 'audio/wav'  );
+    ioModel.mic_recorded_blob = new html.Blob([result], 'audio/wav');
 
     // let's save it locally
     String url = html.Url.createObjectUrlFromBlob(ioModel.mic_recorded_blob);
@@ -119,27 +112,26 @@ class IOMicRecordStopCommand extends AbstractIOCommand {
     link.dispatchEvent(event);
 
     dispatchCompleteEvent(ioModel.mic_recorded_blob);
-
   }
 
   /*
         Helpers
    */
 
-  void writeUTFBytes(ByteData view, offset, String string){
+  void writeUTFBytes(ByteData view, offset, String string) {
     int lng = string.length;
-    for (int i = 0; i < lng; i++){
+    for (int i = 0; i < lng; i++) {
       view.setUint8(offset + i, string.codeUnitAt(i));
     }
   }
 
-  Float32List interleave(Float32List leftChannel, Float32List rightChannel){
+  Float32List interleave(Float32List leftChannel, Float32List rightChannel) {
     int length = leftChannel.length + rightChannel.length;
     Float32List result = new Float32List(length);
 
     int inputIndex = 0;
 
-    for (int index = 0; index < length; ){
+    for (int index = 0; index < length;) {
       result[index++] = leftChannel[inputIndex];
       result[index++] = rightChannel[inputIndex];
       inputIndex++;
@@ -147,11 +139,11 @@ class IOMicRecordStopCommand extends AbstractIOCommand {
     return result;
   }
 
-  List mergeBuffers(List<Float32List> channelBuffer, int recordingLength){
+  List mergeBuffers(List<Float32List> channelBuffer, int recordingLength) {
     List result = new List();
     int offset = 0;
     int lng = channelBuffer.length;
-    for (int i = 0; i < lng; i++){
+    for (int i = 0; i < lng; i++) {
       Float32List buffer = channelBuffer[i];
       result.addAll(buffer); //was: setRange
       offset += buffer.length;
@@ -159,16 +151,15 @@ class IOMicRecordStopCommand extends AbstractIOCommand {
     return result;
   }
 
-  Float32List mergeBuffersTest(List<Float32List> channelBuffer, int recordingLength){
+  Float32List mergeBuffersTest(List<Float32List> channelBuffer, int recordingLength) {
     Float32List result = new Float32List(recordingLength);
     int offset = 0;
     int lng = channelBuffer.length;
-    for (int i = 0; i < lng; i++){
+    for (int i = 0; i < lng; i++) {
       Float32List buffer = channelBuffer[i];
       result.setAll(offset, buffer); //was: setRange
       offset += buffer.length;
     }
     return result;
   }
-
 }

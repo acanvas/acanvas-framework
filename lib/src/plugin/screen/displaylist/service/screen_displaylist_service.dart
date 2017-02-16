@@ -4,13 +4,10 @@ part of rockdot_framework.screen;
  * @author nilsdoehring
  */
 class ScreenDisplaylistService extends AbstractScreenService {
+  ScreenDisplaylistService() : super() {}
 
-  ScreenDisplaylistService() : super() {
-  }
-
-
-  @override void init([Function callback = null]) {
+  @override
+  void init([Function callback = null]) {
     super.init(callback);
   }
-
 }

@@ -2,8 +2,8 @@ part of rockdot_framework.screen;
 
 //@retain
 class ScreenInitCommand extends AbstractScreenCommand {
-
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     LifecycleSprite ui;

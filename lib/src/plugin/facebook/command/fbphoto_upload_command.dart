@@ -2,7 +2,6 @@ part of rockdot_framework.facebook;
 
 //@retain
 class FBPhotoUploadCommand extends AbstractFBCommand {
-
   @override
   void execute([RdSignal event = null]) {
     super.execute(event);
@@ -33,13 +32,8 @@ class FBPhotoUploadCommand extends AbstractFBCommand {
       }
 
       sendData("https://graph.facebook.com/${vo.album_id}/photos?access_token=${_fbModel.accessToken}", formData);
-
     } else if (vo.url != null) {
-
-      Map queryMap = {
-        "no_story": vo.no_story,
-        "url": vo.url
-      };
+      Map queryMap = {"no_story": vo.no_story, "url": vo.url};
 
       if (vo.message != null) {
         queryMap["message"] = vo.message;
@@ -50,21 +44,19 @@ class FBPhotoUploadCommand extends AbstractFBCommand {
 
       js.JsObject queryConfig = new js.JsObject.jsify(queryMap);
       _fbModel.FB.callMethod("api", ["/${vo.album_id}/photos", "post", queryConfig, _handleResult]);
-
     } else {
       dispatchErrorEvent("Neither bmd nor url set in VOFBPhotoUpload.");
     }
   }
 
   void sendData(String url, html.FormData formData) {
-
     html.HttpRequest req = new html.HttpRequest();
     req.onReadyStateChange.listen((html.ProgressEvent e) {
       if (req.readyState == html.HttpRequest.DONE && (req.status == 200 || req.status == 0)) {
         dispatchCompleteEvent();
       }
     });
-    req.open("POST", url, async:true);
+    req.open("POST", url, async: true);
     req.send(formData);
   }
 

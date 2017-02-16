@@ -5,7 +5,6 @@ part of rockdot_framework.state;
  */
 
 class StateModel implements IApplicationContextAware {
-
   final Logger _log = new Logger("StateModel");
 
   IApplicationContext _context;
@@ -47,7 +46,6 @@ class StateModel implements IApplicationContextAware {
   void set historyCount(int historyCount) {
     _historyCount = historyCount;
   }
-
 
   String _currentState;
 
@@ -95,7 +93,6 @@ class StateModel implements IApplicationContextAware {
     _currentStateURLParams = stateVOParams;
   }
 
-
   LifecycleSprite _modalizedScreen;
 
   LifecycleSprite get modalizedScreen {
@@ -105,7 +102,6 @@ class StateModel implements IApplicationContextAware {
   void set modalizedScreen(LifecycleSprite modalizedPage) {
     _modalizedScreen = modalizedPage;
   }
-
 
   IEffect _currentTransition;
 
@@ -160,11 +156,9 @@ class StateModel implements IApplicationContextAware {
       stateVOList.sort((StateVO voa, StateVO vob) {
         if (voa.tree_order > vob.tree_order) {
           return 1;
-        }
-        else if (voa.tree_order < vob.tree_order) {
+        } else if (voa.tree_order < vob.tree_order) {
           return -1;
-        }
-        else {
+        } else {
           return 0;
         }
       });

@@ -4,7 +4,6 @@ part of rockdot_framework.google;
  * @author nilsdoehring
  */
 class GoogleModel {
-
   BrowserOAuth2Flow _flow;
 
   BrowserOAuth2Flow get flow {
@@ -84,5 +83,4 @@ class GoogleModel {
   void set userScopes(List userScopes) {
     _userScopes = userScopes;
   }
-
 }

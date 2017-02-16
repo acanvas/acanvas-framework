@@ -76,5 +76,4 @@ class UGCUserExtendedDTO implements IRdDTO {
       "timestamp": timestamp
     };
   }
-
 }

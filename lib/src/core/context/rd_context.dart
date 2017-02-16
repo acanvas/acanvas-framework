@@ -15,24 +15,25 @@
  */
 part of rockdot_framework.core;
 
-
 /**
  *
  * @author Roland Zwaga
  */
 
 class RdContext extends SpringApplicationContext {
-
   /**
    * Creates a new <code>ApplicationContext</code> instance.
    * @param parent
    * @param objFactory
    */
-  RdContext([dynamic source=null, IApplicationContext parent=null, List<DisplayObject> rootViews=null, IObjectFactory objFactory=null]) : super(rootViews, objFactory) {
-
+  RdContext(
+      [dynamic source = null,
+      IApplicationContext parent = null,
+      List<DisplayObject> rootViews = null,
+      IObjectFactory objFactory = null])
+      : super(rootViews, objFactory) {
     //Only needed if we want to automatically identify FactoryPostProcessors in Context
     //addObjectFactoryPostProcessor(new RegisterObjectFactoryPostProcessorsFactoryPostProcessor(-99));
-
 
     objectFactory.addObjectPostProcessor(new ApplicationContextAwareObjectPostProcessor(this));
 
@@ -53,10 +54,9 @@ class RdContext extends SpringApplicationContext {
 
     /* MVC Postprocessor (BaseEvent + CoreCommand) */
     addObjectFactoryPostProcessor(new MVCControllerObjectFactoryPostProcessor(-98));
-
   }
 
-  Future initApplication(){
+  Future initApplication() {
     /* initializing the UI is mandatory, but feel free to add other commands */
     CompositeCommandWithEvent compositeCommand = new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
 
@@ -71,7 +71,4 @@ class RdContext extends SpringApplicationContext {
     compositeCommand.execute();
     return c.future;
   }
-
-
 }
-

@@ -1,13 +1,13 @@
 part of rockdot_framework.screen;
 
 class ScreenDisplaylistPlugin extends ScreenPluginBase {
-
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
    * new RdSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
-  @override void configureCommands() {
+  @override
+  void configureCommands() {
     super.configureCommands();
 
     commandMap[ScreenDisplaylistEvents.SCREEN_INIT] = () => new ScreenInitCommand();
@@ -28,7 +28,8 @@ class ScreenDisplaylistPlugin extends ScreenPluginBase {
    * This is called Interface Injection, the only kind of injection available in Spring Dart so far.
    * Feel free to add more injectors.
    */
-  @override void configureInjectors() {
+  @override
+  void configureInjectors() {
     super.configureInjectors();
     RdContextUtil.registerInstance(objectFactory, ScreenPluginBase.SERVICE_UI, new ScreenDisplaylistService());
   }

@@ -1,7 +1,6 @@
 part of rockdot_framework.io;
 
 class IOImageUploadCommand extends RdCommand {
-
   @override
   void execute([RdSignal event = null]) {
     super.execute(event);
@@ -22,14 +21,12 @@ class IOImageUploadCommand extends RdCommand {
   }
 
   void sendData(String url, html.FormData formData) {
-
     html.HttpRequest req = new html.HttpRequest();
     req.onReadyStateChange.listen((html.ProgressEvent e) {
       if (req.readyState == html.HttpRequest.DONE) {
         if (req.status == 200 || req.status == 0) {
           dispatchCompleteEvent();
-        }
-        else {
+        } else {
           dispatchErrorEvent();
         }
       }
@@ -37,7 +34,6 @@ class IOImageUploadCommand extends RdCommand {
     req.open("POST", url, async: true);
     req.send(formData);
   }
-
 
   /**
    * @see https://chromium.googlesource.com/external/dart/bleeding_edge/+/master/dart/tests/html/url_test.dart

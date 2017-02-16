@@ -38,5 +38,4 @@ abstract class IScreenService {
   bool get isBlurred;
 
   void set isBlurred(bool blurred);
-
 }

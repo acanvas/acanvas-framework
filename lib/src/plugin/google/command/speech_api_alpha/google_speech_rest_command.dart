@@ -1,7 +1,6 @@
 part of rockdot_framework.google;
 
 class GoogleSpeechRestCommand extends AbstractGoogleCommand {
-
   String API_KEY = "AIzaSyCHGyvOzZonuM2NQx_ZTtt_FI9S_79Vz4g";
 
   @override
@@ -10,12 +9,10 @@ class GoogleSpeechRestCommand extends AbstractGoogleCommand {
 
     //if (notLoggedIn(event)) return;
 
-
     html.Blob recording;
     if (event.data != null && event.data is html.Blob) {
       recording = event.data;
-    }
-    else{
+    } else {
       dispatchErrorEvent("Please provide a blob in event data payload");
       return;
     }
@@ -35,11 +32,9 @@ class GoogleSpeechRestCommand extends AbstractGoogleCommand {
       map["audioRequest"] = new Map();
       map["audioRequest"]["content"] = base64data;
 
-
       String jsonData = JSON.encode(map);
       _sendData(jsonData);
     });
-
   }
 
   void _sendData(String json) {
@@ -47,15 +42,14 @@ class GoogleSpeechRestCommand extends AbstractGoogleCommand {
 
     // add an event handler that is called when the request finishes
     request.onReadyStateChange.listen((_) {
-      if (request.readyState == html.HttpRequest.DONE ) {
+      if (request.readyState == html.HttpRequest.DONE) {
         if (request.status == 200 || request.status == 0) {
           // data saved OK.
           print(request.responseText); // output the response from the server
 
           // TODO decode json
           dispatchCompleteEvent(request.responseText);
-        }
-        else {
+        } else {
           print(request.responseText);
           dispatchErrorEvent(request.responseText);
         }
@@ -67,5 +61,4 @@ class GoogleSpeechRestCommand extends AbstractGoogleCommand {
     request.open("POST", url, async: true);
     request.send(json); // perform the async POST
   }
-
 }

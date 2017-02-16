@@ -2,19 +2,18 @@ part of rockdot_framework.ugc;
 
 //@retain
 class UGCReadItemCommand extends AbstractUGCCommand {
-
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     //event.data == id INT
-    Map dto = {
-      'id': event.data
-    };
+    Map dto = {'id': event.data};
 
     amfOperation("UGCEndpoint.readItem", map: dto);
   }
 
-  @override bool dispatchCompleteEvent([dynamic result = null]) {
+  @override
+  bool dispatchCompleteEvent([dynamic result = null]) {
     UGCItemDTO ret;
     if (result.result.length > 0) {
       ret = new UGCItemDTO(result.result[0]);

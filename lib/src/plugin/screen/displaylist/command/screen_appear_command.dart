@@ -4,7 +4,8 @@ part of rockdot_framework.screen;
 class ScreenAppearCommand extends AbstractScreenCommand {
   ScreenDisplaylistAppearDisappearVO _vo;
 
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     _vo = event.data;
@@ -12,7 +13,8 @@ class ScreenAppearCommand extends AbstractScreenCommand {
     _vo.target.appear(duration: _vo.duration);
   }
 
-  @override bool dispatchCompleteEvent([dynamic result = null]) {
+  @override
+  bool dispatchCompleteEvent([dynamic result = null]) {
     _vo.target.removeEventListener(LifecycleEvent.APPEAR_COMPLETE, dispatchCompleteEvent);
     // _vo.target.alpha = 1;
     // _vo.target.visible = true;

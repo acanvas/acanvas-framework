@@ -1,4 +1,5 @@
 part of rockdot_framework.ugc;
+
 /**
  * @author nilsdoehring
  */

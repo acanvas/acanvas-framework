@@ -4,19 +4,18 @@ class ScreenPluginBase extends AbstractRdPlugin {
   static const String MODEL_UI = "MODEL_UI";
   static const String SERVICE_UI = "SERVICE_UI";
 
-  ScreenPluginBase() : super(20) {
-  }
+  ScreenPluginBase() : super(20) {}
 
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
    * new RdSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
-  @override void configureCommands() {
+  @override
+  void configureCommands() {
     commandMap[ScreenEvents.INIT] = () => new ScreenPluginInitCommand();
     commandMap[ScreenEvents.RESIZE] = () => new ScreenResizeCommand();
     // ## COMMAND INSERTION PLACEHOLDER - DO NOT REMOVE ## //
-
 
     /* Add this Plugin's Init Command to Bootstrap Command Sequence */
     projectInitCommand = ScreenEvents.INIT;
@@ -28,9 +27,9 @@ class ScreenPluginBase extends AbstractRdPlugin {
    * This is called Interface Injection, the only kind of injection available in Spring Dart so far.
    * Feel free to add more injectors.
    */
-  @override void configureInjectors() {
+  @override
+  void configureInjectors() {
     RdContextUtil.registerInstance(objectFactory, MODEL_UI, new ScreenModel());
     objectFactory.addObjectPostProcessor(new ScreenPluginInjector(objectFactory));
   }
-
 }

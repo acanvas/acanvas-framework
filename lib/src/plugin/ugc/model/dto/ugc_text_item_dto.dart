@@ -13,9 +13,6 @@ class UGCTextItemDTO implements IRdDTO {
 
   @override
   Map toJson() {
-    return {
-      "id": id,
-      "text": text
-    };
+    return {"id": id, "text": text};
   }
 }

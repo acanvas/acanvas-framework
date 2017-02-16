@@ -6,7 +6,6 @@ part of rockdot_framework.google;
 
 //@retain
 class GooglePlusShareRenderCommand extends AbstractGoogleCommand {
-
   String GapiUrl = "https://apis.google.com/js/client:platform.js";
   String recipients = "";
 
@@ -28,11 +27,9 @@ class GooglePlusShareRenderCommand extends AbstractGoogleCommand {
     if (event.data != null) {
       recipients = event.data.join(",");
     }
-
   }
 
   void _handleLoaded() {
-
     js.JsObject gapi = js.context["gapi"];
 
     js.JsObject initConfig = new js.JsObject.jsify({

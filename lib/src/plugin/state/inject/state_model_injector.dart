@@ -15,7 +15,6 @@
  */
 part of rockdot_framework.state;
 
-
 /**
  * <code>IObjectPostProcessor</code> implementation that checks for objects that implement the <code>IApplicationContextAware</code>
  * abstract class and injects them with the provided <code>IApplicationContext</code> instance.
@@ -33,7 +32,6 @@ class StateModelInjector implements IObjectPostProcessor {
     _applicationContext = applicationContext;
   }
 
-
   /**
    * @inheritDoc
    */
@@ -49,4 +47,3 @@ class StateModelInjector implements IObjectPostProcessor {
     return object;
   }
 }
-

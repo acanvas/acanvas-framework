@@ -2,7 +2,7 @@ library rockdot_framework.google;
 
 import 'dart:html' as html;
 import 'dart:js' as js;
-import 'dart:convert' show JSON, Base64Encoder;
+import 'dart:convert' show JSON;
 import "package:googleapis_auth/auth_browser.dart";
 import 'package:googleapis/plus/v1.dart';
 

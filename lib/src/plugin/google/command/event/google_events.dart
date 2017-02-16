@@ -4,7 +4,6 @@ part of rockdot_framework.google;
  * @author nilsdoehring
  */
 class GoogleEvents {
-
   static const String INIT = "GoogleEvents.INIT";
 
   //expects perms (optional), sets _gModel.client

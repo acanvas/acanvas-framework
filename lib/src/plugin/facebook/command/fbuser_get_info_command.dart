@@ -1,9 +1,7 @@
 part of rockdot_framework.facebook;
 
-
 //@retain
 class FBUserGetInfoCommand extends AbstractFBCommand {
-
   @override
   void execute([RdSignal event = null]) {
     super.execute(event);
@@ -13,7 +11,8 @@ class FBUserGetInfoCommand extends AbstractFBCommand {
 
     js.JsObject queryConfig = new js.JsObject.jsify({
       "method": "fql.query",
-      "query": "SELECT uid, name, pic_square, is_app_user, birthday_date, email, hometown_location, locale FROM user WHERE uid = ${_fbModel.user.uid}"
+      "query":
+          "SELECT uid, name, pic_square, is_app_user, birthday_date, email, hometown_location, locale FROM user WHERE uid = ${_fbModel.user.uid}"
     });
 
     _fbModel.FB.callMethod("api", [queryConfig, _handleResult]);

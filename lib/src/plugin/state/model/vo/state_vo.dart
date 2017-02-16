@@ -26,7 +26,5 @@ class StateVO implements IRdVO {
   Map params;
   String transition;
 
-  StateVO() {
-  }
-
+  StateVO() {}
 }

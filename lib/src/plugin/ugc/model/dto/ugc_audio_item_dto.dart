@@ -15,10 +15,6 @@ class UGCAudioItemDTO implements IRdDTO {
 
   @override
   Map toJson() {
-    return {
-      "id": id,
-      "url": url,
-      "length": length
-    };
+    return {"id": id, "url": url, "length": length};
   }
 }

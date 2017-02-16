@@ -4,18 +4,15 @@ class UGCPlugin extends AbstractOrderedFactoryPostProcessor {
   static const String MODEL_UGC = "MODEL_UGC";
   Logger _log = new Logger("UGCPlugin");
 
-  UGCPlugin() : super(40) {
+  UGCPlugin() : super(40) {}
 
-  }
-
-  @override IOperation postProcessObjectFactory(IObjectFactory objectFactory) {
-
+  @override
+  IOperation postProcessObjectFactory(IObjectFactory objectFactory) {
     /* Objects */
     RdContextUtil.registerInstance(objectFactory, MODEL_UGC, new UGCModel());
 
     /* Object Postprocessors */
     objectFactory.addObjectPostProcessor(new UGCModelInjector(objectFactory));
-
 
     /* Commands */
     Map commandMap = new Map();
@@ -62,13 +59,9 @@ class UGCPlugin extends AbstractOrderedFactoryPostProcessor {
 
     RdContextUtil.registerCommands(objectFactory, commandMap);
 
-
     /* Bootstrap Command */
     RdConstants.getBootstrap().add(UGCEvents.INIT);
 
-
     return null;
   }
-
-
 }

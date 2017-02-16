@@ -32,16 +32,11 @@ class RuntimeException extends RpcException {
     if (message is Exception) {
       this.error = message;
       this.message = error.message;
-
-    }
-    else if (message is Error) {
+    } else if (message is Error) {
       this.error = message;
       this.message = "$message";
-    }
-
-    else {
+    } else {
       this.message = message;
-
     }
     this.code = code;
   }

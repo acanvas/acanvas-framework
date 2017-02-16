@@ -2,7 +2,6 @@ part of rockdot_framework.facebook;
 
 //@retain
 class FBPhotoGetFromAlbumCommand extends AbstractFBCommand {
-
   DataRetrieveVO _vo;
 
   @override
@@ -46,6 +45,4 @@ class FBPhotoGetFromAlbumCommand extends AbstractFBCommand {
 
     dispatchCompleteEvent(_fbModel.userAlbumPhotos);
   }
-
-
 }

@@ -1,6 +1,5 @@
 part of rockdot_framework.core;
 
-
 /**
  * A Dispatcher is initialized with a class instance and will dispatch methods of that class.
  *
@@ -14,7 +13,6 @@ part of rockdot_framework.core;
  *
  *
  */
-
 
 symbolizeKeys(namedParams) {
   Map symbolMap = {};
@@ -45,7 +43,6 @@ class Dispatcher {
   Dispatcher(this.instance);
 
   dispatch(methodName, [positionalParams = null, namedParams = null]) {
-
     namedParams = namedParams == null ? {} : namedParams;
     positionalParams = positionalParams == null ? [] : positionalParams;
 
@@ -75,7 +72,5 @@ class Dispatcher {
       }
       return t.reflectee;
     });
-
-
   }
 }

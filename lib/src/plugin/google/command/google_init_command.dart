@@ -2,36 +2,32 @@ part of rockdot_framework.google;
 
 //@retain
 class GoogleInitCommand extends AbstractGoogleCommand {
-
   @override
   void execute([RdSignal event = null]) {
     super.execute(event);
 
     var id = new ClientId(getProperty(getProperty("project.google.oauth.clientid")), null);
-    List scopes;
+    List<String> scopes;
     if (event.data != null) {
       if (event.data is String) {
-        scopes = [event.data];
+        scopes = <String>[event.data];
       } else if (event.data is List) {
         scopes = event.data;
       }
+    } else {
+      scopes = [getProperty("project.google.scope.plus")];
     }
-    else {
-      scopes = [ getProperty("project.google.scope.plus") ];
-    }
-
 
 // Initialize the browser oauth2 flow functionality.
     createImplicitBrowserFlow(id, scopes).then((BrowserOAuth2Flow flow) {
       _gModel.flow = flow;
-      flow.clientViaUserConsent(immediate: true)
-      .then((AutoRefreshingAuthClient client) {
+      flow.clientViaUserConsent(immediate: true).then((AutoRefreshingAuthClient client) {
         _handleLogin(client);
         flow.close();
       }, onError: (e) {
         _handleInitError(e);
       });
-    }).catchError((e){
+    }).catchError((e) {
       log.error("Error while creating ImplicitBrowserFlow: ${e}");
       dispatchCompleteEvent();
     });

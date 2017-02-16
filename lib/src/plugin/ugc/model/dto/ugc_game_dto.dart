@@ -22,12 +22,6 @@ class UGCGameDTO implements IRdDTO {
 
   @override
   Map toJson() {
-    return {
-      "uid": uid,
-      "level": level,
-      "score": score,
-      "control": control,
-      "timestamp": timestamp
-    };
+    return {"uid": uid, "level": level, "score": score, "control": control, "timestamp": timestamp};
   }
 }

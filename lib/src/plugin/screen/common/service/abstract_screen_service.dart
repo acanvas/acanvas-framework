@@ -1,11 +1,9 @@
 part of rockdot_framework.screen;
 
-
 /**
  * @author nilsdoehring
  */
 class AbstractScreenService implements IScreenService {
-
   Logger log = new Logger("IScreenService");
 
   /**
@@ -75,7 +73,6 @@ class AbstractScreenService implements IScreenService {
   }
 
   void init([Function callback = null]) {
-
     _background = new LifecycleSprite("rockdot.background");
     _content = new LifecycleSprite("rockdot.content");
     _navi = new LifecycleSprite("rockdot.navigation");
@@ -118,7 +115,6 @@ class AbstractScreenService implements IScreenService {
     log.finer("Stage width: ${RdConstants.WIDTH_STAGE_REAL}, Stage height: ${RdConstants.HEIGHT_STAGE_REAL}");
 
     //new RdSignal(ScreenEvents.RESIZE).dispatch();
-
   }
 
   void lock() {
@@ -154,6 +150,4 @@ class AbstractScreenService implements IScreenService {
     _background.filters = [];
     _isBlurred = false;
   }
-
-
 }

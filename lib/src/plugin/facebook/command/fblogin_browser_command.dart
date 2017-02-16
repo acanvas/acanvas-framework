@@ -22,10 +22,7 @@ class FBLoginBrowserCommand extends AbstractFBCommand {
     } else {
       showMessage(getProperty("message.facebook.login.waiting"), blur: true, type: StateMessageVO.TYPE_WAITING);
 
-      js.JsObject loginConfig = new js.JsObject.jsify({
-        "scope": scopes,
-        "return_scopes": true
-      });
+      js.JsObject loginConfig = new js.JsObject.jsify({"scope": scopes, "return_scopes": true});
 
       _fbModel.FB.callMethod("login", [_handleLogin, loginConfig]);
     }
@@ -37,11 +34,9 @@ class FBLoginBrowserCommand extends AbstractFBCommand {
     if (containsError(response)) return;
 
     if (response["authResponse"] != null) {
-
       _fbModel.accessToken = response["authResponse"]["accessToken"];
       _fbModel.userIsAuthenticated = true;
-      _fbModel.user = new FBUserVO()
-        ..uid = response["authResponse"]["userID"];
+      _fbModel.user = new FBUserVO()..uid = response["authResponse"]["userID"];
 
       if (response["authResponse"]["grantedScopes"] != null) {
         _fbModel.userPermissions = response["authResponse"]["grantedScopes"].split(",");

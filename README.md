@@ -29,5 +29,3 @@ and was used in dozens of highly interactive rich media projects (marketing) for
 * i18n
 * Focus on highly interactive rich media applications
 * LOTS of examples
-
-

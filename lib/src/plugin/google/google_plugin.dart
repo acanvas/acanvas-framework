@@ -3,15 +3,15 @@ part of rockdot_framework.google;
 class GooglePlugin extends AbstractRdPlugin {
   static const String MODEL_GOOGLE = "MODEL_GOOGLE";
 
-  GooglePlugin() : super(30) {
-  }
+  GooglePlugin() : super(30) {}
 
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
    * new RdSignal(GoogleEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
-  @override void configureCommands() {
+  @override
+  void configureCommands() {
     commandMap[GoogleEvents.INIT] = () => new GoogleInitCommand();
     commandMap[GoogleEvents.USER_LOGIN] = () => new GoogleLoginCommand();
     commandMap[GoogleEvents.PLUS_USER_GET] = () => new GooglePlusGetUserCommand();
@@ -31,9 +31,9 @@ class GooglePlugin extends AbstractRdPlugin {
    * This is called Interface Injection, the only kind of injection available in Spring Dart so far.
    * Feel free to add more injectors.
    */
-  @override void configureInjectors() {
+  @override
+  void configureInjectors() {
     RdContextUtil.registerInstance(objectFactory, MODEL_GOOGLE, new GoogleModel());
     objectFactory.addObjectPostProcessor(new GoogleModelInjector(objectFactory));
   }
-
 }

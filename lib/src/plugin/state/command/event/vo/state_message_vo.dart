@@ -19,6 +19,6 @@ class StateMessageVO implements IRdVO {
   int bgColor;
   int fontColor;
 
-  StateMessageVO(this.id, this.message, this.timeBox, {this.type: -1, this.blurContent: false, this.bgColor : -1, this.fontColor: -1}) {
-  }
+  StateMessageVO(this.id, this.message, this.timeBox,
+      {this.type: -1, this.blurContent: false, this.bgColor: -1, this.fontColor: -1}) {}
 }

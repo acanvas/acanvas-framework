@@ -4,7 +4,6 @@ part of rockdot_framework.io;
  * @author nilsdoehring
  */
 class DataRetrieveVO implements IRdVO {
-
   int limit;
   int totalSize;
   String nextToken;
@@ -12,16 +11,11 @@ class DataRetrieveVO implements IRdVO {
   /* optional */
   String id;
 
-  DataRetrieveVO(this.limit, {this.nextToken: null, this.id: null}) {
-  }
+  DataRetrieveVO(this.limit, {this.nextToken: null, this.id: null}) {}
 
   Map toMap() {
-    Map map = {
-      "limit": limit,
-      "nextToken": nextToken
-    };
+    Map map = {"limit": limit, "nextToken": nextToken};
 
     return map;
   }
-
 }

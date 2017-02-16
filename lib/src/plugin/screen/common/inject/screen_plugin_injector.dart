@@ -15,7 +15,6 @@
  */
 part of rockdot_framework.screen;
 
-
 /**
  * <code>IObjectPostProcessor</code> implementation that checks for objects that implement the <code>IApplicationContextAware</code>
  * abstract class and injects them with the provided <code>IApplicationContext</code> instance.
@@ -33,12 +32,10 @@ class ScreenPluginInjector implements IObjectPostProcessor {
     _applicationContext = applicationContext;
   }
 
-
   /**
    * @inheritDoc
    */
   dynamic postProcessAfterInitialization(dynamic object, String objectName) {
-
     if (object is IScreenModelAware) {
       (object as IScreenModelAware).uiModel = _applicationContext.getObject(ScreenPluginBase.MODEL_UI);
     }
@@ -53,4 +50,3 @@ class ScreenPluginInjector implements IObjectPostProcessor {
     return object;
   }
 }
-

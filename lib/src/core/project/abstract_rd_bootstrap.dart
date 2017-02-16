@@ -1,6 +1,5 @@
 part of rockdot_framework.core;
 
-
 /**
  * @author Nils Doehring
  */
@@ -20,12 +19,11 @@ class AbstractRdBootstrap extends EventDispatcher {
   }
 
   /* Assign and prepare some things for Rockdot */
-  void init(){
-
+  void init() {
     // Instantiate Context.
     _applicationContext = new RdContext(_stage);
 
-    //Feed RockdotConstants 
+    //Feed RockdotConstants
     RdConstants.setStage(_stage);
     RdConstants.setContext(_applicationContext);
 
@@ -37,7 +35,6 @@ class AbstractRdBootstrap extends EventDispatcher {
 
     //Logging
     _initLogger();
-
   }
 
   void _initPropertyFiles() {
@@ -46,18 +43,15 @@ class AbstractRdBootstrap extends EventDispatcher {
     propertyFiles.forEach((file) {
       TextFileURI uri = new TextFileURI(file, true);
       provider.propertyURIs.add(uri);
-
     });
 
     _applicationContext.addDefinitionProvider(provider);
   }
 
   void _initPlugins() {
-
     plugins.forEach((plugin) {
       _applicationContext.addObjectFactoryPostProcessor(plugin);
     });
-
   }
 
   void _initLogger() {
@@ -74,11 +68,9 @@ class AbstractRdBootstrap extends EventDispatcher {
     }
   }
 
-
   Future loadApplicationContext() async {
-
     /** add load listeners */
-   // _applicationContext.addEventListener(Event.CANCEL, _onCoreApplicationContextLoadFault);
+    // _applicationContext.addEventListener(Event.CANCEL, _onCoreApplicationContextLoadFault);
     /** Load */
     await _applicationContext.load().catchError((e) {
       logger.severe("Spring Application Context Failed to Load: [${e}]");
@@ -86,13 +78,11 @@ class AbstractRdBootstrap extends EventDispatcher {
     });
 
     logger.info("CoreApplicationContext Loaded...");
-    await _applicationContext.initApplication().catchError((e){
+    await _applicationContext.initApplication().catchError((e) {
       logger.severe("Application Error: ${e}");
       throw new StateError("Application Error: ${e}");
     });
 
     logger.info("Application Context Initialized");
   }
-
-
 }

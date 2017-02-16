@@ -5,11 +5,11 @@ class UGCTestCommand extends AbstractUGCCommand {
   int _itemContainerID;
   int _itemID;
 
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     CompositeCommandWithEvent compositeCommand = new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
-
 
     /* ******************** REGISTER USER ******************* */
 
@@ -21,7 +21,6 @@ class UGCTestCommand extends AbstractUGCCommand {
     user.locale = "de_DE";
 
     compositeCommand.addCommandEvent(new RdSignal(UGCEvents.USER_REGISTER, user, _onUserRegister), applicationContext);
-
 
     /* ******************** REGISTER USER (EXTENDED) ******************* */
 
@@ -35,13 +34,12 @@ class UGCTestCommand extends AbstractUGCCommand {
     userExt.street = "Nopestraße 124";
     userExt.city = "70190 Nowhere";
 
-    compositeCommand.addCommandEvent(new RdSignal(UGCEvents.USER_REGISTER_EXTENDED, userExt, _onUserRegisterExtended), applicationContext);
-
+    compositeCommand.addCommandEvent(
+        new RdSignal(UGCEvents.USER_REGISTER_EXTENDED, userExt, _onUserRegisterExtended), applicationContext);
 
     /* ******************** SEND CONFIRMATION MAIL ******************* */
 
     compositeCommand.addCommandEvent(new RdSignal(UGCEvents.USER_MAIL_SEND, null, _onMailSent), applicationContext);
-
 
     /* ******************** CREATE ITEM CONTAINER ******************* */
 
@@ -49,8 +47,8 @@ class UGCTestCommand extends AbstractUGCCommand {
     albumVO.creator_uid = user.uid;
     albumVO.title = "Album von " + user.name;
 
-    compositeCommand.addCommandEvent(new RdSignal(UGCEvents.CREATE_ITEM_CONTAINER, albumVO, _onCreateItemContainer), applicationContext);
-
+    compositeCommand.addCommandEvent(
+        new RdSignal(UGCEvents.CREATE_ITEM_CONTAINER, albumVO, _onCreateItemContainer), applicationContext);
 
     /* ******************** CREATE IMAGE ITEM ******************* */
 
@@ -63,7 +61,6 @@ class UGCTestCommand extends AbstractUGCCommand {
     String filenameBig = filenamePrefix + ".jpg";
     String filenameThumb = filenamePrefix + "_thumb.jpg";
 
-
     UGCImageItemDTO imageDAO = new UGCImageItemDTO();
     imageDAO.url_big = getProperty("project.host.download") + "/" + filenameBig;
     imageDAO.url_thumb = getProperty("project.host.download") + "/" + filenameThumb;
@@ -75,36 +72,34 @@ class UGCTestCommand extends AbstractUGCCommand {
 
     compositeCommand.addCommandEvent(new RdSignal(UGCEvents.CREATE_ITEM, itemDAO, _onCreateItem), applicationContext);
 
-
     /* ******************** READ ITEM CONTAINER ******************* */
 
-    compositeCommand.addCommandEvent(new RdSignal(UGCEvents.READ_ITEM_CONTAINER, _itemContainerID, _onReadItemContainer), applicationContext);
-
+    compositeCommand.addCommandEvent(
+        new RdSignal(UGCEvents.READ_ITEM_CONTAINER, _itemContainerID, _onReadItemContainer), applicationContext);
 
     /* ******************** READ ITEM ******************* */
 
     compositeCommand.addCommandEvent(new RdSignal(UGCEvents.READ_ITEM, _itemID, _onReadItem), applicationContext);
 
-
     /* ******************** READ ITEM CONTAINERS (BY UID) ******************* */
 
-    compositeCommand.addCommandEvent(new RdSignal(UGCEvents.READ_ITEM_CONTAINERS_UID, null, _onReadItemByUID), applicationContext);
-
+    compositeCommand.addCommandEvent(
+        new RdSignal(UGCEvents.READ_ITEM_CONTAINERS_UID, null, _onReadItemByUID), applicationContext);
 
     /* ******************** LIKE ITEM ******************* */
 
-    compositeCommand.addCommandEvent(new RdSignal(UGCEvents.ITEM_LIKE, _itemID, _onLikeOrComplainOrRateItem), applicationContext);
-
+    compositeCommand.addCommandEvent(
+        new RdSignal(UGCEvents.ITEM_LIKE, _itemID, _onLikeOrComplainOrRateItem), applicationContext);
 
     /* ******************** COMPLAIN ITEM ******************* */
 
-    compositeCommand.addCommandEvent(new RdSignal(UGCEvents.ITEM_COMPLAIN, _itemID, _onLikeOrComplainOrRateItem), applicationContext);
-
+    compositeCommand.addCommandEvent(
+        new RdSignal(UGCEvents.ITEM_COMPLAIN, _itemID, _onLikeOrComplainOrRateItem), applicationContext);
 
     /* ******************** RATE ITEM ******************* */
     UGCRatingVO rateItem = new UGCRatingVO(_itemID, 3);
-    compositeCommand.addCommandEvent(new RdSignal(UGCEvents.ITEM_RATE, rateItem, _onLikeOrComplainOrRateItem), applicationContext);
-
+    compositeCommand.addCommandEvent(
+        new RdSignal(UGCEvents.ITEM_RATE, rateItem, _onLikeOrComplainOrRateItem), applicationContext);
 
     /* ******************** SET GAME SCORE ******************* */
     /*
@@ -114,11 +109,9 @@ class UGCTestCommand extends AbstractUGCCommand {
     compositeCommand.addCommandEvent(new RdSignal(GamingEvents.SET_SCORE_AT_LEVEL, game, _onSetScore), applicationContext);
     */
 
-
     /* ******************** GET GAME HIGHSCORE ******************* */
 
     //compositeCommand.addCommandEvent(new RdSignal(GamingEvents.GET_HIGHSCORE, null, _onGetHighscore), applicationContext);
-
 
     compositeCommand.failOnFault = true;
     compositeCommand.addCompleteListener(dispatchCompleteEvent);
@@ -150,7 +143,8 @@ class UGCTestCommand extends AbstractUGCCommand {
 
   void _onReadItemContainer(UGCItemContainerDTO container) {
     Assert.notNull(container, "_onReadItemContainer, container is null");
-    Assert.notNull(_ugcModel.currentItemContainerDAO, "_onReadItemContainer, _ugcModel.currentItemContainerDAO is null");
+    Assert.notNull(
+        _ugcModel.currentItemContainerDAO, "_onReadItemContainer, _ugcModel.currentItemContainerDAO is null");
   }
 
   void _onReadItemByUID() {
@@ -182,5 +176,4 @@ class UGCTestCommand extends AbstractUGCCommand {
   void _onMailSent(String str) {
     Assert.isTrue(str == "Message successfully sent!", "Something went wrong in the backend.");
   }
-
 }

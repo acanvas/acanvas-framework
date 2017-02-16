@@ -1,7 +1,6 @@
 part of rockdot_framework.io;
 
 class AbstractIOCommand extends RdCommand implements IIOModelAware {
-
   IOModel _ioModel;
 
   @override

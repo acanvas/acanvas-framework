@@ -16,4 +16,3 @@ class ScreenConstants {
   static const String TRANSITION_PARALLEL = "UIConstants.TRANSITION_PARALLEL";
   static const String TRANSITION_OFF = "UIConstants.TRANSITION_OFF";
 }
-

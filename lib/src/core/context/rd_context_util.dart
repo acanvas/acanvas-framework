@@ -1,9 +1,8 @@
 part of rockdot_framework.core;
 
 class RdContextUtil {
-
   static void wire(dynamic uie) {
-    RdConstants.getContext().wire(uie);
+    RdConstants.getContext()?.wire(uie);
   }
 
   static dynamic getObject(String obj) {
@@ -14,16 +13,16 @@ class RdContextUtil {
     IController controller = objectFactory.getObject(MVCControllerObjectFactoryPostProcessor.CONTROLLER_OBJECT_NAME);
     for (String commandName in map.keys) {
       if (map[commandName] is Function) {
-        registerCommandFunction(objectFactory, commandName, map[commandName], ObjectDefinitionScope.PROTOTYPE, controller);
-      }
-      else {
+        registerCommandFunction(
+            objectFactory, commandName, map[commandName], ObjectDefinitionScope.PROTOTYPE, controller);
+      } else {
         registerCommand(objectFactory, commandName, map[commandName], ObjectDefinitionScope.PROTOTYPE, controller);
       }
-
     }
   }
 
-  static void registerCommand(IObjectFactory objectFactory, String commandName, Type clazz, ObjectDefinitionScope scope, [IController controller = null]) {
+  static void registerCommand(IObjectFactory objectFactory, String commandName, Type clazz, ObjectDefinitionScope scope,
+      [IController controller = null]) {
     if (controller == null) {
       controller = objectFactory.getObject(MVCControllerObjectFactoryPostProcessor.CONTROLLER_OBJECT_NAME);
     }
@@ -34,10 +33,13 @@ class RdContextUtil {
     objectDefinition.scope = scope;
     objectDefinition.autoWireMode = AutowireMode.NO;
     objectFactory.objectDefinitionRegistry.registerObjectDefinition(commandName, objectDefinition);
-    controller.registerCommandForEventType(commandName, commandName, MVCControllerObjectFactoryPostProcessor.DEFAULT_EXECUTE_METHOD_NAME);
+    controller.registerCommandForEventType(
+        commandName, commandName, MVCControllerObjectFactoryPostProcessor.DEFAULT_EXECUTE_METHOD_NAME);
   }
 
-  static void registerCommandFunction(IObjectFactory objectFactory, String commandName, Function func, ObjectDefinitionScope scope, [IController controller = null]) {
+  static void registerCommandFunction(
+      IObjectFactory objectFactory, String commandName, Function func, ObjectDefinitionScope scope,
+      [IController controller = null]) {
     if (controller == null) {
       controller = objectFactory.getObject(MVCControllerObjectFactoryPostProcessor.CONTROLLER_OBJECT_NAME);
     }
@@ -48,10 +50,12 @@ class RdContextUtil {
     objectDefinition.scope = scope;
     objectDefinition.autoWireMode = AutowireMode.NO;
     objectFactory.objectDefinitionRegistry.registerObjectDefinition(commandName, objectDefinition);
-    controller.registerCommandForEventType(commandName, commandName, MVCControllerObjectFactoryPostProcessor.DEFAULT_EXECUTE_METHOD_NAME);
+    controller.registerCommandForEventType(
+        commandName, commandName, MVCControllerObjectFactoryPostProcessor.DEFAULT_EXECUTE_METHOD_NAME);
   }
 
-  static void registerClass(IObjectFactory objectFactory, String id, Type clazz, [bool singleton = false, bool isLazyInit = true]) {
+  static void registerClass(IObjectFactory objectFactory, String id, Type clazz,
+      [bool singleton = false, bool isLazyInit = true]) {
     ObjectDefinition objectDefinition = new ObjectDefinition(id);
     objectDefinition.name = id;
     objectDefinition.clazz = clazz;
@@ -61,7 +65,8 @@ class RdContextUtil {
     objectFactory.objectDefinitionRegistry.registerObjectDefinition(id, objectDefinition);
   }
 
-  static void registerClassFunction(IObjectFactory objectFactory, String id, Function func, [bool singleton = false, bool isLazyInit = true]) {
+  static void registerClassFunction(IObjectFactory objectFactory, String id, Function func,
+      [bool singleton = false, bool isLazyInit = true]) {
     ObjectDefinition objectDefinition = new ObjectDefinition(id);
     objectDefinition.name = id;
     objectDefinition.func = func;
@@ -77,7 +82,10 @@ class RdContextUtil {
   }
 
   static void registerScreen(IObjectFactory objectFactory, String id, Function func, String url,
-                             {String substate : StateConstants.SUB_NORMAL, int tree_order : 0, int tree_parent : 0, String transition : "transition.default"}) {
+      {String substate: StateConstants.SUB_NORMAL,
+      int tree_order: 0,
+      int tree_parent: 0,
+      String transition: "transition.default"}) {
     RdContextUtil.registerClassFunction(objectFactory, id, func, false, true);
 
     StateVO stateVO = new StateVO();
@@ -91,11 +99,13 @@ class RdContextUtil {
     //objectFactory.cache.putInstance("vo." + id, stateVO);
     StateModel m = objectFactory.getObject(StateConstants.CTX_MODEL_STATE) as StateModel;
     m.addStateVO(stateVO);
-
   }
 
   static void registerScreenInstance(IObjectFactory objectFactory, String id, RockdotLifecycleSprite clazz, String url,
-                                     {String substate : StateConstants.SUB_NORMAL, int tree_order : 0, int tree_parent : 0, String transition : "transition.default"}) {
+      {String substate: StateConstants.SUB_NORMAL,
+      int tree_order: 0,
+      int tree_parent: 0,
+      String transition: "transition.default"}) {
     wire(clazz);
     objectFactory.cache.putInstance(id, clazz);
 
@@ -120,5 +130,4 @@ class RdContextUtil {
     /* Define Context XML */
     return prefix + "app-context.xml" + postfix;
   }
-
 }

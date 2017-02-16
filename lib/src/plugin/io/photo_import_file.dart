@@ -6,7 +6,6 @@ part of rockdot_nikon;
  */
 
 class PhotoImportFile extends AbstractLayer {
-
   final double SCALE_IMAGE = .5;
   final double SCALE_LOGO = .75;
 
@@ -14,16 +13,17 @@ class PhotoImportFile extends AbstractLayer {
   Copy _copy;
   ComponentBitmapData _pic;
 
-  PhotoImportFile(String id) : super(id) {
-  }
+  PhotoImportFile(String id) : super(id) {}
 
-  @override void init({Map params: null}) {
+  @override
+  void init({Map params: null}) {
     super.init(params: params);
 
     _headline.text = getProperty("headline").toUpperCase();
 
     // copy
-    _copy = new Copy(getProperty("copy"), 18, Colors.GREY_MIDDLE);// + _appModel.currentUGCItem.timestamp, 11, Colors.GREY);
+    _copy = new Copy(
+        getProperty("copy"), 18, Colors.GREY_MIDDLE); // + _appModel.currentUGCItem.timestamp, 11, Colors.GREY);
     addChild(_copy);
 
     //_pic = new ImageSprite((_appModel.currentUGCItem.type_dao as UGCImageItemVO).url_big, AbstractLayer.LAYER_WIDTH_MAX, AbstractLayer.LAYER_WIDTH_MAX);
@@ -38,8 +38,8 @@ class PhotoImportFile extends AbstractLayer {
     onInitComplete();
   }
 
-  @override void refresh() {
-
+  @override
+  void refresh() {
     num w = spanWidth - 2 * BootstrapConstants.SPACER;
 
     _kamera.visible = false;
@@ -115,7 +115,7 @@ class PhotoImportFile extends AbstractLayer {
 
   void scale(ImageElement imageElement) {
     //Create BitmapData from ImageElement
-    BitmapData sourceBitmapData = new BitmapData.fromImageElement(imageElement/*, 1/SCALE*/);
+    BitmapData sourceBitmapData = new BitmapData.fromImageElement(imageElement /*, 1/SCALE*/);
 
     //Scaling (TODO calculate scale according to image dimensions)
     int targetWidth = (sourceBitmapData.width * SCALE_IMAGE).ceil();
@@ -154,7 +154,6 @@ class PhotoImportFile extends AbstractLayer {
   }
 
   void sendData(dynamic data) {
-
     final req = new HttpRequest();
     req.onReadyStateChange.listen((ProgressEvent e) {
       if (req.readyState == HttpRequest.DONE && (req.status == 200 || req.status == 0)) {
@@ -194,5 +193,4 @@ class PhotoImportFile extends AbstractLayer {
     Blob blob = new Blob([jpg], mimeString);
     return blob;
   }
-
 }

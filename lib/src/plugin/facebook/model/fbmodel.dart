@@ -4,7 +4,6 @@ part of rockdot_framework.facebook;
  * @author nilsdoehring
  */
 class FBModel {
-
   js.JsObject _FB;
 
   void set FB(js.JsObject fbo) {
@@ -94,7 +93,6 @@ class FBModel {
         _friendsWhoAreAppUsersIndexed.add(user.id);
       }
     }
-
   }
 
   Map<String, FBUserVO> _friendsWhoAreAppUsers;
@@ -138,5 +136,4 @@ class FBModel {
   void set userPermissions(List userPermissions) {
     _userPermissions = userPermissions;
   }
-
 }

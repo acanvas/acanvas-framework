@@ -11,6 +11,6 @@ class ScreenDisplaylistTransitionPrepareVO implements IRdVO {
   String transitionType;
   num initialAlpha = 0;
 
-  ScreenDisplaylistTransitionPrepareVO(this.transitionType, this.outTarget, this.effect, this.inTarget, {this.modal: false, this.initialAlpha: 0}) {
-  }
+  ScreenDisplaylistTransitionPrepareVO(this.transitionType, this.outTarget, this.effect, this.inTarget,
+      {this.modal: false, this.initialAlpha: 0}) {}
 }

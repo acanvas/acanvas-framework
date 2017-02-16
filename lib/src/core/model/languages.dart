@@ -1,7 +1,6 @@
 part of rockdot_framework.core;
 
 class Languages {
-
   //WEST
   static const String GERMAN = "de";
   static const String ENGLISH = "en";
@@ -38,11 +37,8 @@ class Languages {
   static const String JAPANESE = "jp";
   static const String ARABIC = "ar";
 
-
   // --------------------------------------------------------------------
   // --------------------------------------------------------------------
   // --------------------------------------------------------------------
-  Languages() {
-  }
+  Languages() {}
 }
-

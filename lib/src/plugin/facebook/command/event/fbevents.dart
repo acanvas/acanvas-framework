@@ -4,7 +4,6 @@ part of rockdot_framework.facebook;
  * @author nilsdoehring
  */
 class FBEvents {
-
   static const String INIT = "CommandFB.INIT";
   static const String TEST = "CommandFB.TEST";
 
@@ -39,4 +38,3 @@ class FBEvents {
   //expects VOFBPhotoUpload, returns nothing
   static const String PHOTO_UPLOAD = "CommandFB.PHOTO_UPLOAD";
 }
-

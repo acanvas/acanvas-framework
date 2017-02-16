@@ -1,6 +1,5 @@
 part of rockdot_framework.ugc;
 
-
 //@retain
 class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAware {
   StateModel _stateModel;
@@ -10,7 +9,8 @@ class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAwar
     _stateModel = stateModel;
   }
 
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     _vo = event.data;
@@ -29,7 +29,7 @@ class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAwar
       case UGCFilterVO.CONDITION_ALL:
         break;
       case UGCFilterVO.CONDITION_UID:
-      //TODO
+        //TODO
         break;
     }
 
@@ -41,9 +41,9 @@ class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAwar
     amfOperation("UGCEndpoint.filterItems", map: _vo.toMap());
   }
 
-  @override bool dispatchCompleteEvent([dynamic result = null]) {
+  @override
+  bool dispatchCompleteEvent([dynamic result = null]) {
     _vo.nextToken = null; //indicates that nextToken is to be set by DataProxy
     return super.dispatchCompleteEvent(result);
   }
-
 }

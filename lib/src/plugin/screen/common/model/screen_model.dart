@@ -5,7 +5,6 @@ part of rockdot_framework.screen;
  */
 
 class ScreenModel {
-
   num _lastResizeTime = 0;
 
   num get lastResizeTime {
@@ -16,7 +15,5 @@ class ScreenModel {
     _lastResizeTime = lastResizeTime;
   }
 
-  ScreenModel() {
-  }
-
+  ScreenModel() {}
 }

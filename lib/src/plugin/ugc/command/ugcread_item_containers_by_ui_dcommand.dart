@@ -2,14 +2,11 @@ part of rockdot_framework.ugc;
 
 //@retain
 class UGCReadItemContainersByUIDCommand extends AbstractUGCCommand {
-
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
     if (event.data) {
-
-      Map dto = {
-        'uid': event.data
-      };
+      Map dto = {'uid': event.data};
 
       amfOperation("UGCEndpoint.readItemContainersByUID", map: dto);
     } else {
@@ -17,8 +14,8 @@ class UGCReadItemContainersByUIDCommand extends AbstractUGCCommand {
     }
   }
 
-
-  @override bool dispatchCompleteEvent([dynamic result = null]) {
+  @override
+  bool dispatchCompleteEvent([dynamic result = null]) {
     _ugcModel.ownContainers = _createContainers(result.result.ownContainers);
     _ugcModel.followContainers = _createContainers(result.result.followContainers);
     _ugcModel.participantContainers = _createContainers(result.result.participantContainers);

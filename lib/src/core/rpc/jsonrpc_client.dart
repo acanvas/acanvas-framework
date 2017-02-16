@@ -1,6 +1,5 @@
 part of rockdot_framework.core;
 
-
 /* basic usage:
  *    import "package:jsonrpc2/jsonrpc_client.dart"
  *
@@ -22,7 +21,6 @@ part of rockdot_framework.core;
  * message as payload.
  *
  */
-
 
 final _logger = new Logger('JSON-RPC');
 
@@ -51,7 +49,8 @@ class ServerProxy {
     if (notify) {
       _executeRequest(package);
       return new Future(() => null);
-    } else return _executeRequest(package).then((rpcResponse) => handleResponse(rpcResponse));
+    } else
+      return _executeRequest(package).then((rpcResponse) => handleResponse(rpcResponse));
   }
 
   _executeRequest(package) {
@@ -64,7 +63,6 @@ class ServerProxy {
     request.onReadyStateChange.listen((_) {
       if (request.readyState == 4) {
         switch (request.status) {
-
           case 200:
             c.complete(request);
             break;
@@ -87,15 +85,15 @@ class ServerProxy {
     // It's sent out utf-8 encoded. Without having to be told. Nice!
     request.send(JSON.encode(package));
     return c.future.then((request) => new Future(() {
-      String body = request.responseText;
-      if (request.status == 204 || body.isEmpty) {
-        return null;
-      } else {
-        // print(body);
-        body = body.replaceAllMapped(new RegExp(r'"(\d+)"'), (Match m) => m.group(1));
-        return JSON.decode(body);
-      }
-    }));
+          String body = request.responseText;
+          if (request.status == 204 || body.isEmpty) {
+            return null;
+          } else {
+            // print(body);
+            body = body.replaceAllMapped(new RegExp(r'"(\d+)"'), (Match m) => m.group(1));
+            return JSON.decode(body);
+          }
+        }));
   }
 
   handleResponse(response) {
@@ -110,18 +108,14 @@ class ServerProxy {
     if (response is RemoteException) throw response;
     return response;
   }
-
 }
 
-
 class BatchServerProxy extends ServerProxy {
-
   BatchServerProxy(url) : super(url);
 
   var requests = [];
   var responses = {};
   var used_ids = {};
-
 
   call(method, [params = null, notify = false]) {
     /* Package and send the request.
@@ -209,7 +203,6 @@ class JsonRpcMethod {
   toString() => "JsonRpcMethod: ${toJson()}";
 }
 
-
 class RemoteException implements Exception {
   int code;
   String message;
@@ -229,7 +222,6 @@ class HttpStatusError implements Exception {
 
   toString() => "$message";
 }
-
 
 class TimeoutException implements Exception {
   String message;

@@ -1,8 +1,6 @@
 part of rockdot_framework.core;
 
-
 class RdConstants {
-
   /* internals */
   LoaderInfo _loaderInfo;
   List<String> _bootStrap;
@@ -21,12 +19,10 @@ class RdConstants {
   static const String MARKET_DEFAULT = Markets.USA;
   static const String LANGUAGE_DEFAULT = Languages.ENGLISH;
 
-
   static const int UPLOAD_WIDTH_MAX = 720;
   static const int UPLOAD_HEIGHT_MAX = 720;
   static const int UPLOAD_WIDTH_THUMB = 120;
   static const int UPLOAD_HEIGHT_THUMB = 120;
-
 
   static int get WIDTH_STAGE_REAL {
     return RdConstants.getStage().stageWidth;
@@ -35,7 +31,6 @@ class RdConstants {
   static int get HEIGHT_STAGE_REAL {
     return RdConstants.getStage().stageHeight;
   }
-
 
   factory RdConstants() {
     return _singleton;
@@ -101,7 +96,6 @@ class RdConstants {
     }
     return "";
   }
-
 
   /**
    *  The Frontend Host as configured in @see project.properties
@@ -194,7 +188,6 @@ class RdConstants {
     //return value for key
     return app_data[key];
   }
-
 
   /**
    *  Debug mode switch. Enables/Disables Logger.

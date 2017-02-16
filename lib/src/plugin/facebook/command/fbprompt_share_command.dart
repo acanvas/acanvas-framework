@@ -4,8 +4,8 @@ part of rockdot_framework.facebook;
 
 //@retain
 class FBPromptShareCommand extends AbstractFBCommand {
-
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     if (notLoggedIn(event)) return;
@@ -29,10 +29,7 @@ class FBPromptShareCommand extends AbstractFBCommand {
         break;
       case VOFBShare.TYPE_SHARE:
       default:
-        shareConfig = new js.JsObject.jsify({
-          'method': 'share',
-          'href': vo.contentlink
-        });
+        shareConfig = new js.JsObject.jsify({'method': 'share', 'href': vo.contentlink});
         break;
     }
 

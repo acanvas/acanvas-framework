@@ -8,7 +8,8 @@ import 'package:rockdot_commons/rockdot_commons.dart';
 import 'package:rockdot_spring/rockdot_spring.dart';
 
 import 'core.dart';
-import 'state.dart' show IStateModelAware, StateModel, AbstractStateCommand, StateVO, StateChangeVO, StateConstants, StateEvents;
+import 'state.dart'
+    show IStateModelAware, StateModel, AbstractStateCommand, StateVO, StateChangeVO, StateConstants, StateEvents;
 
 part 'plugin/screen/displaylist/view/rockdot_lifecycle_sprite.dart';
 part 'plugin/screen/displaylist/view/rockdot_box_sprite.dart';

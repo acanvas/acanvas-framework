@@ -5,7 +5,8 @@ part of rockdot_framework.state;
  */
 //@retain
 class StateSetCommand extends AbstractStateCommand {
-  @override dynamic execute([RdSignal event = null]) {
+  @override
+  dynamic execute([RdSignal event = null]) {
     super.execute(event);
 
     bool saveHistory = true;
@@ -14,13 +15,13 @@ class StateSetCommand extends AbstractStateCommand {
     }
 
     _setStateVO(event.data, saveHistory);
-    this.log.finer("Go  to: count {0}, url {1}, history: {2}", [_stateModel.historyCount, _stateModel.history[_stateModel.historyCount].url, saveHistory]);
+    this.log.finer("Go  to: count {0}, url {1}, history: {2}",
+        [_stateModel.historyCount, _stateModel.history[_stateModel.historyCount].url, saveHistory]);
 
     return null;
   }
 
   void _setStateVO(StateVO stateVO, bool saveToHistory) {
-
     if (_stateModel.currentStateVO == null || stateVO.url != _stateModel.currentStateVO.url) {
       // initial view after app start
 
@@ -49,7 +50,6 @@ class StateSetCommand extends AbstractStateCommand {
         // Same params. Do nothing.
       }
     }
-
   }
 
   void _addToHistory(StateVO stateVO) {

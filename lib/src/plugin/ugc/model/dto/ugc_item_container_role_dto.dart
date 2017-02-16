@@ -24,12 +24,6 @@ class UGCItemContainerRoleDTO implements IRdDTO {
 
   @override
   Map toJson() {
-    return {
-      "id": id,
-      "container_id": container_id,
-      "uid": uid,
-      "role": role,
-      "timestamp": timestamp
-    };
+    return {"id": id, "container_id": container_id, "uid": uid, "role": role, "timestamp": timestamp};
   }
 }

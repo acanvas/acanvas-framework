@@ -24,7 +24,6 @@ class GoogleLoginCommand extends AbstractGoogleCommand {
     }
 
     if (_gModel.userIsAuthenticated) {
-
       int count = 0;
       scopes.forEach((String s) {
         _gModel.userScopes.forEach((String us) {
@@ -42,7 +41,6 @@ class GoogleLoginCommand extends AbstractGoogleCommand {
         return;
       }
     }
-
 
     // Initialize the browser oauth2 flow functionality.
     _gModel.flow.clientViaUserConsent().then((AutoRefreshingAuthClient client) {

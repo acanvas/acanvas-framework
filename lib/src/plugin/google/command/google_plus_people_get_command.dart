@@ -2,7 +2,6 @@ part of rockdot_framework.google;
 
 //@retain
 class GooglePlusPeopleGetCommand extends AbstractGoogleCommand {
-
   DataRetrieveVO _vo;
 
   @override
@@ -23,7 +22,10 @@ class GooglePlusPeopleGetCommand extends AbstractGoogleCommand {
 
     String nextToken = (_vo != null) ? _vo.nextToken : null;
 
-    new PlusApi(_gModel.client).people.list(id, "visible", pageToken: nextToken).then(_handleResult, onError: dispatchErrorEvent);
+    new PlusApi(_gModel.client)
+        .people
+        .list(id, "visible", pageToken: nextToken)
+        .then(_handleResult, onError: dispatchErrorEvent);
 
     showMessage(getProperty("message.google.loading.data"));
   }

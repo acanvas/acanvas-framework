@@ -1,13 +1,11 @@
 part of rockdot_framework.core;
 
 class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
-
   Map commandMap = new Map();
   String projectInitCommand;
   IObjectFactory objectFactory;
 
-  AbstractRdPlugin([int priority = 100]) : super(priority) {
-  }
+  AbstractRdPlugin([int priority = 100]) : super(priority) {}
 
   /**
    * Registers Commands with FrontController
@@ -46,7 +44,8 @@ class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
     //throw new UnimplementedError("To be implemented in Project subclass");
   }
 
-  void addTransition(String id, IEffect eff, num duration, [String transitionType = ScreenConstants.TRANSITION_PARALLEL, num initialAlpha = 0]) {
+  void addTransition(String id, IEffect eff, num duration,
+      [String transitionType = ScreenConstants.TRANSITION_PARALLEL, num initialAlpha = 0]) {
     eff.duration = duration;
     eff.type = transitionType;
     eff.initialAlpha = initialAlpha;
@@ -64,28 +63,49 @@ class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
    *                modality      - the page's modality allows you to define your page as a layer
    */
   void addScreen(String id, Function func,
-                 {String url, String substate : StateConstants.SUB_NORMAL, int tree_order : 0, int tree_parent : 0, String transition : "transition.default"}) {
+      {String url,
+      String substate: StateConstants.SUB_NORMAL,
+      int tree_order: 0,
+      int tree_parent: 0,
+      String transition: "transition.default"}) {
     url = url == null ? objectFactory.propertiesProvider.getProperty("$id.url") : url;
-    RdContextUtil.registerScreen(objectFactory, id, func, url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate);
+    RdContextUtil.registerScreen(objectFactory, id, func, url,
+        tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate);
   }
 
   void addScreenInstance(RockdotLifecycleSprite clazz,
-                         {String url: null, String substate : StateConstants.SUB_NORMAL, int tree_order : 0, int tree_parent : 0, String transition : "transition.default"}) {
+      {String url: null,
+      String substate: StateConstants.SUB_NORMAL,
+      int tree_order: 0,
+      int tree_parent: 0,
+      String transition: "transition.default"}) {
     url = url == null ? objectFactory.propertiesProvider.getProperty("${clazz.name}.url") : url;
-    RdContextUtil.registerScreenInstance(objectFactory, clazz.name, clazz, url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate);
+    RdContextUtil.registerScreenInstance(objectFactory, clazz.name, clazz, url,
+        tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate);
   }
 
   void addLayer(String id, Function func,
-                {String url, int tree_order : 0, int tree_parent : 0, String transition : "transition.default.modal"}) {
-    addScreen(id, func, url: url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: StateConstants.SUB_MODAL);
+      {String url, int tree_order: 0, int tree_parent: 0, String transition: "transition.default.modal"}) {
+    addScreen(id, func,
+        url: url,
+        tree_order: tree_order,
+        tree_parent: tree_parent,
+        transition: transition,
+        substate: StateConstants.SUB_MODAL);
   }
 
   void addLayerInstance(RockdotLifecycleSprite clazz,
-                        {String url, int tree_order : 0, int tree_parent : 0, String transition : "transition.default.modal"}) {
-    addScreenInstance(clazz, url: url, tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: StateConstants.SUB_MODAL);
+      {String url, int tree_order: 0, int tree_parent: 0, String transition: "transition.default.modal"}) {
+    addScreenInstance(clazz,
+        url: url,
+        tree_order: tree_order,
+        tree_parent: tree_parent,
+        transition: transition,
+        substate: StateConstants.SUB_MODAL);
   }
 
-  @override IOperation postProcessObjectFactory(IObjectFactory _objectFactory) {
+  @override
+  IOperation postProcessObjectFactory(IObjectFactory _objectFactory) {
     objectFactory = _objectFactory;
 
     configureCommands();

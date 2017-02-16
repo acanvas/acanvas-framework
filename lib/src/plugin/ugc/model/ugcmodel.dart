@@ -1,7 +1,6 @@
 part of rockdot_framework.ugc;
 
 class UGCModel {
-
   UGCUserDTO _userDAO;
   UGCUserExtendedDTO _userSweepstakeDAO;
 
@@ -63,7 +62,6 @@ class UGCModel {
   bool _initialized;
   bool _alternateLogin;
 
-
   /***********************************************************************
    * Gaming Model
    ***********************************************************************/
@@ -96,7 +94,6 @@ class UGCModel {
   void set userExtendedDAO(UGCUserExtendedDTO userSweepstakeDAO) {
     _userSweepstakeDAO = userSweepstakeDAO;
   }
-
 
   /***********************************************************************
    * GALLERY - DAO
@@ -148,7 +145,7 @@ class UGCModel {
   }
 
   List _convertDateTime(List entries) {
-    for (int i = 0;i < entries.length;i++) {
+    for (int i = 0; i < entries.length; i++) {
       Map vo = entries[i];
 
       if (!vo.containsKey("datetime")) return entries;
@@ -160,12 +157,10 @@ class UGCModel {
       entries[i].month = date[1];
       entries[i].year = date[0];
       entries[i].time = time[0] + ":" + time[1];
-
     }
 
     return entries;
   }
-
 
   UGCItemContainerDTO _currentItemContainerDAO;
 
@@ -195,4 +190,3 @@ class UGCModel {
     _hasUserExtendedDAO = hasUserExtendedDAO;
   }
 }
-

@@ -4,7 +4,6 @@ part of rockdot_framework.screen;
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
  */
 class ScreenDisplaylistEvents {
-
   static const String SCREEN_LOAD = "ScreenDisplaylistEvents.SCREEN_LOAD";
   static const String SCREEN_INIT = "ScreenDisplaylistEvents.SCREEN_INIT";
 
@@ -19,6 +18,4 @@ class ScreenDisplaylistEvents {
   //expects VOUIAppearDisappear
   static const String APPEAR = "ScreenDisplaylistEvents.APPEAR";
   static const String DISAPPEAR = "ScreenDisplaylistEvents.DISAPPEAR";
-
 }
-

@@ -32,7 +32,6 @@ class UGCItemContainerDTO implements IRdDTO {
   // (assembled in AMF Endpoint via task_id relation in itemcontainer_tasks crosstable)
   UGCTaskDTO task;
 
-
   UGCItemContainerDTO([Map inputDTO = null]) {
     if (inputDTO != null) {
       id = inputDTO["id"];
@@ -64,7 +63,6 @@ class UGCItemContainerDTO implements IRdDTO {
 
   @override
   Map toJson() {
-
     List<Map> rolesMaps = [];
     roles.forEach((r) {
       rolesMaps.add(r.toJson());
@@ -87,14 +85,10 @@ class UGCItemContainerDTO implements IRdDTO {
       "rowindex": rowindex,
       "complain_count": complain_count,
       "totalrows": totalrows,
-
       "roles": rolesMaps,
-
       "items": itemsMaps,
-
       "creator": creator.toJson(),
       "task": task.toJson()
     };
   }
-
 }

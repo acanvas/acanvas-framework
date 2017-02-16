@@ -2,7 +2,6 @@ part of rockdot_framework.babylon;
 
 //@retain
 class BabylonInitBrowserCommand extends RdCommand {
-
   String babylonJSUrl = "https://cdnjs.cloudflare.com/ajax/libs/babylonjs/2.3.0/babylon.js";
 
   @override
@@ -19,7 +18,5 @@ class BabylonInitBrowserCommand extends RdCommand {
       dispatchCompleteEvent('Failed to load Babylon JS library.');
     });
     script.src = babylonJSUrl;
-
   }
-
 }

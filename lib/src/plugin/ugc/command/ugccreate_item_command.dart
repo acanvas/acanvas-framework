@@ -2,8 +2,8 @@ part of rockdot_framework.ugc;
 
 //@retain
 class UGCCreateItemCommand extends AbstractUGCCommand {
-
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     if (event.data is UGCItemDTO) {

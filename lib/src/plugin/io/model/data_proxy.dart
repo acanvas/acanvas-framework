@@ -5,7 +5,6 @@ part of rockdot_framework.io;
  * Yes, this class is an undocumented mess.
  */
 class DataProxy implements IDataProxy {
-
   int _dataPageSize;
 
   int _cursor;
@@ -68,7 +67,6 @@ class DataProxy implements IDataProxy {
   }
 
   int hasChunk(int chunkIndex, int chunkSize) {
-
     if (chunkIndex < 0) {
       return 0;
     }
@@ -109,10 +107,10 @@ class DataProxy implements IDataProxy {
 
         //cut the end of the requested data range to the actual maximum of available datasets
         chunkSize = (_cursor < _dataTotalSize ? _cursor : _dataTotalSize) - chunkIndex;
-
       }
       //request data from internal Cache
-      _onDataCallback.call(new List.from(_dataCache.getRange(chunkIndex, math.min(dataTotalSize, chunkIndex + chunkSize))));
+      _onDataCallback
+          .call(new List.from(_dataCache.getRange(chunkIndex, math.min(dataTotalSize, chunkIndex + chunkSize))));
     } else {
       //request the data via our dataRetrieveCommand
       _requestChunkExecute(callBack, chunkIndex, chunkSize);
@@ -162,7 +160,8 @@ class DataProxy implements IDataProxy {
 
       /* Now that our Cache has been filled, send it's data to the callback */
       if (_chunkIndex != -1) {
-        int chunkSize = _dataTotalSize == 0 ? _chunkIndex + _chunkSize : math.min(_dataTotalSize, _chunkIndex + _chunkSize);
+        int chunkSize =
+            _dataTotalSize == 0 ? _chunkIndex + _chunkSize : math.min(_dataTotalSize, _chunkIndex + _chunkSize);
         _onDataCallback.call(new List.from(_dataCache.getRange(_chunkIndex, chunkSize)));
       } else {
         _onDataCallback.call(_dataCache);

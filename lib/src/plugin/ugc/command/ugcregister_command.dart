@@ -8,20 +8,16 @@ class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
     _fbModel = fbModel;
   }
 
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 //			dispatchMessage("loading.backend.login");
 
     if (event.data is UGCUserDTO) {
-
       _ugcModel.userDAO = event.data;
-
     } else if (RdConstants.LOCAL && RdConstants.DEBUG) {
-
       _ugcModel.userDAO = _createDummyData();
-
     } else if (_ugcModel.userDAO == null) {
-
       UGCUserDTO user = new UGCUserDTO();
       user.network = UGCUserDTO.NETWORK_FACEBOOK;
       user.name = _fbModel.user.name;
@@ -35,7 +31,6 @@ class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
 
     amfOperation("UGCEndpoint.login", dto: _ugcModel.userDAO);
   }
-
 
   UGCUserDTO _createDummyData() {
     UGCUserDTO user = new UGCUserDTO();

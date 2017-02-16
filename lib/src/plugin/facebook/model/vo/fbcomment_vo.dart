@@ -1,7 +1,6 @@
 part of rockdot_framework.facebook;
 
 class FBCommentVO {
-
   String id;
   String created_time;
   String from_name;

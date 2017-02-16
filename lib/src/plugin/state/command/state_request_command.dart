@@ -5,14 +5,13 @@ part of rockdot_framework.state;
  */
 //@retain
 class StateRequestCommand extends AbstractStateCommand {
-
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
     List urlData = event.data.split("?");
     StateVO stateVO = _stateModel.getStateVO(urlData[0].toLowerCase());
 
     if (stateVO != null) {
-
       if (_stateModel.currentScreen == null && stateVO.substate == StateConstants.SUB_MODAL) {
         // 0. nullToModal
         new RdSignal(StateEvents.ADDRESS_SET, "/").dispatch();
@@ -39,12 +38,9 @@ class StateRequestCommand extends AbstractStateCommand {
       }
 
       new RdSignal(StateEvents.STATE_VO_SET, stateVO, dispatchCompleteEvent).dispatch();
-
-
     } else {
       //If url not found in registry, default to root
       new RdSignal(StateEvents.ADDRESS_SET, "/", dispatchCompleteEvent).dispatch();
     }
-
   }
 }

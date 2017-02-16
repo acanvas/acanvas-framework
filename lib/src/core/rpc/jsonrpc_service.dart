@@ -1,14 +1,10 @@
 part of rockdot_framework.core;
 
-
 const String JSONRPC2 = '2.0';
 const String JSONRPC1 = '1.0';
 //ContentType JSON_RPC_CONTENT_TYPE = new ContentType('application', 'json', charset: "utf-8");
 
-
-class Notification {
-}
-
+class Notification {}
 
 class MethodRequest {
   var request;
@@ -60,8 +56,8 @@ class MethodRequest {
   throwerr(exception) {
     throw makeExceptionMap(exception, version, request['id']);
   }
-
 }
+
 /* Given a parsed JSON-RPC request and an instance with methods,
  * return a Future with a Map of the result of the instance's method or a
  * Notification object 
@@ -73,8 +69,8 @@ jsonRpcDispatch(request, instance) {
     var id = rq.id;
     var method = rq.method;
 
-    return new Future.sync(() => new Dispatcher(instance).dispatch(method, rq.positionalParams, rq.namedParams)).then((value) {
-
+    return new Future.sync(() => new Dispatcher(instance).dispatch(method, rq.positionalParams, rq.namedParams))
+        .then((value) {
       if (id == null) {
         return new Notification();
       }
@@ -84,10 +80,7 @@ jsonRpcDispatch(request, instance) {
         return makeExceptionMap(value, version, id);
       }
 
-      Map resp = {
-        'result': value,
-        'id': id
-      };
+      Map resp = {'result': value, 'id': id};
       if (version == JSONRPC2) {
         resp['jsonrpc'] = version;
       }
@@ -106,18 +99,13 @@ jsonRpcDispatch(request, instance) {
 }
 
 makeExceptionMap(anException, version, [id = null]) {
-  Map resp = {
-    'id': id
-  };
+  Map resp = {'id': id};
   if (version == JSONRPC1) {
     resp['result'] = null;
   } else {
     resp['jsonrpc'] = version;
   }
-  resp['error'] = {
-    'code': anException.code,
-    'message': anException.message
-  };
+  resp['error'] = {'code': anException.code, 'message': anException.message};
   return resp;
 }
 

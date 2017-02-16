@@ -4,7 +4,6 @@ part of rockdot_framework.ugc;
  * @author nilsdoehring
  */
 class UGCTaskDTO extends UGCItemContainerDTO {
-
   int category_id;
   String task_key;
 
@@ -25,11 +24,6 @@ class UGCTaskDTO extends UGCItemContainerDTO {
 
   @override
   Map toJson() {
-    return {
-      "category_id": category_id,
-      "task_key": task_key,
-      "type": type,
-      "category_key": category_key
-    };
+    return {"category_id": category_id, "task_key": task_key, "type": type, "category_key": category_key};
   }
 }

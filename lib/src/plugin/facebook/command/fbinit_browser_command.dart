@@ -2,7 +2,6 @@ part of rockdot_framework.facebook;
 
 //@retain
 class FBInitBrowserCommand extends AbstractFBCommand {
-
   String facebookSDKUrl = "https://connect.facebook.net/en_US/sdk.js";
 
   @override
@@ -19,7 +18,6 @@ class FBInitBrowserCommand extends AbstractFBCommand {
       dispatchCompleteEvent('Failed to load Facebook library.');
     });
     script.src = facebookSDKUrl;
-
   }
 
   void _handleSDKLoaded() {
@@ -40,17 +38,14 @@ class FBInitBrowserCommand extends AbstractFBCommand {
     if (containsError(response)) return;
 
     if (response["authResponse"] != null) {
-
       _fbModel.accessToken = response["authResponse"]["accessToken"];
       _fbModel.userIsAuthenticated = true;
-      _fbModel.user = new FBUserVO()
-        ..uid = response["authResponse"]["userID"];
+      _fbModel.user = new FBUserVO()..uid = response["authResponse"]["userID"];
 
       new RdSignal(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions).dispatch();
     } else {
       dispatchCompleteEvent();
     }
-
   }
 
   void _onPermissions([List perms = null]) {

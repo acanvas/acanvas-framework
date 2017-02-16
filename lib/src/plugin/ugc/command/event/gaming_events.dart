@@ -4,7 +4,6 @@ part of rockdot_framework.ugc;
  * @author nilsdoehring
  */
 class GamingEvents {
-
   //expects GameDAO, returns Object {score:int, rank:int} (for all levels combined)
   static const String SET_SCORE_AT_LEVEL = "GamingEvents.SET_SCORE_AT_LEVEL";
 
@@ -22,7 +21,4 @@ class GamingEvents {
 
   //expects {uid, locale}, returns bool
   static const String CHECK_PERMISSION_TO_PLAY_LOCALE = "GamingEvents.CHECK_PERMISSION_TO_PLAY_LOCALE";
-
-
 }
-

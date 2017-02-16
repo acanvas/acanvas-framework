@@ -7,6 +7,5 @@ class StateChangeVO implements IRdVO {
   StateVO oldVO;
   StateVO newVO;
 
-  StateChangeVO(this.oldVO, this.newVO) {
-  }
+  StateChangeVO(this.oldVO, this.newVO) {}
 }

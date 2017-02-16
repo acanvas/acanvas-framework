@@ -68,13 +68,13 @@ class UGCItemDTO implements IRdDTO {
             type_dao = new UGCAudioItemDTO(inputDTO);
             break;
           case 4:
-          // type_dao = obj;
+            // type_dao = obj;
             break;
         }
       }
       type_dao = inputDTO["type_dao"];
 
-      if(inputDTO["likers"] != null){
+      if (inputDTO["likers"] != null) {
         for (int i = 0; i < inputDTO["likers"].length; i++) {
           inputDTO["likers"][i] = new UGCItemContainerRoleDTO(inputDTO["likers"][i]);
         }
@@ -87,7 +87,6 @@ class UGCItemDTO implements IRdDTO {
 
   @override
   Map toJson() {
-
     List<Map> likersMaps = [];
     likers.forEach((r) {
       likersMaps.add(r.toJson());
@@ -106,9 +105,7 @@ class UGCItemDTO implements IRdDTO {
       "rowindex": rowindex,
       "complain_count": complain_count,
       "totalrows": totalrows,
-
       "likers": likersMaps,
-
       "type_dao": type_dao.toJson(),
       "creator": creator.toJson(),
     };

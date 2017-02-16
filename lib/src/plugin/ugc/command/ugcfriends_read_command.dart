@@ -1,6 +1,5 @@
 part of rockdot_framework.ugc;
 
-
 //@retain
 class UGCFriendsReadCommand extends AbstractUGCCommand implements IFBModelAware {
   FBModel _modelFB;
@@ -9,7 +8,8 @@ class UGCFriendsReadCommand extends AbstractUGCCommand implements IFBModelAware 
     _modelFB = model;
   }
 
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     super.execute(event);
 
     if (_modelFB.friendsWhoAreAppUsers == null) {
@@ -19,17 +19,17 @@ class UGCFriendsReadCommand extends AbstractUGCCommand implements IFBModelAware 
 
     List arr = [];
 
-    _modelFB.friendsWhoAreAppUsers.forEach((k, v){
+    _modelFB.friendsWhoAreAppUsers.forEach((k, v) {
       arr.add(v.id);
     });
 
-
-    Map dto = {"ids" : arr};
+    Map dto = {"ids": arr};
 
     amfOperation("UGCEndpoint.getFriendsWithItems", map: dto);
   }
 
-  @override bool dispatchCompleteEvent([dynamic event = null]) {
+  @override
+  bool dispatchCompleteEvent([dynamic event = null]) {
     List arr = [];
 
     for (int i = 0; i < event.result.length; i++) {
@@ -40,6 +40,4 @@ class UGCFriendsReadCommand extends AbstractUGCCommand implements IFBModelAware 
     _ugcModel.friendsWithUGCItems = arr;
     return dispatchCompleteEvent(arr);
   }
-
-
 }

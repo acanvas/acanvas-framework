@@ -1,13 +1,12 @@
 part of rockdot_framework.state;
 
-
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
  */
 //@retain
 class StateSetParamsCommand extends AbstractStateCommand {
-
-  @override dynamic execute([RdSignal event=null]) {
+  @override
+  dynamic execute([RdSignal event = null]) {
     super.execute(event);
     StateVO vo = event.data;
     _stateModel.addressService.onAddressChanged(vo);
@@ -19,4 +18,3 @@ class StateSetParamsCommand extends AbstractStateCommand {
     return null;
   }
 }
-

@@ -1,6 +1,5 @@
 part of rockdot_framework.core;
 
-
 class RdCommand extends AbstractOperation implements IAsyncCommand, IApplicationContextAware {
   Logger log;
 
@@ -21,16 +20,18 @@ class RdCommand extends AbstractOperation implements IAsyncCommand, IApplication
 
   IApplicationContext _context;
 
-  @override IApplicationContext get applicationContext {
+  @override
+  IApplicationContext get applicationContext {
     return _context;
   }
 
-  @override void set applicationContext(IApplicationContext value) {
+  @override
+  void set applicationContext(IApplicationContext value) {
     _context = value;
   }
 
-
-  @override bool dispatchCompleteEvent([dynamic result = null]) {
+  @override
+  bool dispatchCompleteEvent([dynamic result = null]) {
     if (result != null && result is OperationEvent) {
       result = result.result;
     }
@@ -41,12 +42,14 @@ class RdCommand extends AbstractOperation implements IAsyncCommand, IApplication
     return super.dispatchCompleteEvent(result);
   }
 
-  @override void errorHandler(OperationEvent event) {
+  @override
+  void errorHandler(OperationEvent event) {
     log.severe(event.error);
     dispatchErrorEvent(event.error);
   }
 
-  @override void execute([RdSignal event = null]) {
+  @override
+  void execute([RdSignal event = null]) {
     _event = event;
     if (event != null && event.completeCallBack != null) {
       _callback = event.completeCallBack;
@@ -55,12 +58,12 @@ class RdCommand extends AbstractOperation implements IAsyncCommand, IApplication
 
   void showMessage(String message, {int timeBox: 0, int type: StateMessageVO.TYPE_INFO, bool blur: false}) {
     String id = (_event == null) ? "NO_ID" : _event.type;
-    new RdSignal(StateEvents.MESSAGE_SHOW, new StateMessageVO(id, message, timeBox, type: type, blurContent: blur)).dispatch();
+    new RdSignal(StateEvents.MESSAGE_SHOW, new StateMessageVO(id, message, timeBox, type: type, blurContent: blur))
+        .dispatch();
   }
 
   void hideMessage([String id = null]) {
     String id = (_event == null) ? "NO_ID" : _event.type;
     new RdSignal(StateEvents.MESSAGE_HIDE, id).dispatch();
   }
-
 }

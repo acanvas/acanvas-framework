@@ -1,7 +1,6 @@
 part of rockdot_framework.state;
 
 class StateEvents {
-
 // expects nothing
   static const INIT = "StateEvents.INIT";
 
@@ -23,7 +22,6 @@ class StateEvents {
   //expects String with id
   static const MESSAGE_HIDE = "StateEvents.MESSAGE_HIDE";
 
-
   /* The following Events are used internally. See config/docs/model/GetAddressSequence.png */
 
   // expects URL String, e.g. "/"
@@ -34,5 +32,4 @@ class StateEvents {
 
   // expects PageVO
   static const STATE_PARAMS_CHANGE = "StateEvents.STATE_PARAMS_CHANGE";
-
 }
