@@ -19,14 +19,10 @@ class ScreenLoadCommand extends AbstractScreenCommand {
               new StateMessageVO("lifecycle.load", getProperty("screen.common.loading"), 0,
                   type: StateMessageVO.TYPE_LOADING, blurContent: false))
           .dispatch();
-      ui.load(params: _stateModel.currentStateURLParams).then((completed) {
+      ui.load(params: _stateModel.currentStateURLParams).then((_) {
         new RdSignal(StateEvents.MESSAGE_HIDE, "lifecycle.load").dispatch();
-        if (completed) {
           dispatchCompleteEvent();
-        } else {
-          dispatchErrorEvent();
-        }
-      });
+      }, onError: dispatchErrorEvent);
     } else {
       dispatchCompleteEvent();
     }

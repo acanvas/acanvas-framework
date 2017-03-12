@@ -83,13 +83,13 @@ class StateModel implements IApplicationContextAware {
     _currentStateVO = pageVO;
   }
 
-  Object _currentStateURLParams;
+  Map<String, String> _currentStateURLParams;
 
-  Object get currentStateURLParams {
+  Map<String, String> get currentStateURLParams {
     return _currentStateURLParams;
   }
 
-  void set currentStateURLParams(Object stateVOParams) {
+  void set currentStateURLParams(Map<String, String> stateVOParams) {
     _currentStateURLParams = stateVOParams;
   }
 
@@ -149,8 +149,8 @@ class StateModel implements IApplicationContextAware {
     _log.info("Registered URL: " + voKey);
   }
 
-  List getStateVOList([bool sort = true, int tree_parent = 0]) {
-    List stateVOList = _stateVOMap.values.toList().where((stateVO) => stateVO.tree_parent == tree_parent).toList();
+  List<StateVO> getStateVOList([bool sort = true, int tree_parent = 0]) {
+    List<StateVO> stateVOList = _stateVOMap.values.toList().where((stateVO) => stateVO.tree_parent == tree_parent).toList() as List<StateVO>;
 
     if (sort) {
       stateVOList.sort((StateVO voa, StateVO vob) {

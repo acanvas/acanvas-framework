@@ -23,7 +23,7 @@ class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAwar
         _vo.creator_uid = _ugcModel.userDAO.uid;
         break;
       case UGCFilterVO.CONDITION_UGC_ID:
-        int id = (_stateModel.currentStateVO.params["id"]).toInt();
+        int id = int.parse(_stateModel.currentStateVO.params["id"]);
         _vo.item_id = id;
         break;
       case UGCFilterVO.CONDITION_ALL:

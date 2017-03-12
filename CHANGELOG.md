@@ -1,5 +1,9 @@
 # CHANGELOG ROCKDOT_FRAMEWORK
 
+## 0.9.9 2017-03-11
+
+- State Fixes
+
 ## 0.9.8 2017-02-16
 
 - Strong mode fixes

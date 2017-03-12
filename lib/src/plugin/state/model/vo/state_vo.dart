@@ -23,7 +23,7 @@ class StateVO implements IRdVO {
   String url;
   String label;
   String title;
-  Map params;
+  Map<String, String> params;
   String transition;
 
   StateVO() {}

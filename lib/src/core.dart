@@ -45,7 +45,5 @@ part 'core/model/rd_constants.dart';
 // LIBRARY #####
 
 /* required by Rockdot UGCPlugin */
-//part 'core/rpc/dispatcher.dart';
 part 'core/rpc/jsonrpc_client.dart';
-//part 'core/rpc/jsonrpc_service.dart';
 part 'core/rpc/rpc_exceptions.dart';

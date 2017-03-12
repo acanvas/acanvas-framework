@@ -19,7 +19,7 @@ class StateRequestCommand extends AbstractStateCommand {
       }
 
       if (urlData.length > 1) {
-        Map params = new Map();
+        Map<String, String> params = {};
         List list = (urlData[1] as String).split("&");
         list.forEach((String s) {
           List split = s.split("=");

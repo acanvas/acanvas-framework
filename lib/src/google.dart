@@ -16,7 +16,7 @@ import 'core.dart';
 //import 'io.dart' show DataRetrieveVO;
 
 part 'plugin/google/google_plugin.dart';
-part 'plugin/google/command//event/vo/google_login_vo.dart';
+part 'plugin/google/command/event/vo/google_login_vo.dart';
 part 'plugin/google/command/abstract_google_command.dart';
 part 'plugin/google/command/google_init_command.dart';
 part 'plugin/google/command/google_login_command.dart';
