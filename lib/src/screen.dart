@@ -1,6 +1,7 @@
 library rockdot_framework.screen;
 
 import 'dart:math' as math;
+import 'package:logging/logging.dart';
 
 /* Rockdot depends on StageXL */
 import 'package:stagexl/stagexl.dart';

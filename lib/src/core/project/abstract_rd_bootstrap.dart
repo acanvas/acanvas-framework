@@ -4,7 +4,7 @@ part of rockdot_framework.core;
  * @author Nils Doehring
  */
 class AbstractRdBootstrap extends EventDispatcher {
-  logging.Logger logger = new logging.Logger("rockdot.bootstrap");
+  Logger logger = Rd.log;
   RdContext _applicationContext;
   Stage _stage;
   List<IObjectFactoryPostProcessor> plugins = [];
@@ -56,12 +56,18 @@ class AbstractRdBootstrap extends EventDispatcher {
 
   void _initLogger() {
     if (RdConstants.DEBUG == false) {
-      logging.Logger.root.level = logging.Level.OFF;
+      Logger.root.level = Level.OFF;
       print("Logging Disabled. Good Bye.");
     } else {
-      logging.Logger.root.level = logging.Level.ALL;
-      logging.Logger.root.onRecord.listen((logging.LogRecord rec) {
-        print('${rec.level.name}: ${rec.time}: ${rec.message}');
+      Logger.root.level = Level.ALL;
+      Logger.root.onRecord.listen((LogRecord rec) {
+        String msg = rec.message;
+        if(rec.error is List){
+          for(int i=0;i<(rec.error as List).length;i++){
+            msg = rec.message.replaceFirst("\\{$i\\}", (rec.error as List)[i]);
+          }
+        }
+        print('${rec.level.name}: ${rec.time}: ${msg}');
       });
 
       logger.info("Logging Enabled. Welcome.");

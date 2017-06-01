@@ -1,5 +1,5 @@
 name: rockdot_framework
-version: 0.9.9
+version: 0.9.10
 description: Rockdot Framework, based on a Spring framework implementation for StageXL/Dart.
 dependencies:
   js: ^0.6.0

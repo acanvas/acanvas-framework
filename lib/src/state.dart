@@ -1,6 +1,7 @@
 library rockdot_framework.state;
 
 import 'dart:html' as html;
+import 'package:logging/logging.dart';
 
 import 'package:rockdot_commons/rockdot_commons.dart';
 import 'package:rockdot_spring/rockdot_spring.dart';

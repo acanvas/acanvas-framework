@@ -120,23 +120,23 @@ class UGCTestCommand extends AbstractUGCCommand {
   }
 
   void _onUserRegister([OperationEvent event = null]) {
-    this.log.debug("_onUserRegister, Insert ID: " + event.result + "(0 if user already present)");
+    this.log.info("_onUserRegister, Insert ID: " + event.result + "(0 if user already present)");
     Assert.notNull(event.result, "event.result is null");
   }
 
   void _onUserRegisterExtended([OperationEvent event = null]) {
-    this.log.debug("_onUserRegisterExtended, Insert ID: " + event.result + "(0 if extended user already present)");
+    this.log.info("_onUserRegisterExtended, Insert ID: " + event.result + "(0 if extended user already present)");
     Assert.notNull(event.result, "event.result is null");
   }
 
   void _onCreateItemContainer([OperationEvent event = null]) {
-    this.log.debug("_onCreateItemContainer, Insert ID: " + event.result + "(0 if container already present)");
+    this.log.info("_onCreateItemContainer, Insert ID: " + event.result + "(0 if container already present)");
     Assert.notNull(event.result, "event.result is null");
     _itemContainerID = event.result;
   }
 
   void _onCreateItem([OperationEvent event = null]) {
-    this.log.debug("_onCreateItemContainer, Insert ID: " + event.result + "(0 if item already present)");
+    this.log.info("_onCreateItemContainer, Insert ID: " + event.result + "(0 if item already present)");
     Assert.notNull(event.result, "event.result is null");
     _itemID = event.result;
   }
@@ -148,9 +148,9 @@ class UGCTestCommand extends AbstractUGCCommand {
   }
 
   void _onReadItemByUID() {
-    this.log.debug("_ugcModel.ownContainers: " + _ugcModel.ownContainers.toString());
-    this.log.debug("_ugcModel.followContainers: " + _ugcModel.followContainers.toString());
-    this.log.debug("_ugcModel.participantContainers: " + _ugcModel.participantContainers.toString());
+    this.log.info("_ugcModel.ownContainers: " + _ugcModel.ownContainers.toString());
+    this.log.info("_ugcModel.followContainers: " + _ugcModel.followContainers.toString());
+    this.log.info("_ugcModel.participantContainers: " + _ugcModel.participantContainers.toString());
   }
 
   void _onReadItem(UGCItemDTO item) {
@@ -163,14 +163,14 @@ class UGCTestCommand extends AbstractUGCCommand {
   }
 
   void _onSetScore(Map dao) {
-    this.log.debug("User Rank: " + dao["rank"].toString());
-    this.log.debug("User Score: " + dao["score"].toString());
+    this.log.info("User Rank: " + dao["rank"].toString());
+    this.log.info("User Score: " + dao["score"].toString());
   }
 
   void _onGetHighscore() {
-    this.log.debug("_ugcModel.gaming.highscoreFriends: " + _ugcModel.gaming.highscoreFriends.toString());
-    this.log.debug("_ugcModel.gaming.highscoreAll: " + _ugcModel.gaming.highscoreAll.toString());
-    this.log.debug("_ugcModel.gaming.rank: " + _ugcModel.gaming.rank.toString());
+    this.log.info("_ugcModel.gaming.highscoreFriends: " + _ugcModel.gaming.highscoreFriends.toString());
+    this.log.info("_ugcModel.gaming.highscoreAll: " + _ugcModel.gaming.highscoreAll.toString());
+    this.log.info("_ugcModel.gaming.rank: " + _ugcModel.gaming.rank.toString());
   }
 
   void _onMailSent(String str) {

@@ -38,7 +38,7 @@ class IOMicRecordStartCommand extends AbstractIOCommand {
           return;
         }
 
-        log.debug('recording');
+        log.info('recording');
 
         // process Data
         ioModel.mic_leftchannel.add(new Float32List.fromList(e.inputBuffer.getChannelData(0)));

@@ -2,6 +2,7 @@ library rockdot_framework.ugc;
 
 import 'dart:html' as html;
 import 'dart:math' as math;
+import 'package:logging/logging.dart';
 import 'dart:convert';
 
 import 'package:rockdot_commons/rockdot_commons.dart';

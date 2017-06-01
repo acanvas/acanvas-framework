@@ -41,32 +41,32 @@ class FBTestCommand extends AbstractFBCommand {
 
   void _onUserGetInfo(FBUserVO dao) {
     Assert.notNull(dao, "FBUserDAO is null");
-    this.log.debug("FB User email: " + dao.email);
-    this.log.debug("FB User is_app_user: " + dao.is_app_user.toString());
-    this.log.debug("FB User birthday_date: " + dao.birthday_date);
-    this.log.debug("FB User hometown_location: " + dao.hometown_location);
-    this.log.debug("FB User locale: " + dao.locale);
+    this.log.info("FB User email: " + dao.email);
+    this.log.info("FB User is_app_user: " + dao.is_app_user.toString());
+    this.log.info("FB User birthday_date: " + dao.birthday_date);
+    this.log.info("FB User hometown_location: " + dao.hometown_location);
+    this.log.info("FB User locale: " + dao.locale);
   }
 
   void _onFriendsGet(List friends) {
     Assert.notNull(friends, "friends is null");
     Assert.notNull(_fbModel.friends, "_fbModel.friends is null");
-    this.log.debug("_onFriendsGet, num of Friends: " + _fbModel.friends.length.toString());
+    this.log.info("_onFriendsGet, num of Friends: " + _fbModel.friends.length.toString());
   }
 
   void _onFriendsGetInfo(List friendsWithAdditionalInfo) {
     Assert.notNull(friendsWithAdditionalInfo, "friendsWithAdditionalInfo is null");
     Assert.notNull(_fbModel.friendsWithAdditionalInfo, "_fbModel.friendsWithAdditionalInfo is null");
-    this.log.debug("_onFriendsGetInfo, num of Friends with additional info: " +
+    this.log.info("_onFriendsGetInfo, num of Friends with additional info: " +
         _fbModel.friendsWithAdditionalInfo.length.toString());
-    this.log.debug(
+    this.log.info(
         "_onFriendsGetInfo, num of Friends who are App Users: " + _fbModel.friendsWhoAreAppUsers.length.toString());
   }
 
   void _onAlbumsGet(List userAlbums) {
     Assert.notNull(userAlbums, "userAlbums is null");
     Assert.notNull(_fbModel.userAlbums, "_fbModel.userAlbums is null");
-    this.log.debug("_onAlbumsGet, num of Albums: " + _fbModel.userAlbums.length.toString());
+    this.log.info("_onAlbumsGet, num of Albums: " + _fbModel.userAlbums.length.toString());
 
     /* ******************** GET PHOTOS OF FIRST USER ALBUM ******************* */
     new RdSignal(FBEvents.PHOTOS_GET, new FBAlbumVO(_fbModel.userAlbums[0]).id, _onAlbumPhotosGet).dispatch();
@@ -75,6 +75,6 @@ class FBTestCommand extends AbstractFBCommand {
   void _onAlbumPhotosGet(List userAlbumPhotos) {
     Assert.notNull(userAlbumPhotos, "userAlbumPhotos is null");
     Assert.notNull(_fbModel.userAlbumPhotos, "_fbModel.userAlbumPhotos is null");
-    this.log.debug("_onAlbumPhotosGet, num of userAlbumPhotos: " + _fbModel.userAlbumPhotos.length.toString());
+    this.log.info("_onAlbumPhotosGet, num of userAlbumPhotos: " + _fbModel.userAlbumPhotos.length.toString());
   }
 }

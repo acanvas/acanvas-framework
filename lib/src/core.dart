@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'dart:async';
 
 /* required by Logger, configuration in Bootstrap */
-import 'package:logging/logging.dart' as logging;
+import 'package:logging/logging.dart';
 
 /* Rockdot depends on StageXL */
 import 'package:stagexl/stagexl.dart';

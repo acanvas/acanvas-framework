@@ -33,7 +33,7 @@ class AbstractUGCCommand extends RdCommand implements IUGCModelAware {
 
   @override
   void errorHandler(OperationEvent event) {
-    this.log.error(event.error);
+    this.log.warning(event.error);
     dispatchCompleteEvent(event.error);
   }
 }
