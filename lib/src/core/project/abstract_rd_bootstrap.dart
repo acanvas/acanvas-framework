@@ -64,7 +64,7 @@ class AbstractRdBootstrap extends EventDispatcher {
         String msg = rec.message;
         if(rec.error is List){
           for(int i=0;i<(rec.error as List).length;i++){
-            msg = rec.message.replaceFirst("\\{$i\\}", (rec.error as List)[i]);
+            msg = msg.replaceFirst("{$i}", (rec.error as List)[i].toString());
           }
         }
         print('${rec.level.name}: ${rec.time}: ${msg}');
