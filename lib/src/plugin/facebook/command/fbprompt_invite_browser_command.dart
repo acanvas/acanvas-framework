@@ -17,7 +17,7 @@ class FBPromptInviteBrowserCommand extends AbstractFBCommand {
     _vo.method = "apprequests";
     _vo.display = "iframe";
 
-    String reason = _vo.reason != null ? _vo.reason : RdConstants.VAR_REASON_VALUE_APPREQUEST_VIEW;
+    String reason = _vo.reason != null ? _vo.reason : FBConstants.VAR_REASON_VALUE_APPREQUEST_VIEW;
 
     //assemble data payload as query string.
     //supported pairs: item_id=X OR item_container_id=Y

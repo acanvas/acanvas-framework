@@ -7,9 +7,9 @@ import 'dart:web_audio';
 import 'dart:typed_data';
 
 /* Rockdot depends on StageXL */
-import 'package:stagexl/stagexl.dart';
-import 'package:rockdot_commons/rockdot_commons.dart';
-import 'package:rockdot_spring/rockdot_spring.dart';
+import 'package:stagexl/stagexl.dart' show BitmapData;
+import 'package:rockdot_commons/rockdot_commons.dart' show IRdVO, RdSignal, IDataProxy, IAsyncCommand, OperationEvent;
+import 'package:rockdot_spring/rockdot_spring.dart' show IObjectPostProcessor, IObjectFactory;
 
 import 'core.dart';
 

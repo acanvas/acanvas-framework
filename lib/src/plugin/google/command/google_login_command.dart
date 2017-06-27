@@ -8,7 +8,7 @@ class GoogleLoginCommand extends AbstractGoogleCommand {
   void execute([RdSignal event = null]) {
     super.execute(event);
 
-    var id = new ClientId(getProperty("project.google.oauth.clientid"), null);
+    //var id = new ClientId(getProperty("project.google.oauth.clientid"), null);
     List scopes;
     if (event != null && event.data != null) {
       if (event.data is String) {

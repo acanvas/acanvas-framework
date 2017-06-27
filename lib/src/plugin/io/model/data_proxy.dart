@@ -145,8 +145,8 @@ class DataProxy implements IDataProxy {
       List res = event.result;
       var json = res.elementAt(0);
       /* Retrieve _dataTotalSize from "totalRows" attribute in first Element of List (this is how rockdot-framework-zend backend handles this) */
-      if (res.elementAt(0) is Map && res.elementAt(0)["totalrows"] != null) {
-        _dataTotalSize = res.elementAt(0)["totalrows"];
+      if (json is Map && json["totalrows"] != null) {
+        _dataTotalSize = json["totalrows"];
 
         if (_cursor > _dataTotalSize) {
           _cursor = _dataTotalSize;

@@ -85,7 +85,7 @@ class IOMicRecordStopCommand extends AbstractIOCommand {
     // write the PCM samples
     int lng = interleaved.length;
     int offset = 44;
-    int volume = 1;
+    //int volume = 1;
     for (int i = 0; i < lng; i++) {
       num s = math.max(-1, math.min(1, interleaved[i]));
       view.setInt16(offset, (s < 0 ? s * 0x8000 : s * 0x7FFF).truncate(), Endianness.LITTLE_ENDIAN);
@@ -141,12 +141,12 @@ class IOMicRecordStopCommand extends AbstractIOCommand {
 
   List mergeBuffers(List<Float32List> channelBuffer, int recordingLength) {
     List result = new List();
-    int offset = 0;
+    //int offset = 0;
     int lng = channelBuffer.length;
     for (int i = 0; i < lng; i++) {
       Float32List buffer = channelBuffer[i];
       result.addAll(buffer); //was: setRange
-      offset += buffer.length;
+      //offset += buffer.length;
     }
     return result;
   }

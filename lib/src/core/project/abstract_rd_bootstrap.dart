@@ -62,8 +62,8 @@ class AbstractRdBootstrap extends EventDispatcher {
       Logger.root.level = Level.ALL;
       Logger.root.onRecord.listen((LogRecord rec) {
         String msg = rec.message;
-        if(rec.error is List){
-          for(int i=0;i<(rec.error as List).length;i++){
+        if (rec.error is List) {
+          for (int i = 0; i < (rec.error as List).length; i++) {
             msg = msg.replaceFirst("{$i}", (rec.error as List)[i].toString());
           }
         }

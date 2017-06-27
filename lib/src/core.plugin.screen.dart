@@ -4,13 +4,13 @@ import 'dart:math' as math;
 import 'package:logging/logging.dart';
 
 /* Rockdot depends on StageXL */
-import 'package:stagexl/stagexl.dart';
-import 'package:rockdot_commons/rockdot_commons.dart';
-import 'package:rockdot_spring/rockdot_spring.dart';
+import 'package:stagexl/stagexl.dart' show Sprite, Stage, BitmapFilter, Event, DisplayObjectContainer;
+import 'package:rockdot_commons/rockdot_commons.dart' show RdSignal, LifecycleEvent, MBox, LifecycleSprite, IRdVO, IEffect, MLifecycle, CompositeCommandKind, OperationEvent, BoxSprite;
+import 'package:rockdot_spring/rockdot_spring.dart' show IApplicationContext, IObjectFactory, IObjectPostProcessor, IApplicationContextAware;
 
 import 'core.dart';
-import 'state.dart'
-    show IStateModelAware, StateModel, AbstractStateCommand, StateVO, StateChangeVO, StateConstants, StateEvents;
+import 'core.plugin.state.dart'
+    show AbstractStateCommand, IStateModelAware, StateChangeVO, StateConstants, StateEvents, StateMessageVO, StateModel, StateVO;
 
 part 'plugin/screen/displaylist/view/rockdot_lifecycle_sprite.dart';
 part 'plugin/screen/displaylist/view/rockdot_box_sprite.dart';

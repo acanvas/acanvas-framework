@@ -2,16 +2,19 @@ library rockdot_framework.ugc;
 
 import 'dart:html' as html;
 import 'dart:math' as math;
-import 'package:logging/logging.dart';
 import 'dart:convert';
 
 import 'package:rockdot_commons/rockdot_commons.dart';
 import 'package:rockdot_spring/rockdot_spring.dart';
 
 import 'core.dart';
-import 'state.dart' show IStateModelAware, StateModel;
-import 'facebook.dart' show IFBModelAware, FBModel, FBUserVO;
-//import 'io.dart' show DataRetrieveVO;
+import 'core.plugin.state.dart' show IStateModelAware, StateModel;
+import 'plugin.facebook.dart' show IFBModelAware, FBModel, FBUserVO;
+import 'plugin.io.dart' show DataRetrieveVO;
+
+/* required by Rockdot UGCPlugin */
+//import 'package:jsonrpc2/jsonrpc_client.dart';
+
 
 part 'plugin/ugc/ugcplugin.dart';
 part 'plugin/ugc/command/abstract_ugccommand.dart';

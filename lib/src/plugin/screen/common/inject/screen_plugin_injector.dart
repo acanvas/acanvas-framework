@@ -37,10 +37,10 @@ class ScreenPluginInjector implements IObjectPostProcessor {
    */
   dynamic postProcessAfterInitialization(dynamic object, String objectName) {
     if (object is IScreenModelAware) {
-      (object as IScreenModelAware).uiModel = _applicationContext.getObject(ScreenPluginBase.MODEL_UI);
+      object.uiModel = _applicationContext.getObject(ScreenPluginBase.MODEL_UI);
     }
     if (object is IScreenServiceAware) {
-      (object as IScreenServiceAware).uiService = _applicationContext.getObject(ScreenPluginBase.SERVICE_UI);
+      object.uiService = _applicationContext.getObject(ScreenPluginBase.SERVICE_UI);
     }
 
     return object;

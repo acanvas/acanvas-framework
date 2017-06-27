@@ -21,7 +21,7 @@ class ScreenLoadCommand extends AbstractScreenCommand {
           .dispatch();
       ui.load(params: _stateModel.currentStateURLParams).then((_) {
         new RdSignal(StateEvents.MESSAGE_HIDE, "lifecycle.load").dispatch();
-          dispatchCompleteEvent();
+        dispatchCompleteEvent();
       }, onError: dispatchErrorEvent);
     } else {
       dispatchCompleteEvent();

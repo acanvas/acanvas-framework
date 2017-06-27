@@ -4,18 +4,8 @@ part of rockdot_framework.state;
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
  */
 
-class StateModel implements IApplicationContextAware {
+class StateModel extends Object with MApplicationContextAware {
   final Logger _log = new Logger("StateModel");
-
-  IApplicationContext _context;
-
-  IApplicationContext get applicationContext {
-    return _context;
-  }
-
-  void set applicationContext(IApplicationContext value) {
-    _context = value;
-  }
 
   IAddressService _addressService;
 
@@ -139,10 +129,10 @@ class StateModel implements IApplicationContextAware {
   }
 
   void addStateVO(StateVO stateVO) {
-    stateVO.label = _context.propertiesProvider.getProperty(stateVO.view_id + ".label");
-    stateVO.title = _context.propertiesProvider.getProperty(stateVO.view_id + ".title");
+    stateVO.label = getProperty(stateVO.view_id + ".label", true);
+    getProperty(stateVO.view_id + ".title", true);
     if (stateVO.url == null) {
-      stateVO.url = _context.propertiesProvider.getProperty(stateVO.view_id + ".url");
+      stateVO.url = getProperty(stateVO.view_id + ".url", true);
     }
     String voKey = stateVO.url.toLowerCase();
     _stateVOMap[voKey] = stateVO;
@@ -150,7 +140,8 @@ class StateModel implements IApplicationContextAware {
   }
 
   List<StateVO> getStateVOList([bool sort = true, int tree_parent = 0]) {
-    List<StateVO> stateVOList = _stateVOMap.values.toList().where((stateVO) => stateVO.tree_parent == tree_parent).toList() as List<StateVO>;
+    List<StateVO> stateVOList =
+        _stateVOMap.values.toList().where((stateVO) => stateVO.tree_parent == tree_parent).toList() as List<StateVO>;
 
     if (sort) {
       stateVOList.sort((StateVO voa, StateVO vob) {

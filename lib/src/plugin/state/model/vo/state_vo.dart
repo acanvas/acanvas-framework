@@ -13,7 +13,7 @@ class StateVO implements IRdVO {
   }
 
   String get propertyKey {
-    return propertyKey == null ? view_id : propertyKey;
+    return _propertyKey == null ? view_id : _propertyKey;
   }
 
   String substate;

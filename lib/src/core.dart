@@ -9,22 +9,12 @@ import 'dart:async';
 import 'package:logging/logging.dart';
 
 /* Rockdot depends on StageXL */
-import 'package:stagexl/stagexl.dart';
+import 'package:stagexl/stagexl.dart' show DisplayObject, Stage, EventDispatcher;
 import 'package:rockdot_commons/rockdot_commons.dart';
 import 'package:rockdot_spring/rockdot_spring.dart';
 
-import 'state.dart' show StateConstants, StateMessageVO, StateEvents, StateVO, StateModel;
-import 'screen.dart' show ScreenConstants, RockdotLifecycleSprite;
-
-export 'screen.dart';
-export 'state.dart';
-export 'io.dart' show DataRetrieveVO;
-
-/* required by Rockdot UGCPlugin */
-//import 'package:jsonrpc2/jsonrpc_client.dart';
-/* required by RockdotConstants to decode URLVARs */
-//import 'package:base64_codec/base64_codec.dart';
-//import 'package:rockdart/facebook/facebook.dart';
+import 'core.plugin.state.dart' show StateConstants, StateMessageVO, StateEvents, StateVO, StateModel;
+import 'core.plugin.screen.dart' show ScreenConstants, RockdotLifecycleSprite;
 
 // CORE #####
 part 'core/project/abstract_rd_bootstrap.dart';

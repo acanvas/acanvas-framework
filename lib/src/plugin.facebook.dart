@@ -6,14 +6,14 @@ import 'dart:typed_data';
 import 'dart:convert';
 
 /* Rockdot depends on StageXL */
-import 'package:stagexl/stagexl.dart';
-import 'package:rockdot_commons/rockdot_commons.dart';
-import 'package:rockdot_spring/rockdot_spring.dart';
+import 'package:stagexl/stagexl.dart' show BitmapData;
+import 'package:rockdot_commons/rockdot_commons.dart' show RdSignal, CompositeCommandKind, Assert, OperationEvent;
+import 'package:rockdot_spring/rockdot_spring.dart' show IObjectPostProcessor, IObjectFactory;
 
 import 'core.dart';
-//import 'io.dart' show DataRetrieveVO;
-//import 'state.dart' show StateMessageVO;
-import 'ugc.dart' show UGCEvents;
+import 'core.plugin.state.dart' show StateMessageVO;
+import 'plugin.io.dart' show DataRetrieveVO;
+import 'plugin.ugc.dart' show UGCEvents;
 
 part 'plugin/facebook/facebook_plugin.dart';
 part 'plugin/facebook/command/abstract_fbcommand.dart';
@@ -37,6 +37,7 @@ part 'plugin/facebook/command/event/vo/vofbphoto_upload.dart';
 part 'plugin/facebook/command/event/vo/vofbshare.dart';
 part 'plugin/facebook/inject/fbmodel_injector.dart';
 part 'plugin/facebook/inject/i_fbmodel_aware.dart';
+part 'plugin/facebook/model/fbconstants.dart';
 part 'plugin/facebook/model/fbmodel.dart';
 part 'plugin/facebook/model/vo/fbalbum_vo.dart';
 part 'plugin/facebook/model/vo/fbcomment_vo.dart';

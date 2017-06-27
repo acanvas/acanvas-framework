@@ -7,13 +7,14 @@ import "package:googleapis_auth/auth_browser.dart";
 import 'package:googleapis/plus/v1.dart';
 
 /* Rockdot depends on StageXL */
-import 'package:stagexl/stagexl.dart';
-import 'package:rockdot_commons/rockdot_commons.dart';
-import 'package:rockdot_spring/rockdot_spring.dart';
+import 'package:stagexl/stagexl.dart' show HtmlObject;
+import 'package:rockdot_commons/rockdot_commons.dart' show RdSignal;
+import 'package:rockdot_spring/rockdot_spring.dart' show IObjectPostProcessor, IObjectFactory;
 
 import 'core.dart';
-//import 'state.dart' show StateMessageVO;
-//import 'io.dart' show DataRetrieveVO;
+import 'core.plugin.state.dart' show StateMessageVO;
+import 'plugin.io.dart' show DataRetrieveVO;
+
 
 part 'plugin/google/google_plugin.dart';
 part 'plugin/google/command/event/vo/google_login_vo.dart';

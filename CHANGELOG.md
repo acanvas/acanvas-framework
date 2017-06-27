@@ -1,5 +1,9 @@
 # CHANGELOG ROCKDOT_FRAMEWORK
 
+## 0.9.11 2017-06-23
+
+- Reorganization of internal libraries
+
 ## 0.9.10 2017-06-01
 
 - Improved Logger performance
