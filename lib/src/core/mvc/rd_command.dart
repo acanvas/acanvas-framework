@@ -62,7 +62,7 @@ class RdCommand extends AbstractOperation implements IAsyncCommand, IApplication
         .dispatch();
   }
 
-  void hideMessage([String id = null]) {
+  void hideMessage() {
     String id = (_event == null) ? "NO_ID" : _event.type;
     new RdSignal(StateEvents.MESSAGE_HIDE, id).dispatch();
   }
