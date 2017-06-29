@@ -4,7 +4,7 @@ part of rockdot_framework.state;
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
  */
 
-class StateModel extends Object with MApplicationContextAware {
+class StateModel extends MApplicationContextAware {
   final Logger _log = new Logger("StateModel");
 
   IAddressService _addressService;
@@ -130,7 +130,7 @@ class StateModel extends Object with MApplicationContextAware {
 
   void addStateVO(StateVO stateVO) {
     stateVO.label = getProperty(stateVO.view_id + ".label", true);
-    getProperty(stateVO.view_id + ".title", true);
+    stateVO.title = getProperty(stateVO.view_id + ".title", true);
     if (stateVO.url == null) {
       stateVO.url = getProperty(stateVO.view_id + ".url", true);
     }
@@ -140,8 +140,8 @@ class StateModel extends Object with MApplicationContextAware {
   }
 
   List<StateVO> getStateVOList([bool sort = true, int tree_parent = 0]) {
-    List<StateVO> stateVOList =
-        _stateVOMap.values.toList().where((stateVO) => stateVO.tree_parent == tree_parent).toList() as List<StateVO>;
+    List<StateVO> stateVOList = new List<StateVO>.from(_stateVOMap.values.toList().where((stateVO) => stateVO.tree_parent == tree_parent));
+        //_stateVOMap.values.toList().where((stateVO) => stateVO.tree_parent == tree_parent).toList() as List<StateVO>;
 
     if (sort) {
       stateVOList.sort((StateVO voa, StateVO vob) {
