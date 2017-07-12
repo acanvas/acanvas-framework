@@ -21,7 +21,7 @@ class UGCItemContainerDTO implements IRdDTO {
   // 0: not blocked, 1: blocked
   // calculated extras (calculated in SQL query)
   int rowindex;
-  String totalrows;
+  int totalrows;
 
   // (assembled in AMF Endpoint via container_id relation in itemcontainer_roles table)
   List<UGCItemContainerRoleDTO> roles = [];
@@ -57,7 +57,9 @@ class UGCItemContainerDTO implements IRdDTO {
       items = inputDTO["items"];
 
       creator = new UGCUserDTO(inputDTO["creator"]);
-      task = new UGCTaskDTO(inputDTO["task"]);
+      if(inputDTO["task"].length > 0){
+        task = new UGCTaskDTO(inputDTO["task"][0]);
+      }
     }
   }
 
@@ -74,12 +76,12 @@ class UGCItemContainerDTO implements IRdDTO {
     });
 
     return {
-      "id": id,
+      /*"id": id,*/
       "parent_container_id": parent_container_id,
       "privacy_level": privacy_level,
-      "creator_uid": creator_uid,
+      /*"creator_uid": creator_uid,*/
       "title": title,
-      "description": description,
+      "description": description/*,
       "like_count": like_count,
       "flag": flag,
       "rowindex": rowindex,
@@ -87,8 +89,8 @@ class UGCItemContainerDTO implements IRdDTO {
       "totalrows": totalrows,
       "roles": rolesMaps,
       "items": itemsMaps,
-      "creator": creator.toJson(),
-      "task": task.toJson()
+      "creator": creator?.toJson(),
+      "task": task?.toJson()*/
     };
   }
 }

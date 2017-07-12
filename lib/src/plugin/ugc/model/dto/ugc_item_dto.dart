@@ -88,26 +88,26 @@ class UGCItemDTO implements IRdDTO {
   @override
   Map toJson() {
     List<Map> likersMaps = [];
-    likers.forEach((r) {
+    likers?.forEach((r) {
       likersMaps.add(r.toJson());
     });
 
     return {
-      "id": id,
+      //"id": id,
       "creator_uid": creator_uid,
       "title": title,
       "description": description,
-      "like_count": like_count,
-      "flag": flag,
-      "timestamp": timestamp,
+     // "like_count": like_count,
+     // "flag": flag,
+     // "timestamp": timestamp,
       "type": type,
       "type_id": type_id,
-      "rowindex": rowindex,
-      "complain_count": complain_count,
-      "totalrows": totalrows,
-      "likers": likersMaps,
-      "type_dao": type_dao.toJson(),
-      "creator": creator.toJson(),
+     // "rowindex": rowindex,
+     // "complain_count": complain_count,
+     // "totalrows": totalrows,
+     // "likers": likersMaps,
+      "type_dao": type_dao?.toJson(),
+      //"creator": creator?.toJson(),
     };
   }
 }

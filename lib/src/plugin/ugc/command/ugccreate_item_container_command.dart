@@ -13,10 +13,17 @@ class UGCCreateItemContainerCommand extends AbstractUGCCommand {
 
   @override
   bool dispatchCompleteEvent([dynamic result = null]) {
-    _ugcModel.currentItemContainerDAO.id = result.result;
-    if (_ugcModel.currentItemDAO != null) {
-      _ugcModel.currentItemDAO.container_id = result.result;
+    if(result is int){
+      _ugcModel.currentItemContainerDAO.id = result;
+      if (_ugcModel.currentItemDAO != null) {
+        _ugcModel.currentItemDAO.container_id = result;
+      }
+      return super.dispatchCompleteEvent(result);
     }
-    return super.dispatchCompleteEvent(result);
+    else{
+
+      dispatchErrorEvent("Endpoint didn't return an int.");
+      return false;
+    }
   }
 }

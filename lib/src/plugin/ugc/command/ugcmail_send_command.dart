@@ -7,7 +7,7 @@ class UGCMailSendCommand extends AbstractUGCCommand {
     super.execute(event);
 
     String sender =
-        getProperty("email.confirm.sender").split(r"$sender").join(getProperty("project.host.email.sender"));
+        getProperty("email.confirm.sendertext").split(r"$sender").join(getProperty("email.confirm.sender"));
 
     String body = getProperty("email.confirm.body").split(r"$name").join(_ugcModel.userDAO.name);
     if (_ugcModel.userExtendedDAO.firstname != null && _ugcModel.userExtendedDAO.lastname != null) {
@@ -15,7 +15,7 @@ class UGCMailSendCommand extends AbstractUGCCommand {
           .split(r"$name")
           .join(_ugcModel.userExtendedDAO.firstname + " " + _ugcModel.userExtendedDAO.lastname);
     }
-    body = body.split(r"$link").join(getProperty("project.host.email.confirm") +
+    body = body.split(r"$link").join(getProperty("email.confirm.link") +
         "?e=" +
         _ugcModel.userExtendedDAO.email +
         "&h=" +

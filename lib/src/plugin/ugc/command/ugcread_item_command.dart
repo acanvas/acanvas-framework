@@ -15,8 +15,8 @@ class UGCReadItemCommand extends AbstractUGCCommand {
   @override
   bool dispatchCompleteEvent([dynamic result = null]) {
     UGCItemDTO ret;
-    if (result.result.length > 0) {
-      ret = new UGCItemDTO(result.result[0]);
+    if (result.length > 0) {
+      ret = new UGCItemDTO(result[0]);
       _ugcModel.currentItemDAO = ret;
     }
     return super.dispatchCompleteEvent(ret);

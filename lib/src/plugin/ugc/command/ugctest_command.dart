@@ -2,8 +2,8 @@ part of rockdot_framework.ugc;
 
 //@retain
 class UGCTestCommand extends AbstractUGCCommand {
-  int _itemContainerID;
-  int _itemID;
+  int _itemContainerID = 1;
+  int _itemID = 1;
 
   @override
   void execute([RdSignal event = null]) {
@@ -39,7 +39,7 @@ class UGCTestCommand extends AbstractUGCCommand {
 
     /* ******************** SEND CONFIRMATION MAIL ******************* */
 
-    compositeCommand.addCommandEvent(new RdSignal(UGCEvents.USER_MAIL_SEND, null, _onMailSent), applicationContext);
+    //compositeCommand.addCommandEvent(new RdSignal(UGCEvents.USER_MAIL_SEND, null, _onMailSent), applicationContext);
 
     /* ******************** CREATE ITEM CONTAINER ******************* */
 
@@ -84,7 +84,7 @@ class UGCTestCommand extends AbstractUGCCommand {
     /* ******************** READ ITEM CONTAINERS (BY UID) ******************* */
 
     compositeCommand.addCommandEvent(
-        new RdSignal(UGCEvents.READ_ITEM_CONTAINERS_UID, null, _onReadItemByUID), applicationContext);
+        new RdSignal(UGCEvents.READ_ITEM_CONTAINERS_UID, user.uid, _onReadItemByUID), applicationContext);
 
     /* ******************** LIKE ITEM ******************* */
 
@@ -119,26 +119,35 @@ class UGCTestCommand extends AbstractUGCCommand {
     compositeCommand.execute();
   }
 
-  void _onUserRegister([OperationEvent event = null]) {
-    this.log.info("_onUserRegister, Insert ID: " + event.result + "(0 if user already present)");
-    Assert.notNull(event.result, "event.result is null");
+
+/*
+  void _onUserRegister([List event = null]) {
+    Assert.notNull(event, "result is null");
+    UGCUserDTO user = new UGCUserDTO(event.first);
+    this.log.info("_onUserRegister, name: ${user.name}");
   }
 
-  void _onUserRegisterExtended([OperationEvent event = null]) {
-    this.log.info("_onUserRegisterExtended, Insert ID: " + event.result + "(0 if extended user already present)");
-    Assert.notNull(event.result, "event.result is null");
+*/
+  void _onUserRegister([int result = null]) {
+    this.log.info("_onUserRegister, Insert ID: ${result} (0 if user already present)");
+    Assert.notNull(result, "result is null");
   }
 
-  void _onCreateItemContainer([OperationEvent event = null]) {
-    this.log.info("_onCreateItemContainer, Insert ID: " + event.result + "(0 if container already present)");
-    Assert.notNull(event.result, "event.result is null");
-    _itemContainerID = event.result;
+  void _onUserRegisterExtended([int result = null]) {
+    this.log.info("_onUserRegisterExtended, Insert ID: ${result} (0 if user already present)");
+    Assert.notNull(result, "result is null");
   }
 
-  void _onCreateItem([OperationEvent event = null]) {
-    this.log.info("_onCreateItemContainer, Insert ID: " + event.result + "(0 if item already present)");
-    Assert.notNull(event.result, "event.result is null");
-    _itemID = event.result;
+  void _onCreateItemContainer([int result = null]) {
+    this.log.info("_onCreateItemContainer, Insert ID: ${result} (0 if container already present)");
+    Assert.notNull(result, "result is null");
+    _itemContainerID = result;
+  }
+
+  void _onCreateItem([int result = null]) {
+    this.log.info("_onCreateItem, Insert ID: ${result} (0 if item already present)");
+    Assert.notNull(result, "result is null");
+    _itemID = result;
   }
 
   void _onReadItemContainer(UGCItemContainerDTO container) {

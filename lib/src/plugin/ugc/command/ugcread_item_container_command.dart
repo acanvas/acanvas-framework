@@ -15,11 +15,8 @@ class UGCReadItemContainerCommand extends AbstractUGCCommand {
   @override
   bool dispatchCompleteEvent([dynamic result = null]) {
     UGCItemContainerDTO ret;
-    if (result.result.length > 0) {
-      ret = new UGCItemContainerDTO(result.result[0]);
-      ret.items = result.result[0].items;
-      ret.roles = result.result[0].roles;
-      ret.task = new UGCTaskDTO(result.result[0].task);
+    if (result.length > 0) {
+      ret = new UGCItemContainerDTO(result[0]);
       _ugcModel.currentItemContainerDAO = ret;
     }
     return super.dispatchCompleteEvent(ret);

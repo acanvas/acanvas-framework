@@ -12,9 +12,11 @@ class IOPlugin extends AbstractRdPlugin {
    */
   @override
   void configureCommands() {
-    commandMap[IOEvents.UPLOAD_IMAGE] = () => new IOImageUploadCommand();
     commandMap[IOEvents.MIC_RECORD_START] = () => new IOMicRecordStartCommand();
     commandMap[IOEvents.MIC_RECORD_STOP] = () => new IOMicRecordStopCommand();
+    commandMap[IOEvents.FILE_SELECT_CREATE] = () => new IOFileSelectCreateCommand();
+    commandMap[IOEvents.FILE_SELECT_OBSERVE] = () => new IOFileSelectObserveCommand();
+    commandMap[IOEvents.UPLOAD_IMAGE] = () => new IOImageUploadCommand();
   }
 
   /**

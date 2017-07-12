@@ -15,7 +15,7 @@ class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
 
     if (event.data is UGCUserDTO) {
       _ugcModel.userDAO = event.data;
-    } else if (RdConstants.LOCAL && RdConstants.DEBUG) {
+    } else if (RdConstants.LOCAL && RdConstants.DEBUG && _fbModel.user == null) {
       _ugcModel.userDAO = _createDummyData();
     } else if (_ugcModel.userDAO == null) {
       UGCUserDTO user = new UGCUserDTO();

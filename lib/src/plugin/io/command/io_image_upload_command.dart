@@ -27,7 +27,7 @@ class IOImageUploadCommand extends RdCommand {
         if (req.status == 200 || req.status == 0) {
           dispatchCompleteEvent();
         } else {
-          dispatchErrorEvent();
+          dispatchErrorEvent(req.responseText);
         }
       }
     });
@@ -49,4 +49,20 @@ class IOImageUploadCommand extends RdCommand {
     html.Blob blob = new html.Blob([arrayBuffer], mimeString);
     return blob;
   }
+
+
+  /**
+   * @see http://stackoverflow.com/questions/22196593/make-picture-from-base64-on-client-side
+   *
+    Blob createImageBlobNotWorking(String dataUri) {
+    List bl = (CryptoUtils.base64StringToBytes(dataUri.split(",")[1]));
+    String mimeString = dataUri.split(',')[0].split(':')[1].split(';')[0];
+    Uint8ClampedList base64Data = new Uint8ClampedList.fromList(bl);
+
+    //convert to blob
+    String jpg = new String.fromCharCodes(base64Data);
+    Blob blob = new Blob([jpg], mimeString);
+    return blob;
+  }
+   */
 }

@@ -17,7 +17,7 @@ class UGCUserDTO implements IRdDTO {
 
   UGCUserDTO([Map inputDTO = null]) {
     if (inputDTO != null) {
-      uid = inputDTO["uid"];
+      uid = inputDTO["uid"].toString();
       locale = inputDTO["locale"];
       network = inputDTO["network"];
       device = inputDTO["device"];

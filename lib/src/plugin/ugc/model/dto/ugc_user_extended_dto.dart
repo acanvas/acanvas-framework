@@ -32,7 +32,7 @@ class UGCUserExtendedDTO implements IRdDTO {
 
   UGCUserExtendedDTO([Map inputDTO = null]) {
     if (inputDTO != null) {
-      uid = inputDTO["uid"];
+      uid = inputDTO["uid"].toString();
       hash = inputDTO["hash"];
       birthday_date = inputDTO["birthday_date"];
       hometown_location = inputDTO["hometown_location"];

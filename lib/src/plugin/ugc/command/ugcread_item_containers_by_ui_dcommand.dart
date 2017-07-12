@@ -5,7 +5,7 @@ class UGCReadItemContainersByUIDCommand extends AbstractUGCCommand {
   @override
   void execute([RdSignal event = null]) {
     super.execute(event);
-    if (event.data) {
+    if (event.data != null) {
       Map dto = {'uid': event.data};
 
       amfOperation("UGCEndpoint.readItemContainersByUID", map: dto);
@@ -16,9 +16,9 @@ class UGCReadItemContainersByUIDCommand extends AbstractUGCCommand {
 
   @override
   bool dispatchCompleteEvent([dynamic result = null]) {
-    _ugcModel.ownContainers = _createContainers(result.result.ownContainers);
-    _ugcModel.followContainers = _createContainers(result.result.followContainers);
-    _ugcModel.participantContainers = _createContainers(result.result.participantContainers);
+    _ugcModel.ownContainers = _createContainers(result["ownContainers"]);
+    _ugcModel.followContainers = _createContainers(result["followContainers"]);
+    _ugcModel.participantContainers = _createContainers(result["participantContainers"]);
     return super.dispatchCompleteEvent();
   }
 
