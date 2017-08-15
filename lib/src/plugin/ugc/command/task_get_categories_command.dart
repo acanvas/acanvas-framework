@@ -1,6 +1,6 @@
 part of rockdot_framework.ugc;
 
-//@retain
+
 class TaskGetCategoriesCommand extends AbstractUGCCommand {
   @override
   void execute([RdSignal event = null]) {
@@ -11,7 +11,7 @@ class TaskGetCategoriesCommand extends AbstractUGCCommand {
 
   @override
   bool dispatchCompleteEvent([dynamic result = null]) {
-    _ugcModel.taskCategories = result.result;
+    _ugcModel.taskCategories = result;
     return super.dispatchCompleteEvent(_ugcModel.taskCategories);
   }
 }

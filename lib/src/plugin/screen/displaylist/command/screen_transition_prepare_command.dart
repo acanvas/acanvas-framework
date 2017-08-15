@@ -1,6 +1,6 @@
 part of rockdot_framework.screen;
 
-//@retain
+
 class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
   ScreenDisplaylistTransitionPrepareVO _vo;
 

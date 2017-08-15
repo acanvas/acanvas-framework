@@ -1,6 +1,6 @@
 part of rockdot_framework.google;
 
-//@retain
+
 class AbstractGoogleCommand extends RdCommand implements IGoogleModelAware {
   GoogleModel _gModel;
 

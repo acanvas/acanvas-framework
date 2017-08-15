@@ -1,6 +1,6 @@
 part of rockdot_framework.facebook;
 
-//@retain
+
 class FBPhotoUploadCommand extends AbstractFBCommand {
   @override
   void execute([RdSignal event = null]) {

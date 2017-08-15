@@ -1,6 +1,6 @@
 part of rockdot_framework.ugc;
 
-//@retain
+
 class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
   FBModel _fbModel;
 

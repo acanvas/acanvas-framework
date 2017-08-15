@@ -3,7 +3,7 @@ part of rockdot_framework.screen;
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
  */
-//@retain
+
 class ScreenSetCommand extends AbstractStateCommand {
   StateVO _currentVO;
   StateVO _nextVO;

@@ -33,7 +33,7 @@ class RdCommand extends AbstractOperation implements IAsyncCommand, IApplication
   @override
   bool dispatchCompleteEvent([dynamic result = null]) {
     if (result != null && result is OperationEvent) {
-      result = result.result;
+      result = result;
     }
     if (_callback != null) {
       (result != null) ? _callback.call(result) : _callback.call();

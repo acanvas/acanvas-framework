@@ -13,9 +13,10 @@ class IOFileSelectObserveCommand extends RdCommand {
   }
 
   void observeFileInput() {
-    html.InputElement fileElement = html.querySelector(IOModel.FILE_ELEMENT);
+    html.InputElement fileElement = html.querySelector("#${IOModel.FILE_ELEMENT}");
     if(fileElement == null){
       dispatchErrorEvent("HTML FileElement doesn't exist.");
+      return;
     }
     fileElement.onChange.listen((e) => processFiles(fileElement.files));
   }

@@ -1,6 +1,6 @@
 part of rockdot_framework.ugc;
 
-//@retain
+
 class GamingGetHighscoreCommand extends AbstractUGCCommand implements IFBModelAware {
   FBModel _modelFB;
 
@@ -19,9 +19,9 @@ class GamingGetHighscoreCommand extends AbstractUGCCommand implements IFBModelAw
 
   @override
   bool dispatchCompleteEvent([dynamic result = null]) {
-    _ugcModel.gaming.highscoreFriends = result.result.topFiveFriends;
-    _ugcModel.gaming.highscoreAll = result.result.topTen;
-    _ugcModel.gaming.rank = result.result.rank;
-    return super.dispatchCompleteEvent(result.result);
+    _ugcModel.gaming.highscoreFriends = result.topFiveFriends;
+    _ugcModel.gaming.highscoreAll = result.topTen;
+    _ugcModel.gaming.rank = result.rank;
+    return super.dispatchCompleteEvent(result);
   }
 }

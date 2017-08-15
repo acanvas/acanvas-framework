@@ -1,6 +1,6 @@
 part of rockdot_framework.screen;
 
-//@retain
+
 class ScreenAppearCommand extends AbstractScreenCommand {
   ScreenDisplaylistAppearDisappearVO _vo;
 

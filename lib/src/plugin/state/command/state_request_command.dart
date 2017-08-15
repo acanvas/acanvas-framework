@@ -3,7 +3,7 @@ part of rockdot_framework.state;
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
  */
-//@retain
+
 class StateRequestCommand extends AbstractStateCommand {
   @override
   void execute([RdSignal event = null]) {

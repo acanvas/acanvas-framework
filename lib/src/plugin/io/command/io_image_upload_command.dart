@@ -7,14 +7,24 @@ class IOImageUploadCommand extends RdCommand {
 
     IOImageUploadVO vo = event.data;
 
-    //Convert target BitmapData to Blob
-    String url = vo.bmd.toDataUrl("image/jpeg", 0.95);
-    html.Blob blob = createImageBlob(url);
-
-    //TODO upload big and thumbnail?
-    //Add target BitmapData to Multipart Form
+    //Create Multipart Form
     html.FormData formData = new html.FormData();
-    formData.appendBlob("Filedata", blob, vo.fileName);
+
+    //Convert target BitmapData to Blob
+    html.Blob blob = createImageBlob( vo.bmd.toDataUrl("image/jpeg", 0.95) );
+
+    //Convert target BitmapData to Blob (Thumbnail)
+    Bitmap b = new Bitmap(vo.bmd.clone());
+    b.width = 120;
+    b.height = 120;
+
+    BitmapData thumb = new BitmapData(120, 120);
+    thumb.draw(b);
+    b.bitmapData.clear();
+    html.Blob blobThumb = createImageBlob( thumb.toDataUrl("image/jpeg", 0.95) );
+
+    formData.appendBlob("Filedata", blob, "${vo.fileName}.jpg");
+    formData.appendBlob("Filedata", blobThumb, "${vo.fileName}_thumb.jpg");
 
     //Send to Server
     sendData(vo.targetUrl, formData);
@@ -22,7 +32,7 @@ class IOImageUploadCommand extends RdCommand {
 
   void sendData(String url, html.FormData formData) {
     html.HttpRequest req = new html.HttpRequest();
-    req.onReadyStateChange.listen((html.ProgressEvent e) {
+    req.onReadyStateChange.listen((_) {
       if (req.readyState == html.HttpRequest.DONE) {
         if (req.status == 200 || req.status == 0) {
           dispatchCompleteEvent();

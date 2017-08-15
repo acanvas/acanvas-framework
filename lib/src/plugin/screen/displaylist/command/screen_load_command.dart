@@ -1,6 +1,6 @@
 part of rockdot_framework.screen;
 
-//@retain
+
 class ScreenLoadCommand extends AbstractScreenCommand {
   @override
   void execute([RdSignal event = null]) {

@@ -1,6 +1,6 @@
 part of rockdot_framework.facebook;
 
-//@retain
+
 class AbstractFBCommand extends RdCommand implements IFBModelAware {
   FBModel _fbModel;
 

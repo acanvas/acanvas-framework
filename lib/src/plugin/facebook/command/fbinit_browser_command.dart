@@ -1,6 +1,6 @@
 part of rockdot_framework.facebook;
 
-//@retain
+
 class FBInitBrowserCommand extends AbstractFBCommand {
   String facebookSDKUrl = "https://connect.facebook.net/en_US/sdk.js";
 

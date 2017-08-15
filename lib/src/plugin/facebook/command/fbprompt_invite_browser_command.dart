@@ -2,7 +2,7 @@ part of rockdot_framework.facebook;
 
 //https://developers.facebook.com/docs/games/requests/v2.1
 
-//@retain
+
 class FBPromptInviteBrowserCommand extends AbstractFBCommand {
   VOFBInvite _vo;
 

@@ -2,7 +2,7 @@ part of rockdot_framework.facebook;
 
 //https://developers.facebook.com/docs/sharing/reference/share-dialog
 
-//@retain
+
 class FBPromptShareCommand extends AbstractFBCommand {
   @override
   void execute([RdSignal event = null]) {

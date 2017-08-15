@@ -1,6 +1,6 @@
 part of rockdot_framework.ugc;
 
-//@retain
+
 class GamingCheckPermissionToPlayCommand extends AbstractUGCCommand {
   @override
   void execute([RdSignal event = null]) {
@@ -13,7 +13,7 @@ class GamingCheckPermissionToPlayCommand extends AbstractUGCCommand {
 
   @override
   bool dispatchCompleteEvent([dynamic result = null]) {
-    _ugcModel.gaming.allowedToPlay = result.result;
+    _ugcModel.gaming.allowedToPlay = result;
     return super.dispatchCompleteEvent(_ugcModel.gaming.allowedToPlay);
   }
 }

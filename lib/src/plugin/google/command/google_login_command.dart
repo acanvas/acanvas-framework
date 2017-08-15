@@ -1,6 +1,6 @@
 part of rockdot_framework.google;
 
-//@retain
+
 class GoogleLoginCommand extends AbstractGoogleCommand {
   RdSignal _nextSignal;
 

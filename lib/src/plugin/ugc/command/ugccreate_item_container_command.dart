@@ -1,6 +1,6 @@
 part of rockdot_framework.ugc;
 
-//@retain
+
 class UGCCreateItemContainerCommand extends AbstractUGCCommand {
   @override
   void execute([RdSignal event = null]) {

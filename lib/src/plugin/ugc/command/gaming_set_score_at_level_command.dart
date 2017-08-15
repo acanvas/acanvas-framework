@@ -1,6 +1,6 @@
 part of rockdot_framework.ugc;
 
-//@retain
+
 class GamingSetScoreAtLevelCommand extends AbstractUGCCommand {
   @override
   void execute([RdSignal event = null]) {
@@ -13,8 +13,8 @@ class GamingSetScoreAtLevelCommand extends AbstractUGCCommand {
 
   @override
   bool dispatchCompleteEvent([dynamic result = null]) {
-    _ugcModel.userExtendedDAO.score = result.result.score;
-    _ugcModel.gaming.rank = result.result.rank;
-    return super.dispatchCompleteEvent(result.result);
+    _ugcModel.userExtendedDAO.score = result.score;
+    _ugcModel.gaming.rank = result.rank;
+    return super.dispatchCompleteEvent(result);
   }
 }

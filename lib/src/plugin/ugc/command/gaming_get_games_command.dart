@@ -1,6 +1,6 @@
 part of rockdot_framework.ugc;
 
-//@retain
+
 class GamingGetGamesCommand extends AbstractUGCCommand {
   @override
   void execute([RdSignal event = null]) {
@@ -13,7 +13,7 @@ class GamingGetGamesCommand extends AbstractUGCCommand {
 
   @override
   bool dispatchCompleteEvent([dynamic result = null]) {
-    _ugcModel.gaming.games = result.result.games;
-    return super.dispatchCompleteEvent(result.result);
+    _ugcModel.gaming.games = result.games;
+    return super.dispatchCompleteEvent(result);
   }
 }

@@ -3,7 +3,7 @@ part of rockdot_framework.ugc;
 class UGCUserDTO implements IRdDTO {
   static const NETWORK_FACEBOOK = "facebook";
   static const NETWORK_GPLUS = "google+";
-  static const NETWORK_INPUTFORM = "input form";
+  static const NETWORK_INPUTFORM = "inputform";
 
   String uid;
   String locale;

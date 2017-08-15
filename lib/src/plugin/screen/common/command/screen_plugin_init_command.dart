@@ -1,6 +1,6 @@
 part of rockdot_framework.screen;
 
-//@retain
+
 class ScreenPluginInitCommand extends AbstractScreenCommand {
   @override
   dynamic execute([RdSignal event = null]) {

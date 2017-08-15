@@ -1,6 +1,6 @@
 part of rockdot_framework.ugc;
 
-//@retain
+
 class UGCTestCommand extends AbstractUGCCommand {
   int _itemContainerID = 1;
   int _itemID = 1;

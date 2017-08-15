@@ -1,6 +1,6 @@
 part of rockdot_framework.ugc;
 
-//@retain
+
 class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAware {
   StateModel _stateModel;
   UGCFilterVO _vo;
@@ -32,11 +32,6 @@ class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAwar
         //TODO
         break;
     }
-
-    //TODO ??? delete?
-//			if(event && event.data is String) {
-//				vo.condition = event.data;
-//			}
 
     amfOperation("UGCEndpoint.filterItems", map: _vo.toMap());
   }

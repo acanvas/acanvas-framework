@@ -1,6 +1,6 @@
 part of rockdot_framework.google;
 
-//@retain
+
 class GooglePlusGetUserCommand extends AbstractGoogleCommand {
   @override
   void execute([RdSignal event = null]) {

@@ -1,6 +1,6 @@
 part of rockdot_framework.ugc;
 
-//@retain
+
 class UGCHasExtendedUserCommand extends AbstractUGCCommand {
   @override
   dynamic execute([RdSignal event = null]) {
@@ -14,9 +14,9 @@ class UGCHasExtendedUserCommand extends AbstractUGCCommand {
 
   @override
   bool dispatchCompleteEvent([dynamic result = null]) {
-    if (result.result == true) {
+    if (result == true) {
       _ugcModel.hasUserExtendedDAO = true;
     }
-    return super.dispatchCompleteEvent(result.result);
+    return super.dispatchCompleteEvent(result);
   }
 }

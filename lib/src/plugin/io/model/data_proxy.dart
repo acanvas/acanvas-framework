@@ -140,7 +140,7 @@ class DataProxy implements IDataProxy {
     /* No data */
     if (event.operation.result.length == 0) {
       _dataTotalSize = 0;
-      _onDataCallback.call(this, event.operation.result);
+      _onDataCallback.call(event.operation.result);
     } else {
       List res = event.result;
       var json = res.elementAt(0);

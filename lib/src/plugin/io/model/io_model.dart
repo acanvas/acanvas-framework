@@ -4,8 +4,8 @@ part of rockdot_framework.io;
  * @author nilsdoehring
  */
 class IOModel {
-  static const String HOLDER_ELEMENT = "#upload-holder";
-  static const String FILE_ELEMENT = "#file";
+  static const String HOLDER_ELEMENT = "upload-holder";
+  static const String FILE_ELEMENT = "file";
 
   bool mic_recording = false;
 

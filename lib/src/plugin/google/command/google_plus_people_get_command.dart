@@ -1,6 +1,6 @@
 part of rockdot_framework.google;
 
-//@retain
+
 class GooglePlusPeopleGetCommand extends AbstractGoogleCommand {
   DataRetrieveVO _vo;
 

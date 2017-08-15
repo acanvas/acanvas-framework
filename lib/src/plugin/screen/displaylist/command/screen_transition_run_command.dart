@@ -1,6 +1,6 @@
 part of rockdot_framework.screen;
 
-//@retain
+
 class ScreenTransitionRunCommand extends AbstractScreenCommand {
   ScreenDisplaylistTransitionApplyVO _vo;
   CompositeCommandWithEvent _compositeCommand;

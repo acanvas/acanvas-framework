@@ -1,6 +1,6 @@
 part of rockdot_framework.facebook;
 
-//@retain
+
 class FBLoginBrowserCommand extends AbstractFBCommand {
   RdSignal _nextSignal;
 
@@ -11,7 +11,7 @@ class FBLoginBrowserCommand extends AbstractFBCommand {
     String scopes = "";
     if (event.data != null && event.data is FacebookLoginVO) {
       _nextSignal = event.data.nextSignal;
-      scopes = event.data.scopes != null ? event.data.scopes : getProperty("project.facebook.scopes");
+      scopes = event.data.scopes != null ? event.data.scopes : "";
     }
 
     if (_fbModel.userIsAuthenticated && event.data == "") {
