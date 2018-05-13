@@ -3,6 +3,8 @@
 Rockdot Dart is based on [Rockdot Actionscript Framework](https://github.com/block-forest/rockdot), which has been in continuous development for several years,
 and was used in dozens of highly interactive rich media projects (marketing) for clients such as Mercedes-Benz, Nike, and Nikon, serving millions of users.
 
+[Diagram](http://rockdot.sounddesignz.com/template/assets/home/rockdot_spring_architecture.png) of underlying architecture.
+
 ### Examples
 
 * [Full Framework Demo](http://rockdot.sounddesignz.com/template/) - Generated with [Rockdot CLI](https://github.com/block-forest/rockdot-generator)
