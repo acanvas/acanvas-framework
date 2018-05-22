@@ -80,7 +80,8 @@ class DataProxy implements IDataProxy {
     return 0;
   }
 
-  void requestChunk(Function callBack, [int chunkIndex = -1, int chunkSize = -1]) {
+  void requestChunk(Function callBack,
+      [int chunkIndex = -1, int chunkSize = -1]) {
     _onDataCallback = callBack;
 
     /* Special case: If the chunkIndex is set to -1, all data must be in our internal Cache */
@@ -106,11 +107,12 @@ class DataProxy implements IDataProxy {
         }
 
         //cut the end of the requested data range to the actual maximum of available datasets
-        chunkSize = (_cursor < _dataTotalSize ? _cursor : _dataTotalSize) - chunkIndex;
+        chunkSize =
+            (_cursor < _dataTotalSize ? _cursor : _dataTotalSize) - chunkIndex;
       }
       //request data from internal Cache
-      _onDataCallback
-          .call(new List.from(_dataCache.getRange(chunkIndex, math.min(dataTotalSize, chunkIndex + chunkSize))));
+      _onDataCallback.call(new List.from(_dataCache.getRange(
+          chunkIndex, math.min(dataTotalSize, chunkIndex + chunkSize))));
     } else {
       //request the data via our dataRetrieveCommand
       _requestChunkExecute(callBack, chunkIndex, chunkSize);
@@ -160,9 +162,11 @@ class DataProxy implements IDataProxy {
 
       /* Now that our Cache has been filled, send it's data to the callback */
       if (_chunkIndex != -1) {
-        int chunkSize =
-            _dataTotalSize == 0 ? _chunkIndex + _chunkSize : math.min(_dataTotalSize, _chunkIndex + _chunkSize);
-        _onDataCallback.call(new List.from(_dataCache.getRange(_chunkIndex, chunkSize)));
+        int chunkSize = _dataTotalSize == 0
+            ? _chunkIndex + _chunkSize
+            : math.min(_dataTotalSize, _chunkIndex + _chunkSize);
+        _onDataCallback
+            .call(new List.from(_dataCache.getRange(_chunkIndex, chunkSize)));
       } else {
         _onDataCallback.call(_dataCache);
       }

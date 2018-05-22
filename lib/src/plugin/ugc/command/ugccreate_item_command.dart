@@ -1,6 +1,5 @@
 part of rockdot_framework.ugc;
 
-
 class UGCCreateItemCommand extends AbstractUGCCommand {
   @override
   void execute([RdSignal event = null]) {
@@ -11,8 +10,10 @@ class UGCCreateItemCommand extends AbstractUGCCommand {
     }
 
     if (_ugcModel.currentItemDAO != null) {
-      if (_ugcModel.currentItemContainerDAO != null && _ugcModel.currentItemContainerDAO.id != null) {
-        _ugcModel.currentItemDAO.container_id = _ugcModel.currentItemContainerDAO.id;
+      if (_ugcModel.currentItemContainerDAO != null &&
+          _ugcModel.currentItemContainerDAO.id != null) {
+        _ugcModel.currentItemDAO.container_id =
+            _ugcModel.currentItemContainerDAO.id;
       }
       _ugcModel.currentItemDAO.creator_uid = _ugcModel.userDAO.uid;
       amfOperation("UGCEndpoint.createItem", dto: _ugcModel.currentItemDAO);

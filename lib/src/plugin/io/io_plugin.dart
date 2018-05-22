@@ -14,8 +14,10 @@ class IOPlugin extends AbstractRdPlugin {
   void configureCommands() {
     commandMap[IOEvents.MIC_RECORD_START] = () => new IOMicRecordStartCommand();
     commandMap[IOEvents.MIC_RECORD_STOP] = () => new IOMicRecordStopCommand();
-    commandMap[IOEvents.FILE_SELECT_CREATE] = () => new IOFileSelectCreateCommand();
-    commandMap[IOEvents.FILE_SELECT_OBSERVE] = () => new IOFileSelectObserveCommand();
+    commandMap[IOEvents.FILE_SELECT_CREATE] =
+        () => new IOFileSelectCreateCommand();
+    commandMap[IOEvents.FILE_SELECT_OBSERVE] =
+        () => new IOFileSelectObserveCommand();
     commandMap[IOEvents.UPLOAD_IMAGE] = () => new IOImageUploadCommand();
   }
 
@@ -27,7 +29,8 @@ class IOPlugin extends AbstractRdPlugin {
    */
   @override
   void configureInjectors() {
-    RdContextUtil.registerInstance(objectFactory, IOPlugin.MODEL_IO, new IOModel());
+    RdContextUtil.registerInstance(
+        objectFactory, IOPlugin.MODEL_IO, new IOModel());
     objectFactory.addObjectPostProcessor(new IOModelInjector(objectFactory));
   }
 }

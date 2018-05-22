@@ -1,6 +1,5 @@
 part of rockdot_framework.facebook;
 
-
 class FBFriendsGetInfoCommand extends AbstractFBCommand {
   @override
   void execute([RdSignal event = null]) {
@@ -16,7 +15,8 @@ class FBFriendsGetInfoCommand extends AbstractFBCommand {
 
     js.JsObject queryConfig = new js.JsObject.jsify({
       "method": "fql.query",
-      "query": "SELECT uid, name, pic_square, is_app_user FROM user WHERE uid = me() OR uid IN ( ${arr.join(",")} )"
+      "query":
+          "SELECT uid, name, pic_square, is_app_user FROM user WHERE uid = me() OR uid IN ( ${arr.join(",")} )"
     });
 
     _fbModel.FB.callMethod("api", [queryConfig, _handleResult]);

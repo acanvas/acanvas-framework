@@ -109,7 +109,8 @@ class StateModel extends MApplicationContextAware {
     return _compositeTransitionCommand;
   }
 
-  void set compositeTransitionCommand(CompositeCommandWithEvent compositeTransitionCommand) {
+  void set compositeTransitionCommand(
+      CompositeCommandWithEvent compositeTransitionCommand) {
     _compositeTransitionCommand = compositeTransitionCommand;
   }
 
@@ -119,7 +120,8 @@ class StateModel extends MApplicationContextAware {
     return _compositeEffectCommand;
   }
 
-  void set compositeEffectCommand(CompositeCommandWithEvent compositeEffectCommand) {
+  void set compositeEffectCommand(
+      CompositeCommandWithEvent compositeEffectCommand) {
     _compositeEffectCommand = compositeEffectCommand;
   }
 
@@ -140,8 +142,10 @@ class StateModel extends MApplicationContextAware {
   }
 
   List<StateVO> getStateVOList([bool sort = true, int tree_parent = 0]) {
-    List<StateVO> stateVOList = new List<StateVO>.from(_stateVOMap.values.toList().where((stateVO) => stateVO.tree_parent == tree_parent));
-        //_stateVOMap.values.toList().where((stateVO) => stateVO.tree_parent == tree_parent).toList() as List<StateVO>;
+    List<StateVO> stateVOList = new List<StateVO>.from(_stateVOMap.values
+        .toList()
+        .where((stateVO) => stateVO.tree_parent == tree_parent));
+    //_stateVOMap.values.toList().where((stateVO) => stateVO.tree_parent == tree_parent).toList() as List<StateVO>;
 
     if (sort) {
       stateVOList.sort((StateVO voa, StateVO vob) {

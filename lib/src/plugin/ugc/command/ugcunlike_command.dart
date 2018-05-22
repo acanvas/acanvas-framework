@@ -1,6 +1,5 @@
 part of rockdot_framework.ugc;
 
-
 class UGCUnlikeCommand extends AbstractUGCCommand {
   @override
   void execute([RdSignal event = null]) {

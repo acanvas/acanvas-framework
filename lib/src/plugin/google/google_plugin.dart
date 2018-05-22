@@ -14,13 +14,17 @@ class GooglePlugin extends AbstractRdPlugin {
   void configureCommands() {
     commandMap[GoogleEvents.INIT] = () => new GoogleInitCommand();
     commandMap[GoogleEvents.USER_LOGIN] = () => new GoogleLoginCommand();
-    commandMap[GoogleEvents.PLUS_USER_GET] = () => new GooglePlusGetUserCommand();
+    commandMap[GoogleEvents.PLUS_USER_GET] =
+        () => new GooglePlusGetUserCommand();
 
-    commandMap[GoogleEvents.PLUS_PEOPLE_GET] = () => new GooglePlusPeopleGetCommand();
+    commandMap[GoogleEvents.PLUS_PEOPLE_GET] =
+        () => new GooglePlusPeopleGetCommand();
 
-    commandMap[GoogleEvents.PLUS_SHARE_RENDER] = () => new GooglePlusShareRenderCommand();
+    commandMap[GoogleEvents.PLUS_SHARE_RENDER] =
+        () => new GooglePlusShareRenderCommand();
 
-    commandMap[GoogleEvents.SPEECH_RECOGNIZE] = () => new GoogleSpeechRestCommand();
+    commandMap[GoogleEvents.SPEECH_RECOGNIZE] =
+        () => new GoogleSpeechRestCommand();
 
     projectInitCommand = GoogleEvents.INIT;
   }
@@ -33,7 +37,9 @@ class GooglePlugin extends AbstractRdPlugin {
    */
   @override
   void configureInjectors() {
-    RdContextUtil.registerInstance(objectFactory, MODEL_GOOGLE, new GoogleModel());
-    objectFactory.addObjectPostProcessor(new GoogleModelInjector(objectFactory));
+    RdContextUtil.registerInstance(
+        objectFactory, MODEL_GOOGLE, new GoogleModel());
+    objectFactory
+        .addObjectPostProcessor(new GoogleModelInjector(objectFactory));
   }
 }

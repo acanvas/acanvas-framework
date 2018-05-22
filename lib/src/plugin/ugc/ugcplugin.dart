@@ -20,25 +20,35 @@ class UGCPlugin extends AbstractOrderedFactoryPostProcessor {
     commandMap[UGCEvents.CREATE_ITEM] = () => new UGCCreateItemCommand();
     commandMap[UGCEvents.READ_ITEM] = () => new UGCReadItemCommand();
 
-    commandMap[UGCEvents.READ_ITEM_CONTAINER] = () => new UGCReadItemContainerCommand();
-    commandMap[UGCEvents.READ_ITEM_CONTAINERS_UID] = () => new UGCReadItemContainersByUIDCommand();
-    commandMap[UGCEvents.CREATE_ITEM_CONTAINER] = () => new UGCCreateItemContainerCommand();
+    commandMap[UGCEvents.READ_ITEM_CONTAINER] =
+        () => new UGCReadItemContainerCommand();
+    commandMap[UGCEvents.READ_ITEM_CONTAINERS_UID] =
+        () => new UGCReadItemContainersByUIDCommand();
+    commandMap[UGCEvents.CREATE_ITEM_CONTAINER] =
+        () => new UGCCreateItemContainerCommand();
 
     /* Gaming */
-    commandMap[GamingEvents.SET_SCORE_AT_LEVEL] = () => new GamingSetScoreAtLevelCommand();
-    commandMap[GamingEvents.GET_HIGHSCORE] = () => new GamingGetHighscoreCommand();
+    commandMap[GamingEvents.SET_SCORE_AT_LEVEL] =
+        () => new GamingSetScoreAtLevelCommand();
+    commandMap[GamingEvents.GET_HIGHSCORE] =
+        () => new GamingGetHighscoreCommand();
     commandMap[GamingEvents.GET_GAMES] = () => new GamingGetGamesCommand();
-    commandMap[GamingEvents.CHECK_PERMISSION_TO_PLAY] = () => new GamingCheckPermissionToPlayCommand();
-    commandMap[GamingEvents.CHECK_PERMISSION_TO_PLAY_LOCALE] = () => new GamingCheckPermissionToPlayLocaleCommand();
+    commandMap[GamingEvents.CHECK_PERMISSION_TO_PLAY] =
+        () => new GamingCheckPermissionToPlayCommand();
+    commandMap[GamingEvents.CHECK_PERMISSION_TO_PLAY_LOCALE] =
+        () => new GamingCheckPermissionToPlayLocaleCommand();
     commandMap[GamingEvents.SAVE_GAME] = () => new GamingSaveGameCommand();
 
     /* UGC (User Generated Content) */
     commandMap[UGCEvents.INIT] = () => new UGCInitCommand();
     commandMap[UGCEvents.TEST] = () => new UGCTestCommand();
     commandMap[UGCEvents.USER_REGISTER] = () => new UGCRegisterCommand();
-    commandMap[UGCEvents.USER_REGISTER_EXTENDED] = () => new UGCRegisterExtendedCommand();
-    commandMap[UGCEvents.USER_HAS_EXTENDED] = () => new UGCHasExtendedUserCommand();
-    commandMap[UGCEvents.USER_HAS_EXTENDED_TODAY] = () => new UGCHasExtendedUserTodayCommand();
+    commandMap[UGCEvents.USER_REGISTER_EXTENDED] =
+        () => new UGCRegisterExtendedCommand();
+    commandMap[UGCEvents.USER_HAS_EXTENDED] =
+        () => new UGCHasExtendedUserCommand();
+    commandMap[UGCEvents.USER_HAS_EXTENDED_TODAY] =
+        () => new UGCHasExtendedUserTodayCommand();
 
     commandMap[UGCEvents.ITEM_LIKE] = () => new UGCLikeCommand();
     commandMap[UGCEvents.ITEM_UNLIKE] = () => new UGCUnlikeCommand();
@@ -53,8 +63,10 @@ class UGCPlugin extends AbstractOrderedFactoryPostProcessor {
 
     commandMap[UGCEvents.TRACK_INVITE] = () => new UGCTrackInviteCommand();
 
-    commandMap[UGCEvents.TASK_GET_CATEGORIES] = () => new TaskGetCategoriesCommand();
-    commandMap[UGCEvents.TASK_GET_TASK_BY_CATEGORY] = () => new TaskGetTasksByCategoryCommand();
+    commandMap[UGCEvents.TASK_GET_CATEGORIES] =
+        () => new TaskGetCategoriesCommand();
+    commandMap[UGCEvents.TASK_GET_TASK_BY_CATEGORY] =
+        () => new TaskGetTasksByCategoryCommand();
 
     RdContextUtil.registerCommands(objectFactory, commandMap);
 

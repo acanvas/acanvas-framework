@@ -76,7 +76,8 @@ class UGCItemDTO implements IRdDTO {
 
       if (inputDTO["likers"] != null) {
         for (int i = 0; i < inputDTO["likers"].length; i++) {
-          inputDTO["likers"][i] = new UGCItemContainerRoleDTO(inputDTO["likers"][i]);
+          inputDTO["likers"][i] =
+              new UGCItemContainerRoleDTO(inputDTO["likers"][i]);
         }
       }
       likers = inputDTO["likers"];
@@ -97,15 +98,15 @@ class UGCItemDTO implements IRdDTO {
       "creator_uid": creator_uid,
       "title": title,
       "description": description,
-     // "like_count": like_count,
-     // "flag": flag,
-     // "timestamp": timestamp,
+      // "like_count": like_count,
+      // "flag": flag,
+      // "timestamp": timestamp,
       "type": type,
       "type_id": type_id,
-     // "rowindex": rowindex,
-     // "complain_count": complain_count,
-     // "totalrows": totalrows,
-     // "likers": likersMaps,
+      // "rowindex": rowindex,
+      // "complain_count": complain_count,
+      // "totalrows": totalrows,
+      // "likers": likersMaps,
       "type_dao": type_dao?.toJson(),
       //"creator": creator?.toJson(),
     };

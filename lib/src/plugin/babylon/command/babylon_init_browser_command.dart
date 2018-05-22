@@ -1,8 +1,8 @@
 part of rockdot_framework.babylon;
 
-
 class BabylonInitBrowserCommand extends RdCommand {
-  String babylonJSUrl = "https://cdnjs.cloudflare.com/ajax/libs/babylonjs/2.3.0/babylon.js";
+  String babylonJSUrl =
+      "https://cdnjs.cloudflare.com/ajax/libs/babylonjs/2.3.0/babylon.js";
 
   @override
   void execute([RdSignal event = null]) {

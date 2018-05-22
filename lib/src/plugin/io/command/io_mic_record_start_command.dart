@@ -17,16 +17,20 @@ class IOMicRecordStartCommand extends AbstractIOCommand {
     ioModel.mic_rightchannel.clear();
     ioModel.mic_recordingLength = 0;
 
-    html.window.navigator.getUserMedia(audio: true).then((html.MediaStream stream) {
+    html.window.navigator
+        .getUserMedia(audio: true)
+        .then((html.MediaStream stream) {
       AudioContext context = new AudioContext();
       ioModel.mic_sampleRate = context.sampleRate;
       print(ioModel.mic_sampleRate);
       GainNode volume = context.createGain();
-      MediaStreamAudioSourceNode audioInput = context.createMediaStreamSource(stream);
+      MediaStreamAudioSourceNode audioInput =
+          context.createMediaStreamSource(stream);
       audioInput.connectNode(volume);
 
       int bufferSize = 2048;
-      ScriptProcessorNode recorder = context.createScriptProcessor(bufferSize, 2, 2);
+      ScriptProcessorNode recorder =
+          context.createScriptProcessor(bufferSize, 2, 2);
 
       _stream = recorder.onAudioProcess.listen((AudioProcessingEvent e) {
         if (!ioModel.mic_recording) {
@@ -41,8 +45,10 @@ class IOMicRecordStartCommand extends AbstractIOCommand {
         log.info('recording');
 
         // process Data
-        ioModel.mic_leftchannel.add(new Float32List.fromList(e.inputBuffer.getChannelData(0)));
-        ioModel.mic_rightchannel.add(new Float32List.fromList(e.inputBuffer.getChannelData(1)));
+        ioModel.mic_leftchannel
+            .add(new Float32List.fromList(e.inputBuffer.getChannelData(0)));
+        ioModel.mic_rightchannel
+            .add(new Float32List.fromList(e.inputBuffer.getChannelData(1)));
         ioModel.mic_recordingLength += bufferSize;
       });
 

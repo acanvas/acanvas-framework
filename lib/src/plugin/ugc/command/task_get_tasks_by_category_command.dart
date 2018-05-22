@@ -1,6 +1,5 @@
 part of rockdot_framework.ugc;
 
-
 class TaskGetTasksByCategoryCommand extends AbstractUGCCommand {
   @override
   void execute([RdSignal event = null]) {

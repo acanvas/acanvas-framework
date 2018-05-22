@@ -11,7 +11,7 @@ class IOImageUploadCommand extends RdCommand {
     html.FormData formData = new html.FormData();
 
     //Convert target BitmapData to Blob
-    html.Blob blob = createImageBlob( vo.bmd.toDataUrl("image/jpeg", 0.95) );
+    html.Blob blob = createImageBlob(vo.bmd.toDataUrl("image/jpeg", 0.95));
 
     //Convert target BitmapData to Blob (Thumbnail)
     Bitmap b = new Bitmap(vo.bmd.clone());
@@ -21,7 +21,7 @@ class IOImageUploadCommand extends RdCommand {
     BitmapData thumb = new BitmapData(120, 120);
     thumb.draw(b);
     b.bitmapData.clear();
-    html.Blob blobThumb = createImageBlob( thumb.toDataUrl("image/jpeg", 0.95) );
+    html.Blob blobThumb = createImageBlob(thumb.toDataUrl("image/jpeg", 0.95));
 
     formData.appendBlob("Filedata", blob, "${vo.fileName}.jpg");
     formData.appendBlob("Filedata", blobThumb, "${vo.fileName}_thumb.jpg");
@@ -59,7 +59,6 @@ class IOImageUploadCommand extends RdCommand {
     html.Blob blob = new html.Blob([arrayBuffer], mimeString);
     return blob;
   }
-
 
   /**
    * @see http://stackoverflow.com/questions/22196593/make-picture-from-base64-on-client-side

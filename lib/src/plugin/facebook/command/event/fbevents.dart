@@ -21,7 +21,8 @@ class FBEvents {
 
   //expects nothing, sets _fbModel.user
   static const String USER_GETINFO = "CommandFB.USER_GETINFO";
-  static const String USER_GETINFO_PERMISSIONS = "CommandFB.USER_GETINFO_PERMISSIONS";
+  static const String USER_GETINFO_PERMISSIONS =
+      "CommandFB.USER_GETINFO_PERMISSIONS";
 
   //expects nothing, sets/returns _fbModel.friends (List<FBUserDataVO>)
   static const String FRIENDS_GET = "CommandFB.FRIENDS_GET";

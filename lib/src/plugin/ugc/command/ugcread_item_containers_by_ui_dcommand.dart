@@ -1,6 +1,5 @@
 part of rockdot_framework.ugc;
 
-
 class UGCReadItemContainersByUIDCommand extends AbstractUGCCommand {
   @override
   void execute([RdSignal event = null]) {
@@ -18,7 +17,8 @@ class UGCReadItemContainersByUIDCommand extends AbstractUGCCommand {
   bool dispatchCompleteEvent([dynamic result = null]) {
     _ugcModel.ownContainers = _createContainers(result["ownContainers"]);
     _ugcModel.followContainers = _createContainers(result["followContainers"]);
-    _ugcModel.participantContainers = _createContainers(result["participantContainers"]);
+    _ugcModel.participantContainers =
+        _createContainers(result["participantContainers"]);
     return super.dispatchCompleteEvent();
   }
 

@@ -23,7 +23,8 @@ part of rockdot_framework.core;
  * @author Roland Zwaga
  * @docref the_operation_api.html#composite_commands
  */
-class CompositeCommandWithEvent extends AbstractProgressOperation implements ICompositeCommand {
+class CompositeCommandWithEvent extends AbstractProgressOperation
+    implements ICompositeCommand {
   Logger LOGGER;
 
   /**
@@ -116,7 +117,8 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
           break;
       }
     } else {
-      LOGGER.info("No commands were added to this composite command. Dispatching complete event.");
+      LOGGER.info(
+          "No commands were added to this composite command. Dispatching complete event.");
       dispatchCompleteEvent();
     }
   }
@@ -134,7 +136,8 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   /**
    * @inheritDoc
    */
-  ICompositeCommand addCommandEvent(RdSignal event, IObjectFactory objectFactory) {
+  ICompositeCommand addCommandEvent(
+      RdSignal event, IObjectFactory objectFactory) {
     if (event == null) {
       LOGGER.info("The event argument must not be null");
       return null;
@@ -189,7 +192,8 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
 
     // execute the next command if the executed command was synchronous
     if (commandVO.command is IOperation) {
-      LOGGER.info("Command '{0}' is asynchronous. Waiting for response.", [commandVO.command]);
+      LOGGER.info("Command '{0}' is asynchronous. Waiting for response.",
+          [commandVO.command]);
     }
 
     commandVO.command.execute(commandVO.event);
@@ -198,7 +202,9 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
       dispatchAfterCommandEvent(commandVO.command);
       progress++;
       dispatchProgressEvent();
-      LOGGER.info("Command '{0}' is synchronous and is executed. Trying to execute next command.", [commandVO.command]);
+      LOGGER.info(
+          "Command '{0}' is synchronous and is executed. Trying to execute next command.",
+          [commandVO.command]);
       executeNextCommand();
     }
   }
@@ -215,11 +221,14 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
     int time = new DateTime.now().millisecondsSinceEpoch;
 
     if (nextCommand != null) {
-      LOGGER.info("Executing next command '{0}'. Remaining number of commands: '{1}'. Time: {2}",
+      LOGGER.info(
+          "Executing next command '{0}'. Remaining number of commands: '{1}'. Time: {2}",
           [nextCommand.command, _commands.length, time - _timer]);
       executeCommand(nextCommand);
     } else {
-      LOGGER.info("All commands in '{0}' have been executed. Dispatching 'complete' event.", [this]);
+      LOGGER.info(
+          "All commands in '{0}' have been executed. Dispatching 'complete' event.",
+          [this]);
       dispatchCompleteEvent();
     }
   }
@@ -285,7 +294,9 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
   void onCommandResult(OperationEvent event) {
     progress++;
     dispatchProgressEvent();
-    LOGGER.info("Asynchronous command '{0}' returned result. Executing next command.", [event.target]);
+    LOGGER.info(
+        "Asynchronous command '{0}' returned result. Executing next command.",
+        [event.target]);
     removeCommandListeners((event.target as IOperation));
     dispatchAfterCommandEvent((event.target as ICommand));
     switch (_kind) {
@@ -324,7 +335,8 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
     if (command == null) {
       LOGGER.warning("the command argument must not be null");
     } else {
-      dispatchEvent(new CompositeCommandEvent(CompositeCommandEvent.AFTER_EXECUTE_COMMAND, command));
+      dispatchEvent(new CompositeCommandEvent(
+          CompositeCommandEvent.AFTER_EXECUTE_COMMAND, command));
     }
   }
 
@@ -332,7 +344,8 @@ class CompositeCommandWithEvent extends AbstractProgressOperation implements ICo
     if (command == null) {
       LOGGER.warning("the command argument must not be null");
     } else {
-      dispatchEvent(new CompositeCommandEvent(CompositeCommandEvent.BEFORE_EXECUTE_COMMAND, command));
+      dispatchEvent(new CompositeCommandEvent(
+          CompositeCommandEvent.BEFORE_EXECUTE_COMMAND, command));
     }
   }
 

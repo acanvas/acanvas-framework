@@ -1,6 +1,5 @@
 part of rockdot_framework.screen;
 
-
 class ScreenLoadCommand extends AbstractScreenCommand {
   @override
   void execute([RdSignal event = null]) {
@@ -16,7 +15,8 @@ class ScreenLoadCommand extends AbstractScreenCommand {
     if (ui.requiresLoading == true) {
       new RdSignal(
               StateEvents.MESSAGE_SHOW,
-              new StateMessageVO("lifecycle.load", getProperty("screen.common.loading"), 0,
+              new StateMessageVO(
+                  "lifecycle.load", getProperty("screen.common.loading"), 0,
                   type: StateMessageVO.TYPE_LOADING, blurContent: false))
           .dispatch();
       ui.load(params: _stateModel.currentStateURLParams).then((_) {

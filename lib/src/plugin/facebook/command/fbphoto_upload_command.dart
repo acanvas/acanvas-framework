@@ -1,6 +1,5 @@
 part of rockdot_framework.facebook;
 
-
 class FBPhotoUploadCommand extends AbstractFBCommand {
   @override
   void execute([RdSignal event = null]) {
@@ -14,7 +13,9 @@ class FBPhotoUploadCommand extends AbstractFBCommand {
       showMessage(getProperty("message.facebook.sending.image"));
 
       //Convert target BitmapData to Blob (TODO revoke url after upload)
-      String mimetype = vo.fileName.contains(new RegExp("jpg|jpeg")) ? "image/jpeg" : "image/png";
+      String mimetype = vo.fileName.contains(new RegExp("jpg|jpeg"))
+          ? "image/jpeg"
+          : "image/png";
 
       String url = vo.bmd.toDataUrl(mimetype, 0.8);
       html.Blob blob = createImageBlob(url);
@@ -31,7 +32,9 @@ class FBPhotoUploadCommand extends AbstractFBCommand {
         formData.append("place", vo.place);
       }
 
-      sendData("https://graph.facebook.com/${vo.album_id}/photos?access_token=${_fbModel.accessToken}", formData);
+      sendData(
+          "https://graph.facebook.com/${vo.album_id}/photos?access_token=${_fbModel.accessToken}",
+          formData);
     } else if (vo.url != null) {
       Map queryMap = {"no_story": vo.no_story, "url": vo.url};
 
@@ -43,7 +46,8 @@ class FBPhotoUploadCommand extends AbstractFBCommand {
       }
 
       js.JsObject queryConfig = new js.JsObject.jsify(queryMap);
-      _fbModel.FB.callMethod("api", ["/${vo.album_id}/photos", "post", queryConfig, _handleResult]);
+      _fbModel.FB.callMethod("api",
+          ["/${vo.album_id}/photos", "post", queryConfig, _handleResult]);
     } else {
       dispatchErrorEvent("Neither bmd nor url set in VOFBPhotoUpload.");
     }
@@ -51,8 +55,9 @@ class FBPhotoUploadCommand extends AbstractFBCommand {
 
   void sendData(String url, html.FormData formData) {
     html.HttpRequest req = new html.HttpRequest();
-    req.onReadyStateChange.listen((html.ProgressEvent e) {
-      if (req.readyState == html.HttpRequest.DONE && (req.status == 200 || req.status == 0)) {
+    req.onReadyStateChange.listen((html.Event e) {
+      if (req.readyState == html.HttpRequest.DONE &&
+          (req.status == 200 || req.status == 0)) {
         dispatchCompleteEvent();
       }
     });

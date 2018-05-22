@@ -1,6 +1,5 @@
 part of rockdot_framework.facebook;
 
-
 class FBUserGetInfoPermissionsCommand extends AbstractFBCommand {
   @override
   void execute([RdSignal event = null]) {
@@ -9,7 +8,8 @@ class FBUserGetInfoPermissionsCommand extends AbstractFBCommand {
     if (notLoggedIn(event)) return;
 
     js.JsObject queryConfig = new js.JsObject.jsify({});
-    _fbModel.FB.callMethod("api", ["/me/permissions", "get", queryConfig, _handleResult]);
+    _fbModel.FB.callMethod(
+        "api", ["/me/permissions", "get", queryConfig, _handleResult]);
   }
 
   void _handleResult(js.JsObject response, [js.JsObject fail = null]) {

@@ -1,6 +1,5 @@
 part of rockdot_framework.facebook;
 
-
 class FBLoginBrowserCommand extends AbstractFBCommand {
   RdSignal _nextSignal;
 
@@ -20,9 +19,11 @@ class FBLoginBrowserCommand extends AbstractFBCommand {
       }
       dispatchCompleteEvent();
     } else {
-      showMessage(getProperty("message.facebook.login.waiting"), blur: true, type: StateMessageVO.TYPE_WAITING);
+      showMessage(getProperty("message.facebook.login.waiting"),
+          blur: true, type: StateMessageVO.TYPE_WAITING);
 
-      js.JsObject loginConfig = new js.JsObject.jsify({"scope": scopes, "return_scopes": true});
+      js.JsObject loginConfig =
+          new js.JsObject.jsify({"scope": scopes, "return_scopes": true});
 
       _fbModel.FB.callMethod("login", [_handleLogin, loginConfig]);
     }
@@ -39,7 +40,8 @@ class FBLoginBrowserCommand extends AbstractFBCommand {
       _fbModel.user = new FBUserVO()..uid = response["authResponse"]["userID"];
 
       if (response["authResponse"]["grantedScopes"] != null) {
-        _fbModel.userPermissions = response["authResponse"]["grantedScopes"].split(",");
+        _fbModel.userPermissions =
+            response["authResponse"]["grantedScopes"].split(",");
         //TODO check if the requested permissions have been granted (because user could have clicked "not now")
       }
 

@@ -1,6 +1,5 @@
 part of rockdot_framework.facebook;
 
-
 class FBPhotoGetFromAlbumCommand extends AbstractFBCommand {
   DataRetrieveVO _vo;
 
@@ -23,7 +22,8 @@ class FBPhotoGetFromAlbumCommand extends AbstractFBCommand {
     }
 
     js.JsObject queryConfig = new js.JsObject.jsify({});
-    _fbModel.FB.callMethod("api", ["/$id/photos", "get", queryConfig, _handleResult]);
+    _fbModel.FB
+        .callMethod("api", ["/$id/photos", "get", queryConfig, _handleResult]);
   }
 
   void _handleResult(js.JsObject response) {

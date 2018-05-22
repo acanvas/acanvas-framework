@@ -11,7 +11,8 @@ abstract class MApplicationContextAware implements IApplicationContextAware {
     _context = ctx;
   }
 
-  String getProperty(String key, [bool omitPrefix = false, String prefix = ""]) {
+  String getProperty(String key,
+      [bool omitPrefix = false, String prefix = ""]) {
     if (_context == null) {
       return "no context";
     }

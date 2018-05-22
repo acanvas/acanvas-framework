@@ -144,6 +144,7 @@ class UGCModel {
     gaming = new UGCGamingModel();
   }
 
+  //ignore: unused_element
   List _convertDateTime(List entries) {
     for (int i = 0; i < entries.length; i++) {
       Map vo = entries[i];
@@ -168,7 +169,8 @@ class UGCModel {
     return _currentItemContainerDAO;
   }
 
-  void set currentItemContainerDAO(UGCItemContainerDTO currentItemContainerDAO) {
+  void set currentItemContainerDAO(
+      UGCItemContainerDTO currentItemContainerDAO) {
     _currentItemContainerDAO = currentItemContainerDAO;
   }
 

@@ -1,7 +1,7 @@
 part of rockdot_framework.core;
 
 class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
-  Map commandMap = new Map();
+  Map<String, Function> commandMap = new Map();
   String projectInitCommand;
   IObjectFactory objectFactory;
 
@@ -45,7 +45,8 @@ class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
   }
 
   void addTransition(String id, IEffect eff, num duration,
-      [String transitionType = ScreenConstants.TRANSITION_PARALLEL, num initialAlpha = 0]) {
+      [String transitionType = ScreenConstants.TRANSITION_PARALLEL,
+      num initialAlpha = 0]) {
     eff.duration = duration;
     eff.type = transitionType;
     eff.initialAlpha = initialAlpha;
@@ -68,9 +69,14 @@ class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
       int tree_order: 0,
       int tree_parent: 0,
       String transition: "transition.default"}) {
-    url = url == null ? objectFactory.propertiesProvider.getProperty("$id.url") : url;
+    url = url == null
+        ? objectFactory.propertiesProvider.getProperty("$id.url")
+        : url;
     RdContextUtil.registerScreen(objectFactory, id, func, url,
-        tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate);
+        tree_order: tree_order,
+        tree_parent: tree_parent,
+        transition: transition,
+        substate: substate);
   }
 
   void addScreenInstance(RockdotLifecycleSprite clazz,
@@ -79,13 +85,21 @@ class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
       int tree_order: 0,
       int tree_parent: 0,
       String transition: "transition.default"}) {
-    url = url == null ? objectFactory.propertiesProvider.getProperty("${clazz.name}.url") : url;
+    url = url == null
+        ? objectFactory.propertiesProvider.getProperty("${clazz.name}.url")
+        : url;
     RdContextUtil.registerScreenInstance(objectFactory, clazz.name, clazz, url,
-        tree_order: tree_order, tree_parent: tree_parent, transition: transition, substate: substate);
+        tree_order: tree_order,
+        tree_parent: tree_parent,
+        transition: transition,
+        substate: substate);
   }
 
   void addLayer(String id, Function func,
-      {String url, int tree_order: 0, int tree_parent: 0, String transition: "transition.default.modal"}) {
+      {String url,
+      int tree_order: 0,
+      int tree_parent: 0,
+      String transition: "transition.default.modal"}) {
     addScreen(id, func,
         url: url,
         tree_order: tree_order,
@@ -95,7 +109,10 @@ class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
   }
 
   void addLayerInstance(RockdotLifecycleSprite clazz,
-      {String url, int tree_order: 0, int tree_parent: 0, String transition: "transition.default.modal"}) {
+      {String url,
+      int tree_order: 0,
+      int tree_parent: 0,
+      String transition: "transition.default.modal"}) {
     addScreenInstance(clazz,
         url: url,
         tree_order: tree_order,

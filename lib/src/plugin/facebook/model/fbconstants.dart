@@ -7,7 +7,8 @@ class FBConstants {
   static const String VAR_ITEM_ID = "item_id";
   static const String VAR_REASON_KEY = "reason";
   static const String VAR_REASON_VALUE_APPREQUEST_VIEW = "apprequest_view";
-  static const String VAR_REASON_VALUE_APPREQUEST_PARTICIPATE = "apprequest_participate";
+  static const String VAR_REASON_VALUE_APPREQUEST_PARTICIPATE =
+      "apprequest_participate";
   static const String VAR_REASON_VALUE_SHARE = "share";
 
   /**
@@ -15,7 +16,6 @@ class FBConstants {
    *  mostly set if there's an initial deeplink (which can't be set as Anchor via Facebook's Frame)
    */
   static String URLVAR(String key) {
-
     //TODO decode app_data
     /*
       //retrieve URLVariable ("app_data")
@@ -38,5 +38,4 @@ class FBConstants {
      */
     return key;
   }
-
 }

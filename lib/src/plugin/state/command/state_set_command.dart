@@ -5,25 +5,29 @@ part of rockdot_framework.state;
  */
 
 class StateSetCommand extends AbstractStateCommand {
-
   @override
   dynamic execute([RdSignal event = null]) {
     super.execute(event);
 
     bool saveHistory = true;
-    if (_stateModel.historyCount > 0 && _stateModel.history[_stateModel.historyCount].url == event.data.url) {
+    if (_stateModel.historyCount > 0 &&
+        _stateModel.history[_stateModel.historyCount].url == event.data.url) {
       saveHistory = false;
     }
 
     _setStateVO(event.data, saveHistory);
-    this.log.finer("Go  to: count {0}, url {1}, history: {2}",
-        [_stateModel.historyCount, _stateModel.history[_stateModel.historyCount].url, saveHistory]);
+    this.log.finer("Go  to: count {0}, url {1}, history: {2}", [
+      _stateModel.historyCount,
+      _stateModel.history[_stateModel.historyCount].url,
+      saveHistory
+    ]);
 
     return null;
   }
 
   void _setStateVO(StateVO stateVO, bool saveToHistory) {
-    if (_stateModel.currentStateVO == null || stateVO.url != _stateModel.currentStateVO.url) {
+    if (_stateModel.currentStateVO == null ||
+        stateVO.url != _stateModel.currentStateVO.url) {
       // initial view after app start
 
       StateVO oldStateVO = _stateModel.currentStateVO;
@@ -31,8 +35,11 @@ class StateSetCommand extends AbstractStateCommand {
       _stateModel.currentStateVO = stateVO;
       _stateModel.currentStateURLParams = stateVO.params;
 
-      new RdSignal(StateEvents.STATE_CHANGE, new StateChangeVO(oldStateVO, stateVO), dispatchCompleteEvent).dispatch();
-      new RdSignal(StateEvents.STATE_PARAMS_CHANGE, _stateModel.currentStateVO).dispatch();
+      new RdSignal(StateEvents.STATE_CHANGE,
+              new StateChangeVO(oldStateVO, stateVO), dispatchCompleteEvent)
+          .dispatch();
+      new RdSignal(StateEvents.STATE_PARAMS_CHANGE, _stateModel.currentStateVO)
+          .dispatch();
 
       if (saveToHistory) {
         _addToHistory(_stateModel.currentStateVO);

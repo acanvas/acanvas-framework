@@ -2,7 +2,6 @@ part of rockdot_framework.facebook;
 
 //https://developers.facebook.com/docs/games/requests/v2.1
 
-
 class FBPromptInviteBrowserCommand extends AbstractFBCommand {
   VOFBInvite _vo;
 
@@ -17,11 +16,14 @@ class FBPromptInviteBrowserCommand extends AbstractFBCommand {
     _vo.method = "apprequests";
     _vo.display = "iframe";
 
-    String reason = _vo.reason != null ? _vo.reason : FBConstants.VAR_REASON_VALUE_APPREQUEST_VIEW;
+    String reason = _vo.reason != null
+        ? _vo.reason
+        : FBConstants.VAR_REASON_VALUE_APPREQUEST_VIEW;
 
     //assemble data payload as query string.
     //supported pairs: item_id=X OR item_container_id=Y
-    _vo.data = html.window.btoa(_vo.data + "&reason=" + reason + "&uid=" + _fbModel.user.uid);
+    _vo.data = html.window
+        .btoa(_vo.data + "&reason=" + reason + "&uid=" + _fbModel.user.uid);
 
     Map inviteMap = {
       "method": _vo.method,
@@ -55,7 +57,8 @@ class FBPromptInviteBrowserCommand extends AbstractFBCommand {
 
     _fbModel.FB.callMethod("ui", [inviteConfig, _handleResult]);
 
-    showMessage(getProperty("message.facebook.invite.waiting"), blur: true, type: StateMessageVO.TYPE_WAITING);
+    showMessage(getProperty("message.facebook.invite.waiting"),
+        blur: true, type: StateMessageVO.TYPE_WAITING);
   }
 
   void _handleResult(js.JsArray response) {

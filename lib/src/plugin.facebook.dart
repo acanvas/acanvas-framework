@@ -7,8 +7,10 @@ import 'dart:convert';
 
 /* Rockdot depends on StageXL */
 import 'package:stagexl/stagexl.dart' show BitmapData;
-import 'package:rockdot_commons/rockdot_commons.dart' show RdSignal, CompositeCommandKind, Assert, OperationEvent;
-import 'package:rockdot_spring/rockdot_spring.dart' show IObjectPostProcessor, IObjectFactory;
+import 'package:rockdot_commons/rockdot_commons.dart'
+    show RdSignal, CompositeCommandKind, Assert, OperationEvent;
+import 'package:rockdot_spring/rockdot_spring.dart'
+    show IObjectPostProcessor, IObjectFactory;
 
 import 'core.dart';
 import 'core.plugin.state.dart' show StateMessageVO;

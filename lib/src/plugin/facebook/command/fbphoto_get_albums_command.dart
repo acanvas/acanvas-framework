@@ -1,6 +1,5 @@
 part of rockdot_framework.facebook;
 
-
 class FBPhotoGetAlbumsCommand extends AbstractFBCommand {
   @override
   void execute([RdSignal event = null]) {
@@ -12,7 +11,8 @@ class FBPhotoGetAlbumsCommand extends AbstractFBCommand {
     String uid = _fbModel.user.uid;
 
     js.JsObject queryConfig = new js.JsObject.jsify({});
-    _fbModel.FB.callMethod("api", ["/$uid/albums", "get", queryConfig, _handleResult]);
+    _fbModel.FB
+        .callMethod("api", ["/$uid/albums", "get", queryConfig, _handleResult]);
   }
 
   void _handleResult(js.JsObject response) {

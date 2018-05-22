@@ -1,12 +1,14 @@
 part of rockdot_framework.ugc;
 
-
 class GamingCheckPermissionToPlayLocaleCommand extends AbstractUGCCommand {
   @override
   void execute([RdSignal event = null]) {
     super.execute(event);
 
-    Map dto = {'uid': _ugcModel.userDAO.uid, 'locale': RdConstants.LANGUAGE + "_" + RdConstants.MARKET};
+    Map dto = {
+      'uid': _ugcModel.userDAO.uid,
+      'locale': RdConstants.LANGUAGE + "_" + RdConstants.MARKET
+    };
 
     amfOperation("GamingEndpoint.checkPermissionToPlayLocale", map: dto);
   }

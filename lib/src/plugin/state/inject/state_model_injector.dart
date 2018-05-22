@@ -37,7 +37,8 @@ class StateModelInjector implements IObjectPostProcessor {
    */
   dynamic postProcessAfterInitialization(dynamic object, String objectName) {
     if (object is IStateModelAware) {
-      object.stateModel = _applicationContext.getObject(StateConstants.CTX_MODEL_STATE);
+      object.stateModel =
+          _applicationContext.getObject(StateConstants.CTX_MODEL_STATE);
     }
 
     return object;

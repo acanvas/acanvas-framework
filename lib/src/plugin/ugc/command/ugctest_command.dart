@@ -1,6 +1,5 @@
 part of rockdot_framework.ugc;
 
-
 class UGCTestCommand extends AbstractUGCCommand {
   int _itemContainerID = 1;
   int _itemID = 1;
@@ -9,18 +8,22 @@ class UGCTestCommand extends AbstractUGCCommand {
   void execute([RdSignal event = null]) {
     super.execute(event);
 
-    CompositeCommandWithEvent compositeCommand = new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
+    CompositeCommandWithEvent compositeCommand =
+        new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
 
     /* ******************** REGISTER USER ******************* */
 
     UGCUserDTO user = new UGCUserDTO();
     user.network = UGCUserDTO.NETWORK_INPUTFORM;
     user.name = "Test User";
-    user.pic = "http://profile.ak.fbcdn.net/static-ak/rsrc.php/v1/yo/r/UlIqmHJn-SK.gif";
+    user.pic =
+        "http://profile.ak.fbcdn.net/static-ak/rsrc.php/v1/yo/r/UlIqmHJn-SK.gif";
     user.uid = "1234567890";
     user.locale = "de_DE";
 
-    compositeCommand.addCommandEvent(new RdSignal(UGCEvents.USER_REGISTER, user, _onUserRegister), applicationContext);
+    compositeCommand.addCommandEvent(
+        new RdSignal(UGCEvents.USER_REGISTER, user, _onUserRegister),
+        applicationContext);
 
     /* ******************** REGISTER USER (EXTENDED) ******************* */
 
@@ -35,7 +38,9 @@ class UGCTestCommand extends AbstractUGCCommand {
     userExt.city = "70190 Nowhere";
 
     compositeCommand.addCommandEvent(
-        new RdSignal(UGCEvents.USER_REGISTER_EXTENDED, userExt, _onUserRegisterExtended), applicationContext);
+        new RdSignal(
+            UGCEvents.USER_REGISTER_EXTENDED, userExt, _onUserRegisterExtended),
+        applicationContext);
 
     /* ******************** SEND CONFIRMATION MAIL ******************* */
 
@@ -48,7 +53,9 @@ class UGCTestCommand extends AbstractUGCCommand {
     albumVO.title = "Album von " + user.name;
 
     compositeCommand.addCommandEvent(
-        new RdSignal(UGCEvents.CREATE_ITEM_CONTAINER, albumVO, _onCreateItemContainer), applicationContext);
+        new RdSignal(
+            UGCEvents.CREATE_ITEM_CONTAINER, albumVO, _onCreateItemContainer),
+        applicationContext);
 
     /* ******************** CREATE IMAGE ITEM ******************* */
 
@@ -57,49 +64,64 @@ class UGCTestCommand extends AbstractUGCCommand {
     itemDAO.title = "Test Image Title";
     itemDAO.description = "Test Image Description";
 
-    String filenamePrefix = "test_" + (new math.Random().nextDouble()).toString();
+    String filenamePrefix =
+        "test_" + (new math.Random().nextDouble()).toString();
     String filenameBig = filenamePrefix + ".jpg";
     String filenameThumb = filenamePrefix + "_thumb.jpg";
 
     UGCImageItemDTO imageDAO = new UGCImageItemDTO();
     imageDAO.url_big = getProperty("project.host.download") + "/" + filenameBig;
-    imageDAO.url_thumb = getProperty("project.host.download") + "/" + filenameThumb;
+    imageDAO.url_thumb =
+        getProperty("project.host.download") + "/" + filenameThumb;
     imageDAO.w = 100;
     imageDAO.h = 100;
 
     itemDAO.type = UGCItemDTO.TYPE_IMAGE;
     itemDAO.type_dao = imageDAO;
 
-    compositeCommand.addCommandEvent(new RdSignal(UGCEvents.CREATE_ITEM, itemDAO, _onCreateItem), applicationContext);
+    compositeCommand.addCommandEvent(
+        new RdSignal(UGCEvents.CREATE_ITEM, itemDAO, _onCreateItem),
+        applicationContext);
 
     /* ******************** READ ITEM CONTAINER ******************* */
 
     compositeCommand.addCommandEvent(
-        new RdSignal(UGCEvents.READ_ITEM_CONTAINER, _itemContainerID, _onReadItemContainer), applicationContext);
+        new RdSignal(UGCEvents.READ_ITEM_CONTAINER, _itemContainerID,
+            _onReadItemContainer),
+        applicationContext);
 
     /* ******************** READ ITEM ******************* */
 
-    compositeCommand.addCommandEvent(new RdSignal(UGCEvents.READ_ITEM, _itemID, _onReadItem), applicationContext);
+    compositeCommand.addCommandEvent(
+        new RdSignal(UGCEvents.READ_ITEM, _itemID, _onReadItem),
+        applicationContext);
 
     /* ******************** READ ITEM CONTAINERS (BY UID) ******************* */
 
     compositeCommand.addCommandEvent(
-        new RdSignal(UGCEvents.READ_ITEM_CONTAINERS_UID, user.uid, _onReadItemByUID), applicationContext);
+        new RdSignal(
+            UGCEvents.READ_ITEM_CONTAINERS_UID, user.uid, _onReadItemByUID),
+        applicationContext);
 
     /* ******************** LIKE ITEM ******************* */
 
     compositeCommand.addCommandEvent(
-        new RdSignal(UGCEvents.ITEM_LIKE, _itemID, _onLikeOrComplainOrRateItem), applicationContext);
+        new RdSignal(UGCEvents.ITEM_LIKE, _itemID, _onLikeOrComplainOrRateItem),
+        applicationContext);
 
     /* ******************** COMPLAIN ITEM ******************* */
 
     compositeCommand.addCommandEvent(
-        new RdSignal(UGCEvents.ITEM_COMPLAIN, _itemID, _onLikeOrComplainOrRateItem), applicationContext);
+        new RdSignal(
+            UGCEvents.ITEM_COMPLAIN, _itemID, _onLikeOrComplainOrRateItem),
+        applicationContext);
 
     /* ******************** RATE ITEM ******************* */
     UGCRatingVO rateItem = new UGCRatingVO(_itemID, 3);
     compositeCommand.addCommandEvent(
-        new RdSignal(UGCEvents.ITEM_RATE, rateItem, _onLikeOrComplainOrRateItem), applicationContext);
+        new RdSignal(
+            UGCEvents.ITEM_RATE, rateItem, _onLikeOrComplainOrRateItem),
+        applicationContext);
 
     /* ******************** SET GAME SCORE ******************* */
     /*
@@ -119,7 +141,6 @@ class UGCTestCommand extends AbstractUGCCommand {
     compositeCommand.execute();
   }
 
-
 /*
   void _onUserRegister([List event = null]) {
     Assert.notNull(event, "result is null");
@@ -129,60 +150,75 @@ class UGCTestCommand extends AbstractUGCCommand {
 
 */
   void _onUserRegister([int result = null]) {
-    this.log.info("_onUserRegister, Insert ID: ${result} (0 if user already present)");
+    this.log.info(
+        "_onUserRegister, Insert ID: ${result} (0 if user already present)");
     Assert.notNull(result, "result is null");
   }
 
   void _onUserRegisterExtended([int result = null]) {
-    this.log.info("_onUserRegisterExtended, Insert ID: ${result} (0 if user already present)");
+    this.log.info(
+        "_onUserRegisterExtended, Insert ID: ${result} (0 if user already present)");
     Assert.notNull(result, "result is null");
   }
 
   void _onCreateItemContainer([int result = null]) {
-    this.log.info("_onCreateItemContainer, Insert ID: ${result} (0 if container already present)");
+    this.log.info(
+        "_onCreateItemContainer, Insert ID: ${result} (0 if container already present)");
     Assert.notNull(result, "result is null");
     _itemContainerID = result;
   }
 
   void _onCreateItem([int result = null]) {
-    this.log.info("_onCreateItem, Insert ID: ${result} (0 if item already present)");
+    this.log.info(
+        "_onCreateItem, Insert ID: ${result} (0 if item already present)");
     Assert.notNull(result, "result is null");
     _itemID = result;
   }
 
   void _onReadItemContainer(UGCItemContainerDTO container) {
     Assert.notNull(container, "_onReadItemContainer, container is null");
-    Assert.notNull(
-        _ugcModel.currentItemContainerDAO, "_onReadItemContainer, _ugcModel.currentItemContainerDAO is null");
+    Assert.notNull(_ugcModel.currentItemContainerDAO,
+        "_onReadItemContainer, _ugcModel.currentItemContainerDAO is null");
   }
 
   void _onReadItemByUID() {
-    this.log.info("_ugcModel.ownContainers: " + _ugcModel.ownContainers.toString());
-    this.log.info("_ugcModel.followContainers: " + _ugcModel.followContainers.toString());
-    this.log.info("_ugcModel.participantContainers: " + _ugcModel.participantContainers.toString());
+    this
+        .log
+        .info("_ugcModel.ownContainers: " + _ugcModel.ownContainers.toString());
+    this.log.info(
+        "_ugcModel.followContainers: " + _ugcModel.followContainers.toString());
+    this.log.info("_ugcModel.participantContainers: " +
+        _ugcModel.participantContainers.toString());
   }
 
   void _onReadItem(UGCItemDTO item) {
     Assert.notNull(item, "_onReadItem, item is null");
-    Assert.notNull(_ugcModel.currentItemDAO, "_onReadItem, _ugcModel.currentItemDAO is null");
+    Assert.notNull(_ugcModel.currentItemDAO,
+        "_onReadItem, _ugcModel.currentItemDAO is null");
   }
 
   void _onLikeOrComplainOrRateItem(String str) {
     Assert.isTrue(str == "ok", "Something went wrong in the backend.");
   }
 
+  //ignore: unused_element
   void _onSetScore(Map dao) {
     this.log.info("User Rank: " + dao["rank"].toString());
     this.log.info("User Score: " + dao["score"].toString());
   }
 
+  //ignore: unused_element
   void _onGetHighscore() {
-    this.log.info("_ugcModel.gaming.highscoreFriends: " + _ugcModel.gaming.highscoreFriends.toString());
-    this.log.info("_ugcModel.gaming.highscoreAll: " + _ugcModel.gaming.highscoreAll.toString());
+    this.log.info("_ugcModel.gaming.highscoreFriends: " +
+        _ugcModel.gaming.highscoreFriends.toString());
+    this.log.info("_ugcModel.gaming.highscoreAll: " +
+        _ugcModel.gaming.highscoreAll.toString());
     this.log.info("_ugcModel.gaming.rank: " + _ugcModel.gaming.rank.toString());
   }
 
+  //ignore: unused_element
   void _onMailSent(String str) {
-    Assert.isTrue(str == "Message successfully sent!", "Something went wrong in the backend.");
+    Assert.isTrue(str == "Message successfully sent!",
+        "Something went wrong in the backend.");
   }
 }

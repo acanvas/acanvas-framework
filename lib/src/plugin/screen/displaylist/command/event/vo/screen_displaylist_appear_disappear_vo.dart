@@ -8,5 +8,6 @@ class ScreenDisplaylistAppearDisappearVO implements IRdVO {
   double duration;
   bool autoDispose;
 
-  ScreenDisplaylistAppearDisappearVO(this.target, this.duration, [this.autoDispose = false]) {}
+  ScreenDisplaylistAppearDisappearVO(this.target, this.duration,
+      [this.autoDispose = false]) {}
 }

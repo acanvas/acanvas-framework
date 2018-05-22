@@ -19,13 +19,15 @@ class UGCEvents {
 
   //expects DAOUGCCRUD, returns OperationEvent with result = List<UGCItemDAO>
   static const String READ_ITEM_CONTAINER = "UGCEvents.READ_ITEM_CONTAINER";
-  static const String READ_ITEM_CONTAINERS_UID = "UGCEvents.READ_ITEM_CONTAINERS_UID";
+  static const String READ_ITEM_CONTAINERS_UID =
+      "UGCEvents.READ_ITEM_CONTAINERS_UID";
 
   //expects nothing, uses _ugcModel.userDAO or creates new User (from FB data!), returns UserDAO
   static const String USER_REGISTER = "UGCEvents.USER_REGISTER";
 
   //expects nothing, uses _ugcModel.userDAO or creates new User (from FB data!), returns UserDAO, sets _ugcModel.userDAO
-  static const String USER_REGISTER_EXTENDED = "UGCEvents.USER_REGISTER_EXTENDED";
+  static const String USER_REGISTER_EXTENDED =
+      "UGCEvents.USER_REGISTER_EXTENDED";
 
   //expects nothing, uses .properties and _ugcModel.userSweepstakeDAO.email
   static const String USER_MAIL_SEND = "UGCEvents.USER_MAIL_SEND";
@@ -66,10 +68,13 @@ class UGCEvents {
   static const String TASK_GET_CATEGORIES = "UGCEvents.TASK_GET_CATEGORIES";
 
   //TASK: Get Tasks by Category
-  static const String TASK_GET_TASK_BY_CATEGORY = "UGCEvents.TASK_GET_TASK_BY_CATEGORY";
+  static const String TASK_GET_TASK_BY_CATEGORY =
+      "UGCEvents.TASK_GET_TASK_BY_CATEGORY";
 
   //TASK: Assign Task to Itemcontainer
-  static const String TASK_ASSIGN_TO_CONTAINER = "UGCEvents.TASK_ASSIGN_TO_CONTAINER";
+  static const String TASK_ASSIGN_TO_CONTAINER =
+      "UGCEvents.TASK_ASSIGN_TO_CONTAINER";
   static const String USER_HAS_EXTENDED = "UGCEvents.USER_READ_EXTENDED";
-  static const String USER_HAS_EXTENDED_TODAY = "UGCEvents.USER_HAS_EXTENDED_TODAY";
+  static const String USER_HAS_EXTENDED_TODAY =
+      "UGCEvents.USER_HAS_EXTENDED_TODAY";
 }

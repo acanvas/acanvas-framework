@@ -6,7 +6,8 @@ class RockdotBoxSprite extends BoxSprite with MApplicationContextAware {
   }
 
   @override
-  String getProperty(String key, [bool omitPrefix = false, String prefix = ""]) {
+  String getProperty(String key,
+      [bool omitPrefix = false, String prefix = ""]) {
     return super.getProperty(key, omitPrefix, this.name);
   }
 }

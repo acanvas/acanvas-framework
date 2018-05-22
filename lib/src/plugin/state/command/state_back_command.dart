@@ -11,10 +11,15 @@ class StateBackCommand extends AbstractStateCommand {
 
     if (_stateModel.historyCount != 0) {
       _stateModel.historyCount--;
-      this.log.finer("Go back to: count {0}, url {1}, history: false",
-          [_stateModel.historyCount, _stateModel.history[_stateModel.historyCount].url]);
+      this.log.finer("Go back to: count {0}, url {1}, history: false", [
+        _stateModel.historyCount,
+        _stateModel.history[_stateModel.historyCount].url
+      ]);
     }
-    new RdSignal(StateEvents.ADDRESS_SET, _stateModel.history[_stateModel.historyCount].url, dispatchCompleteEvent)
+    new RdSignal(
+            StateEvents.ADDRESS_SET,
+            _stateModel.history[_stateModel.historyCount].url,
+            dispatchCompleteEvent)
         .dispatch();
 
     return null;

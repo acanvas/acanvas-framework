@@ -30,7 +30,12 @@ class UGCFilterVO extends DataRetrieveVO {
   UGCFilterVO(this.condition, this.order, int limit) : super(limit) {}
 
   Map toMap() {
-    Map map = {"condition": condition, "order": order, "limit": limit, "nextToken": nextToken};
+    Map map = {
+      "condition": condition,
+      "order": order,
+      "limit": limit,
+      "nextToken": nextToken
+    };
 
     switch (condition) {
       case CONDITION_FRIENDS:

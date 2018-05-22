@@ -45,12 +45,14 @@ class ServerProxy {
      */
 
     if (params == null) params = [];
-    var package = new JsonRpcMethod(method, params, notify: notify, serverVersion: serverVersion);
+    var package = new JsonRpcMethod(method, params,
+        notify: notify, serverVersion: serverVersion);
     if (notify) {
       _executeRequest(package);
       return new Future(() => null);
     } else
-      return _executeRequest(package).then((rpcResponse) => handleResponse(rpcResponse));
+      return _executeRequest(package)
+          .then((rpcResponse) => handleResponse(rpcResponse));
   }
 
   _executeRequest(package) {
@@ -72,33 +74,37 @@ class ServerProxy {
             break;
 
           default:
-            c.completeError(new HttpStatusError(request.statusText, request, package));
+            c.completeError(
+                new HttpStatusError(request.statusText, request, package));
         }
       }
     });
     //Timeout
     request.onTimeout.listen((_) {
       //request.abort();
-      c.completeError(new TimeoutException('JsonRpcRequest timed out', request, package));
+      c.completeError(
+          new TimeoutException('JsonRpcRequest timed out', request, package));
     });
 
     // It's sent out utf-8 encoded. Without having to be told. Nice!
-    request.send(JSON.encode(package));
+    request.send(json.encode(package));
     return c.future.then((request) => new Future(() {
           String body = request.responseText;
           if (request.status == 204 || body.isEmpty) {
             return null;
           } else {
             // print(body);
-            body = body.replaceAllMapped(new RegExp(r'"(\d+)"'), (Match m) => m.group(1));
-            return JSON.decode(body);
+            body = body.replaceAllMapped(
+                new RegExp(r'"(\d+)"'), (Match m) => m.group(1));
+            return json.decode(body);
           }
         }));
   }
 
   handleResponse(response) {
     if (response.containsKey('error')) {
-      return (new RemoteException(response['error']['message'], response['error']['code'], response['error']['data']));
+      return (new RemoteException(response['error']['message'],
+          response['error']['code'], response['error']['data']));
     } else {
       return response['result'];
     }
@@ -123,7 +129,8 @@ class BatchServerProxy extends ServerProxy {
      */
 
     if (params == null) params = [];
-    var package = new JsonRpcMethod(method, params, notify: notify, serverVersion: serverVersion);
+    var package = new JsonRpcMethod(method, params,
+        notify: notify, serverVersion: serverVersion);
     requests.add(package);
     if (!notify) {
       var c = new Completer();
@@ -136,7 +143,8 @@ class BatchServerProxy extends ServerProxy {
     if (requests.length > 0) {
       Future future = _executeRequest(requests);
       requests = [];
-      return future.then((resp) => new Future.sync(() => handleResponses(resp)));
+      return future
+          .then((resp) => new Future.sync(() => handleResponses(resp)));
     }
   }
 
@@ -150,7 +158,9 @@ class BatchServerProxy extends ServerProxy {
         responses.remove(id);
       } else {
         var error = resp['error'];
-        _logger.warning(new RemoteException(error['message'], error['code'], error['data']).toString());
+        _logger.warning(
+            new RemoteException(error['message'], error['code'], error['data'])
+                .toString());
       }
     }
     return null;
@@ -164,7 +174,8 @@ class JsonRpcMethod {
   var _id;
   String serverVersion;
 
-  JsonRpcMethod(this.method, this.args, {this.notify: false, this.serverVersion: '2.0'});
+  JsonRpcMethod(this.method, this.args,
+      {this.notify: false, this.serverVersion: '2.0'});
 
   get id {
     if (notify) {
@@ -189,7 +200,8 @@ class JsonRpcMethod {
         if (!notify) map['id'] = id;
         break;
       case '1.0':
-        if (args is Map) throw new FormatException("Cannot use named params in JSON-RPC 1.0");
+        if (args is Map)
+          throw new FormatException("Cannot use named params in JSON-RPC 1.0");
         map = {
           'method': method,
           'params': (args is List) ? args : [args],
@@ -210,7 +222,9 @@ class RemoteException implements Exception {
 
   RemoteException([this.message, this.code, this.data]);
 
-  toString() => data != null ? "RemoteException $code '$message' Data:($data))" : "RemoteException $code: $message";
+  toString() => data != null
+      ? "RemoteException $code '$message' Data:($data))"
+      : "RemoteException $code: $message";
 }
 
 class HttpStatusError implements Exception {

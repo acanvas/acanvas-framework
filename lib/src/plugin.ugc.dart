@@ -15,7 +15,6 @@ import 'plugin.io.dart' show DataRetrieveVO;
 /* required by Rockdot UGCPlugin */
 //import 'package:jsonrpc2/jsonrpc_client.dart';
 
-
 part 'plugin/ugc/ugcplugin.dart';
 part 'plugin/ugc/command/abstract_ugccommand.dart';
 part 'plugin/ugc/command/gaming_check_permission_to_play_command.dart';

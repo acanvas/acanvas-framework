@@ -17,8 +17,10 @@ class GamingEvents {
   static const String SAVE_GAME = "GamingEvents.SAVE_GAME";
 
   //expects uid, returns bool
-  static const String CHECK_PERMISSION_TO_PLAY = "GamingEvents.CHECK_PERMISSION_TO_PLAY";
+  static const String CHECK_PERMISSION_TO_PLAY =
+      "GamingEvents.CHECK_PERMISSION_TO_PLAY";
 
   //expects {uid, locale}, returns bool
-  static const String CHECK_PERMISSION_TO_PLAY_LOCALE = "GamingEvents.CHECK_PERMISSION_TO_PLAY_LOCALE";
+  static const String CHECK_PERMISSION_TO_PLAY_LOCALE =
+      "GamingEvents.CHECK_PERMISSION_TO_PLAY_LOCALE";
 }

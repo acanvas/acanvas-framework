@@ -26,5 +26,11 @@ class VOFBInvite {
   //Invite Source, will be put into 'data' String
   String reason;
 
-  VOFBInvite([this.title, this.message, this.data, this.reason, this.to, this.max_recipients = 0]) {}
+  VOFBInvite(
+      [this.title,
+      this.message,
+      this.data,
+      this.reason,
+      this.to,
+      this.max_recipients = 0]) {}
 }

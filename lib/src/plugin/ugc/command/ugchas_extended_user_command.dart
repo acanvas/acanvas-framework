@@ -1,6 +1,5 @@
 part of rockdot_framework.ugc;
 
-
 class UGCHasExtendedUserCommand extends AbstractUGCCommand {
   @override
   dynamic execute([RdSignal event = null]) {

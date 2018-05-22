@@ -1,6 +1,5 @@
 part of rockdot_framework.facebook;
 
-
 class FBUserGetInfoCommand extends AbstractFBCommand {
   @override
   void execute([RdSignal event = null]) {

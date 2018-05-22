@@ -1,6 +1,5 @@
 part of rockdot_framework.facebook;
 
-
 class AbstractFBCommand extends RdCommand implements IFBModelAware {
   FBModel _fbModel;
 
@@ -27,8 +26,13 @@ class AbstractFBCommand extends RdCommand implements IFBModelAware {
       dispatchErrorEvent("User cancelled dialog");
       return true;
     } else if (response["error"] != null) {
-      this.log.info("FB Init did not produce a valid access token: {1} (code: {2}, type: {3})",
-          [response["error"]["message"], response["error"]["code"], response["error"]["type"]]);
+      this.log.info(
+          "FB Init did not produce a valid access token: {1} (code: {2}, type: {3})",
+          [
+            response["error"]["message"],
+            response["error"]["code"],
+            response["error"]["type"]
+          ]);
       dispatchErrorEvent(response["error"]);
       return true;
     } else {

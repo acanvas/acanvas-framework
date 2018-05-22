@@ -74,13 +74,13 @@ class GoogleModel {
     _client = client;
   }
 
-  List _userScopes = [];
+  List<String> _userScopes = [];
 
-  List get userScopes {
+  List<String> get userScopes {
     return _userScopes;
   }
 
-  void set userScopes(List userScopes) {
+  void set userScopes(List<String> userScopes) {
     _userScopes = userScopes;
   }
 }

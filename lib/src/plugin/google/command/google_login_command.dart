@@ -1,6 +1,5 @@
 part of rockdot_framework.google;
 
-
 class GoogleLoginCommand extends AbstractGoogleCommand {
   RdSignal _nextSignal;
 
@@ -9,15 +8,17 @@ class GoogleLoginCommand extends AbstractGoogleCommand {
     super.execute(event);
 
     //var id = new ClientId(getProperty("project.google.oauth.clientid"), null);
-    List scopes;
+    List<String> scopes;
     if (event != null && event.data != null) {
       if (event.data is String) {
         scopes = [event.data];
-      } else if (event.data is List) {
+      } else if (event.data is List<String>) {
         scopes = event.data;
       } else if (event.data is GoogleLoginVO) {
         _nextSignal = event.data.nextSignal;
-        scopes = event.data.scopes != null ? event.data.scopes : [getProperty("project.google.scope.plus")];
+        scopes = event.data.scopes != null
+            ? event.data.scopes
+            : [getProperty("project.google.scope.plus")];
       }
     } else {
       scopes = [getProperty("project.google.scope.plus")];
@@ -47,7 +48,8 @@ class GoogleLoginCommand extends AbstractGoogleCommand {
       _handleLogin(client);
     }, onError: _handleLoginError);
 
-    showMessage(getProperty("message.google.login.waiting"), blur: true, type: StateMessageVO.TYPE_WAITING);
+    showMessage(getProperty("message.google.login.waiting"),
+        blur: true, type: StateMessageVO.TYPE_WAITING);
   }
 
   void _handleLoginError(UserConsentException ex) {

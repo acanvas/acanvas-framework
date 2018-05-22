@@ -1,7 +1,7 @@
 part of rockdot_framework.ugc;
 
-
-class UGCFilterItemCommand extends AbstractUGCCommand implements IStateModelAware {
+class UGCFilterItemCommand extends AbstractUGCCommand
+    implements IStateModelAware {
   StateModel _stateModel;
   UGCFilterVO _vo;
 

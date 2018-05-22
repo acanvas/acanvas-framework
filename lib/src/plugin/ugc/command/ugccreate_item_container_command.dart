@@ -1,6 +1,5 @@
 part of rockdot_framework.ugc;
 
-
 class UGCCreateItemContainerCommand extends AbstractUGCCommand {
   @override
   void execute([RdSignal event = null]) {
@@ -8,20 +7,19 @@ class UGCCreateItemContainerCommand extends AbstractUGCCommand {
     if (event.data is UGCItemContainerDTO) {
       _ugcModel.currentItemContainerDAO = event.data;
     }
-    amfOperation("UGCEndpoint.createItemContainer", dto: _ugcModel.currentItemContainerDAO);
+    amfOperation("UGCEndpoint.createItemContainer",
+        dto: _ugcModel.currentItemContainerDAO);
   }
 
   @override
   bool dispatchCompleteEvent([dynamic result = null]) {
-    if(result is int){
+    if (result is int) {
       _ugcModel.currentItemContainerDAO.id = result;
       if (_ugcModel.currentItemDAO != null) {
         _ugcModel.currentItemDAO.container_id = result;
       }
       return super.dispatchCompleteEvent(result);
-    }
-    else{
-
+    } else {
       dispatchErrorEvent("Endpoint didn't return an int.");
       return false;
     }

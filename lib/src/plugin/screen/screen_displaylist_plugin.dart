@@ -10,14 +10,22 @@ class ScreenDisplaylistPlugin extends ScreenPluginBase {
   void configureCommands() {
     super.configureCommands();
 
-    commandMap[ScreenDisplaylistEvents.SCREEN_INIT] = () => new ScreenInitCommand();
-    commandMap[ScreenDisplaylistEvents.SCREEN_LOAD] = () => new ScreenLoadCommand();
-    commandMap[ScreenDisplaylistEvents.TRANSITION_PREPARE] = () => new ScreenTransitionPrepareCommand();
-    commandMap[ScreenDisplaylistEvents.APPEAR] = () => new ScreenAppearCommand();
-    commandMap[ScreenDisplaylistEvents.DISAPPEAR] = () => new ScreenDisappearCommand();
-    commandMap[ScreenDisplaylistEvents.TRANSITION_RUN] = () => new ScreenTransitionRunCommand();
-    commandMap[ScreenDisplaylistEvents.APPLY_EFFECT_IN] = () => new ScreenApplyEffectInCommand();
-    commandMap[ScreenDisplaylistEvents.APPLY_EFFECT_OUT] = () => new ScreenApplyEffectOutCommand();
+    commandMap[ScreenDisplaylistEvents.SCREEN_INIT] =
+        () => new ScreenInitCommand();
+    commandMap[ScreenDisplaylistEvents.SCREEN_LOAD] =
+        () => new ScreenLoadCommand();
+    commandMap[ScreenDisplaylistEvents.TRANSITION_PREPARE] =
+        () => new ScreenTransitionPrepareCommand();
+    commandMap[ScreenDisplaylistEvents.APPEAR] =
+        () => new ScreenAppearCommand();
+    commandMap[ScreenDisplaylistEvents.DISAPPEAR] =
+        () => new ScreenDisappearCommand();
+    commandMap[ScreenDisplaylistEvents.TRANSITION_RUN] =
+        () => new ScreenTransitionRunCommand();
+    commandMap[ScreenDisplaylistEvents.APPLY_EFFECT_IN] =
+        () => new ScreenApplyEffectInCommand();
+    commandMap[ScreenDisplaylistEvents.APPLY_EFFECT_OUT] =
+        () => new ScreenApplyEffectOutCommand();
 
     commandMap[StateEvents.STATE_CHANGE] = () => new ScreenSetCommand();
   }
@@ -31,6 +39,7 @@ class ScreenDisplaylistPlugin extends ScreenPluginBase {
   @override
   void configureInjectors() {
     super.configureInjectors();
-    RdContextUtil.registerInstance(objectFactory, ScreenPluginBase.SERVICE_UI, new ScreenDisplaylistService());
+    RdContextUtil.registerInstance(objectFactory, ScreenPluginBase.SERVICE_UI,
+        new ScreenDisplaylistService());
   }
 }

@@ -1,6 +1,7 @@
 part of rockdot_framework.core;
 
-class RdCommand extends AbstractOperation implements IAsyncCommand, IApplicationContextAware {
+class RdCommand extends AbstractOperation
+    implements IAsyncCommand, IApplicationContextAware {
   Logger log;
 
   RdSignal _event;
@@ -56,9 +57,13 @@ class RdCommand extends AbstractOperation implements IAsyncCommand, IApplication
     }
   }
 
-  void showMessage(String message, {int timeBox: 0, int type: StateMessageVO.TYPE_INFO, bool blur: false}) {
+  void showMessage(String message,
+      {int timeBox: 0, int type: StateMessageVO.TYPE_INFO, bool blur: false}) {
     String id = (_event == null) ? "NO_ID" : _event.type;
-    new RdSignal(StateEvents.MESSAGE_SHOW, new StateMessageVO(id, message, timeBox, type: type, blurContent: blur))
+    new RdSignal(
+            StateEvents.MESSAGE_SHOW,
+            new StateMessageVO(id, message, timeBox,
+                type: type, blurContent: blur))
         .dispatch();
   }
 

@@ -1,6 +1,5 @@
 part of rockdot_framework.ugc;
 
-
 class GamingSetScoreCommand extends AbstractUGCCommand {
   @override
   void execute([RdSignal event = null]) {

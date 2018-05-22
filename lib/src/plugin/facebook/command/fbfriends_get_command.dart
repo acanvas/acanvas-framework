@@ -1,6 +1,5 @@
 part of rockdot_framework.facebook;
 
-
 class FBFriendsGetCommand extends AbstractFBCommand {
   DataRetrieveVO _vo;
 
@@ -16,8 +15,10 @@ class FBFriendsGetCommand extends AbstractFBCommand {
 
     String uid = _fbModel.user.uid;
 
-    js.JsObject queryConfig = new js.JsObject.jsify({"fields": "name,picture.width(100).height(100)"});
-    _fbModel.FB.callMethod("api", ["/$uid/taggable_friends", "get", queryConfig, _handleResult]);
+    js.JsObject queryConfig = new js.JsObject.jsify(
+        {"fields": "name,picture.width(100).height(100)"});
+    _fbModel.FB.callMethod(
+        "api", ["/$uid/taggable_friends", "get", queryConfig, _handleResult]);
 
     showMessage(getProperty("message.facebook.loading.data"));
   }

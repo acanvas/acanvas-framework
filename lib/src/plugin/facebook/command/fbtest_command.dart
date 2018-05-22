@@ -1,29 +1,38 @@
 part of rockdot_framework.facebook;
 
-
 class FBTestCommand extends AbstractFBCommand {
   @override
   void execute([RdSignal event = null]) {
     super.execute(event);
 
-    CompositeCommandWithEvent compositeCommand = new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
+    CompositeCommandWithEvent compositeCommand =
+        new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
 
     /* ******************** LOGIN USER ******************* */
     String perms = getProperty("project.facebook.permissions");
-    compositeCommand.addCommandEvent(new RdSignal(FBEvents.USER_LOGIN, perms, _onUserLogin), applicationContext);
+    compositeCommand.addCommandEvent(
+        new RdSignal(FBEvents.USER_LOGIN, perms, _onUserLogin),
+        applicationContext);
 
     /* ******************** GET INFO FOR USER ******************* */
-    compositeCommand.addCommandEvent(new RdSignal(FBEvents.USER_GETINFO, null, _onUserGetInfo), applicationContext);
+    compositeCommand.addCommandEvent(
+        new RdSignal(FBEvents.USER_GETINFO, null, _onUserGetInfo),
+        applicationContext);
 
     /* ******************** GET FRIENDS OF USER ******************* */
-    compositeCommand.addCommandEvent(new RdSignal(FBEvents.FRIENDS_GET, null, _onFriendsGet), applicationContext);
+    compositeCommand.addCommandEvent(
+        new RdSignal(FBEvents.FRIENDS_GET, null, _onFriendsGet),
+        applicationContext);
 
     /* ******************** GET FRIENDS INFO OF USER ******************* */
     compositeCommand.addCommandEvent(
-        new RdSignal(FBEvents.FRIENDS_GETINFO, null, _onFriendsGetInfo), applicationContext);
+        new RdSignal(FBEvents.FRIENDS_GETINFO, null, _onFriendsGetInfo),
+        applicationContext);
 
     /* ******************** GET ALBUMS OF USER ******************* */
-    compositeCommand.addCommandEvent(new RdSignal(FBEvents.ALBUMS_GET, null, _onAlbumsGet), applicationContext);
+    compositeCommand.addCommandEvent(
+        new RdSignal(FBEvents.ALBUMS_GET, null, _onAlbumsGet),
+        applicationContext);
 
     /* ******************** INVITE USERS ******************* */
     //new BaseEvent(FBEvents.PROMPT_INVITE, new VOFBInvite(getProperty("fanbook.invite.title", true), getProperty("fanbook.invite.message", true), "item_container_id=" + _bitburgerModel.ownAlbum.id), _onInviteFinished);
@@ -35,8 +44,10 @@ class FBTestCommand extends AbstractFBCommand {
   }
 
   void _onUserLogin([OperationEvent event = null]) {
-    Assert.isTrue(_fbModel.userIsAuthenticated == true, "_fbModel.userIsAuthenticated is false");
-    Assert.notNull(_fbModel.userPermissions, "_fbModel.userPermissions is null");
+    Assert.isTrue(_fbModel.userIsAuthenticated == true,
+        "_fbModel.userIsAuthenticated is false");
+    Assert.notNull(
+        _fbModel.userPermissions, "_fbModel.userPermissions is null");
   }
 
   void _onUserGetInfo(FBUserVO dao) {
@@ -51,30 +62,38 @@ class FBTestCommand extends AbstractFBCommand {
   void _onFriendsGet(List friends) {
     Assert.notNull(friends, "friends is null");
     Assert.notNull(_fbModel.friends, "_fbModel.friends is null");
-    this.log.info("_onFriendsGet, num of Friends: " + _fbModel.friends.length.toString());
+    this.log.info(
+        "_onFriendsGet, num of Friends: " + _fbModel.friends.length.toString());
   }
 
   void _onFriendsGetInfo(List friendsWithAdditionalInfo) {
-    Assert.notNull(friendsWithAdditionalInfo, "friendsWithAdditionalInfo is null");
-    Assert.notNull(_fbModel.friendsWithAdditionalInfo, "_fbModel.friendsWithAdditionalInfo is null");
+    Assert.notNull(
+        friendsWithAdditionalInfo, "friendsWithAdditionalInfo is null");
+    Assert.notNull(_fbModel.friendsWithAdditionalInfo,
+        "_fbModel.friendsWithAdditionalInfo is null");
     this.log.info("_onFriendsGetInfo, num of Friends with additional info: " +
         _fbModel.friendsWithAdditionalInfo.length.toString());
-    this.log.info(
-        "_onFriendsGetInfo, num of Friends who are App Users: " + _fbModel.friendsWhoAreAppUsers.length.toString());
+    this.log.info("_onFriendsGetInfo, num of Friends who are App Users: " +
+        _fbModel.friendsWhoAreAppUsers.length.toString());
   }
 
   void _onAlbumsGet(List userAlbums) {
     Assert.notNull(userAlbums, "userAlbums is null");
     Assert.notNull(_fbModel.userAlbums, "_fbModel.userAlbums is null");
-    this.log.info("_onAlbumsGet, num of Albums: " + _fbModel.userAlbums.length.toString());
+    this.log.info("_onAlbumsGet, num of Albums: " +
+        _fbModel.userAlbums.length.toString());
 
     /* ******************** GET PHOTOS OF FIRST USER ALBUM ******************* */
-    new RdSignal(FBEvents.PHOTOS_GET, new FBAlbumVO(_fbModel.userAlbums[0]).id, _onAlbumPhotosGet).dispatch();
+    new RdSignal(FBEvents.PHOTOS_GET, new FBAlbumVO(_fbModel.userAlbums[0]).id,
+            _onAlbumPhotosGet)
+        .dispatch();
   }
 
   void _onAlbumPhotosGet(List userAlbumPhotos) {
     Assert.notNull(userAlbumPhotos, "userAlbumPhotos is null");
-    Assert.notNull(_fbModel.userAlbumPhotos, "_fbModel.userAlbumPhotos is null");
-    this.log.info("_onAlbumPhotosGet, num of userAlbumPhotos: " + _fbModel.userAlbumPhotos.length.toString());
+    Assert.notNull(
+        _fbModel.userAlbumPhotos, "_fbModel.userAlbumPhotos is null");
+    this.log.info("_onAlbumPhotosGet, num of userAlbumPhotos: " +
+        _fbModel.userAlbumPhotos.length.toString());
   }
 }

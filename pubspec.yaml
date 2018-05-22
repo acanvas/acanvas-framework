@@ -1,13 +1,15 @@
 name: rockdot_framework
-version: 0.9.11
-description: Rockdot Framework, based on a Spring framework implementation for StageXL/Dart.
+version: 0.10.0
+description: Rockdot Rich Media Framework, based on a Spring framework implementation for Dart.
+environment:
+  sdk: '>=2.0.0-dev.55.0 <2.0.0'
 dependencies:
   js: ^0.6.0
   googleapis_auth: any
   googleapis: any
   rockdot_spring:
-    git: https://github.com/blockforest/rockdot-spring
+    git: https://github.com/block-forest/rockdot-spring
   rockdot_commons:
-    git: https://github.com/blockforest/rockdot-commons
+    git: https://github.com/block-forest/rockdot-commons
   babylonjs_facade:
-    git: https://github.com/blockforest/babylonjs-dart-facade
+    git: https://github.com/block-forest/babylonjs-dart-facade

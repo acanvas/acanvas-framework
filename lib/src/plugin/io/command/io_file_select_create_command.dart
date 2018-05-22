@@ -6,7 +6,7 @@ class IOFileSelectCreateCommand extends RdCommand {
     super.execute(event);
 
     html.DivElement div = html.querySelector("#${IOModel.HOLDER_ELEMENT}");
-    if(div == null){
+    if (div == null) {
       div = new html.DivElement();
       div.id = IOModel.HOLDER_ELEMENT;
       html.querySelector("#canvas-holder").append(div);
@@ -14,9 +14,9 @@ class IOFileSelectCreateCommand extends RdCommand {
     div.style.position = "absolute";
     div.style.visibility = "visible";
 
-
-    html.InputElement fileElement = html.querySelector("#${IOModel.FILE_ELEMENT}");
-    if(fileElement == null){
+    html.InputElement fileElement =
+        html.querySelector("#${IOModel.FILE_ELEMENT}");
+    if (fileElement == null) {
       fileElement = new html.InputElement(type: "file");
       fileElement.id = IOModel.FILE_ELEMENT;
       div.append(fileElement);
@@ -25,6 +25,5 @@ class IOFileSelectCreateCommand extends RdCommand {
     fileElement.focus();
 
     dispatchCompleteEvent(div);
-
   }
 }

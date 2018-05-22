@@ -4,7 +4,8 @@ import 'dart:html' as html;
 import 'dart:async';
 import 'package:js/js.dart';
 
-import 'package:stagexl/stagexl.dart' show BitmapData, RenderTextureQuad, RenderTexture;
+import 'package:stagexl/stagexl.dart'
+    show BitmapData, RenderTextureQuad, RenderTexture;
 import 'package:rockdot_commons/rockdot_commons.dart' show RdSignal;
 
 import 'core.dart' show AbstractRdPlugin, RdCommand;

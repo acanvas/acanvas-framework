@@ -24,6 +24,11 @@ class UGCTaskDTO extends UGCItemContainerDTO {
 
   @override
   Map toJson() {
-    return {"category_id": category_id, "task_key": task_key, "type": type, "category_key": category_key};
+    return {
+      "category_id": category_id,
+      "task_key": task_key,
+      "type": type,
+      "category_key": category_key
+    };
   }
 }

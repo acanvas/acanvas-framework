@@ -16,10 +16,12 @@ class FacebookPlugin extends AbstractRdPlugin {
     commandMap[FBEvents.USER_LOGIN] = () => new FBLoginBrowserCommand();
     commandMap[FBEvents.USER_LOGOUT] = () => new FBLogoutBrowserCommand();
     commandMap[FBEvents.PROMPT_SHARE] = () => new FBPromptShareCommand();
-    commandMap[FBEvents.PROMPT_INVITE] = () => new FBPromptInviteBrowserCommand();
+    commandMap[FBEvents.PROMPT_INVITE] =
+        () => new FBPromptInviteBrowserCommand();
     commandMap[FBEvents.TEST] = () => new FBTestCommand();
     commandMap[FBEvents.USER_GETINFO] = () => new FBUserGetInfoCommand();
-    commandMap[FBEvents.USER_GETINFO_PERMISSIONS] = () => new FBUserGetInfoPermissionsCommand();
+    commandMap[FBEvents.USER_GETINFO_PERMISSIONS] =
+        () => new FBUserGetInfoPermissionsCommand();
     commandMap[FBEvents.FRIENDS_GET] = () => new FBFriendsGetCommand();
     commandMap[FBEvents.FRIENDS_GETINFO] = () => new FBFriendsGetInfoCommand();
     commandMap[FBEvents.ALBUMS_GET] = () => new FBPhotoGetAlbumsCommand();

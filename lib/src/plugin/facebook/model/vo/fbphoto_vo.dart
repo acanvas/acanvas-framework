@@ -37,7 +37,11 @@ class FBPhotoVO {
 
       images = [];
       obj["images"].forEach((e) {
-        images.add({"width": e["width"], "height": e["height"], "source": e["source"]});
+        images.add({
+          "width": e["width"],
+          "height": e["height"],
+          "source": e["source"]
+        });
       });
 
       comments = [];

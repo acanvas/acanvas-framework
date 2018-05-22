@@ -106,13 +106,16 @@ class AbstractScreenService implements IScreenService {
   }
 
   void resize([Event event = null]) {
-    _background.span(RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
+    _background.span(
+        RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
     _content.span(RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
     _navi.span(RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
     _layer.span(RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
-    _foreground.span(RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
+    _foreground.span(
+        RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
 
-    log.finer("Stage width: {0}, Stage height: {1}", [RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL]);
+    log.finer("Stage width: {0}, Stage height: {1}",
+        [RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL]);
 
     //new RdSignal(ScreenEvents.RESIZE).dispatch();
   }

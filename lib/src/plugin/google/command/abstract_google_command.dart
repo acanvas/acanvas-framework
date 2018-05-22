@@ -1,6 +1,5 @@
 part of rockdot_framework.google;
 
-
 class AbstractGoogleCommand extends RdCommand implements IGoogleModelAware {
   GoogleModel _gModel;
 
@@ -24,8 +23,13 @@ class AbstractGoogleCommand extends RdCommand implements IGoogleModelAware {
 
   bool containsError(js.JsObject response) {
     if (response["error"] != null) {
-      this.log.info("Google Init did not produce a valid access token: {1} (code: {2}, type: {3})",
-          [response["error"]["message"], response["error"]["code"], response["error"]["type"]]);
+      this.log.info(
+          "Google Init did not produce a valid access token: {1} (code: {2}, type: {3})",
+          [
+            response["error"]["message"],
+            response["error"]["code"],
+            response["error"]["type"]
+          ]);
       dispatchErrorEvent(response["error"]);
       return true;
     } else {

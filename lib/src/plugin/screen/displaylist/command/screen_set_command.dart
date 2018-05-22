@@ -44,7 +44,8 @@ class ScreenSetCommand extends AbstractStateCommand {
         _currentVO.substate == StateConstants.SUB_MODAL) {
       //do not retrieve nextStateElement from Context, since it is already present as modal background. see handling in switch/case below
     } else {
-      _nextStateElement = applicationContext.getObject(_nextVO.view_id, [_nextVO.view_id]);
+      _nextStateElement =
+          applicationContext.getObject(_nextVO.view_id, [_nextVO.view_id]);
 
       if (_nextVO.params != null) {
         _nextStateElement.params = _nextVO.params;
@@ -52,7 +53,8 @@ class ScreenSetCommand extends AbstractStateCommand {
     }
 
     stateModel.currentState = StateConstants.MAIN_TRANSITIONING;
-    stateModel.currentTransition = applicationContext.getObject(_nextVO.transition);
+    stateModel.currentTransition =
+        applicationContext.getObject(_nextVO.transition);
     String transitionType = "";
 
     if (_currentVO == null) {
@@ -64,7 +66,8 @@ class ScreenSetCommand extends AbstractStateCommand {
         if (stateModel.currentScreen.name == _nextVO.view_id) {
           // 5.modalBack. _nextStateElement hasn't been created (line 36)
           transitionType = ScreenConstants.TRANSITION_MODAL_BACK;
-          stateModel.currentTransition = applicationContext.getObject("transition.default.modal");
+          stateModel.currentTransition =
+              applicationContext.getObject("transition.default.modal");
           _nextStateElement = stateModel.currentScreen;
         } else if (_nextVO.substate == StateConstants.SUB_MODAL) {
           // 4. modalToModal
@@ -93,8 +96,12 @@ class ScreenSetCommand extends AbstractStateCommand {
     new RdSignal(
             ScreenDisplaylistEvents.TRANSITION_PREPARE,
             new ScreenDisplaylistTransitionPrepareVO(
-                transitionType, _currentStateElement, stateModel.currentTransition, _nextStateElement,
-                modal: modal, initialAlpha: stateModel.currentTransition.initialAlpha),
+                transitionType,
+                _currentStateElement,
+                stateModel.currentTransition,
+                _nextStateElement,
+                modal: modal,
+                initialAlpha: stateModel.currentTransition.initialAlpha),
             _onTransitionEnd)
         .dispatch();
   }

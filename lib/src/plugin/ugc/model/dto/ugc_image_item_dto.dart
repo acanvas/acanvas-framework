@@ -21,6 +21,13 @@ class UGCImageItemDTO implements IRdDTO {
 
   @override
   Map toJson() {
-    return {"id": id, "w": w, "h": h, "url_big": url_big, "url_thumb": url_thumb, "timestamp": timestamp};
+    return {
+      "id": id,
+      "w": w,
+      "h": h,
+      "url_big": url_big,
+      "url_thumb": url_thumb,
+      "timestamp": timestamp
+    };
   }
 }

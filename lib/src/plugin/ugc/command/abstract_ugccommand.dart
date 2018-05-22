@@ -7,20 +7,25 @@ class AbstractUGCCommand extends RdCommand implements IUGCModelAware {
     _ugcModel = ugcModel;
   }
 
-  void amfOperation(String methodName, {IRdDTO dto: null, Map map: null, String json: null}) {
+  void amfOperation(String methodName,
+      {IRdDTO dto: null, Map map: null, String json_: null}) {
     String params = null;
     if (dto != null) {
-      params = JSON.encode(dto.toJson());
+      params = json.encode(dto.toJson());
     } else if (map != null) {
-      params = JSON.encode(map);
+      params = json.encode(map);
     } else if (json != null) {
-      params = json;
+      params = json_;
     }
 
-    methodName = methodName.replaceAll(new RegExp(r'UGCEndpoint.|GamingEndpoint.'), '');
+    methodName =
+        methodName.replaceAll(new RegExp(r'UGCEndpoint.|GamingEndpoint.'), '');
     String url = getProperty("project.host.json");
     ServerProxy proxy = new ServerProxy(url);
-    proxy.call(methodName, [params]).then((returned) => proxy.checkError(returned)).then((result) {
+    proxy
+        .call(methodName, [params])
+        .then((returned) => proxy.checkError(returned))
+        .then((result) {
           // print(result.toString());
           dispatchCompleteEvent(result);
         });

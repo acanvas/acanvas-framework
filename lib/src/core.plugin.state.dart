@@ -7,7 +7,7 @@ import 'package:rockdot_commons/rockdot_commons.dart';
 import 'package:rockdot_spring/rockdot_spring.dart';
 
 import 'core.dart';
-import 'core.plugin.screen.dart' show IScreenModelAware, MApplicationContextAware, ScreenModel;
+import 'core.plugin.screen.dart' show MApplicationContextAware;
 
 part 'plugin/state/command/abstract_state_command.dart';
 part 'plugin/state/command/state_address_set_command.dart';

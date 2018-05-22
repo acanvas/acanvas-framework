@@ -1,6 +1,5 @@
 part of rockdot_framework.facebook;
 
-
 class FBInitBrowserCommand extends AbstractFBCommand {
   String facebookSDKUrl = "https://connect.facebook.net/en_US/sdk.js";
 
@@ -42,7 +41,8 @@ class FBInitBrowserCommand extends AbstractFBCommand {
       _fbModel.userIsAuthenticated = true;
       _fbModel.user = new FBUserVO()..uid = response["authResponse"]["userID"];
 
-      new RdSignal(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions).dispatch();
+      new RdSignal(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions)
+          .dispatch();
     } else {
       dispatchCompleteEvent();
     }

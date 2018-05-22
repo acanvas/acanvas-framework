@@ -1,7 +1,7 @@
 part of rockdot_framework.ugc;
 
-
-class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelAware {
+class UGCRegisterExtendedCommand extends AbstractUGCCommand
+    implements IFBModelAware {
   FBModel _modelFB;
 
   void set fbModel(FBModel model) {
@@ -37,8 +37,9 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
 
     _ugcModel.userExtendedDAO.uid = _ugcModel.userDAO.uid;
     amfObject.uid = _ugcModel.userExtendedDAO.uid;
-    _ugcModel.userExtendedDAO.hash =
-        (new math.Random().nextDouble() * getTimeInMilliseconds(new DateTime.now())).toString();
+    _ugcModel.userExtendedDAO.hash = (new math.Random().nextDouble() *
+            getTimeInMilliseconds(new DateTime.now()))
+        .toString();
     amfObject.hash = _ugcModel.userExtendedDAO.hash;
 
     _ugcModel.hasUserExtendedDAO = true;
@@ -61,6 +62,9 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand implements IFBModelA
   }
 
   num getTimeInMilliseconds(DateTime date) {
-    return date.hour * 60 * 60 * 1000 + date.minute * 60 * 1000 + date.second * 1000 + date.millisecond;
+    return date.hour * 60 * 60 * 1000 +
+        date.minute * 60 * 1000 +
+        date.second * 1000 +
+        date.millisecond;
   }
 }

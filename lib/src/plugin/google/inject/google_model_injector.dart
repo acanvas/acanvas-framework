@@ -37,7 +37,8 @@ class GoogleModelInjector implements IObjectPostProcessor {
    */
   dynamic postProcessAfterInitialization(dynamic object, String objectName) {
     if (object is IGoogleModelAware) {
-      object.googleModel = _applicationContext.getObject(GooglePlugin.MODEL_GOOGLE);
+      object.googleModel =
+          _applicationContext.getObject(GooglePlugin.MODEL_GOOGLE);
     }
 
     return object;

@@ -10,5 +10,6 @@ class VOFBPhotoUpload {
   String fileName;
   String album_id;
 
-  VOFBPhotoUpload(this.fileName, this.album_id, {this.bmd, this.place, this.message, this.url, this.no_story: true}) {}
+  VOFBPhotoUpload(this.fileName, this.album_id,
+      {this.bmd, this.place, this.message, this.url, this.no_story: true}) {}
 }

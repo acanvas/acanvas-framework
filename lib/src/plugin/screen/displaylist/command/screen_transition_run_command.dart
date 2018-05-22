@@ -1,6 +1,5 @@
 part of rockdot_framework.screen;
 
-
 class ScreenTransitionRunCommand extends AbstractScreenCommand {
   ScreenDisplaylistTransitionApplyVO _vo;
   CompositeCommandWithEvent _compositeCommand;
@@ -8,12 +7,16 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
   @override
   void execute([RdSignal event = null]) {
     super.execute(event);
-    _compositeCommand = new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
+    _compositeCommand =
+        new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
     _vo = event.data;
-    _applyEffect(_vo.transitionType, _vo.targetPrimary, _vo.duration, dispatchCompleteEvent, _vo.targetSecondary);
+    _applyEffect(_vo.transitionType, _vo.targetPrimary, _vo.duration,
+        dispatchCompleteEvent, _vo.targetSecondary);
   }
 
-  void _applyEffect(String effectType, Sprite target, num duration, Function callback, [Sprite nextTarget = null]) {
+  void _applyEffect(
+      String effectType, Sprite target, num duration, Function callback,
+      [Sprite nextTarget = null]) {
     if (duration == null) duration = _vo.effect.duration;
 
     int maxdepthTarget = 0;
@@ -29,11 +32,14 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
     switch (effectType) {
       case ScreenConstants.EFFECT_IN:
         if (_vo.effect.applyRecursively) {
-          _addInEffectRecursively(target, 0, duration, duration, maxdepthTarget);
+          _addInEffectRecursively(
+              target, 0, duration, duration, maxdepthTarget);
         }
         _compositeCommand.addCommandEvent(
-            new RdSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN,
-                new ScreenDisplaylistEffectApplyVO(_vo.effect, target, duration)),
+            new RdSignal(
+                ScreenDisplaylistEvents.APPLY_EFFECT_IN,
+                new ScreenDisplaylistEffectApplyVO(
+                    _vo.effect, target, duration)),
             applicationContext);
         break;
       case ScreenConstants.EFFECT_OUT:
@@ -41,24 +47,34 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
           _addOutEffectRecursively(target, 0, duration, 0, maxdepthTarget);
         }
         _compositeCommand.addCommandEvent(
-            new RdSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT,
-                new ScreenDisplaylistEffectApplyVO(_vo.effect, target, duration)),
+            new RdSignal(
+                ScreenDisplaylistEvents.APPLY_EFFECT_OUT,
+                new ScreenDisplaylistEffectApplyVO(
+                    _vo.effect, target, duration)),
             applicationContext);
         break;
       case ScreenConstants.TRANSITION_SEQUENTIAL:
         _compositeCommand.addCommandEvent(
-            new RdSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT,
-                new ScreenDisplaylistEffectApplyVO(_vo.effect, target, duration)),
+            new RdSignal(
+                ScreenDisplaylistEvents.APPLY_EFFECT_OUT,
+                new ScreenDisplaylistEffectApplyVO(
+                    _vo.effect, target, duration)),
             applicationContext);
 
         if (_vo.effect.applyRecursively) {
           _addOutEffectRecursively(target, 0, duration, 0, maxdepthTarget);
           _addInEffectRecursively(
-              nextTarget, 0, duration, (maxdepthNextTarget * duration) + 2 * duration, maxdepthNextTarget);
+              nextTarget,
+              0,
+              duration,
+              (maxdepthNextTarget * duration) + 2 * duration,
+              maxdepthNextTarget);
         }
         _compositeCommand.addCommandEvent(
-            new RdSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN,
-                new ScreenDisplaylistEffectApplyVO(_vo.effect, nextTarget, duration)),
+            new RdSignal(
+                ScreenDisplaylistEvents.APPLY_EFFECT_IN,
+                new ScreenDisplaylistEffectApplyVO(
+                    _vo.effect, nextTarget, duration)),
             applicationContext);
 
         break;
@@ -66,17 +82,22 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
         _compositeCommand.kind = CompositeCommandKind.PARALLEL;
 
         _compositeCommand.addCommandEvent(
-            new RdSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT,
-                new ScreenDisplaylistEffectApplyVO(_vo.effect, target, duration)),
+            new RdSignal(
+                ScreenDisplaylistEvents.APPLY_EFFECT_OUT,
+                new ScreenDisplaylistEffectApplyVO(
+                    _vo.effect, target, duration)),
             applicationContext);
 
         if (_vo.effect.applyRecursively) {
           _addOutEffectRecursively(target, 0, duration, 0, maxdepthTarget);
-          _addInEffectRecursively(nextTarget, 0, duration, 0, maxdepthNextTarget);
+          _addInEffectRecursively(
+              nextTarget, 0, duration, 0, maxdepthNextTarget);
         }
         _compositeCommand.addCommandEvent(
-            new RdSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN,
-                new ScreenDisplaylistEffectApplyVO(_vo.effect, nextTarget, duration)),
+            new RdSignal(
+                ScreenDisplaylistEvents.APPLY_EFFECT_IN,
+                new ScreenDisplaylistEffectApplyVO(
+                    _vo.effect, nextTarget, duration)),
             applicationContext);
 
         break;
@@ -90,17 +111,19 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
     _stateModel.compositeEffectCommand = _compositeCommand;
   }
 
-  void _addInEffectRecursively(Sprite parent, int depth, num duration, num delay, int maxdepth) {
+  void _addInEffectRecursively(
+      Sprite parent, int depth, num duration, num delay, int maxdepth) {
     parent.children.where((c) => c is Sprite).forEach((child) {
       _compositeCommand.addCommandEvent(
-          new RdSignal(
-              ScreenDisplaylistEvents.APPLY_EFFECT_IN, new ScreenDisplaylistEffectApplyVO(_vo.effect, child, duration)),
+          new RdSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN,
+              new ScreenDisplaylistEffectApplyVO(_vo.effect, child, duration)),
           applicationContext);
       _addInEffectRecursively(child, depth + 1, duration, delay, maxdepth);
     });
   }
 
-  void _addOutEffectRecursively(Sprite parent, int depth, num duration, num delay, int maxdepth) {
+  void _addOutEffectRecursively(
+      Sprite parent, int depth, num duration, num delay, int maxdepth) {
     if (depth > maxdepth) return;
     parent.children.where((c) => c is Sprite).forEach((child) {
       _compositeCommand.addCommandEvent(
@@ -114,7 +137,8 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
   int _getDepth(Sprite vcs, int depth) {
     int maxd = depth;
     vcs.children.where((c) => c is Sprite).forEach((child) {
-      maxd = math.max(_getDepth(child as DisplayObjectContainer, depth + 1), maxd);
+      maxd =
+          math.max(_getDepth(child as DisplayObjectContainer, depth + 1), maxd);
     });
     return maxd;
   }

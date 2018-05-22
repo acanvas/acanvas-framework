@@ -17,5 +17,4 @@ class IOModel {
   html.Blob mic_recorded_blob;
 
   num mic_sampleRate;
-
 }

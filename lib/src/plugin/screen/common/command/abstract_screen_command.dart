@@ -1,12 +1,7 @@
 part of rockdot_framework.screen;
 
-class AbstractScreenCommand extends RdCommand implements IScreenModelAware, IScreenServiceAware, IStateModelAware {
-  ScreenModel _uiModel;
-
-  void set uiModel(ScreenModel uiModel) {
-    _uiModel = uiModel;
-  }
-
+class AbstractScreenCommand extends RdCommand
+    implements IScreenServiceAware, IStateModelAware {
   IScreenService _uiService;
 
   void set uiService(IScreenService uiService) {

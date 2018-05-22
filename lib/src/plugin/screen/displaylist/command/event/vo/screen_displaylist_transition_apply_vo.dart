@@ -10,6 +10,7 @@ class ScreenDisplaylistTransitionApplyVO implements IRdVO {
   LifecycleSprite targetSecondary;
   num duration;
 
-  ScreenDisplaylistTransitionApplyVO(this.effect, this.transitionType, this.targetPrimary, this.duration,
+  ScreenDisplaylistTransitionApplyVO(
+      this.effect, this.transitionType, this.targetPrimary, this.duration,
       [this.targetSecondary = null]) {}
 }

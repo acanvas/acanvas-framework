@@ -1,4 +1,0 @@
-analyzer:
-  strong-mode: true
-  exclude:
-    - lib/src/plugin/io/photo_import_file.dart

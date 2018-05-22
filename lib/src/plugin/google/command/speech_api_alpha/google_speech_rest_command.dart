@@ -26,13 +26,15 @@ class GoogleSpeechRestCommand extends AbstractGoogleCommand {
 
       Map map = new Map();
       map["initialRequest"] = new Map();
-      map["initialRequest"]["encoding"] = "LINEAR16"; //TODO see if we can get flac.js to work
+      map["initialRequest"]["encoding"] =
+          "LINEAR16"; //TODO see if we can get flac.js to work
       //map["initialRequest"]["language_code"] = "de-DE";
-      map["initialRequest"]["sampleRate"] = 16000; //TODO get samplerate from IOModel
+      map["initialRequest"]["sampleRate"] =
+          16000; //TODO get samplerate from IOModel
       map["audioRequest"] = new Map();
       map["audioRequest"]["content"] = base64data;
 
-      String jsonData = JSON.encode(map);
+      String jsonData = json.encode(map);
       _sendData(jsonData);
     });
   }
@@ -57,7 +59,8 @@ class GoogleSpeechRestCommand extends AbstractGoogleCommand {
     });
 
     // POST the data to the server
-    String url = "https://speech.googleapis.com/v1/speech:recognize?key=$API_KEY";
+    String url =
+        "https://speech.googleapis.com/v1/speech:recognize?key=$API_KEY";
     request.open("POST", url, async: true);
     request.send(json); // perform the async POST
   }

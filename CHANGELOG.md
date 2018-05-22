@@ -1,5 +1,10 @@
 # CHANGELOG ROCKDOT_FRAMEWORK
 
+## 0.10.0-dev 2018-05-13
+
+- Now using the Dart 2 type system
+- Tweaked analysis and build options
+
 ## 0.9.11 2017-06-23
 
 - Reorganization of internal libraries

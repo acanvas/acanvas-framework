@@ -1,6 +1,5 @@
 part of rockdot_framework.ugc;
 
-
 class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
   FBModel _fbModel;
 
@@ -15,7 +14,9 @@ class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
 
     if (event.data is UGCUserDTO) {
       _ugcModel.userDAO = event.data;
-    } else if (RdConstants.LOCAL && RdConstants.DEBUG && _fbModel.user == null) {
+    } else if (RdConstants.LOCAL &&
+        RdConstants.DEBUG &&
+        _fbModel.user == null) {
       _ugcModel.userDAO = _createDummyData();
     } else if (_ugcModel.userDAO == null) {
       UGCUserDTO user = new UGCUserDTO();
@@ -36,7 +37,8 @@ class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
     UGCUserDTO user = new UGCUserDTO();
     user.network = UGCUserDTO.NETWORK_INPUTFORM;
     user.name = "Fake User";
-    user.pic = "http://profile.ak.fbcdn.net/static-ak/rsrc.php/v1/yo/r/UlIqmHJn-SK.gif";
+    user.pic =
+        "http://profile.ak.fbcdn.net/static-ak/rsrc.php/v1/yo/r/UlIqmHJn-SK.gif";
     user.uid = "1234-fake";
     user.locale = "de_DE";
 

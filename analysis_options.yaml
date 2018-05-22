@@ -1,0 +1,12 @@
+analyzer:
+  strong-mode:
+    implicit-casts: true
+    implicit-dynamic: true
+  errors:
+    unused_element: info
+    unused_import: error
+    unused_local_variable: error
+    dead_code: error
+    override_on_non_overriding_method: error
+  exclude:
+    - lib/src/plugin/io/photo_import_file.dart

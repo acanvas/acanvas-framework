@@ -1,6 +1,5 @@
 part of rockdot_framework.state;
 
-
 class StatePluginInitCommand extends AbstractStateCommand {
   @override
   dynamic execute([RdSignal event = null]) {

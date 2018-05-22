@@ -20,6 +20,9 @@ class AbstractRdBootstrap extends EventDispatcher {
 
   /* Assign and prepare some things for Rockdot */
   void init() {
+    //Logging
+    _initLogger();
+
     // Instantiate Context.
     _applicationContext = new RdContext(_stage);
 
@@ -32,13 +35,11 @@ class AbstractRdBootstrap extends EventDispatcher {
 
     //Add FactoryPostProcessors
     _initPlugins();
-
-    //Logging
-    _initLogger();
   }
 
   void _initPropertyFiles() {
-    IObjectDefinitionsProvider provider = new DefaultObjectDefinitionsProvider();
+    IObjectDefinitionsProvider provider =
+        new DefaultObjectDefinitionsProvider();
 
     propertyFiles.forEach((file) {
       TextFileURI uri = new TextFileURI(file, true);
@@ -74,14 +75,19 @@ class AbstractRdBootstrap extends EventDispatcher {
     }
   }
 
-  Future loadApplicationContext() async {
+  void loadApplicationContext() async {
     /** add load listeners */
     // _applicationContext.addEventListener(Event.CANCEL, _onCoreApplicationContextLoadFault);
     /** Load */
+
+    logger.info("Loading Application Context");
+
     await _applicationContext.load().catchError((e) {
       logger.severe("Spring Application Context Failed to Load: [${e}]");
       throw new StateError("Spring Application Context Failed to Load: [${e}]");
     });
+
+    logger.info("Application Context loaded");
 
     logger.info("CoreApplicationContext Loaded...");
     await _applicationContext.initApplication().catchError((e) {

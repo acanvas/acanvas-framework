@@ -35,7 +35,8 @@ class RdContext extends SpringApplicationContext {
     //Only needed if we want to automatically identify FactoryPostProcessors in Context
     //addObjectFactoryPostProcessor(new RegisterObjectFactoryPostProcessorsFactoryPostProcessor(-99));
 
-    objectFactory.addObjectPostProcessor(new ApplicationContextAwareObjectPostProcessor(this));
+    objectFactory.addObjectPostProcessor(
+        new ApplicationContextAwareObjectPostProcessor(this));
 
     applicationContextInitializer = new DefaultApplicationContextInitializer();
 
@@ -53,14 +54,16 @@ class RdContext extends SpringApplicationContext {
       */
 
     /* MVC Postprocessor (BaseEvent + CoreCommand) */
-    addObjectFactoryPostProcessor(new MVCControllerObjectFactoryPostProcessor(-98));
+    addObjectFactoryPostProcessor(
+        new MVCControllerObjectFactoryPostProcessor(-98));
   }
 
   Future initApplication() {
     /* initializing the UI is mandatory, but feel free to add other commands */
-    CompositeCommandWithEvent compositeCommand = new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
+    CompositeCommandWithEvent compositeCommand =
+        new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
 
-    List array = RdConstants.getBootstrap();
+    var array = RdConstants.getBootstrap();
     for (int i = 0; i < array.length; i++) {
       compositeCommand.addCommandEvent(new RdSignal(array[i]), this);
     }

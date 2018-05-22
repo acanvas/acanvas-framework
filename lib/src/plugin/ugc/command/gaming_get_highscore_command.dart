@@ -1,7 +1,7 @@
 part of rockdot_framework.ugc;
 
-
-class GamingGetHighscoreCommand extends AbstractUGCCommand implements IFBModelAware {
+class GamingGetHighscoreCommand extends AbstractUGCCommand
+    implements IFBModelAware {
   FBModel _modelFB;
 
   void set fbModel(FBModel model) {
@@ -12,7 +12,10 @@ class GamingGetHighscoreCommand extends AbstractUGCCommand implements IFBModelAw
   void execute([RdSignal event = null]) {
     super.execute(event);
 
-    Map dto = {'uid': _ugcModel.userDAO.uid, 'friends': _modelFB.friendsWhoAreAppUsersIndexed};
+    Map dto = {
+      'uid': _ugcModel.userDAO.uid,
+      'friends': _modelFB.friendsWhoAreAppUsersIndexed
+    };
 
     amfOperation("GamingEndpoint.getHighscore", map: dto);
   }

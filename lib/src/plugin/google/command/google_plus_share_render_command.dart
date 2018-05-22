@@ -4,7 +4,6 @@ part of rockdot_framework.google;
  * https://developers.google.com/+/web/share/interactive#rendering_the_button_with_javascript
  */
 
-
 class GooglePlusShareRenderCommand extends AbstractGoogleCommand {
   String GapiUrl = "https://apis.google.com/js/client:platform.js";
   String recipients = "";

@@ -1,6 +1,5 @@
 part of rockdot_framework.google;
 
-
 class GooglePlusGetUserCommand extends AbstractGoogleCommand {
   @override
   void execute([RdSignal event = null]) {
@@ -13,7 +12,10 @@ class GooglePlusGetUserCommand extends AbstractGoogleCommand {
       id = event.data;
     }
 
-    new PlusApi(_gModel.client).people.get(id).then(_handleResult, onError: dispatchErrorEvent);
+    new PlusApi(_gModel.client)
+        .people
+        .get(id)
+        .then(_handleResult, onError: dispatchErrorEvent);
 
     showMessage(getProperty(getProperty("message.google.loading.data")));
   }

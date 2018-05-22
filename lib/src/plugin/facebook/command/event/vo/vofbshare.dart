@@ -9,5 +9,6 @@ class VOFBShare {
   String contentlink;
   String type;
 
-  VOFBShare(this.type, [this.message = "", this.contentlink = "", this.image = ""]) {}
+  VOFBShare(this.type,
+      [this.message = "", this.contentlink = "", this.image = ""]) {}
 }

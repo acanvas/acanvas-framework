@@ -6,7 +6,8 @@ class BabylonBitmapData extends BitmapData {
   html.DivElement _container = new html.DivElement();
   Completer<BabylonBitmapData> _completer = new Completer<BabylonBitmapData>();
 
-  BabylonBitmapData._internal(RenderTextureQuad quad) : super.fromRenderTextureQuad(quad);
+  BabylonBitmapData._internal(RenderTextureQuad quad)
+      : super.fromRenderTextureQuad(quad);
 
   void dispose() {
     _babylonScene.dispose();
@@ -19,7 +20,8 @@ class BabylonBitmapData extends BitmapData {
 
   //----------------------------------------------------------------------------
 
-  static Future<BabylonBitmapData> load(String rootUrl, String sceneFilename, num width, num height,
+  static Future<BabylonBitmapData> load(
+      String rootUrl, String sceneFilename, num width, num height,
       [num pixelRatio = 1.0]) {
     int textureWidth = (width * pixelRatio).round();
     int textureHeight = (height * pixelRatio).round();
@@ -39,8 +41,13 @@ class BabylonBitmapData extends BitmapData {
     // TODO: get rid of loading screen!
     // https://doc.babylonjs.com/tutorials/Creating_a_custom_loading_screen
 
-    BABYLON.SceneLoader.Load(rootUrl, sceneFilename, instance._babylonEngine, allowInterop(instance._onSuccess),
-        allowInterop(instance._onProgress), allowInterop(instance._onError));
+    BABYLON.SceneLoader.Load(
+        rootUrl,
+        sceneFilename,
+        instance._babylonEngine,
+        allowInterop(instance._onSuccess),
+        allowInterop(instance._onProgress),
+        allowInterop(instance._onError));
 
     return instance._completer.future;
   }
@@ -54,7 +61,8 @@ class BabylonBitmapData extends BitmapData {
 
   void _onSuccess(BABYLON.Scene newScene) {
     _babylonScene = newScene;
-    _babylonScene.executeWhenReady(allowInterop(() => _completer.complete(this)));
+    _babylonScene
+        .executeWhenReady(allowInterop(() => _completer.complete(this)));
   }
 
   void _onProgress(dynamic evt) {}

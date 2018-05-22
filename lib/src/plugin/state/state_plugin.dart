@@ -24,7 +24,8 @@ class StatePlugin extends AbstractRdPlugin {
     commandMap[StateEvents.STATE_VO_BACK] = () => new StateBackCommand();
 
     // 4b. if it's the same state, only change params
-    commandMap[StateEvents.STATE_PARAMS_CHANGE] = () => new StateSetParamsCommand();
+    commandMap[StateEvents.STATE_PARAMS_CHANGE] =
+        () => new StateSetParamsCommand();
     // ## COMMAND INSERTION PLACEHOLDER - DO NOT REMOVE ## //
 
     /* Add this Plugin's Init Command to Bootstrap Command Sequence */
@@ -39,7 +40,8 @@ class StatePlugin extends AbstractRdPlugin {
    */
   @override
   void configureInjectors() {
-    RdContextUtil.registerInstance(objectFactory, StateConstants.CTX_MODEL_STATE, new StateModel());
+    RdContextUtil.registerInstance(
+        objectFactory, StateConstants.CTX_MODEL_STATE, new StateModel());
     objectFactory.addObjectPostProcessor(new StateModelInjector(objectFactory));
   }
 }

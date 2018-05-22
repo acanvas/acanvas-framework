@@ -40,7 +40,8 @@ class ScreenPluginInjector implements IObjectPostProcessor {
       object.uiModel = _applicationContext.getObject(ScreenPluginBase.MODEL_UI);
     }
     if (object is IScreenServiceAware) {
-      object.uiService = _applicationContext.getObject(ScreenPluginBase.SERVICE_UI);
+      object.uiService =
+          _applicationContext.getObject(ScreenPluginBase.SERVICE_UI);
     }
 
     return object;

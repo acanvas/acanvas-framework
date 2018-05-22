@@ -1,6 +1,5 @@
 part of rockdot_framework.ugc;
 
-
 class UGCGetLikersCommand extends AbstractUGCCommand {
   @override
   void execute([RdSignal event = null]) {
@@ -9,7 +8,11 @@ class UGCGetLikersCommand extends AbstractUGCCommand {
     int currentImageID = (_ugcModel.currentItemDAO.id).toInt();
     UGCFilterVO vo = event.data;
 
-    Map dto = {'id': currentImageID, 'limitIndex': vo.nextToken, 'limit': vo.limit};
+    Map dto = {
+      'id': currentImageID,
+      'limitIndex': vo.nextToken,
+      'limit': vo.limit
+    };
 
     amfOperation("UGCEndpoint.getLikersOfItem", map: dto);
   }

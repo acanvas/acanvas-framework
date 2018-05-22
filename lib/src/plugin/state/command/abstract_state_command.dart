@@ -1,12 +1,6 @@
 part of rockdot_framework.state;
 
-class AbstractStateCommand extends RdCommand implements IStateModelAware, IScreenModelAware {
-  ScreenModel _uiModel;
-
-  void set uiModel(ScreenModel uiModel) {
-    _uiModel = uiModel;
-  }
-
+class AbstractStateCommand extends RdCommand implements IStateModelAware {
   StateModel _stateModel;
 
   StateModel get stateModel => _stateModel;

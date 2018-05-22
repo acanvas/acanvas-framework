@@ -6,5 +6,9 @@ class IOImageFileObserveVO implements IRdVO {
   DisplayObject watermark;
   double scaleWatermark;
 
-  IOImageFileObserveVO([this.filetypePattern = r"(jpeg|png)", this.scaleImage = 1.0, this.watermark, this.scaleWatermark = 1.0]) {}
+  IOImageFileObserveVO(
+      [this.filetypePattern = r"(jpeg|png)",
+      this.scaleImage = 1.0,
+      this.watermark,
+      this.scaleWatermark = 1.0]) {}
 }

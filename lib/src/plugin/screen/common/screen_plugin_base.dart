@@ -30,6 +30,7 @@ class ScreenPluginBase extends AbstractRdPlugin {
   @override
   void configureInjectors() {
     RdContextUtil.registerInstance(objectFactory, MODEL_UI, new ScreenModel());
-    objectFactory.addObjectPostProcessor(new ScreenPluginInjector(objectFactory));
+    objectFactory
+        .addObjectPostProcessor(new ScreenPluginInjector(objectFactory));
   }
 }

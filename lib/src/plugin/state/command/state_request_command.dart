@@ -12,7 +12,8 @@ class StateRequestCommand extends AbstractStateCommand {
     StateVO stateVO = _stateModel.getStateVO(urlData[0].toLowerCase());
 
     if (stateVO != null) {
-      if (_stateModel.currentScreen == null && stateVO.substate == StateConstants.SUB_MODAL) {
+      if (_stateModel.currentScreen == null &&
+          stateVO.substate == StateConstants.SUB_MODAL) {
         // 0. nullToModal
         new RdSignal(StateEvents.ADDRESS_SET, "/").dispatch();
         return;
@@ -20,7 +21,7 @@ class StateRequestCommand extends AbstractStateCommand {
 
       if (urlData.length > 1) {
         Map<String, String> params = {};
-        List list = (urlData[1] as String).split("&");
+        List<String> list = (urlData[1] as String).split("&");
         list.forEach((String s) {
           List split = s.split("=");
           if (split.length > 1) {
@@ -29,7 +30,8 @@ class StateRequestCommand extends AbstractStateCommand {
         });
 
         if (stateVO.params != null) {
-          if (params.toString() != stateVO.params.toString()) stateVO.params = params;
+          if (params.toString() != stateVO.params.toString())
+            stateVO.params = params;
         } else {
           stateVO.params = params;
         }
@@ -37,10 +39,12 @@ class StateRequestCommand extends AbstractStateCommand {
         stateVO.params = null;
       }
 
-      new RdSignal(StateEvents.STATE_VO_SET, stateVO, dispatchCompleteEvent).dispatch();
+      new RdSignal(StateEvents.STATE_VO_SET, stateVO, dispatchCompleteEvent)
+          .dispatch();
     } else {
       //If url not found in registry, default to root
-      new RdSignal(StateEvents.ADDRESS_SET, "/", dispatchCompleteEvent).dispatch();
+      new RdSignal(StateEvents.ADDRESS_SET, "/", dispatchCompleteEvent)
+          .dispatch();
     }
   }
 }

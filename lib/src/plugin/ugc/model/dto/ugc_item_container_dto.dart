@@ -47,7 +47,8 @@ class UGCItemContainerDTO implements IRdDTO {
       totalrows = inputDTO["totalrows"];
 
       for (int i = 0; i < inputDTO["roles"].length; i++) {
-        inputDTO["roles"][i] = new UGCItemContainerRoleDTO(inputDTO["roles"][i]);
+        inputDTO["roles"][i] =
+            new UGCItemContainerRoleDTO(inputDTO["roles"][i]);
       }
       roles = inputDTO["roles"];
 
@@ -57,7 +58,7 @@ class UGCItemContainerDTO implements IRdDTO {
       items = inputDTO["items"];
 
       creator = new UGCUserDTO(inputDTO["creator"]);
-      if(inputDTO["task"].length > 0){
+      if (inputDTO["task"].length > 0) {
         task = new UGCTaskDTO(inputDTO["task"][0]);
       }
     }
@@ -81,7 +82,8 @@ class UGCItemContainerDTO implements IRdDTO {
       "privacy_level": privacy_level,
       /*"creator_uid": creator_uid,*/
       "title": title,
-      "description": description/*,
+      "description":
+          description /*,
       "like_count": like_count,
       "flag": flag,
       "rowindex": rowindex,
