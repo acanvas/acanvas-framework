@@ -1,20 +1,12 @@
 part of rockdot_framework.ugc;
 
-class UGCPlugin extends AbstractOrderedFactoryPostProcessor {
+class UGCPlugin extends AbstractRdPlugin {
   static const String MODEL_UGC = "MODEL_UGC";
 
   UGCPlugin() : super(40) {}
 
   @override
   IOperation postProcessObjectFactory(IObjectFactory objectFactory) {
-    /* Objects */
-    RdContextUtil.registerInstance(objectFactory, MODEL_UGC, new UGCModel());
-
-    /* Object Postprocessors */
-    objectFactory.addObjectPostProcessor(new UGCModelInjector(objectFactory));
-
-    /* Commands */
-    Map commandMap = new Map();
 
     /* AMF */
     commandMap[UGCEvents.CREATE_ITEM] = () => new UGCCreateItemCommand();
@@ -68,11 +60,18 @@ class UGCPlugin extends AbstractOrderedFactoryPostProcessor {
     commandMap[UGCEvents.TASK_GET_TASK_BY_CATEGORY] =
         () => new TaskGetTasksByCategoryCommand();
 
-    RdContextUtil.registerCommands(objectFactory, commandMap);
+    projectInitCommand = UGCEvents.INIT;
+  }
 
-    /* Bootstrap Command */
-    RdConstants.getBootstrap().add(UGCEvents.INIT);
-
-    return null;
+  /**
+   * Register this Plugin's Model as injectable
+   * Any class requiring this Model can implement IFacebookModelAware and the ObjectFactory will take care.
+   * This is called Interface Injection, the only kind of injection available in Spring Dart so far.
+   * Feel free to add more injectors.
+   */
+  @override
+  void configureInjectors() {
+    RdContextUtil.registerInstance(objectFactory, MODEL_UGC, new UGCModel());
+    objectFactory.addObjectPostProcessor(new UGCModelInjector(objectFactory));
   }
 }
