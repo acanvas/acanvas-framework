@@ -8,8 +8,8 @@ dependencies:
   googleapis_auth: any
   googleapis: any
   acanvas_spring:
-    git: https://github.com/block-forest/acanvas-spring
+    git: https://github.com/acanvas/acanvas-spring
   acanvas_commons:
-    git: https://github.com/block-forest/acanvas-commons
+    git: https://github.com/acanvas/acanvas-commons
   babylonjs_facade:
     git: https://github.com/block-forest/babylonjs-dart-facade
