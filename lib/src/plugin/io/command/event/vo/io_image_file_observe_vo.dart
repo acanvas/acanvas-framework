@@ -1,6 +1,6 @@
-part of rockdot_framework.io;
+part of acanvas_framework.io;
 
-class IOImageFileObserveVO implements IRdVO {
+class IOImageFileObserveVO implements IAcVO {
   String filetypePattern;
   double scaleImage;
   DisplayObject watermark;

@@ -1,4 +1,4 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 class UGCGamingModel {
   List _games;

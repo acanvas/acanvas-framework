@@ -1,9 +1,9 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
-class RockdotLifecycleSprite extends LifecycleSprite
+class AcanvasLifecycleSprite extends LifecycleSprite
     with MApplicationContextAware {
-  RockdotLifecycleSprite(String id) : super(id) {
-    RdContextUtil.wire(this);
+  AcanvasLifecycleSprite(String id) : super(id) {
+    AcContextUtil.wire(this);
     inheritSpan = false;
   }
 

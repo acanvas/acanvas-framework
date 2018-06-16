@@ -1,18 +1,18 @@
-library rockdot_framework.ugc;
+library acanvas_framework.ugc;
 
 import 'dart:html' as html;
 import 'dart:math' as math;
 import 'dart:convert';
 
-import 'package:rockdot_commons/rockdot_commons.dart';
-import 'package:rockdot_spring/rockdot_spring.dart';
+import 'package:acanvas_commons/acanvas_commons.dart';
+import 'package:acanvas_spring/acanvas_spring.dart';
 
 import 'core.dart';
 import 'core.plugin.state.dart' show IStateModelAware, StateModel;
 import 'plugin.facebook.dart' show IFBModelAware, FBModel, FBUserVO;
 import 'plugin.io.dart' show DataRetrieveVO;
 
-/* required by Rockdot UGCPlugin */
+/* required by Acanvas UGCPlugin */
 //import 'package:jsonrpc2/jsonrpc_client.dart';
 
 part 'plugin/ugc/ugcplugin.dart';

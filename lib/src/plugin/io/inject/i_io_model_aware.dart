@@ -1,4 +1,4 @@
-part of rockdot_framework.io;
+part of acanvas_framework.io;
 
 /**
  * @author nilsdoehring

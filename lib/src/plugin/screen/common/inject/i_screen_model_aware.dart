@@ -1,4 +1,4 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
 /**
  * @author nilsdoehring

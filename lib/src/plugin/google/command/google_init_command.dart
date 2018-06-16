@@ -1,8 +1,8 @@
-part of rockdot_framework.google;
+part of acanvas_framework.google;
 
 class GoogleInitCommand extends AbstractGoogleCommand {
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     var id = new ClientId(

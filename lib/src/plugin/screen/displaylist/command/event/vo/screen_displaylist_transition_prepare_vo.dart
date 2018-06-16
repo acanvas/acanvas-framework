@@ -1,9 +1,9 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
 /**
  * @author nilsdoehring
  */
-class ScreenDisplaylistTransitionPrepareVO implements IRdVO {
+class ScreenDisplaylistTransitionPrepareVO implements IAcVO {
   LifecycleSprite outTarget;
   LifecycleSprite inTarget;
   IEffect effect;

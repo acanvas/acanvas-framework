@@ -1,6 +1,6 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
-class UGCPlugin extends AbstractRdPlugin {
+class UGCPlugin extends AbstractAcPlugin {
   static const String MODEL_UGC = "MODEL_UGC";
 
   UGCPlugin() : super(40) {}
@@ -71,7 +71,7 @@ class UGCPlugin extends AbstractRdPlugin {
    */
   @override
   void configureInjectors() {
-    RdContextUtil.registerInstance(objectFactory, MODEL_UGC, new UGCModel());
+    AcContextUtil.registerInstance(objectFactory, MODEL_UGC, new UGCModel());
     objectFactory.addObjectPostProcessor(new UGCModelInjector(objectFactory));
   }
 }

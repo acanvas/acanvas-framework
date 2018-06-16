@@ -1,4 +1,4 @@
-part of rockdot_framework.facebook;
+part of acanvas_framework.facebook;
 
 //https://developers.facebook.com/docs/games/requests/v2.1
 
@@ -6,7 +6,7 @@ class FBPromptInviteBrowserCommand extends AbstractFBCommand {
   VOFBInvite _vo;
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     if (notLoggedIn(event)) return;
@@ -83,6 +83,6 @@ class FBPromptInviteBrowserCommand extends AbstractFBCommand {
       'to_ids': _fbModel.invitedUsers
     };
 
-    new RdSignal(UGCEvents.TRACK_INVITE, dto, dispatchCompleteEvent).dispatch();
+    new AcSignal(UGCEvents.TRACK_INVITE, dto, dispatchCompleteEvent).dispatch();
   }
 }

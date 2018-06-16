@@ -1,4 +1,4 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
@@ -11,7 +11,7 @@ class ScreenSetCommand extends AbstractStateCommand {
   MLifecycle _nextStateElement;
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     StateChangeVO e = event.data;
@@ -93,7 +93,7 @@ class ScreenSetCommand extends AbstractStateCommand {
       }
     }
 
-    new RdSignal(
+    new AcSignal(
             ScreenDisplaylistEvents.TRANSITION_PREPARE,
             new ScreenDisplaylistTransitionPrepareVO(
                 transitionType,

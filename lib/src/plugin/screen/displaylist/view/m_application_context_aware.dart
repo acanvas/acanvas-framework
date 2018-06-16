@@ -1,7 +1,7 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
 abstract class MApplicationContextAware implements IApplicationContextAware {
-  RdContext _context;
+  AcContext _context;
 
   @override
   IApplicationContext get applicationContext => _context;

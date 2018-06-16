@@ -1,8 +1,8 @@
-part of rockdot_framework.facebook;
+part of acanvas_framework.facebook;
 
 class FacebookLoginVO {
   String scopes;
-  RdSignal nextSignal;
+  AcSignal nextSignal;
 
   FacebookLoginVO({this.scopes, this.nextSignal}) {}
 }

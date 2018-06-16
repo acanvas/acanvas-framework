@@ -1,10 +1,10 @@
-part of rockdot_framework.facebook;
+part of acanvas_framework.facebook;
 
 class FBLoginBrowserCommand extends AbstractFBCommand {
-  RdSignal _nextSignal;
+  AcSignal _nextSignal;
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     String scopes = "";

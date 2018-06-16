@@ -1,8 +1,8 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 class UGCLikeCommand extends AbstractUGCCommand {
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
     int id = event.data;
     String uid = _ugcModel.userDAO.uid;

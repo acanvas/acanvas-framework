@@ -1,9 +1,9 @@
-part of rockdot_framework.state;
+part of acanvas_framework.state;
 
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
  */
-class StateMessageVO implements IRdVO {
+class StateMessageVO implements IAcVO {
   static const int TYPE_INFO = 0;
   static const int TYPE_WARN = 1;
   static const int TYPE_ERROR = 2;

@@ -1,9 +1,9 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 /**
  * @author nilsdoehring
  */
-class UGCRatingVO implements IRdVO {
+class UGCRatingVO implements IAcVO {
   int id;
   int rating;
 

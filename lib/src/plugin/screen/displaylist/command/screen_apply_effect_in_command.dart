@@ -1,8 +1,8 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
 class ScreenApplyEffectInCommand extends AbstractScreenCommand {
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
     ScreenDisplaylistEffectApplyVO vo = event.data;
 

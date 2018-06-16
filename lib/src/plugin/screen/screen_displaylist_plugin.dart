@@ -1,10 +1,10 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
 class ScreenDisplaylistPlugin extends ScreenPluginBase {
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new RdSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   * new AcSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override
   void configureCommands() {
@@ -39,7 +39,7 @@ class ScreenDisplaylistPlugin extends ScreenPluginBase {
   @override
   void configureInjectors() {
     super.configureInjectors();
-    RdContextUtil.registerInstance(objectFactory, ScreenPluginBase.SERVICE_UI,
+    AcContextUtil.registerInstance(objectFactory, ScreenPluginBase.SERVICE_UI,
         new ScreenDisplaylistService());
   }
 }

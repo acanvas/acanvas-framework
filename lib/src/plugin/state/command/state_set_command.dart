@@ -1,4 +1,4 @@
-part of rockdot_framework.state;
+part of acanvas_framework.state;
 
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
@@ -6,7 +6,7 @@ part of rockdot_framework.state;
 
 class StateSetCommand extends AbstractStateCommand {
   @override
-  dynamic execute([RdSignal event = null]) {
+  dynamic execute([AcSignal event = null]) {
     super.execute(event);
 
     bool saveHistory = true;
@@ -35,10 +35,10 @@ class StateSetCommand extends AbstractStateCommand {
       _stateModel.currentStateVO = stateVO;
       _stateModel.currentStateURLParams = stateVO.params;
 
-      new RdSignal(StateEvents.STATE_CHANGE,
+      new AcSignal(StateEvents.STATE_CHANGE,
               new StateChangeVO(oldStateVO, stateVO), dispatchCompleteEvent)
           .dispatch();
-      new RdSignal(StateEvents.STATE_PARAMS_CHANGE, _stateModel.currentStateVO)
+      new AcSignal(StateEvents.STATE_PARAMS_CHANGE, _stateModel.currentStateVO)
           .dispatch();
 
       if (saveToHistory) {

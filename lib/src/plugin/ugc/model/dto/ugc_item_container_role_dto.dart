@@ -1,9 +1,9 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 /**
  * @author nilsdoehring
  */
-class UGCItemContainerRoleDTO implements IRdDTO {
+class UGCItemContainerRoleDTO implements IAcDTO {
   int id;
   int container_id;
   String uid;

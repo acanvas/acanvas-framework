@@ -1,4 +1,4 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
 /**
  * @author nilsdoehring
@@ -40,7 +40,7 @@ class AbstractScreenService implements IScreenService {
   }
 
   Stage get stage {
-    return RdConstants.getStage();
+    return AcConstants.getStage();
   }
 
   bool _initialized;
@@ -73,11 +73,11 @@ class AbstractScreenService implements IScreenService {
   }
 
   void init([Function callback = null]) {
-    _background = new LifecycleSprite("rockdot.background");
-    _content = new LifecycleSprite("rockdot.content");
-    _navi = new LifecycleSprite("rockdot.navigation");
-    _layer = new LifecycleSprite("rockdot.layer");
-    _foreground = new LifecycleSprite("rockdot.foreground");
+    _background = new LifecycleSprite("acanvas.background");
+    _content = new LifecycleSprite("acanvas.content");
+    _navi = new LifecycleSprite("acanvas.navigation");
+    _layer = new LifecycleSprite("acanvas.layer");
+    _foreground = new LifecycleSprite("acanvas.foreground");
 
     stage.addChild(_background);
     stage.addChild(_content);
@@ -107,17 +107,17 @@ class AbstractScreenService implements IScreenService {
 
   void resize([Event event = null]) {
     _background.span(
-        RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
-    _content.span(RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
-    _navi.span(RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
-    _layer.span(RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
+        AcConstants.WIDTH_STAGE_REAL, AcConstants.HEIGHT_STAGE_REAL);
+    _content.span(AcConstants.WIDTH_STAGE_REAL, AcConstants.HEIGHT_STAGE_REAL);
+    _navi.span(AcConstants.WIDTH_STAGE_REAL, AcConstants.HEIGHT_STAGE_REAL);
+    _layer.span(AcConstants.WIDTH_STAGE_REAL, AcConstants.HEIGHT_STAGE_REAL);
     _foreground.span(
-        RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL);
+        AcConstants.WIDTH_STAGE_REAL, AcConstants.HEIGHT_STAGE_REAL);
 
     log.finer("Stage width: {0}, Stage height: {1}",
-        [RdConstants.WIDTH_STAGE_REAL, RdConstants.HEIGHT_STAGE_REAL]);
+        [AcConstants.WIDTH_STAGE_REAL, AcConstants.HEIGHT_STAGE_REAL]);
 
-    //new RdSignal(ScreenEvents.RESIZE).dispatch();
+    //new AcSignal(ScreenEvents.RESIZE).dispatch();
   }
 
   void lock() {

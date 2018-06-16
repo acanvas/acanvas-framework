@@ -1,8 +1,8 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 class UGCHasExtendedUserCommand extends AbstractUGCCommand {
   @override
-  dynamic execute([RdSignal event = null]) {
+  dynamic execute([AcSignal event = null]) {
     super.execute(event);
 
     Map dto = {'uid': event.data ? event.data : _ugcModel.userDAO.uid};

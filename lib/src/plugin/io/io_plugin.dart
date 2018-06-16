@@ -1,6 +1,6 @@
-part of rockdot_framework.io;
+part of acanvas_framework.io;
 
-class IOPlugin extends AbstractRdPlugin {
+class IOPlugin extends AbstractAcPlugin {
   static const String MODEL_IO = "MODEL_IO";
 
   IOPlugin() : super(35) {}
@@ -8,7 +8,7 @@ class IOPlugin extends AbstractRdPlugin {
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new RdSignal(IOEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   * new AcSignal(IOEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override
   void configureCommands() {
@@ -29,7 +29,7 @@ class IOPlugin extends AbstractRdPlugin {
    */
   @override
   void configureInjectors() {
-    RdContextUtil.registerInstance(
+    AcContextUtil.registerInstance(
         objectFactory, IOPlugin.MODEL_IO, new IOModel());
     objectFactory.addObjectPostProcessor(new IOModelInjector(objectFactory));
   }

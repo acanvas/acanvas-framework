@@ -1,6 +1,6 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
-class UGCItemDTO implements IRdDTO {
+class UGCItemDTO implements IAcDTO {
   static const TYPE_TEXT = 0;
   static const TYPE_IMAGE = 1;
   static const TYPE_VIDEO = 2;
@@ -27,7 +27,7 @@ class UGCItemDTO implements IRdDTO {
   int type_id;
 
   // assembled in AMF Endpoint via type_id relation
-  IRdDTO type_dao;
+  IAcDTO type_dao;
 
   // assembled in AMF Endpoint by counting array index
   int rowindex;

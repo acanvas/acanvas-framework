@@ -1,9 +1,9 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 /**
  * @author nilsdoehring
  */
-class UGCItemContainerDTO implements IRdDTO {
+class UGCItemContainerDTO implements IAcDTO {
   int id;
   int parent_container_id;
   int privacy_level;

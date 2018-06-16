@@ -1,4 +1,4 @@
-library rockdot_framework.babylon;
+library acanvas_framework.babylon;
 
 import 'dart:html' as html;
 import 'dart:async';
@@ -6,9 +6,9 @@ import 'package:js/js.dart';
 
 import 'package:stagexl/stagexl.dart'
     show BitmapData, RenderTextureQuad, RenderTexture;
-import 'package:rockdot_commons/rockdot_commons.dart' show RdSignal;
+import 'package:acanvas_commons/acanvas_commons.dart' show AcSignal;
 
-import 'core.dart' show AbstractRdPlugin, RdCommand;
+import 'core.dart' show AbstractAcPlugin, AcCommand;
 import 'package:babylonjs_facade/babylon.dart' as BABYLON;
 
 part 'plugin/babylon/babylon_plugin.dart';

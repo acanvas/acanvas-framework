@@ -1,6 +1,6 @@
-part of rockdot_framework.core;
+part of acanvas_framework.core;
 
-class RdConstants {
+class AcConstants {
   /* internals */
   LoaderInfo _loaderInfo;
   List<String> _bootStrap;
@@ -18,20 +18,20 @@ class RdConstants {
   static const int UPLOAD_HEIGHT_THUMB = 120;
 
   static int get WIDTH_STAGE_REAL {
-    return RdConstants.getStage().stageWidth;
+    return AcConstants.getStage().stageWidth;
   }
 
   static int get HEIGHT_STAGE_REAL {
-    return RdConstants.getStage().stageHeight;
+    return AcConstants.getStage().stageHeight;
   }
 
-  factory RdConstants() {
+  factory AcConstants() {
     return _singleton;
   }
 
-  static final RdConstants _singleton = new RdConstants._internal();
+  static final AcConstants _singleton = new AcConstants._internal();
 
-  RdConstants._internal() {
+  AcConstants._internal() {
     // initialization logic here
     _bootStrap = new List<String>();
   }
@@ -49,15 +49,15 @@ class RdConstants {
   }
 
   static Stage getStage() {
-    return Rd.STAGE;
+    return Ac.STAGE;
   }
 
   static void setStage(Stage stage) {
-    Rd.STAGE = (stage);
+    Ac.STAGE = (stage);
   }
 
   static bool get WEBGL {
-    return Rd.WEBGL;
+    return Ac.WEBGL;
   }
 
   static IApplicationContext getContext() {

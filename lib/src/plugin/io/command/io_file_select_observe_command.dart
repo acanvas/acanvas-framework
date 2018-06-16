@@ -1,10 +1,10 @@
-part of rockdot_framework.io;
+part of acanvas_framework.io;
 
-class IOFileSelectObserveCommand extends RdCommand {
+class IOFileSelectObserveCommand extends AcCommand {
   IOImageFileObserveVO _vo;
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     _vo = event.data;

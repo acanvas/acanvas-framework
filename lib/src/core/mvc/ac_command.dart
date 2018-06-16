@@ -1,13 +1,13 @@
-part of rockdot_framework.core;
+part of acanvas_framework.core;
 
-class RdCommand extends AbstractOperation
+class AcCommand extends AbstractOperation
     implements IAsyncCommand, IApplicationContextAware {
   Logger log;
 
-  RdSignal _event;
+  AcSignal _event;
   Function _callback;
 
-  RdCommand() {
+  AcCommand() {
     log = new Logger(this.toString());
   }
 
@@ -50,7 +50,7 @@ class RdCommand extends AbstractOperation
   }
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     _event = event;
     if (event != null && event.completeCallBack != null) {
       _callback = event.completeCallBack;
@@ -60,7 +60,7 @@ class RdCommand extends AbstractOperation
   void showMessage(String message,
       {int timeBox: 0, int type: StateMessageVO.TYPE_INFO, bool blur: false}) {
     String id = (_event == null) ? "NO_ID" : _event.type;
-    new RdSignal(
+    new AcSignal(
             StateEvents.MESSAGE_SHOW,
             new StateMessageVO(id, message, timeBox,
                 type: type, blurContent: blur))
@@ -69,6 +69,6 @@ class RdCommand extends AbstractOperation
 
   void hideMessage() {
     String id = (_event == null) ? "NO_ID" : _event.type;
-    new RdSignal(StateEvents.MESSAGE_HIDE, id).dispatch();
+    new AcSignal(StateEvents.MESSAGE_HIDE, id).dispatch();
   }
 }

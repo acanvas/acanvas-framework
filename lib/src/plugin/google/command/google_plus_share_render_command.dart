@@ -1,4 +1,4 @@
-part of rockdot_framework.google;
+part of acanvas_framework.google;
 
 /*
  * https://developers.google.com/+/web/share/interactive#rendering_the_button_with_javascript
@@ -9,7 +9,7 @@ class GooglePlusShareRenderCommand extends AbstractGoogleCommand {
   String recipients = "";
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     js.context['dartGapiPlusLoaded'] = () {
@@ -47,7 +47,7 @@ class GooglePlusShareRenderCommand extends AbstractGoogleCommand {
 
     html.Element el = html.querySelector("#plus-button-holder");
     HtmlObject obj = new HtmlObject(el);
-    RdConstants.getStage().addChild(obj);
+    AcConstants.getStage().addChild(obj);
     obj.x = html.window.innerWidth / 2 - obj.width / 2;
     obj.y = html.window.innerHeight / 2 - obj.height / 2;
     obj.visible = true;

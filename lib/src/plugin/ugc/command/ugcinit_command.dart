@@ -1,8 +1,8 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 class UGCInitCommand extends AbstractUGCCommand {
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     this.log.info("Will use following host: " +

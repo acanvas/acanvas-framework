@@ -1,6 +1,6 @@
-part of rockdot_framework.google;
+part of acanvas_framework.google;
 
-class GooglePlugin extends AbstractRdPlugin {
+class GooglePlugin extends AbstractAcPlugin {
   static const String MODEL_GOOGLE = "MODEL_GOOGLE";
 
   GooglePlugin() : super(30) {}
@@ -8,7 +8,7 @@ class GooglePlugin extends AbstractRdPlugin {
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new RdSignal(GoogleEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   * new AcSignal(GoogleEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override
   void configureCommands() {
@@ -37,7 +37,7 @@ class GooglePlugin extends AbstractRdPlugin {
    */
   @override
   void configureInjectors() {
-    RdContextUtil.registerInstance(
+    AcContextUtil.registerInstance(
         objectFactory, MODEL_GOOGLE, new GoogleModel());
     objectFactory
         .addObjectPostProcessor(new GoogleModelInjector(objectFactory));

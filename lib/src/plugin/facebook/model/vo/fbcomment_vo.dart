@@ -1,4 +1,4 @@
-part of rockdot_framework.facebook;
+part of acanvas_framework.facebook;
 
 class FBCommentVO {
   String id;

@@ -1,6 +1,6 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
-class AbstractUGCCommand extends RdCommand implements IUGCModelAware {
+class AbstractUGCCommand extends AcCommand implements IUGCModelAware {
   UGCModel _ugcModel;
 
   void set ugcModel(UGCModel ugcModel) {
@@ -8,7 +8,7 @@ class AbstractUGCCommand extends RdCommand implements IUGCModelAware {
   }
 
   void amfOperation(String methodName,
-      {IRdDTO dto: null, Map map: null, String json_: null}) {
+      {IAcDTO dto: null, Map map: null, String json_: null}) {
     String params = null;
     if (dto != null) {
       params = json.encode(dto.toJson());

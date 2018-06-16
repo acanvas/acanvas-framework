@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-part of rockdot_framework.core;
+part of acanvas_framework.core;
 
 /**
  * Basic implementation of the <code>ICompositeCommand</code> that executes a list of <code>ICommand</code> instances
@@ -102,7 +102,7 @@ class CompositeCommandWithEvent extends AbstractProgressOperation
   /**
    * @inheritDoc
    */
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     if (_commands != null) {
       switch (_kind) {
         case CompositeCommandKind.SEQUENCE:
@@ -137,7 +137,7 @@ class CompositeCommandWithEvent extends AbstractProgressOperation
    * @inheritDoc
    */
   ICompositeCommand addCommandEvent(
-      RdSignal event, IObjectFactory objectFactory) {
+      AcSignal event, IObjectFactory objectFactory) {
     if (event == null) {
       LOGGER.info("The event argument must not be null");
       return null;

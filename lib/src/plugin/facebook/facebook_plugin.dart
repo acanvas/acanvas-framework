@@ -1,6 +1,6 @@
-part of rockdot_framework.facebook;
+part of acanvas_framework.facebook;
 
-class FacebookPlugin extends AbstractRdPlugin {
+class FacebookPlugin extends AbstractAcPlugin {
   static const String MODEL_FB = "MODEL_FB";
 
   FacebookPlugin() : super(30) {}
@@ -8,7 +8,7 @@ class FacebookPlugin extends AbstractRdPlugin {
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new RdSignal(FacebookEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   * new AcSignal(FacebookEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override
   void configureCommands() {
@@ -39,7 +39,7 @@ class FacebookPlugin extends AbstractRdPlugin {
    */
   @override
   void configureInjectors() {
-    RdContextUtil.registerInstance(objectFactory, MODEL_FB, new FBModel());
+    AcContextUtil.registerInstance(objectFactory, MODEL_FB, new FBModel());
     objectFactory.addObjectPostProcessor(new FBModelInjector(objectFactory));
   }
 }

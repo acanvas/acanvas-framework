@@ -1,12 +1,12 @@
-part of rockdot_framework.core;
+part of acanvas_framework.core;
 
-class RdContextUtil {
+class AcContextUtil {
   static void wire(dynamic uie) {
-    RdConstants.getContext()?.wire(uie);
+    AcConstants.getContext()?.wire(uie);
   }
 
   static dynamic getObject(String obj) {
-    return RdConstants.getContext().getObject(obj);
+    return AcConstants.getContext().getObject(obj);
   }
 
   static void registerCommands(
@@ -98,7 +98,7 @@ class RdContextUtil {
       int tree_order: 0,
       int tree_parent: 0,
       String transition: "transition.default"}) {
-    RdContextUtil.registerClassFunction(objectFactory, id, func, false, true);
+    AcContextUtil.registerClassFunction(objectFactory, id, func, false, true);
 
     StateVO stateVO = new StateVO();
     stateVO.tree_order = tree_order;
@@ -115,7 +115,7 @@ class RdContextUtil {
   }
 
   static void registerScreenInstance(IObjectFactory objectFactory, String id,
-      RockdotLifecycleSprite clazz, String url,
+      AcanvasLifecycleSprite clazz, String url,
       {String substate: StateConstants.SUB_NORMAL,
       int tree_order: 0,
       int tree_parent: 0,
@@ -136,10 +136,10 @@ class RdContextUtil {
 
   static String getConfigLocation() {
     /* Define URL to load from */
-    String prefix = RdConstants.HOST_FRONTEND + RdConstants.VERSION + "/";
+    String prefix = AcConstants.HOST_FRONTEND + AcConstants.VERSION + "/";
 
     /* Define Caching */
-    String postfix = RdConstants.DEBUG && !Rd.MOBILE
+    String postfix = AcConstants.DEBUG && !Ac.MOBILE
         ? "?" + new math.Random().nextInt(1000000).toString()
         : "";
 

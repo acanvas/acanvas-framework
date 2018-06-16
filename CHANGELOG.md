@@ -1,4 +1,4 @@
-# CHANGELOG ROCKDOT_FRAMEWORK
+# CHANGELOG ACANVAS_FRAMEWORK
 
 ## 0.10.0-dev 2018-05-13
 
@@ -20,7 +20,7 @@
 ## 0.9.8 2017-02-16
 
 - Strong mode fixes
-- Bumped minor and release version to align with other rockdot components
+- Bumped minor and release version to align with other acanvas components
 
 ## 0.6.5
 

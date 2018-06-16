@@ -1,4 +1,4 @@
-part of rockdot_framework.io;
+part of acanvas_framework.io;
 
 /**
  * <code>IObjectPostProcessor</code> implementation that checks for objects that implement the <code>IApplicationContextAware</code>

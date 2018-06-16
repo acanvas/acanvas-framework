@@ -1,8 +1,8 @@
-part of rockdot_framework.facebook;
+part of acanvas_framework.facebook;
 
 class FBTestCommand extends AbstractFBCommand {
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     CompositeCommandWithEvent compositeCommand =
@@ -11,27 +11,27 @@ class FBTestCommand extends AbstractFBCommand {
     /* ******************** LOGIN USER ******************* */
     String perms = getProperty("project.facebook.permissions");
     compositeCommand.addCommandEvent(
-        new RdSignal(FBEvents.USER_LOGIN, perms, _onUserLogin),
+        new AcSignal(FBEvents.USER_LOGIN, perms, _onUserLogin),
         applicationContext);
 
     /* ******************** GET INFO FOR USER ******************* */
     compositeCommand.addCommandEvent(
-        new RdSignal(FBEvents.USER_GETINFO, null, _onUserGetInfo),
+        new AcSignal(FBEvents.USER_GETINFO, null, _onUserGetInfo),
         applicationContext);
 
     /* ******************** GET FRIENDS OF USER ******************* */
     compositeCommand.addCommandEvent(
-        new RdSignal(FBEvents.FRIENDS_GET, null, _onFriendsGet),
+        new AcSignal(FBEvents.FRIENDS_GET, null, _onFriendsGet),
         applicationContext);
 
     /* ******************** GET FRIENDS INFO OF USER ******************* */
     compositeCommand.addCommandEvent(
-        new RdSignal(FBEvents.FRIENDS_GETINFO, null, _onFriendsGetInfo),
+        new AcSignal(FBEvents.FRIENDS_GETINFO, null, _onFriendsGetInfo),
         applicationContext);
 
     /* ******************** GET ALBUMS OF USER ******************* */
     compositeCommand.addCommandEvent(
-        new RdSignal(FBEvents.ALBUMS_GET, null, _onAlbumsGet),
+        new AcSignal(FBEvents.ALBUMS_GET, null, _onAlbumsGet),
         applicationContext);
 
     /* ******************** INVITE USERS ******************* */
@@ -84,7 +84,7 @@ class FBTestCommand extends AbstractFBCommand {
         _fbModel.userAlbums.length.toString());
 
     /* ******************** GET PHOTOS OF FIRST USER ALBUM ******************* */
-    new RdSignal(FBEvents.PHOTOS_GET, new FBAlbumVO(_fbModel.userAlbums[0]).id,
+    new AcSignal(FBEvents.PHOTOS_GET, new FBAlbumVO(_fbModel.userAlbums[0]).id,
             _onAlbumPhotosGet)
         .dispatch();
   }

@@ -1,10 +1,10 @@
-part of rockdot_framework.google;
+part of acanvas_framework.google;
 
 class GoogleLoginCommand extends AbstractGoogleCommand {
-  RdSignal _nextSignal;
+  AcSignal _nextSignal;
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     //var id = new ClientId(getProperty("project.google.oauth.clientid"), null);

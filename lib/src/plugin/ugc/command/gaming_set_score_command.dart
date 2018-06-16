@@ -1,8 +1,8 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 class GamingSetScoreCommand extends AbstractUGCCommand {
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     UGCGameDTO vo = event.data;

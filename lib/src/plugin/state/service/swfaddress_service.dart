@@ -1,4 +1,4 @@
-part of rockdot_framework.state;
+part of acanvas_framework.state;
 
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
@@ -19,7 +19,7 @@ class SWFAddressService extends BasicAddressService implements IAddressService {
   void _onSWFAddressChange([html.Event e = null]) {
     var hash = html.window.location.hash;
     if (hash.length > 0 && hash[0] == "#") hash = hash.substring(1);
-    new RdSignal(StateEvents.STATE_REQUEST, hash, _callback).dispatch();
+    new AcSignal(StateEvents.STATE_REQUEST, hash, _callback).dispatch();
   }
 
   @override

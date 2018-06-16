@@ -1,8 +1,8 @@
-part of rockdot_framework.io;
+part of acanvas_framework.io;
 
-class IOFileSelectCreateCommand extends RdCommand {
+class IOFileSelectCreateCommand extends AcCommand {
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     html.DivElement div = html.querySelector("#${IOModel.HOLDER_ELEMENT}");

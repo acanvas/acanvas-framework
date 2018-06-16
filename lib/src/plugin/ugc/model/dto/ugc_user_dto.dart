@@ -1,6 +1,6 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
-class UGCUserDTO implements IRdDTO {
+class UGCUserDTO implements IAcDTO {
   static const NETWORK_FACEBOOK = "facebook";
   static const NETWORK_GPLUS = "google+";
   static const NETWORK_INPUTFORM = "inputform";

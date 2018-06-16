@@ -1,8 +1,8 @@
-part of rockdot_framework.io;
+part of acanvas_framework.io;
 
-class IOImageUploadCommand extends RdCommand {
+class IOImageUploadCommand extends AcCommand {
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     IOImageUploadVO vo = event.data;

@@ -1,8 +1,8 @@
-part of rockdot_framework.google;
+part of acanvas_framework.google;
 
 class GoogleLoginVO {
   List scopes;
-  RdSignal nextSignal;
+  AcSignal nextSignal;
 
   GoogleLoginVO({this.scopes, this.nextSignal}) {}
 }

@@ -1,8 +1,8 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
 class ScreenResizeCommand extends AbstractScreenCommand {
   @override
-  dynamic execute([RdSignal event = null]) {
+  dynamic execute([AcSignal event = null]) {
     super.execute(event);
 
     if (event.data != null) {

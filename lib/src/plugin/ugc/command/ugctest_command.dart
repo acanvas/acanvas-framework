@@ -1,11 +1,11 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 class UGCTestCommand extends AbstractUGCCommand {
   int _itemContainerID = 1;
   int _itemID = 1;
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     CompositeCommandWithEvent compositeCommand =
@@ -22,7 +22,7 @@ class UGCTestCommand extends AbstractUGCCommand {
     user.locale = "de_DE";
 
     compositeCommand.addCommandEvent(
-        new RdSignal(UGCEvents.USER_REGISTER, user, _onUserRegister),
+        new AcSignal(UGCEvents.USER_REGISTER, user, _onUserRegister),
         applicationContext);
 
     /* ******************** REGISTER USER (EXTENDED) ******************* */
@@ -38,13 +38,13 @@ class UGCTestCommand extends AbstractUGCCommand {
     userExt.city = "70190 Nowhere";
 
     compositeCommand.addCommandEvent(
-        new RdSignal(
+        new AcSignal(
             UGCEvents.USER_REGISTER_EXTENDED, userExt, _onUserRegisterExtended),
         applicationContext);
 
     /* ******************** SEND CONFIRMATION MAIL ******************* */
 
-    //compositeCommand.addCommandEvent(new RdSignal(UGCEvents.USER_MAIL_SEND, null, _onMailSent), applicationContext);
+    //compositeCommand.addCommandEvent(new AcSignal(UGCEvents.USER_MAIL_SEND, null, _onMailSent), applicationContext);
 
     /* ******************** CREATE ITEM CONTAINER ******************* */
 
@@ -53,7 +53,7 @@ class UGCTestCommand extends AbstractUGCCommand {
     albumVO.title = "Album von " + user.name;
 
     compositeCommand.addCommandEvent(
-        new RdSignal(
+        new AcSignal(
             UGCEvents.CREATE_ITEM_CONTAINER, albumVO, _onCreateItemContainer),
         applicationContext);
 
@@ -80,46 +80,46 @@ class UGCTestCommand extends AbstractUGCCommand {
     itemDAO.type_dao = imageDAO;
 
     compositeCommand.addCommandEvent(
-        new RdSignal(UGCEvents.CREATE_ITEM, itemDAO, _onCreateItem),
+        new AcSignal(UGCEvents.CREATE_ITEM, itemDAO, _onCreateItem),
         applicationContext);
 
     /* ******************** READ ITEM CONTAINER ******************* */
 
     compositeCommand.addCommandEvent(
-        new RdSignal(UGCEvents.READ_ITEM_CONTAINER, _itemContainerID,
+        new AcSignal(UGCEvents.READ_ITEM_CONTAINER, _itemContainerID,
             _onReadItemContainer),
         applicationContext);
 
     /* ******************** READ ITEM ******************* */
 
     compositeCommand.addCommandEvent(
-        new RdSignal(UGCEvents.READ_ITEM, _itemID, _onReadItem),
+        new AcSignal(UGCEvents.READ_ITEM, _itemID, _onReadItem),
         applicationContext);
 
     /* ******************** READ ITEM CONTAINERS (BY UID) ******************* */
 
     compositeCommand.addCommandEvent(
-        new RdSignal(
+        new AcSignal(
             UGCEvents.READ_ITEM_CONTAINERS_UID, user.uid, _onReadItemByUID),
         applicationContext);
 
     /* ******************** LIKE ITEM ******************* */
 
     compositeCommand.addCommandEvent(
-        new RdSignal(UGCEvents.ITEM_LIKE, _itemID, _onLikeOrComplainOrRateItem),
+        new AcSignal(UGCEvents.ITEM_LIKE, _itemID, _onLikeOrComplainOrRateItem),
         applicationContext);
 
     /* ******************** COMPLAIN ITEM ******************* */
 
     compositeCommand.addCommandEvent(
-        new RdSignal(
+        new AcSignal(
             UGCEvents.ITEM_COMPLAIN, _itemID, _onLikeOrComplainOrRateItem),
         applicationContext);
 
     /* ******************** RATE ITEM ******************* */
     UGCRatingVO rateItem = new UGCRatingVO(_itemID, 3);
     compositeCommand.addCommandEvent(
-        new RdSignal(
+        new AcSignal(
             UGCEvents.ITEM_RATE, rateItem, _onLikeOrComplainOrRateItem),
         applicationContext);
 
@@ -128,12 +128,12 @@ class UGCTestCommand extends AbstractUGCCommand {
     UGCGameDTO game = new UGCGameDTO();
     game.level = 1;
     game.score = 1000;
-    compositeCommand.addCommandEvent(new RdSignal(GamingEvents.SET_SCORE_AT_LEVEL, game, _onSetScore), applicationContext);
+    compositeCommand.addCommandEvent(new AcSignal(GamingEvents.SET_SCORE_AT_LEVEL, game, _onSetScore), applicationContext);
     */
 
     /* ******************** GET GAME HIGHSCORE ******************* */
 
-    //compositeCommand.addCommandEvent(new RdSignal(GamingEvents.GET_HIGHSCORE, null, _onGetHighscore), applicationContext);
+    //compositeCommand.addCommandEvent(new AcSignal(GamingEvents.GET_HIGHSCORE, null, _onGetHighscore), applicationContext);
 
     compositeCommand.failOnFault = true;
     compositeCommand.addCompleteListener(dispatchCompleteEvent);

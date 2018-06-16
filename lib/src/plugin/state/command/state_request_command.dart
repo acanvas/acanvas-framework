@@ -1,4 +1,4 @@
-part of rockdot_framework.state;
+part of acanvas_framework.state;
 
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
@@ -6,7 +6,7 @@ part of rockdot_framework.state;
 
 class StateRequestCommand extends AbstractStateCommand {
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
     List urlData = event.data.split("?");
     StateVO stateVO = _stateModel.getStateVO(urlData[0].toLowerCase());
@@ -15,7 +15,7 @@ class StateRequestCommand extends AbstractStateCommand {
       if (_stateModel.currentScreen == null &&
           stateVO.substate == StateConstants.SUB_MODAL) {
         // 0. nullToModal
-        new RdSignal(StateEvents.ADDRESS_SET, "/").dispatch();
+        new AcSignal(StateEvents.ADDRESS_SET, "/").dispatch();
         return;
       }
 
@@ -39,11 +39,11 @@ class StateRequestCommand extends AbstractStateCommand {
         stateVO.params = null;
       }
 
-      new RdSignal(StateEvents.STATE_VO_SET, stateVO, dispatchCompleteEvent)
+      new AcSignal(StateEvents.STATE_VO_SET, stateVO, dispatchCompleteEvent)
           .dispatch();
     } else {
       //If url not found in registry, default to root
-      new RdSignal(StateEvents.ADDRESS_SET, "/", dispatchCompleteEvent)
+      new AcSignal(StateEvents.ADDRESS_SET, "/", dispatchCompleteEvent)
           .dispatch();
     }
   }

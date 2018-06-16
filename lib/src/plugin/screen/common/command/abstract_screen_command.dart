@@ -1,6 +1,6 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
-class AbstractScreenCommand extends RdCommand
+class AbstractScreenCommand extends AcCommand
     implements IScreenServiceAware, IStateModelAware {
   IScreenService _uiService;
 

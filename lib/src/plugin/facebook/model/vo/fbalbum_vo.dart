@@ -1,4 +1,4 @@
-part of rockdot_framework.facebook;
+part of acanvas_framework.facebook;
 
 class FBAlbumVO {
   bool can_upload;

@@ -1,4 +1,4 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 class UGCFilterItemCommand extends AbstractUGCCommand
     implements IStateModelAware {
@@ -10,7 +10,7 @@ class UGCFilterItemCommand extends AbstractUGCCommand
   }
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     _vo = event.data;

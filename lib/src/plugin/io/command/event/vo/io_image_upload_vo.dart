@@ -1,6 +1,6 @@
-part of rockdot_framework.io;
+part of acanvas_framework.io;
 
-class IOImageUploadVO implements IRdVO {
+class IOImageUploadVO implements IAcVO {
   String targetUrl;
   String fileName;
   BitmapData bmd;

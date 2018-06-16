@@ -1,10 +1,10 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
 class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
   ScreenDisplaylistTransitionPrepareVO _vo;
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     _uiService.lock();
@@ -51,14 +51,14 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
 
       if (_vo.inTarget.spanWidth == 0 || _vo.inTarget.spanHeight == 0) {
         compositeCommand.addCommandEvent(
-            new RdSignal(ScreenEvents.RESIZE, _vo.inTarget),
+            new AcSignal(ScreenEvents.RESIZE, _vo.inTarget),
             applicationContext);
       }
       compositeCommand.addCommandEvent(
-          new RdSignal(ScreenDisplaylistEvents.SCREEN_LOAD, _vo.inTarget),
+          new AcSignal(ScreenDisplaylistEvents.SCREEN_LOAD, _vo.inTarget),
           applicationContext);
       compositeCommand.addCommandEvent(
-          new RdSignal(ScreenDisplaylistEvents.SCREEN_INIT, _vo.inTarget),
+          new AcSignal(ScreenDisplaylistEvents.SCREEN_INIT, _vo.inTarget),
           applicationContext);
     }
 
@@ -68,7 +68,7 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
     switch (_vo.transitionType) {
       case ScreenConstants.TRANSITION_NONE_TO_NORMAL:
         compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 TRANSITION_APPLY,
                 new ScreenDisplaylistTransitionApplyVO(
                     _vo.effect,
@@ -79,13 +79,13 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
         break;
       case ScreenConstants.TRANSITION_NORMAL_TO_NORMAL:
         compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 ScreenDisplaylistEvents.DISAPPEAR,
                 new ScreenDisplaylistAppearDisappearVO(
                     _vo.outTarget, 0.0, false)),
             applicationContext);
         compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 TRANSITION_APPLY,
                 new ScreenDisplaylistTransitionApplyVO(
                     _vo.effect,
@@ -98,7 +98,7 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
       case ScreenConstants.TRANSITION_NORMAL_TO_MODAL:
         _uiService.blur();
         compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 TRANSITION_APPLY,
                 new ScreenDisplaylistTransitionApplyVO(
                     _vo.effect,
@@ -110,13 +110,13 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
       case ScreenConstants.TRANSITION_MODAL_TO_MODAL:
         _vo.outTarget = _uiService.layer.getChildAt(0) as LifecycleSprite;
         compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 ScreenDisplaylistEvents.DISAPPEAR,
                 new ScreenDisplaylistAppearDisappearVO(
                     _vo.outTarget, 0.0, false)),
             applicationContext);
         compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 TRANSITION_APPLY,
                 new ScreenDisplaylistTransitionApplyVO(
                     _vo.effect,
@@ -130,7 +130,7 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
         // unblur content
         _uiService.unblur();
         compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 TRANSITION_APPLY,
                 new ScreenDisplaylistTransitionApplyVO(
                     _vo.effect,
@@ -147,20 +147,20 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
         _uiService.unblur();
         layer = _uiService.layer.getChildAt(0) as LifecycleSprite;
         compositeCommand.addCommandEvent(
-            new RdSignal(ScreenDisplaylistEvents.DISAPPEAR,
+            new AcSignal(ScreenDisplaylistEvents.DISAPPEAR,
                 new ScreenDisplaylistAppearDisappearVO(layer, 0.0, false)),
             applicationContext);
         IEffect effect =
             applicationContext.getObject("transition.default.modal");
         compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 ScreenDisplaylistEvents.APPLY_EFFECT_OUT,
                 new ScreenDisplaylistEffectApplyVO(
                     effect, layer, _vo.effect.duration),
                 _destroyLayer),
             applicationContext);
         compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 TRANSITION_APPLY,
                 new ScreenDisplaylistTransitionApplyVO(
                     _vo.effect,
@@ -173,7 +173,7 @@ class ScreenTransitionPrepareCommand extends AbstractScreenCommand {
     }
 
     compositeCommand.addCommandEvent(
-        new RdSignal(
+        new AcSignal(
             ScreenDisplaylistEvents.APPEAR,
             new ScreenDisplaylistAppearDisappearVO(
                 _vo.inTarget, _vo.effect.duration)),

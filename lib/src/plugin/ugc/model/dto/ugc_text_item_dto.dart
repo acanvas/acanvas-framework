@@ -1,6 +1,6 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
-class UGCTextItemDTO implements IRdDTO {
+class UGCTextItemDTO implements IAcDTO {
   int id;
   String text;
 

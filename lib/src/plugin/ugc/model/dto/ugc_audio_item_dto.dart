@@ -1,6 +1,6 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
-class UGCAudioItemDTO implements IRdDTO {
+class UGCAudioItemDTO implements IAcDTO {
   int id;
   String url;
   int length;

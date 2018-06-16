@@ -1,10 +1,10 @@
-library rockdot_framework.state;
+library acanvas_framework.state;
 
 import 'dart:html' as html;
 import 'package:logging/logging.dart';
 
-import 'package:rockdot_commons/rockdot_commons.dart';
-import 'package:rockdot_spring/rockdot_spring.dart';
+import 'package:acanvas_commons/acanvas_commons.dart';
+import 'package:acanvas_spring/acanvas_spring.dart';
 
 import 'core.dart';
 import 'core.plugin.screen.dart' show MApplicationContextAware;
@@ -12,7 +12,7 @@ import 'core.plugin.screen.dart' show MApplicationContextAware;
 part 'plugin/state/command/abstract_state_command.dart';
 part 'plugin/state/command/state_address_set_command.dart';
 part 'plugin/state/command/state_back_command.dart';
-part 'plugin/state/command/state_forward_command.dart';
+part 'plugin/state/command/state_forwaac_command.dart';
 part 'plugin/state/command/state_plugin_init_command.dart';
 part 'plugin/state/command/state_request_command.dart';
 part 'plugin/state/command/state_set_command.dart';

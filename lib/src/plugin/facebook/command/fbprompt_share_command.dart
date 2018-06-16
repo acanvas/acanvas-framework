@@ -1,10 +1,10 @@
-part of rockdot_framework.facebook;
+part of acanvas_framework.facebook;
 
 //https://developers.facebook.com/docs/sharing/reference/share-dialog
 
 class FBPromptShareCommand extends AbstractFBCommand {
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     if (notLoggedIn(event)) return;

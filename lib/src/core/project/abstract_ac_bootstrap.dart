@@ -1,34 +1,34 @@
-part of rockdot_framework.core;
+part of acanvas_framework.core;
 
 /**
  * @author Nils Doehring
  */
-class AbstractRdBootstrap extends EventDispatcher {
-  Logger logger = Rd.log;
-  RdContext _applicationContext;
+class AbstractAcBootstrap extends EventDispatcher {
+  Logger logger = Ac.log;
+  AcContext _applicationContext;
   Stage _stage;
   List<IObjectFactoryPostProcessor> plugins = [];
   List<String> propertyFiles = [];
 
-  AbstractRdBootstrap(Stage stage) {
+  AbstractAcBootstrap(Stage stage) {
     //XXX currently, LoaderInfo is just a leftover from Actionscript
     LoaderInfo loaderInfo = new LoaderInfo();
-    RdConstants.setLoaderInfo(loaderInfo);
+    AcConstants.setLoaderInfo(loaderInfo);
 
     _stage = stage;
   }
 
-  /* Assign and prepare some things for Rockdot */
+  /* Assign and prepare some things for Acanvas */
   void init() {
     //Logging
     _initLogger();
 
     // Instantiate Context.
-    _applicationContext = new RdContext(_stage);
+    _applicationContext = new AcContext(_stage);
 
-    //Feed RockdotConstants
-    RdConstants.setStage(_stage);
-    RdConstants.setContext(_applicationContext);
+    //Feed AcanvasConstants
+    AcConstants.setStage(_stage);
+    AcConstants.setContext(_applicationContext);
 
     //Add property files
     _initPropertyFiles();
@@ -56,7 +56,7 @@ class AbstractRdBootstrap extends EventDispatcher {
   }
 
   void _initLogger() {
-    if (RdConstants.DEBUG == false) {
+    if (AcConstants.DEBUG == false) {
       Logger.root.level = Level.OFF;
       print("Logging Disabled. Good Bye.");
     } else {

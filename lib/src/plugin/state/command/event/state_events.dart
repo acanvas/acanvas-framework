@@ -1,4 +1,4 @@
-part of rockdot_framework.state;
+part of acanvas_framework.state;
 
 class StateEvents {
 // expects nothing

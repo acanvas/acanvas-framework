@@ -1,6 +1,6 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
-class ScreenPluginBase extends AbstractRdPlugin {
+class ScreenPluginBase extends AbstractAcPlugin {
   static const String MODEL_UI = "MODEL_UI";
   static const String SERVICE_UI = "SERVICE_UI";
 
@@ -9,7 +9,7 @@ class ScreenPluginBase extends AbstractRdPlugin {
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new RdSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   * new AcSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override
   void configureCommands() {
@@ -29,7 +29,7 @@ class ScreenPluginBase extends AbstractRdPlugin {
    */
   @override
   void configureInjectors() {
-    RdContextUtil.registerInstance(objectFactory, MODEL_UI, new ScreenModel());
+    AcContextUtil.registerInstance(objectFactory, MODEL_UI, new ScreenModel());
     objectFactory
         .addObjectPostProcessor(new ScreenPluginInjector(objectFactory));
   }

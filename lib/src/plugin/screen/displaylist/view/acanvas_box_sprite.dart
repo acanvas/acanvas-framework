@@ -1,8 +1,8 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
-class RockdotBoxSprite extends BoxSprite with MApplicationContextAware {
-  RockdotBoxSprite() : super() {
-    RdContextUtil.wire(this);
+class AcanvasBoxSprite extends BoxSprite with MApplicationContextAware {
+  AcanvasBoxSprite() : super() {
+    AcContextUtil.wire(this);
   }
 
   @override

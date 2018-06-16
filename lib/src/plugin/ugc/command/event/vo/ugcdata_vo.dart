@@ -1,7 +1,7 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
-class UGCDataVO implements IRdVO {
-  IRdDTO dao;
+class UGCDataVO implements IAcVO {
+  IAcDTO dao;
   String condition;
   String limit;
 

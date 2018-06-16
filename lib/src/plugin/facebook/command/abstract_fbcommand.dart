@@ -1,16 +1,16 @@
-part of rockdot_framework.facebook;
+part of acanvas_framework.facebook;
 
-class AbstractFBCommand extends RdCommand implements IFBModelAware {
+class AbstractFBCommand extends AcCommand implements IFBModelAware {
   FBModel _fbModel;
 
   void set fbModel(FBModel fbModel) {
     _fbModel = fbModel;
   }
 
-  bool notLoggedIn(RdSignal event) {
+  bool notLoggedIn(AcSignal event) {
     if (!_fbModel.userIsAuthenticated) {
       //If the Login went successful, execute this Event again.
-      new RdSignal(FBEvents.USER_LOGIN, null, () {
+      new AcSignal(FBEvents.USER_LOGIN, null, () {
         execute(event);
       }).dispatch();
       //For now, cancel this Event.

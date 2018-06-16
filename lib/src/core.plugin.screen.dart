@@ -1,24 +1,24 @@
-library rockdot_framework.screen;
+library acanvas_framework.screen;
 
 import 'dart:math' as math;
 import 'package:logging/logging.dart';
 
-/* Rockdot depends on StageXL */
+/* Acanvas depends on StageXL */
 import 'package:stagexl/stagexl.dart'
     show Sprite, Stage, BitmapFilter, Event, DisplayObjectContainer;
-import 'package:rockdot_commons/rockdot_commons.dart'
+import 'package:acanvas_commons/acanvas_commons.dart'
     show
-        RdSignal,
+        AcSignal,
         LifecycleEvent,
         MBox,
         LifecycleSprite,
-        IRdVO,
+        IAcVO,
         IEffect,
         MLifecycle,
         CompositeCommandKind,
         OperationEvent,
         BoxSprite;
-import 'package:rockdot_spring/rockdot_spring.dart'
+import 'package:acanvas_spring/acanvas_spring.dart'
     show
         IApplicationContext,
         IObjectFactory,
@@ -37,8 +37,8 @@ import 'core.plugin.state.dart'
         StateModel,
         StateVO;
 
-part 'plugin/screen/displaylist/view/rockdot_lifecycle_sprite.dart';
-part 'plugin/screen/displaylist/view/rockdot_box_sprite.dart';
+part 'plugin/screen/displaylist/view/acanvas_lifecycle_sprite.dart';
+part 'plugin/screen/displaylist/view/acanvas_box_sprite.dart';
 part 'plugin/screen/displaylist/view/m_application_context_aware.dart';
 part 'plugin/screen/screen_displaylist_plugin.dart';
 part 'plugin/screen/common/screen_plugin_base.dart';

@@ -1,9 +1,9 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
 /**
  * @author nilsdoehring
  */
-class ScreenDisplaylistAppearDisappearVO implements IRdVO {
+class ScreenDisplaylistAppearDisappearVO implements IAcVO {
   LifecycleSprite target;
   double duration;
   bool autoDispose;

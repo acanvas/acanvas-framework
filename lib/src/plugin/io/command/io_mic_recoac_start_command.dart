@@ -1,4 +1,4 @@
-part of rockdot_framework.io;
+part of acanvas_framework.io;
 
 /**
  * Code taken from: http://stackoverflow.com/questions/21348509/how-to-save-microphone-audio-input
@@ -8,7 +8,7 @@ class IOMicRecordStartCommand extends AbstractIOCommand {
   StreamSubscription<AudioProcessingEvent> _stream;
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     /* reset values */

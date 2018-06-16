@@ -1,9 +1,9 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 /**
  * @author nilsdoehring
  */
-class UGCUserExtendedDTO implements IRdDTO {
+class UGCUserExtendedDTO implements IAcDTO {
   String uid;
   String hash;
 

@@ -1,4 +1,4 @@
-part of rockdot_framework.babylon;
+part of acanvas_framework.babylon;
 
 /**
  * @author nilsdoehring

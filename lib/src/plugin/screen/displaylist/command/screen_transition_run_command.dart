@@ -1,11 +1,11 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
 class ScreenTransitionRunCommand extends AbstractScreenCommand {
   ScreenDisplaylistTransitionApplyVO _vo;
   CompositeCommandWithEvent _compositeCommand;
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
     _compositeCommand =
         new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
@@ -36,7 +36,7 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
               target, 0, duration, duration, maxdepthTarget);
         }
         _compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 ScreenDisplaylistEvents.APPLY_EFFECT_IN,
                 new ScreenDisplaylistEffectApplyVO(
                     _vo.effect, target, duration)),
@@ -47,7 +47,7 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
           _addOutEffectRecursively(target, 0, duration, 0, maxdepthTarget);
         }
         _compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 ScreenDisplaylistEvents.APPLY_EFFECT_OUT,
                 new ScreenDisplaylistEffectApplyVO(
                     _vo.effect, target, duration)),
@@ -55,7 +55,7 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
         break;
       case ScreenConstants.TRANSITION_SEQUENTIAL:
         _compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 ScreenDisplaylistEvents.APPLY_EFFECT_OUT,
                 new ScreenDisplaylistEffectApplyVO(
                     _vo.effect, target, duration)),
@@ -71,7 +71,7 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
               maxdepthNextTarget);
         }
         _compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 ScreenDisplaylistEvents.APPLY_EFFECT_IN,
                 new ScreenDisplaylistEffectApplyVO(
                     _vo.effect, nextTarget, duration)),
@@ -82,7 +82,7 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
         _compositeCommand.kind = CompositeCommandKind.PARALLEL;
 
         _compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 ScreenDisplaylistEvents.APPLY_EFFECT_OUT,
                 new ScreenDisplaylistEffectApplyVO(
                     _vo.effect, target, duration)),
@@ -94,7 +94,7 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
               nextTarget, 0, duration, 0, maxdepthNextTarget);
         }
         _compositeCommand.addCommandEvent(
-            new RdSignal(
+            new AcSignal(
                 ScreenDisplaylistEvents.APPLY_EFFECT_IN,
                 new ScreenDisplaylistEffectApplyVO(
                     _vo.effect, nextTarget, duration)),
@@ -115,7 +115,7 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
       Sprite parent, int depth, num duration, num delay, int maxdepth) {
     parent.children.where((c) => c is Sprite).forEach((child) {
       _compositeCommand.addCommandEvent(
-          new RdSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN,
+          new AcSignal(ScreenDisplaylistEvents.APPLY_EFFECT_IN,
               new ScreenDisplaylistEffectApplyVO(_vo.effect, child, duration)),
           applicationContext);
       _addInEffectRecursively(child, depth + 1, duration, delay, maxdepth);
@@ -127,7 +127,7 @@ class ScreenTransitionRunCommand extends AbstractScreenCommand {
     if (depth > maxdepth) return;
     parent.children.where((c) => c is Sprite).forEach((child) {
       _compositeCommand.addCommandEvent(
-          new RdSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT,
+          new AcSignal(ScreenDisplaylistEvents.APPLY_EFFECT_OUT,
               new ScreenDisplaylistEffectApplyVO(_vo.effect, child, duration)),
           applicationContext);
       _addOutEffectRecursively(child, depth + 1, duration, delay, maxdepth);

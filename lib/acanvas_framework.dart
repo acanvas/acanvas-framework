@@ -1,4 +1,4 @@
-library rockdot_framework;
+library acanvas_framework;
 
 // CORE #####
 export 'src/core.dart';

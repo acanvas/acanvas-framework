@@ -1,9 +1,9 @@
-part of rockdot_framework.state;
+part of acanvas_framework.state;
 
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
  */
-class StateVO implements IRdVO {
+class StateVO implements IAcVO {
   String view_id;
 
   String _propertyKey;

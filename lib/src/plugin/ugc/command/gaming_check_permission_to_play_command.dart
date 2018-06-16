@@ -1,8 +1,8 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 class GamingCheckPermissionToPlayCommand extends AbstractUGCCommand {
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     Map dto = {'uid': _ugcModel.userDAO.uid};

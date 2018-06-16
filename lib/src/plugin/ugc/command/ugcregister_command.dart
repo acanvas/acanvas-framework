@@ -1,4 +1,4 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
   FBModel _fbModel;
@@ -8,14 +8,14 @@ class UGCRegisterCommand extends AbstractUGCCommand implements IFBModelAware {
   }
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 //			dispatchMessage("loading.backend.login");
 
     if (event.data is UGCUserDTO) {
       _ugcModel.userDAO = event.data;
-    } else if (RdConstants.LOCAL &&
-        RdConstants.DEBUG &&
+    } else if (AcConstants.LOCAL &&
+        AcConstants.DEBUG &&
         _fbModel.user == null) {
       _ugcModel.userDAO = _createDummyData();
     } else if (_ugcModel.userDAO == null) {

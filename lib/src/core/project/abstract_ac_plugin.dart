@@ -1,16 +1,16 @@
-part of rockdot_framework.core;
+part of acanvas_framework.core;
 
-class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
+class AbstractAcPlugin extends AbstractOrderedFactoryPostProcessor {
   Map<String, Function> commandMap = new Map();
   String projectInitCommand;
   IObjectFactory objectFactory;
 
-  AbstractRdPlugin([int priority = 100]) : super(priority) {}
+  AbstractAcPlugin([int priority = 100]) : super(priority) {}
 
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new RdSignal(ProjectEvents.SOME_COMMAND, optionalParamVO, optionalFunctionCallback).dispatch();
+   * new AcSignal(ProjectEvents.SOME_COMMAND, optionalParamVO, optionalFunctionCallback).dispatch();
    */
   void configureCommands() {
     //throw new UnimplementedError("To be implemented in Project subclass");
@@ -22,7 +22,7 @@ class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
 
   /**
    * The screens (read: pages) used by this Project.
-   * In Rockdot Actionscript, these were defined in XML.
+   * In Acanvas Actionscript, these were defined in XML.
    * We have yet to come up with an approach for Dart - XML doesn't make sense.
    * Order of arguments:
    *                ID            - for property strings. See web/v1/de.properties, for example.
@@ -72,14 +72,14 @@ class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
     url = url == null
         ? objectFactory.propertiesProvider.getProperty("$id.url")
         : url;
-    RdContextUtil.registerScreen(objectFactory, id, func, url,
+    AcContextUtil.registerScreen(objectFactory, id, func, url,
         tree_order: tree_order,
         tree_parent: tree_parent,
         transition: transition,
         substate: substate);
   }
 
-  void addScreenInstance(RockdotLifecycleSprite clazz,
+  void addScreenInstance(AcanvasLifecycleSprite clazz,
       {String url: null,
       String substate: StateConstants.SUB_NORMAL,
       int tree_order: 0,
@@ -88,7 +88,7 @@ class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
     url = url == null
         ? objectFactory.propertiesProvider.getProperty("${clazz.name}.url")
         : url;
-    RdContextUtil.registerScreenInstance(objectFactory, clazz.name, clazz, url,
+    AcContextUtil.registerScreenInstance(objectFactory, clazz.name, clazz, url,
         tree_order: tree_order,
         tree_parent: tree_parent,
         transition: transition,
@@ -108,7 +108,7 @@ class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
         substate: StateConstants.SUB_MODAL);
   }
 
-  void addLayerInstance(RockdotLifecycleSprite clazz,
+  void addLayerInstance(AcanvasLifecycleSprite clazz,
       {String url,
       int tree_order: 0,
       int tree_parent: 0,
@@ -126,11 +126,11 @@ class AbstractRdPlugin extends AbstractOrderedFactoryPostProcessor {
     objectFactory = _objectFactory;
 
     configureCommands();
-    RdContextUtil.registerCommands(objectFactory, commandMap);
+    AcContextUtil.registerCommands(objectFactory, commandMap);
 
     /* Add this Project's Init Command to Bootstrap Command Sequence */
     if (projectInitCommand != null) {
-      RdConstants.getBootstrap().add(projectInitCommand);
+      AcConstants.getBootstrap().add(projectInitCommand);
     }
 
     configureInjectors();

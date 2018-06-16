@@ -1,9 +1,9 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 /**
  * @author nilsdoehring
  */
-class UGCGameDTO implements IRdDTO {
+class UGCGameDTO implements IAcDTO {
   String uid;
   int level;
   num score;

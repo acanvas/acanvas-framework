@@ -1,4 +1,4 @@
-part of rockdot_framework.facebook;
+part of acanvas_framework.facebook;
 
 class VOFBShare {
   static const String TYPE_SHARE = "TYPE_SHARE";

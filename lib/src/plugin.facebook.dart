@@ -1,15 +1,15 @@
-library rockdot_framework.facebook;
+library acanvas_framework.facebook;
 
 import 'dart:html' as html;
 import 'dart:js' as js;
 import 'dart:typed_data';
 import 'dart:convert';
 
-/* Rockdot depends on StageXL */
+/* Acanvas depends on StageXL */
 import 'package:stagexl/stagexl.dart' show BitmapData;
-import 'package:rockdot_commons/rockdot_commons.dart'
-    show RdSignal, CompositeCommandKind, Assert, OperationEvent;
-import 'package:rockdot_spring/rockdot_spring.dart'
+import 'package:acanvas_commons/acanvas_commons.dart'
+    show AcSignal, CompositeCommandKind, Assert, OperationEvent;
+import 'package:acanvas_spring/acanvas_spring.dart'
     show IObjectPostProcessor, IObjectFactory;
 
 import 'core.dart';

@@ -1,6 +1,6 @@
-part of rockdot_framework.io;
+part of acanvas_framework.io;
 
-class AbstractIOCommand extends RdCommand implements IIOModelAware {
+class AbstractIOCommand extends AcCommand implements IIOModelAware {
   IOModel _ioModel;
 
   @override

@@ -1,4 +1,4 @@
-part of rockdot_framework.io;
+part of acanvas_framework.io;
 
 /**
  * Code taken from:
@@ -11,7 +11,7 @@ class IOMicRecordStopCommand extends AbstractIOCommand {
   static const int MINIMIZE_SAMPLE_RATE = 16000;
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     // stop recording

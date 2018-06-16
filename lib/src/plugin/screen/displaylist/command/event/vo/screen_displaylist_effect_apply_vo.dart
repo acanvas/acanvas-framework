@@ -1,9 +1,9 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
 /**
  * @author nilsdoehring
  */
-class ScreenDisplaylistEffectApplyVO implements IRdVO {
+class ScreenDisplaylistEffectApplyVO implements IAcVO {
   IEffect effect;
   LifecycleSprite target;
   num duration;

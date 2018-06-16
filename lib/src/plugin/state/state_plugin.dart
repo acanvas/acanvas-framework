@@ -1,12 +1,12 @@
-part of rockdot_framework.state;
+part of acanvas_framework.state;
 
-class StatePlugin extends AbstractRdPlugin {
+class StatePlugin extends AbstractAcPlugin {
   StatePlugin() : super(10) {}
 
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new RdSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   * new AcSignal(StateEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override
   void configureCommands() {
@@ -40,7 +40,7 @@ class StatePlugin extends AbstractRdPlugin {
    */
   @override
   void configureInjectors() {
-    RdContextUtil.registerInstance(
+    AcContextUtil.registerInstance(
         objectFactory, StateConstants.CTX_MODEL_STATE, new StateModel());
     objectFactory.addObjectPostProcessor(new StateModelInjector(objectFactory));
   }

@@ -1,9 +1,9 @@
-part of rockdot_framework.io;
+part of acanvas_framework.io;
 
 /**
  * @author nilsdoehring
  */
-class DataRetrieveVO implements IRdVO {
+class DataRetrieveVO implements IAcVO {
   int limit;
   int totalSize;
   String nextToken;

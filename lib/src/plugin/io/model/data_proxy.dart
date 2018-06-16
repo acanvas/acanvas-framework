@@ -1,4 +1,4 @@
-part of rockdot_framework.io;
+part of acanvas_framework.io;
 
 /**
  * @author nilsdoehring
@@ -133,7 +133,7 @@ class DataProxy implements IDataProxy {
     _chunkSize = chunkSize;
     //
     _dataRetrieveCommand.addCompleteListener(onData);
-    _dataRetrieveCommand.execute(new RdSignal("data", dataRetrieveCommandVO));
+    _dataRetrieveCommand.execute(new AcSignal("data", dataRetrieveCommandVO));
   }
 
   void onData(OperationEvent event) {
@@ -146,7 +146,7 @@ class DataProxy implements IDataProxy {
     } else {
       List res = event.result;
       var json = res.elementAt(0);
-      /* Retrieve _dataTotalSize from "totalRows" attribute in first Element of List (this is how rockdot-framework-zend backend handles this) */
+      /* Retrieve _dataTotalSize from "totalRows" attribute in first Element of List (this is how acanvas-framework-zend backend handles this) */
       if (json is Map && json["totalrows"] != null) {
         _dataTotalSize = json["totalrows"];
 

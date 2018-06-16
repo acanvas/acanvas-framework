@@ -1,10 +1,10 @@
-part of rockdot_framework.facebook;
+part of acanvas_framework.facebook;
 
 class FBFriendsGetCommand extends AbstractFBCommand {
   DataRetrieveVO _vo;
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     if (notLoggedIn(event)) return;

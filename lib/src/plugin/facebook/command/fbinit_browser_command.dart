@@ -1,10 +1,10 @@
-part of rockdot_framework.facebook;
+part of acanvas_framework.facebook;
 
 class FBInitBrowserCommand extends AbstractFBCommand {
   String facebookSDKUrl = "https://connect.facebook.net/en_US/sdk.js";
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     var script = new html.ScriptElement();
@@ -41,7 +41,7 @@ class FBInitBrowserCommand extends AbstractFBCommand {
       _fbModel.userIsAuthenticated = true;
       _fbModel.user = new FBUserVO()..uid = response["authResponse"]["userID"];
 
-      new RdSignal(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions)
+      new AcSignal(FBEvents.USER_GETINFO_PERMISSIONS, null, _onPermissions)
           .dispatch();
     } else {
       dispatchCompleteEvent();

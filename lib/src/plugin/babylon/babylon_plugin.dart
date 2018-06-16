@@ -1,6 +1,6 @@
-part of rockdot_framework.babylon;
+part of acanvas_framework.babylon;
 
-class BabylonPlugin extends AbstractRdPlugin {
+class BabylonPlugin extends AbstractAcPlugin {
   bool _autoInit;
 
   BabylonPlugin({bool autoInit: false}) : super(40) {
@@ -10,7 +10,7 @@ class BabylonPlugin extends AbstractRdPlugin {
   /**
    * Registers Commands with FrontController
    * You can then access them from anywhere:
-   * new RdSignal(FacebookEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
+   * new AcSignal(FacebookEvents.SOME_COMMAND, optionalParam, optionalCompleteCallback).dispatch();
    */
   @override
   void configureCommands() {

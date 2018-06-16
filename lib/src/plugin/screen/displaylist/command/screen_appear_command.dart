@@ -1,10 +1,10 @@
-part of rockdot_framework.screen;
+part of acanvas_framework.screen;
 
 class ScreenAppearCommand extends AbstractScreenCommand {
   ScreenDisplaylistAppearDisappearVO _vo;
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     _vo = event.data;

@@ -1,4 +1,4 @@
-part of rockdot_framework.state;
+part of acanvas_framework.state;
 
 /**
  * @author Nils Doehring (nilsdoehring(gmail as at).com)
@@ -6,7 +6,7 @@ part of rockdot_framework.state;
 
 class StateAddressSetCommand extends AbstractStateCommand {
   @override
-  dynamic execute([RdSignal event = null]) {
+  dynamic execute([AcSignal event = null]) {
     super.execute(event);
     _stateModel.addressService.changeAddress(event.data, dispatchCompleteEvent);
     return null;

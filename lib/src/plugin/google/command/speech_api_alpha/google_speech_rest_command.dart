@@ -1,10 +1,10 @@
-part of rockdot_framework.google;
+part of acanvas_framework.google;
 
 class GoogleSpeechRestCommand extends AbstractGoogleCommand {
   String API_KEY = "AIzaSyCHGyvOzZonuM2NQx_ZTtt_FI9S_79Vz4g";
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     //if (notLoggedIn(event)) return;

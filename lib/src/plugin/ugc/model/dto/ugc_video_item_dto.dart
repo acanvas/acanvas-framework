@@ -1,6 +1,6 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
-class UGCVideoItemDTO implements IRdDTO {
+class UGCVideoItemDTO implements IAcDTO {
   int id;
   int w;
   int h;

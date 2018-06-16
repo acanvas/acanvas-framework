@@ -1,4 +1,4 @@
-part of rockdot_framework.core;
+part of acanvas_framework.core;
 
 /* basic usage:
  *    import "package:jsonrpc2/jsonrpc_client.dart"

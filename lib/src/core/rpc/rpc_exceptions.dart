@@ -1,4 +1,4 @@
-part of rockdot_framework.core;
+part of acanvas_framework.core;
 
 class RpcException implements Exception {
   int code = 0;

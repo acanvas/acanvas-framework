@@ -1,13 +1,13 @@
-part of rockdot_framework.core;
+part of acanvas_framework.core;
 
 /**
  * @author nilsdoehring
  */
 class CommandVO {
   ICommand command;
-  RdSignal event;
+  AcSignal event;
 
-  CommandVO(ICommand command, RdSignal event) {
+  CommandVO(ICommand command, AcSignal event) {
     this.event = event;
     this.command = command;
   }

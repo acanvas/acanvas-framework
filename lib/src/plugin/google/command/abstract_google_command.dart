@@ -1,16 +1,16 @@
-part of rockdot_framework.google;
+part of acanvas_framework.google;
 
-class AbstractGoogleCommand extends RdCommand implements IGoogleModelAware {
+class AbstractGoogleCommand extends AcCommand implements IGoogleModelAware {
   GoogleModel _gModel;
 
   void set googleModel(GoogleModel gModel) {
     _gModel = gModel;
   }
 
-  bool notLoggedIn(RdSignal event) {
+  bool notLoggedIn(AcSignal event) {
     if (!_gModel.userIsAuthenticated) {
       //If the Login went successful, execute this Event again.
-      new RdSignal(GoogleEvents.USER_LOGIN, null, () {
+      new AcSignal(GoogleEvents.USER_LOGIN, null, () {
         execute(event);
       }).dispatch();
       //For now, cancel this Event.

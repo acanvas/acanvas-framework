@@ -13,20 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-part of rockdot_framework.core;
+part of acanvas_framework.core;
 
 /**
  *
  * @author Roland Zwaga
  */
 
-class RdContext extends SpringApplicationContext {
+class AcContext extends SpringApplicationContext {
   /**
    * Creates a new <code>ApplicationContext</code> instance.
    * @param parent
    * @param objFactory
    */
-  RdContext(
+  AcContext(
       [dynamic source = null,
       IApplicationContext parent = null,
       List<DisplayObject> rootViews = null,
@@ -46,10 +46,10 @@ class RdContext extends SpringApplicationContext {
       addDefinitionProvider(provider);
       
       /* XML Preprocessor, replacing language placeholders */
-      provider.addPreprocessor(new CorePropertyImportPreprocessor(RockdotConstants.LANGUAGE));
+      provider.addPreprocessor(new CorePropertyImportPreprocessor(AcanvasConstants.LANGUAGE));
 
-      /* XML Namespace Handlers for rockdot:page and rockdot:transition */
-      provider.addNamespaceHandler(new RockdotCoreNamespaceHandler());
+      /* XML Namespace Handlers for acanvas:page and acanvas:transition */
+      provider.addNamespaceHandler(new AcanvasCoreNamespaceHandler());
       
       */
 
@@ -63,9 +63,9 @@ class RdContext extends SpringApplicationContext {
     CompositeCommandWithEvent compositeCommand =
         new CompositeCommandWithEvent(CompositeCommandKind.SEQUENCE);
 
-    var array = RdConstants.getBootstrap();
+    var array = AcConstants.getBootstrap();
     for (int i = 0; i < array.length; i++) {
-      compositeCommand.addCommandEvent(new RdSignal(array[i]), this);
+      compositeCommand.addCommandEvent(new AcSignal(array[i]), this);
     }
 
     /* add sequence listeners */

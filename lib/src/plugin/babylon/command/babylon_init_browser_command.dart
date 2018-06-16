@@ -1,11 +1,11 @@
-part of rockdot_framework.babylon;
+part of acanvas_framework.babylon;
 
-class BabylonInitBrowserCommand extends RdCommand {
+class BabylonInitBrowserCommand extends AcCommand {
   String babylonJSUrl =
       "https://cdnjs.cloudflare.com/ajax/libs/babylonjs/2.3.0/babylon.js";
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 
     var script = new html.ScriptElement();

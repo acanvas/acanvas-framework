@@ -1,4 +1,4 @@
-part of rockdot_framework.ugc;
+part of acanvas_framework.ugc;
 
 class UGCRegisterExtendedCommand extends AbstractUGCCommand
     implements IFBModelAware {
@@ -9,7 +9,7 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand
   }
 
   @override
-  void execute([RdSignal event = null]) {
+  void execute([AcSignal event = null]) {
     super.execute(event);
 //			dispatchMessage("loading.backend.login");
 
@@ -18,7 +18,7 @@ class UGCRegisterExtendedCommand extends AbstractUGCCommand
     if (event.data is UGCUserExtendedDTO) {
       amfObject = event.data;
       _ugcModel.userExtendedDAO = new UGCUserExtendedDTO(amfObject.toJson());
-    } else if (RdConstants.LOCAL && RdConstants.DEBUG) {
+    } else if (AcConstants.LOCAL && AcConstants.DEBUG) {
       _ugcModel.userExtendedDAO = _createDummyData();
       amfObject = _ugcModel.userExtendedDAO;
     } else if (_ugcModel.userExtendedDAO == null) {
