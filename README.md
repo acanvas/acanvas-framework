@@ -1,33 +1,42 @@
-## Acanvas framework for StageXL
+# Acanvas Framework
 
-Acanvas Dart is based on [Acanvas Actionscript Framework](https://github.com/block-forest/acanvas), which has been in continuous development for several years,
-and was used in dozens of highly interactive rich media projects (marketing) for clients such as Mercedes-Benz, Nike, and Nikon, serving millions of users.
+*Acanvas Framework – for Dart 2.0 and StageXL.*
 
-[Architecture Diagram](http://acanvas.sounddesignz.com/template/assets/home/acanvas_spring_architecture.png).
+*Acanvas Framework* is part of a layered architecture [(diagram)](http://acanvas.sounddesignz.com/template/assets/home/acanvas_spring_architecture.png) originally conceived for [Actionscript](https://github.com/acanvas/acanvas-actionscript-framework),
+and has been used in dozens of highly interactive rich media projects (marketing) for clients such as Mercedes-Benz, Nike, and Nikon, serving millions of users.
+
+Build your own *Acanvas* project now – with *[Acanvas Generator](https://github.com/acanvas/acanvas-generator)*!
+* Blazing fast IoC/DI/MVC UI framework for WebGL and Canvas2D, written in Dart.
+* Write web apps, games, or both, in pure Dart. No HTML, no CSS, no JS.
+
+### Features
+
+* *Plugin System* – Create bundles of Models, Views, Commands, Assets, and Properties. 
+* *UI Lifecycle* – Efficient management of Views and Transitions.
+* *Loading* – Managed loading of Assets.
+* *User Generated Content* – Generic Database and Services for Social Logins, User Management, Entries that can be liked and rated, Blacklisting, and Leaderboards. *WIP*.
+* *Properties* – Get i18n, l10n, and Configuration, out-of-the-box.
+* *Made for Speed* – Made for highly interactive rich media applications. *Performance WIP*.
 
 ### Examples
 
-* [Full Framework Demo](http://acanvas.sounddesignz.com/template/) - Generated with [Acanvas CLI](https://github.com/block-forest/acanvas-generator)
-* [DartBook](http://acanvas.sounddesignz.com/dartbook/) - [Source](https://github.com/nilsdoehring/dartbook)
-* [Box2D](http://acanvas.sounddesignz.com/box2d/) - [Source](https://github.com/block-forest/acanvas-physics/tree/master/lib/src/Examples)
-* [BabylonJS StageXL Wrapper](http://acanvas.sounddesignz.com/dart/babylonjs-interop/) - [Source](https://github.com/block-forest/babylonjs-dart-facade/tree/master/example)
-* [THREE.js StageXL Wrapper](http://acanvas.sounddesignz.com/dart/threejs-interop/) - [Source](https://github.com/block-forest/threejs-dart-facade/tree/master/example)
-* [Material Design - Buttons (Commons only, just 92 KiB!)](http://acanvas.sounddesignz.com/stagexl-commons/paper_buttons.html) - [Source](https://github.com/block-forest/acanvas-commons/blob/master/web/material_buttons.dart)
-* [Material Design - Controls (Commons only)](http://acanvas.sounddesignz.com/stagexl-commons/paper_radio.html) - [Source](https://github.com/block-forest/acanvas-commons/blob/master/web/material_radio.dart)
-* [Material Design - Input (Commons only)](http://acanvas.sounddesignz.com/stagexl-commons/paper_input.html) - [Source](https://github.com/block-forest/acanvas-commons/blob/master/web/material_input.dart)
+* The [Acanvas Framework Demo](http://acanvas.sounddesignz.com/acanvas-framework/) – Examples including Animation, Material Design, BitmapFonts, Toolchains (DragonBones, GAF, Spine), Physics, 3D, Bitmapdrawing.
+* The best way to learn how to use *Acanvas Spring* and *Acanvas Framework* by generating a project with [Acanvas Generator](https://github.com/acanvas/acanvas-generator).
+* [Acanvas Dartbook](http://acanvas.sounddesignz.com/acanvas-dartbook/) - [Source](https://github.com/acanvas/acanvas-dartbook)
+* [Acanvas Physics](http://acanvas.sounddesignz.com/acanvas-physics/) - [Source](https://github.com/blockforest/acanvas-physics/tree/master/lib/src/Examples)
+* [BabylonJS StageXL Wrapper](http://acanvas.sounddesignz.com/stagexl/babylonjs-interop/) - [Source](https://github.com/acanvas/babylonjs-dart-facade/tree/master/example)
+* [THREE.js StageXL Wrapper](http://acanvas.sounddesignz.com/stagexl/threejs-interop/) - [Source](https://github.com/acanvas/threejs-dart-facade/tree/master/example)
 
-### Acanvas Framework is built upon
-* [Acanvas Spring](https://github.com/block-forest/acanvas-spring) IoC container (ObjectFactory, ObjectFactory and Object Postprocessing, Interface Injection)
-* [Acanvas Commons](https://github.com/block-forest/acanvas-commons) Async library (FrontController and Commands/Operations, also sequences)
-* [Acanvas Commons](https://github.com/block-forest/acanvas-commons) EventBus (with some tweaks to Operations to make them as effective as Signals)
-* [Acanvas Commons](https://github.com/block-forest/acanvas-commons) Logging
-* [StageXL](https://github.com/bp74/StageXL) - Flash API for Dart
 
-### Acanvas features
-* Plugin system making use of all of the above
-* Mature UI lifecycle management
-* Asset load management (porting in progress)
-* Generic User Generated Content backend communication (porting in progress. reading does work.)
-* i18n
-* Focus on highly interactive rich media applications
-* LOTS of examples
+### Acanvas Framework – Layered Architecture
+
+*Acanvas Framework* is part of a layered architecture built upon the following components. 
+
+* [Acanvas Spring](https://github.com/acanvas/acanvas-spring) IoC container (ObjectFactory, Postprocessing, Interface Injection).
+* [Acanvas Commons](https://github.com/acanvas/acanvas-commons) Async library (FrontController and Commands/Operations, also sequences).
+* [Acanvas Commons](https://github.com/acanvas/acanvas-commons) EventBus (with some tweaks to Operations to make them as effective as Signals).
+* [Acanvas Commons](https://github.com/acanvas/acanvas-commons) Logging.
+* [StageXL](https://github.com/bp74/StageXL) - Flash display list API for Dart.
+* Dart 2.0.
+
+See also *Acanvas Framework [Architecture Diagram](http://acanvas.sounddesignz.com/template/assets/home/acanvas_spring_architecture.png)*
