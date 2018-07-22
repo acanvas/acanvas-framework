@@ -26,7 +26,7 @@ class FBInitBrowserCommand extends AbstractFBCommand {
       "appId": getProperty("project.facebook.appid"),
       "cookie": true,
       "xfbml": false,
-      "version": 'v2.1',
+      "version": 'v3.0',
     });
 
     _fbModel.FB.callMethod("init", [initConfig]);

@@ -1,8 +1,8 @@
 name: acanvas_framework
 version: 0.10.0
-description: Acanvas Rich Media Framework, based on a Spring framework implementation for Dart.
+description: Acanvas Framework – for Dart 2.0 and StageXL.
 environment:
-  sdk: '>=2.0.0-dev.55.0 <2.0.0'
+  sdk: '>=2.0.0-dev.66.0 <2.0.0'
 dependencies:
   js: ^0.6.0
   googleapis_auth: any
