@@ -1,6 +1,6 @@
 # Acanvas Framework
 
-Write web apps, games, or something in-between, in pure Dart. 
+Quickly write web apps, minigames, or anything in-between, in pure Dart. 
 No HTML, no CSS, no JS. 
 
 ![Acanvas Banner](http://acanvas.sounddesignz.com/acanvas-framework/assets/autoload/acanvas-logo-wide-bnw@2x.png)
