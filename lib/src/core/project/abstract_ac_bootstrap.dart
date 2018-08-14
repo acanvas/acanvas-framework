@@ -75,7 +75,7 @@ class AbstractAcBootstrap extends EventDispatcher {
     }
   }
 
-  void loadApplicationContext() async {
+  Future<void> loadApplicationContext() async {
     /** add load listeners */
     // _applicationContext.addEventListener(Event.CANCEL, _onCoreApplicationContextLoadFault);
     /** Load */

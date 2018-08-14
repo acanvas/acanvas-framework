@@ -1,12 +1,19 @@
 analyzer:
-  strong-mode:
-    implicit-casts: true
-    implicit-dynamic: true
+  exclude:
+    - lib/src/plugin/io/photo_import_file.dart
   errors:
     unused_element: info
     unused_import: error
     unused_local_variable: error
     dead_code: error
     override_on_non_overriding_method: error
-  exclude:
-    - lib/src/plugin/io/photo_import_file.dart
+
+# Lint rules and documentation, see http://dart-lang.github.io/linter/lints
+linter:
+  rules:
+  - cancel_subscriptions
+  - hash_and_equals
+  - iterable_contains_unrelated_type
+  - list_remove_unrelated_type
+  - test_types_in_equals
+  - valid_regexps

@@ -1,15 +1,16 @@
 name: acanvas_framework
-version: 0.10.0
+version: 0.11.0
+author: Nils Döhring
 description: Acanvas Framework – for Dart 2.0 and StageXL.
 environment:
-  sdk: '>=2.0.0-dev.66.0 <2.0.0'
+  sdk: '>=2.0.0 <3.0.0'
 dependencies:
-  js: ^0.6.0
+  js: ^0.6.1+1
   googleapis_auth: any
   googleapis: any
-  acanvas_spring:
-    git: https://github.com/acanvas/acanvas-spring
   acanvas_commons:
     git: https://github.com/acanvas/acanvas-commons
+  acanvas_spring:
+    git: https://github.com/acanvas/acanvas-spring
   babylonjs_facade:
     git: https://github.com/block-forest/babylonjs-dart-facade

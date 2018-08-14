@@ -1,5 +1,10 @@
 # CHANGELOG ACANVAS_FRAMEWORK
 
+## 0.11.0 2018-08-14
+
+- depends on Dart 2.0.0 stable
+    - sdk requirement: '>=2.0.0 <3.0.0'
+    
 ## 0.10.0-dev 2018-05-13
 
 - Now using the Dart 2 type system
